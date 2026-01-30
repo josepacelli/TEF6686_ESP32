@@ -34,6 +34,8 @@ extern WiFiUDP Udp;
 
 void handleRoot();
 void handleDownloadCSV();
+void handleUploadCustomPTYSForm();
+void handleUploadCustomPTYS();
 bool handleCreateNewLogbook();
 byte addRowToCSV();
 String getCurrentDateTime(bool inUTC);

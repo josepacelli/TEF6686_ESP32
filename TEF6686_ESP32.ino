@@ -28,6 +28,7 @@ using fs::FS;
 #include "src/rds.h"
 #include "src/touch.h"
 #include "src/logbook.h"
+#include "src/custom_ptys.h"
 
 #define ROTARY_PIN_A    34
 #define ROTARY_PIN_B    36
@@ -719,6 +720,7 @@ void setup() {
   tft.fillScreen(BackgroundColor);
 
   SPIFFS.begin();
+  loadCustomPTYS();
 
   FrequencySprite.createSprite(200, 50);
   FrequencySprite.setTextDatum(TR_DATUM);

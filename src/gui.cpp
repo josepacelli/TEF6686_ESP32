@@ -4,6 +4,7 @@
 #include <Wire.h>
 #include <EEPROM.h>
 #include <cstring>
+#include "custom_ptys.h"
 
 extern mem presets[];
 bool setWiFiConnectParam = false;
@@ -941,13 +942,20 @@ void ShowOneLine(byte position, byte item, bool selected) {
           break;
 
         case CONNECTIVITY:
-          FullLineSprite.setTextDatum(TL_DATUM);
-          FullLineSprite.setTextColor(ActiveColor, ActiveColorSmooth, false);
-          FullLineSprite.drawString(removeNewline(textUI(52)), 6, 2);
+            FullLineSprite.setTextDatum(TL_DATUM);
+            FullLineSprite.setTextColor(ActiveColor, ActiveColorSmooth, false);
+            // Custom PTYS entry (shows count)
+            {
+              extern size_t getCustomPTYSCount();
+              size_t cnt = getCustomPTYSCount();
+              String label = String("Custom PTYS");
+              if (cnt > 0) label += " (" + String(cnt) + ")";
+              FullLineSprite.drawString(removeNewline(label), 6, 2);
+            }
 
-          FullLineSprite.setTextDatum(TR_DATUM);
-          FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
-          FullLineSprite.drawString(">", 298, 2);
+            FullLineSprite.setTextDatum(TR_DATUM);
+            FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+            FullLineSprite.drawString(">", 298, 2);
           break;
 
         case DXMODE:
@@ -4228,6 +4236,19 @@ void MenuUpDown(bool dir) {
 
             OneBigLineSprite.drawString((wifi ? textUI(31) : textUI(30)), 135, 0);
             OneBigLineSprite.pushSprite(24, 118);
+            break;
+
+          case ITEM3:
+            // Open a small info box showing how to manage Custom PTYS
+            {
+              size_t cnt = getCustomPTYSCount();
+              String msg = "Custom PTYS: " + String(cnt) + " entries. Use /custom_ptys.csv on SPIFFS to edit.";
+              Infoboxprint(msg.c_str());
+              tftPrint(ACENTER, textUI(2), 155, 130, ActiveColor, ActiveColorSmooth, 28);
+              delay(1500);
+            }
+            menuopen = false;
+            BuildMenu();
             break;
 
           case ITEM4:

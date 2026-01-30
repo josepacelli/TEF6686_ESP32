@@ -1,6 +1,7 @@
 #include "logbook.h"
 #include "constants.h"
 #include <EEPROM.h>
+#include "custom_ptys.h"
 
 String UDPlogold = "";
 
@@ -576,4 +577,62 @@ void sendUDPlog() {
 IPAddress makeBroadcastAddress(IPAddress ip) {
   // Assuming a typical subnet mask of 255.255.255.0
   return IPAddress(ip[0], ip[1], ip[2], 255);
+}
+
+void handleDownloadCustomPTYS() {
+  if (!SPIFFS.exists("/custom_ptys.csv")) {
+    webserver.send(404, "text/plain", "No custom PTYS file");
+    return;
+  }
+  fs::File file = SPIFFS.open("/custom_ptys.csv", "r");
+  if (!file) {
+    webserver.send(500, "text/plain", "Failed to open custom_ptys.csv");
+    return;
+  }
+  webserver.sendHeader("Content-Type", "text/csv");
+  webserver.sendHeader("Content-Disposition", "attachment; filename=custom_ptys.csv");
+  webserver.streamFile(file, "text/csv");
+  file.close();
+}
+
+void handleUploadCustomPTYSForm() {
+  String html = "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">";
+  html += "<style>body{background:#202328;color:#fff;font-family:Arial;padding:20px}h1{ text-align:center } form{max-width:700px;margin:0 auto;background:#2e5049;padding:20px;border-radius:12px} input[type=file]{display:block;margin:20px auto} button{display:block;margin:0 auto;padding:12px 20px;border-radius:10px;background:#4db691;border:0;color:#202328;font-weight:bold}</style>";
+  html += "</head><body>";
+  html += "<h1>Upload Custom PTYS CSV</h1>";
+  html += "<form method=\"POST\" action=\"/upload_custom_ptys\" enctype=\"multipart/form-data\">";
+  html += "<p style='text-align:center'>Choose a CSV file with lines like <code>102.7,Pop</code> or <code>102700,Pop</code></p>";
+  html += "<input type=\"file\" name=\"file\" accept=\".csv,text/csv\">";
+  html += "<button type=\"submit\">Upload</button>";
+  html += "</form>";
+  html += "<p style='text-align:center;margin-top:20px'><a href=\"/\">Back to logbook</a></p>";
+  html += "</body></html>";
+  webserver.send(200, "text/html", html);
+}
+
+void handleUploadCustomPTYS() {
+  HTTPUpload& upload = webserver.upload();
+  static fs::File file;
+  if (upload.status == UPLOAD_FILE_START) {
+    if (SPIFFS.exists("/custom_ptys.csv")) SPIFFS.remove("/custom_ptys.csv");
+    file = SPIFFS.open("/custom_ptys.csv", "w");
+    if (!file) {
+      webserver.send(500, "text/plain", "Failed to open file for writing");
+      return;
+    }
+  } else if (upload.status == UPLOAD_FILE_WRITE) {
+    if (file) file.write(upload.buf, upload.currentSize);
+  } else if (upload.status == UPLOAD_FILE_END) {
+    if (file) {
+      file.flush(); file.close();
+    }
+    // reload list
+    loadCustomPTYS();
+    String html = "<!DOCTYPE html><html><body style='background:#202328;color:#fff;font-family:Arial;padding:20px'>";
+    html += "<h1>Upload complete</h1>";
+    html += "<p>Custom PTYS saved to /custom_ptys.csv</p>";
+    html += "<p><a href='/'>Back</a></p>";
+    html += "</body></html>";
+    webserver.send(200, "text/html", html);
+  }
 }

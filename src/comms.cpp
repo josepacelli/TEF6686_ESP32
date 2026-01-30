@@ -1000,6 +1000,9 @@ void tryWiFi() {
       Udp.begin(9031);
       webserver.on("/", handleRoot);
       webserver.on("/downloadCSV", HTTP_GET, handleDownloadCSV);
+      webserver.on("/custom_ptys.csv", HTTP_GET, handleDownloadCustomPTYS);
+      webserver.on("/upload_custom_ptys", HTTP_GET, handleUploadCustomPTYSForm);
+      webserver.on("/upload_custom_ptys", HTTP_POST, [](){ webserver.send(200); }, handleUploadCustomPTYS);
       webserver.on("/logo.png", handleLogo);
       webserver.begin();
       NTPupdate();
