@@ -43,36 +43,47 @@ done
 
 # Ask to compile
 echo ""
-read -p "Do you want to compile again? (y/n): " COMPILE
+read -p "Do you want to compile? (y/n): " COMPILE
 if [[ "$COMPILE" == "y" || "$COMPILE" == "Y" ]]; then
     echo ""
-    echo "Opening Arduino IDE..."
-    echo "Please compile: Sketch > Export Compiled Binary"
+    echo "Compiling with Arduino CLI..."
     echo ""
     
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        open "TEF6686_ESP32.ino"
-    else
-        xdg-open "TEF6686_ESP32.ino" &
+    # Check if arduino-cli is installed
+    if ! command -v arduino-cli &> /dev/null; then
+        echo "[ERROR] arduino-cli not found"
+        echo "Please install it from: https://arduino.github.io/arduino-cli/"
+        exit 1
     fi
     
-    read -p "Press Enter when compilation is done: "
+    # Compile with Arduino CLI with ESP32 specific parameters
+    arduino-cli compile \
+        --fqbn esp32:esp32:esp32:PartitionScheme=huge_app,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none,EraseFlash=none \
+        --export-binaries \
+        TEF6686_ESP32.ino
+    
+    if [ $? -ne 0 ]; then
+        echo ""
+        echo "[ERROR] Compilation failed"
+        exit 1
+    fi
+    
+    echo ""
+    echo "[OK] Compilation successful"
 fi
 
 echo ""
-echo "Step 0: Check and export binaries..."
+echo "Step 0: Check binaries..."
 echo ""
 
 # Check if firmware exists
 if [ ! -f "$BUILD_DIR/TEF6686_ESP32.ino.bin" ]; then
     echo "[WARNING] Firmware binary not found in $BUILD_DIR"
     echo ""
-    echo "You need to export the binary from Arduino IDE:"
-    echo "1. In Arduino IDE: Sketch > Export Compiled Binary"
-    echo "2. Or enable 'Show verbose output during compilation'"
-    echo "   in File > Preferences"
+    echo "You need to compile the project first using Arduino CLI:"
+    echo "  arduino-cli compile --fqbn esp32:esp32:esp32 --export-binaries TEF6686_ESP32.ino"
     echo ""
-    echo "The binary will be generated in: $BUILD_DIR"
+    echo "Or run this script again and choose 'y' when asked to compile."
     echo ""
     read -p "Press Enter when ready, or type 'abort' to cancel: " CONTINUE
     if [[ "$CONTINUE" == "abort" ]]; then
@@ -116,44 +127,42 @@ fi
 echo "[OK] SPIFFS binary generated: $OUTPUT_DIR/TEF6686_ESP32.spiffs.bin"
 echo ""
 
-echo "Step 2: Copy binary files from build folder..."
+echo "Step 2: Copy all binary files from build folder..."
 echo ""
 
-# Copy bootloader
-if [ -f "$BUILD_DIR/TEF6686_ESP32.ino.bootloader.bin" ]; then
-    cp "$BUILD_DIR/TEF6686_ESP32.ino.bootloader.bin" "$OUTPUT_DIR/bootloader.bin"
-    echo "[OK] bootloader.bin copied"
+# Copy all .bin files from build directory
+cp "$BUILD_DIR"/*.bin "$OUTPUT_DIR/" 2>/dev/null
+
+if [ $? -eq 0 ]; then
+    echo "[OK] Binary files copied from $BUILD_DIR"
 else
-    echo "[FAIL] bootloader.bin not found"
+    echo "[FAIL] Error copying binary files"
     exit 1
 fi
 
-# Copy partitions
-if [ -f "$BUILD_DIR/TEF6686_ESP32.ino.partitions.bin" ]; then
-    cp "$BUILD_DIR/TEF6686_ESP32.ino.partitions.bin" "$OUTPUT_DIR/partitions.bin"
-    echo "[OK] partitions.bin copied"
-else
-    echo "[FAIL] partitions.bin not found"
-    exit 1
+# Find and copy boot_app0.bin if not present
+if [ ! -f "$OUTPUT_DIR/boot_app0.bin" ]; then
+    echo "[INFO] boot_app0.bin not found in build, searching in ESP32 package..."
+    
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        BOOT_APP0_SEARCH="$HOME/.arduino15/packages/esp32/hardware/esp32/*/tools/partitions/boot_app0.bin"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        BOOT_APP0_SEARCH="$HOME/Library/Arduino15/packages/esp32/hardware/esp32/*/tools/partitions/boot_app0.bin"
+    fi
+    
+    BOOT_APP0_PATH=$(ls $BOOT_APP0_SEARCH 2>/dev/null | head -n 1)
+    
+    if [ -f "$BOOT_APP0_PATH" ]; then
+        cp "$BOOT_APP0_PATH" "$OUTPUT_DIR/boot_app0.bin"
+        echo "[OK] boot_app0.bin copied from ESP32 package"
+    else
+        echo "[WARNING] boot_app0.bin not found, flash may fail"
+    fi
 fi
 
-# Copy boot_app0
-if [ -f "$BUILD_DIR/boot_app0.bin" ]; then
-    cp "$BUILD_DIR/boot_app0.bin" "$OUTPUT_DIR/boot_app0.bin"
-    echo "[OK] boot_app0.bin copied"
-else
-    echo "[FAIL] boot_app0.bin not found"
-    exit 1
-fi
-
-# Copy firmware
-if [ -f "$BUILD_DIR/TEF6686_ESP32.ino.bin" ]; then
-    cp "$BUILD_DIR/TEF6686_ESP32.ino.bin" "$OUTPUT_DIR/TEF6686_ESP32.ino.bin"
-    echo "[OK] TEF6686_ESP32.ino.bin copied"
-else
-    echo "[FAIL] TEF6686_ESP32.ino.bin not found"
-    exit 1
-fi
+echo ""
+echo "Binary files ready:"
+ls -lh "$OUTPUT_DIR"/*.bin | awk '{print "  - " $9 " (" $5 ")"}'
 
 echo ""
 echo "======================================"
@@ -178,8 +187,77 @@ echo "======================================"
 echo "Flash command (change /dev/ttyUSB0 if needed):"
 echo "======================================"
 echo ""
-echo "esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB 0x1000 build/bootloader.bin 0x8000 build/partitions.bin 0xe000 build/boot_app0.bin 0x10000 build/TEF6686_ESP32.ino.bin $SPIFFS_ADDR build/TEF6686_ESP32.spiffs.bin"
+
+# Detect available ports
+echo "Detecting available serial ports..."
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    PORTS=$(ls /dev/cu.* 2>/dev/null | grep -E "(usbserial|SLAB|wchusbserial)" || echo "")
+else
+    PORTS=$(ls /dev/ttyUSB* /dev/ttyACM* 2>/dev/null || echo "")
+fi
+
+if [ -z "$PORTS" ]; then
+    echo "[WARNING] No serial ports detected"
+    SERIAL_PORT="/dev/ttyUSB0"
+else
+    echo "Available ports:"
+    echo "$PORTS"
+    SERIAL_PORT=$(echo "$PORTS" | head -n 1)
+fi
+
 echo ""
-echo "Or with esptool.exe (Windows style):"
-echo "esptool.exe --chip esp32 --port COM16 --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB 0x1000 build/bootloader.bin 0x8000 build/partitions.bin 0xe000 build/boot_app0.bin 0x10000 build/TEF6686_ESP32.ino.bin $SPIFFS_ADDR build/TEF6686_ESP32.spiffs.bin"
+echo "Default port: $SERIAL_PORT"
+echo ""
+
+# Ask to flash
+read -p "Do you want to flash the firmware now? (y/n): " FLASH
+if [[ "$FLASH" == "y" || "$FLASH" == "Y" ]]; then
+    echo ""
+    read -p "Enter serial port [$SERIAL_PORT]: " CUSTOM_PORT
+    if [ -n "$CUSTOM_PORT" ]; then
+        SERIAL_PORT="$CUSTOM_PORT"
+    fi
+    
+    echo ""
+    echo "Step 4: Flashing firmware and SPIFFS..."
+    echo ""
+    
+    # Check if esptool is available
+    if ! command -v esptool.py &> /dev/null; then
+        echo "[ERROR] esptool.py not found"
+        echo "Install with: pip install esptool"
+        exit 1
+    fi
+    
+    # Flash command
+    esptool.py --chip esp32 \
+        --port "$SERIAL_PORT" \
+        --baud 921600 \
+        --before default_reset \
+        --after hard_reset \
+        write_flash -z \
+        --flash_mode dio \
+        --flash_freq 80m \
+        --flash_size 4MB \
+        0x1000 "$OUTPUT_DIR/bootloader.bin" \
+        0x8000 "$OUTPUT_DIR/partitions.bin" \
+        0xe000 "$OUTPUT_DIR/boot_app0.bin" \
+        0x10000 "$OUTPUT_DIR/TEF6686_ESP32.ino.bin" \
+        $SPIFFS_ADDR "$OUTPUT_DIR/TEF6686_ESP32.spiffs.bin"
+    
+    if [ $? -eq 0 ]; then
+        echo ""
+        echo "[OK] Flash completed successfully!"
+    else
+        echo ""
+        echo "[FAIL] Flash failed"
+        exit 1
+    fi
+else
+    echo ""
+    echo "Manual flash command:"
+    echo ""
+    echo "esptool.py --chip esp32 --port $SERIAL_PORT --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB 0x1000 build/bootloader.bin 0x8000 build/partitions.bin 0xe000 build/boot_app0.bin 0x10000 build/TEF6686_ESP32.ino.bin $SPIFFS_ADDR build/TEF6686_ESP32.spiffs.bin"
+fi
+
 echo ""
