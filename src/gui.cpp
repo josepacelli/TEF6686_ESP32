@@ -1052,11 +1052,22 @@ void ShowOneLine(byte position, byte item, bool selected) {
         case CONNECTIVITY:
           FullLineSprite.setTextDatum(TL_DATUM);
           FullLineSprite.setTextColor(ActiveColor, ActiveColorSmooth, false);
-          FullLineSprite.drawString(removeNewline(textUI(58)), 6, 2);
-
-          FullLineSprite.setTextDatum(TR_DATUM);
-          FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
-          FullLineSprite.drawString((wifi ? String(WiFi.localIP()[0]) + "." + String(WiFi.localIP()[1]) + "." + String(WiFi.localIP()[2]) + "." + String(subnetclient, DEC) : "-"), 298, 2);
+          if (menuoption == ITEM2) {
+            FullLineSprite.drawString(removeNewline(textUI(51)), 6, 2);
+            FullLineSprite.setTextDatum(TR_DATUM);
+            FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+            FullLineSprite.drawString((wifi ? textUI(31) : textUI(30)), 298, 2);
+          } else if (menuoption == ITEM3) {
+            FullLineSprite.drawString("Custom PTYS", 6, 2);
+            FullLineSprite.setTextDatum(TR_DATUM);
+            FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+            FullLineSprite.drawString(">", 298, 2);
+          } else {
+            FullLineSprite.drawString(removeNewline(textUI(58)), 6, 2);
+            FullLineSprite.setTextDatum(TR_DATUM);
+            FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+            FullLineSprite.drawString((wifi ? String(WiFi.localIP()[0]) + "." + String(WiFi.localIP()[1]) + "." + String(WiFi.localIP()[2]) + "." + String(subnetclient, DEC) : "-"), 298, 2);
+          }
           break;
 
         case DXMODE:
