@@ -2,7 +2,14 @@
 #pragma GCC diagnostic ignored "-Wbool-compare"
 #include "rds.h"
 #include "constants.h"
+#include "custom_ptys.h"
 #include <TimeLib.h>
+
+// External variables
+extern unsigned int frequency;
+extern unsigned int frequency_OIRT;
+extern unsigned int frequency_AM;
+extern byte band;
 
 String HexStringold;
 float smoothBER = 0;
@@ -626,6 +633,22 @@ void showPTY() {
     String PTYString = String(radio.rds.stationTypeCode) + "/" + (radio.rds.region != 0 ? radio.rds.stationType : textUI(228 + radio.rds.stationTypeCode));
 
     if (radio.rds.stationTypeCode == 32) PTYString = "";
+
+    // Check for custom PTY from CSV based on current frequency
+    uint32_t currentFreqKhz = 0;
+    if (band == BAND_FM) {
+      currentFreqKhz = (uint32_t)round(frequency * 1000.0);
+    } else if (band == BAND_OIRT) {
+      currentFreqKhz = (uint32_t)round(frequency_OIRT * 1000.0);
+    }
+    
+    // Override with custom PTY from CSV if found
+    if (currentFreqKhz > 0) {
+      String customPTY = findCustomPTYForFreq(currentFreqKhz);
+      if (customPTY.length() > 0) {
+        PTYString = customPTY;
+      }
+    }
 
     if (!screenmute) {
       if (advancedRDS) {

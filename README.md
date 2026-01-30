@@ -36,3 +36,4 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 ## If you like this software
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/pe5pvb)
 
+cd "c:\TOOLS\pac\TEF6686_ESP32"; & "C:\Users\josep\AppData\Local\Arduino15\packages\esp32\tools\mkspiffs\0.2.3\mkspiffs.exe" -c data -b 4096 -p 256 -s 1507328 spiffs.bin
