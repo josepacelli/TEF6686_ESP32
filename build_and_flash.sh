@@ -91,76 +91,91 @@ fi
 echo "[OK] All required binaries found"
 echo
 
-# Check if mkspiffs exists
-MKSPIFFS=""
-if command -v mkspiffs &>/dev/null; then
-    MKSPIFFS="mkspiffs"
-elif command -v mkspiffs.py &>/dev/null; then
-    MKSPIFFS="mkspiffs.py"
-elif [ -f "$HOME/.arduino15/packages/esp32/tools/mkspiffs/*/mkspiffs" ]; then
-    MKSPIFFS=$(find "$HOME/.arduino15/packages/esp32/tools/mkspiffs/" -name mkspiffs -type f 2>/dev/null | head -n 1)
-elif [ -f "$HOME/Library/Arduino15/packages/esp32/tools/mkspiffs/*/mkspiffs" ]; then
-    MKSPIFFS=$(find "$HOME/Library/Arduino15/packages/esp32/tools/mkspiffs/" -name mkspiffs -type f 2>/dev/null | head -n 1)
-fi
-
-if [ -z "${MKSPIFFS}" ]; then
-    echo -e "${RED}[ERROR] mkspiffs not found${NC}"
-    echo "Please install ESP32 board package in Arduino IDE"
-    exit 1
-fi
-
-echo "Step 1: Generate SPIFFS binary..."
+# Check if SPIFFS binary already exists or try to generate it
+echo "Step 1: Check/Generate SPIFFS binary..."
 echo
 
-# Generate SPIFFS with correct size (800KB)
-mkdir -p "${OUTPUT_DIR}"
-"${MKSPIFFS}" -c data -b 4096 -p 256 -s 819200 "${OUTPUT_DIR}/TEF6686_ESP32.spiffs.bin" >/dev/null 2>&1
+if [ -f "${OUTPUT_DIR}/TEF6686_ESP32.spiffs.bin" ]; then
+    echo "[OK] SPIFFS binary already exists: ${OUTPUT_DIR}/TEF6686_ESP32.spiffs.bin"
+else
+    # Check if mkspiffs exists
+    MKSPIFFS=""
+    if command -v mkspiffs &>/dev/null; then
+        MKSPIFFS="mkspiffs"
+    elif command -v mkspiffs.py &>/dev/null; then
+        MKSPIFFS="mkspiffs.py"
+    else
+        # Try to find mkspiffs in Arduino15 folders
+        if [ -d "$HOME/.arduino15/packages/esp32/tools/mkspiffs" ]; then
+            MKSPIFFS=$(find "$HOME/.arduino15/packages/esp32/tools/mkspiffs/" -name mkspiffs -type f 2>/dev/null | head -n 1)
+        elif [ -d "$HOME/Library/Arduino15/packages/esp32/tools/mkspiffs" ]; then
+            MKSPIFFS=$(find "$HOME/Library/Arduino15/packages/esp32/tools/mkspiffs/" -name mkspiffs -type f 2>/dev/null | head -n 1)
+        fi
+    fi
 
-if [ $? -ne 0 ]; then
-    echo -e "${RED}[FAIL] Error generating SPIFFS binary${NC}"
-    exit 1
+    if [ -n "${MKSPIFFS}" ]; then
+        echo "Generating SPIFFS binary with ${MKSPIFFS}..."
+        mkdir -p "${OUTPUT_DIR}"
+        "${MKSPIFFS}" -c data -b 4096 -p 256 -s 819200 "${OUTPUT_DIR}/TEF6686_ESP32.spiffs.bin" >/dev/null 2>&1
+        
+        if [ $? -eq 0 ]; then
+            echo "[OK] SPIFFS binary generated: ${OUTPUT_DIR}/TEF6686_ESP32.spiffs.bin"
+        else
+            echo -e "${YELLOW}[WARNING] Could not generate SPIFFS binary${NC}"
+            echo "Will attempt to use pre-existing SPIFFS binary"
+        fi
+    else
+        echo -e "${YELLOW}[WARNING] mkspiffs not found, skipping SPIFFS generation${NC}"
+        echo "If you need SPIFFS, please ensure TEF6686_ESP32.spiffs.bin exists in ${OUTPUT_DIR}/"
+    fi
 fi
-echo "[OK] SPIFFS binary generated: ${OUTPUT_DIR}/TEF6686_ESP32.spiffs.bin"
 echo
 
 echo "Step 2: Copy binary files from build folder..."
 echo
 
-# Copy bootloader
-if [ -f "${BUILD_DIR}/TEF6686_ESP32.ino.bootloader.bin" ]; then
-    cp "${BUILD_DIR}/TEF6686_ESP32.ino.bootloader.bin" "${OUTPUT_DIR}/bootloader.bin"
-    echo "[OK] bootloader.bin copied"
+# Copy all .bin files from build directory
+cp "${BUILD_DIR}"/*.bin "${OUTPUT_DIR}/" 2>/dev/null
+
+if [ $? -eq 0 ]; then
+    echo "[OK] Binary files copied from ${BUILD_DIR}"
 else
-    echo -e "${RED}[FAIL] bootloader.bin not found${NC}"
-    exit 1
+    echo -e "${YELLOW}[WARNING] Error copying binary files${NC}"
 fi
 
-# Copy partitions
-if [ -f "${BUILD_DIR}/TEF6686_ESP32.ino.partitions.bin" ]; then
-    cp "${BUILD_DIR}/TEF6686_ESP32.ino.partitions.bin" "${OUTPUT_DIR}/partitions.bin"
-    echo "[OK] partitions.bin copied"
-else
-    echo -e "${RED}[FAIL] partitions.bin not found${NC}"
-    exit 1
+# Rename files if they have the full names
+if [ -f "${OUTPUT_DIR}/TEF6686_ESP32.ino.bootloader.bin" ]; then
+    mv "${OUTPUT_DIR}/TEF6686_ESP32.ino.bootloader.bin" "${OUTPUT_DIR}/bootloader.bin" 2>/dev/null
 fi
 
-# Copy boot_app0
-if [ -f "${BUILD_DIR}/boot_app0.bin" ]; then
-    cp "${BUILD_DIR}/boot_app0.bin" "${OUTPUT_DIR}/boot_app0.bin"
-    echo "[OK] boot_app0.bin copied"
-else
-    echo -e "${RED}[FAIL] boot_app0.bin not found${NC}"
-    exit 1
+if [ -f "${OUTPUT_DIR}/TEF6686_ESP32.ino.partitions.bin" ]; then
+    mv "${OUTPUT_DIR}/TEF6686_ESP32.ino.partitions.bin" "${OUTPUT_DIR}/partitions.bin" 2>/dev/null
 fi
 
-# Copy firmware
-if [ -f "${BUILD_DIR}/TEF6686_ESP32.ino.bin" ]; then
-    cp "${BUILD_DIR}/TEF6686_ESP32.ino.bin" "${OUTPUT_DIR}/TEF6686_ESP32.ino.bin"
-    echo "[OK] TEF6686_ESP32.ino.bin copied"
-else
-    echo -e "${RED}[FAIL] TEF6686_ESP32.ino.bin not found${NC}"
-    exit 1
+# Find and copy boot_app0.bin if not present
+if [ ! -f "${OUTPUT_DIR}/boot_app0.bin" ]; then
+    echo "[INFO] boot_app0.bin not found in build, searching in ESP32 package..."
+    
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        BOOT_APP0_SEARCH="$HOME/.arduino15/packages/esp32/hardware/esp32/*/tools/partitions/boot_app0.bin"
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        BOOT_APP0_SEARCH="$HOME/Library/Arduino15/packages/esp32/hardware/esp32/*/tools/partitions/boot_app0.bin"
+    fi
+    
+    BOOT_APP0_PATH=$(ls ${BOOT_APP0_SEARCH} 2>/dev/null | head -n 1)
+    
+    if [ -f "${BOOT_APP0_PATH}" ]; then
+        cp "${BOOT_APP0_PATH}" "${OUTPUT_DIR}/boot_app0.bin"
+        echo "[OK] boot_app0.bin copied from ESP32 package"
+    else
+        echo -e "${YELLOW}[WARNING] boot_app0.bin not found, flash may fail${NC}"
+    fi
 fi
+
+# Verify essential files exist
+echo
+echo "Binary files ready:"
+ls -lh "${OUTPUT_DIR}"/*.bin 2>/dev/null | awk '{print "  - " $9 " (" $5 ")"}'
 
 echo
 echo "======================================"
@@ -242,21 +257,81 @@ fi
 
 echo
 echo "======================================"
+echo "Ready to flash to ${SERIAL_PORT}"
+echo "======================================"
+echo
+
+# Ask if ESP32 is ready
+while true; do
+    echo
+    read -rp "Is your ESP32 in download mode? (Y/n): " ready
+    ready=${ready:-Y} # Default to 'Y' if no input is provided
+    case ${ready} in
+    [Yy]*)
+        break
+        ;;
+    [Nn]*)
+        echo
+        echo "Instructions to enter download mode:"
+        echo "1. For boards WITH BOOT button: Hold BOOT button and press EN/RESET"
+        echo "2. For boards WITHOUT BOOT button: Connect GPIO0 to GND and reset"
+        echo "3. Some boards auto-enter download mode when flashing starts"
+        ;;
+    *) echo "Please answer yes (y) or no (n)." ;;
+    esac
+done
+
+echo
+echo "======================================"
 echo "Flashing to ${SERIAL_PORT}..."
 echo "======================================"
 echo
 
 # Flash the complete firmware
 echo "Flashing firmware and SPIFFS..."
-if ! ${ESPTOOL} --chip esp32 --port "${SERIAL_PORT}" --baud 921600 --before default_reset \
-    --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size 4MB \
-    0x1000 "${OUTPUT_DIR}/bootloader.bin" \
-    0x8000 "${OUTPUT_DIR}/partitions.bin" \
-    0xe000 "${OUTPUT_DIR}/boot_app0.bin" \
-    0x10000 "${OUTPUT_DIR}/TEF6686_ESP32.ino.bin" \
-    ${SPIFFS_ADDR} "${OUTPUT_DIR}/TEF6686_ESP32.spiffs.bin"; then
+
+# Check if SPIFFS binary exists before flashing
+FLASH_FILES=(
+    0x1000 "${OUTPUT_DIR}/bootloader.bin"
+    0x8000 "${OUTPUT_DIR}/partitions.bin"
+    0xe000 "${OUTPUT_DIR}/boot_app0.bin"
+    0x10000 "${OUTPUT_DIR}/TEF6686_ESP32.ino.bin"
+)
+
+# Add SPIFFS only if it exists
+if [ -f "${OUTPUT_DIR}/TEF6686_ESP32.spiffs.bin" ]; then
+    FLASH_FILES+=("${SPIFFS_ADDR}" "${OUTPUT_DIR}/TEF6686_ESP32.spiffs.bin")
+    echo "Including SPIFFS at address ${SPIFFS_ADDR}"
+else
+    echo -e "${YELLOW}[WARNING] SPIFFS binary not found, flashing without it${NC}"
+fi
+
+# Try flashing with different baud rates
+BAUD_RATES=(460800 115200)
+FLASH_SUCCESS=false
+
+for BAUD in "${BAUD_RATES[@]}"; do
     echo
-    echo -e "${RED}Error flashing! Please check the serial port and ESP32 connection.${NC}"
+    echo "Attempting flash at ${BAUD} baud..."
+    
+    if ${ESPTOOL} --chip esp32 --port "${SERIAL_PORT}" --baud ${BAUD} \
+        --before default_reset --after hard_reset write_flash -z \
+        --flash_mode dio --flash_freq 80m --flash_size 4MB \
+        "${FLASH_FILES[@]}"; then
+        FLASH_SUCCESS=true
+        break
+    else
+        echo -e "${YELLOW}[WARNING] Flash failed at ${BAUD} baud, trying slower speed...${NC}"
+    fi
+done
+
+if ! ${FLASH_SUCCESS}; then
+    echo
+    echo -e "${RED}Error flashing! Tried multiple baud rates without success.${NC}"
+    echo "Please check:"
+    echo "  - USB cable quality (try a different cable)"
+    echo "  - Serial port connection"
+    echo "  - ESP32 is properly powered"
     exit 1
 fi
 
