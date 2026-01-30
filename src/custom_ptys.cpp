@@ -24,7 +24,7 @@ void loadCustomPTYS() {
     // accept either kHz integer or MHz with decimal
     uint32_t freq_khz = 0;
     if (freqs.indexOf('.') != -1) {
-      // MHz like 102.7 -> kHz *1000
+      // MHz like 102.7 -> kHz *1000 = 102700
       float mhz = freqs.toFloat();
       freq_khz = (uint32_t)round(mhz * 1000.0);
     } else {
@@ -43,9 +43,9 @@ void saveCustomPTYS() {
   fs::File f = SPIFFS.open(CUSTOM_PTY_PATH, "w");
   if (!f) return;
   for (auto &e : customPtys) {
-    // write frequency as MHz with one decimal when divisible by 100
-    String freqStr;
-    if (e.freq_khz % 1000 == 0) freqStr = String(e.freq_khz / 1000); else freqStr = String((float)e.freq_khz / 1000.0);
+    // write frequency as MHz with one decimal
+    // freq_khz is in kHz (e.g., 102700 = 102.7 MHz)
+    String freqStr = String((float)e.freq_khz / 1000.0, 1);
     f.print(freqStr + "," + e.pty + "\n");
   }
   f.flush();
@@ -67,9 +67,9 @@ String findCustomPTYForFreq(uint32_t freq_khz) {
   for (auto &e : customPtys) {
     if (e.freq_khz == freq_khz) return e.pty;
   }
-  // try match by rounding to 100 kHz or 10 kHz if needed
+  // try match within 100 kHz tolerance for rounding differences
   for (auto &e : customPtys) {
-    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.pty; // within 100 kHz
+    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.pty;
   }
   return String("");
 }

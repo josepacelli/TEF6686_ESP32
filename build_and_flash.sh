@@ -12,6 +12,7 @@ OUTPUT_DIR="build"
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+
 NC='\033[0m' # No Color
 
 # Display the tool header
@@ -49,16 +50,30 @@ echo
 read -rp "Do you want to compile again? (y/n): " COMPILE
 if [[ "${COMPILE}" =~ ^[Yy]$ ]]; then
     echo
-    echo "Opening Arduino IDE..."
-    echo "Please compile: Sketch > Export Compiled Binary"
+    echo "Compiling with Arduino CLI..."
     echo
-    if command -v arduino &>/dev/null; then
-        arduino TEF6686_ESP32.ino &
-    elif command -v open &>/dev/null; then
-        open TEF6686_ESP32.ino
+    
+    # Check if arduino-cli is installed
+    if ! command -v arduino-cli &>/dev/null; then
+        echo -e "${RED}[ERROR] arduino-cli not found${NC}"
+        echo "Please install it from: https://arduino.github.io/arduino-cli/"
+        exit 1
     fi
+    
+    # Compile with Arduino CLI with ESP32 specific parameters
+    arduino-cli compile \
+        --fqbn esp32:esp32:esp32:PartitionScheme=huge_app,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none,EraseFlash=none \
+        --export-binaries \
+        TEF6686_ESP32.ino
+    
+    if [ $? -ne 0 ]; then
+        echo
+        echo -e "${RED}[ERROR] Compilation failed${NC}"
+        exit 1
+    fi
+    
     echo
-    read -rp "Press Enter when compilation is done: "
+    echo -e "${GREEN}[OK] Compilation successful${NC}"
 fi
 
 echo

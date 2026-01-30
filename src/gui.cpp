@@ -942,20 +942,13 @@ void ShowOneLine(byte position, byte item, bool selected) {
           break;
 
         case CONNECTIVITY:
-            FullLineSprite.setTextDatum(TL_DATUM);
-            FullLineSprite.setTextColor(ActiveColor, ActiveColorSmooth, false);
-            // Custom PTYS entry (shows count)
-            {
-              extern size_t getCustomPTYSCount();
-              size_t cnt = getCustomPTYSCount();
-              String label = String("Custom PTYS");
-              if (cnt > 0) label += " (" + String(cnt) + ")";
-              FullLineSprite.drawString(removeNewline(label), 6, 2);
-            }
+          FullLineSprite.setTextDatum(TL_DATUM);
+          FullLineSprite.setTextColor(ActiveColor, ActiveColorSmooth, false);
+          FullLineSprite.drawString(removeNewline(textUI(51)), 6, 2);
 
-            FullLineSprite.setTextDatum(TR_DATUM);
-            FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
-            FullLineSprite.drawString(">", 298, 2);
+          FullLineSprite.setTextDatum(TR_DATUM);
+          FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+          FullLineSprite.drawString((wifi ? textUI(31) : textUI(30)), 298, 2);
           break;
 
         case DXMODE:
@@ -4239,13 +4232,32 @@ void MenuUpDown(bool dir) {
             break;
 
           case ITEM3:
-            // Open a small info box showing how to manage Custom PTYS
+            // Display Custom PTYS list
             {
               size_t cnt = getCustomPTYSCount();
-              String msg = "Custom PTYS: " + String(cnt) + " entries. Use /custom_ptys.csv on SPIFFS to edit.";
-              Infoboxprint(msg.c_str());
-              tftPrint(ACENTER, textUI(2), 155, 130, ActiveColor, ActiveColorSmooth, 28);
-              delay(1500);
+              if (cnt > 0) {
+                tft.fillScreen(BackgroundColor);
+                tftPrint(ACENTER, "Custom PTYS List", 155, 10, ActiveColor, ActiveColorSmooth, 24);
+                
+                int y = 45;
+                int maxLines = 8;
+                
+                for (size_t i = 0; i < cnt && y < 230; i++) {
+                  PTYEntry entry = getCustomPTYEntry(i);
+                  // Convert freq_khz back to MHz for display (e.g., 102700 -> 102.7)
+                  float freqMhz = (float)entry.freq_khz / 1000.0;
+                  String freqStr = String(freqMhz, 1);
+                  String line = freqStr + " - " + entry.pty;
+                  
+                  tftPrint(ALEFT, line, 20, y, PrimaryColor, PrimaryColorSmooth, 16);
+                  y += 22;
+                }
+                
+                tftPrint(ACENTER, "Press any key to exit", 155, 240, SecondaryColor, SecondaryColorSmooth, 14);
+                delay(2000);
+              } else {
+                Infoboxprint("No Custom PTYS entries found");
+              }
             }
             menuopen = false;
             BuildMenu();

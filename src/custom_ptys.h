@@ -2,7 +2,7 @@
 #include <Arduino.h>
 
 struct PTYEntry {
-  uint32_t freq_khz; // frequency in kHz (e.g. 102700)
+  uint32_t freq_khz; // frequency in kHz (e.g. 102700 = 102.7 MHz)
   String pty;
 };
 

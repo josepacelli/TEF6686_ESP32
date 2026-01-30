@@ -637,9 +637,10 @@ void showPTY() {
     // Check for custom PTY from CSV based on current frequency
     uint32_t currentFreqKhz = 0;
     if (band == BAND_FM) {
-      currentFreqKhz = (uint32_t)round(frequency * 1000.0);
+      // frequency is in kHz (e.g., 10270 = 102.7 MHz)
+      currentFreqKhz = frequency * 10;
     } else if (band == BAND_OIRT) {
-      currentFreqKhz = (uint32_t)round(frequency_OIRT * 1000.0);
+      currentFreqKhz = frequency_OIRT * 10;
     }
     
     // Override with custom PTY from CSV if found
@@ -647,6 +648,12 @@ void showPTY() {
       String customPTY = findCustomPTYForFreq(currentFreqKhz);
       if (customPTY.length() > 0) {
         PTYString = customPTY;
+      } else {
+        // Add "(NF)" if no custom PTY found for this frequency
+        if (PTYString.length() > 0) {
+          //PTYString += " (NF)";
+          PTYString = "Pop Music";
+        }
       }
     }
 
