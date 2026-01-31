@@ -9,6 +9,16 @@
 extern mem presets[];
 bool setWiFiConnectParam = false;
 
+// Helper function to get USB mode string
+static String getUSBModeString() {
+  switch (USBmode) {
+    case USB_MODE_XDRGTK: return "XDRGTK";
+    case USB_MODE_RDS_SPY: return "RDS Spy";
+    case USB_MODE_LOG: return "LOG Serial";
+    default: return "XDRGTK";
+  }
+}
+
 void doTheme() {  // Use this to put your own colors in: http://www.barth-dev.de/online/rgb565-color-picker/
   switch (CurrentTheme) {
     case 0:  // Default PE5PVB theme
@@ -733,7 +743,7 @@ void ShowOneLine(byte position, byte item, bool selected) {
 
           FullLineSprite.setTextDatum(TR_DATUM);
           FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
-          FullLineSprite.drawString((USBmode ? "RDS Spy" : "XDRGTK"), 298, 2);
+          FullLineSprite.drawString(getUSBModeString(), 298, 2);
           break;
 
         case DXMODE:
@@ -1057,11 +1067,6 @@ void ShowOneLine(byte position, byte item, bool selected) {
             FullLineSprite.setTextDatum(TR_DATUM);
             FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
             FullLineSprite.drawString((wifi ? textUI(31) : textUI(30)), 298, 2);
-          } else if (menuoption == ITEM3) {
-            FullLineSprite.drawString("Custom PTYS", 6, 2);
-            FullLineSprite.setTextDatum(TR_DATUM);
-            FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
-            FullLineSprite.drawString(">", 298, 2);
           } else {
             FullLineSprite.drawString(removeNewline(textUI(58)), 6, 2);
             FullLineSprite.setTextDatum(TR_DATUM);
@@ -1842,7 +1847,7 @@ void ShowOneButton(byte position, byte item, bool selected) {
           PSSprite.drawString(shortLine(removeNewline(textUI(5))), 75, 1);
 
           PSSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
-          PSSprite.drawString((USBmode ? "RDS Spy" : "XDRGTK"), 75, 15);
+          PSSprite.drawString(getUSBModeString(), 75, 15);
           break;
 
         case DXMODE:
@@ -4228,12 +4233,14 @@ void MenuUpDown(bool dir) {
 
       case CONNECTIVITY:
         switch (menuoption) {
-          case ITEM1:
-            USBmode = !USBmode;
+          case ITEM1: {
+            USBmode++;
+            if (USBmode > USB_MODE_LOG) USBmode = USB_MODE_XDRGTK;
 
-            OneBigLineSprite.drawString((USBmode ? "RDS Spy" : "XDRGTK"), 135, 0);
+            OneBigLineSprite.drawString(getUSBModeString(), 135, 0);
             OneBigLineSprite.pushSprite(24, 118);
             break;
+          }
 
           case ITEM2:
             wifi = !wifi;
@@ -4243,38 +4250,6 @@ void MenuUpDown(bool dir) {
             break;
 
           case ITEM3:
-            // Display Custom PTYS list
-            {
-              size_t cnt = getCustomPTYSCount();
-              if (cnt > 0) {
-                tft.fillScreen(BackgroundColor);
-                tftPrint(ACENTER, "Custom PTYS List", 155, 10, ActiveColor, ActiveColorSmooth, 24);
-                
-                int y = 45;
-                int maxLines = 8;
-                
-                for (size_t i = 0; i < cnt && y < 230; i++) {
-                  PTYEntry entry = getCustomPTYEntry(i);
-                  // Convert freq_khz back to MHz for display (e.g., 102700 -> 102.7)
-                  float freqMhz = (float)entry.freq_khz / 1000.0;
-                  String freqStr = String(freqMhz, 1);
-                  String line = freqStr + " - " + entry.pty;
-                  
-                  tftPrint(ALEFT, line, 20, y, PrimaryColor, PrimaryColorSmooth, 16);
-                  y += 22;
-                }
-                
-                tftPrint(ACENTER, "Press any key to exit", 155, 240, SecondaryColor, SecondaryColorSmooth, 14);
-                delay(2000);
-              } else {
-                Infoboxprint("No Custom PTYS entries found");
-              }
-            }
-            menuopen = false;
-            BuildMenu();
-            break;
-
-          case ITEM4:
             if (dir) {
               subnetclient ++;
               if (subnetclient > 254) subnetclient = 1;
@@ -4287,7 +4262,7 @@ void MenuUpDown(bool dir) {
             OneBigLineSprite.pushSprite(24, 118);
             break;
 
-          case ITEM5:
+          case ITEM4:
             if (dir) {
               stationlistid ++;
               if (stationlistid > 10) stationlistid = 1;
@@ -4300,7 +4275,7 @@ void MenuUpDown(bool dir) {
             OneBigLineSprite.pushSprite(24, 118);
             break;
 
-          case ITEM6:
+          case ITEM5:
             XDRGTKMuteScreen = !XDRGTKMuteScreen;
 
             OneBigLineSprite.drawString((XDRGTKMuteScreen ? textUI(31) : textUI(30)), 135, 0);
@@ -4566,7 +4541,7 @@ void MenuUpDown(bool dir) {
 }
 
 void showMenuOpenTouchButtons() {
-  if (hardwaremodel == PORTABLE_TOUCH_ILI9341 && !((menupage == CONNECTIVITY && menuoption == ITEM3) || (menupage == AUTOMEM && (menuoption == ITEM1 || menuoption == ITEM9)) || (menupage == MAINSETTINGS && menuoption == ITEM1) || (menupage == DXMODE && menuoption == ITEM10))) {
+  if (hardwaremodel == PORTABLE_TOUCH_ILI9341 && !((menupage == AUTOMEM && (menuoption == ITEM1 || menuoption == ITEM9)) || (menupage == MAINSETTINGS && menuoption == ITEM1) || (menupage == DXMODE && menuoption == ITEM10))) {
     tft.fillRoundRect(18, 154, 60, 40, 6, FrameColor);
     tft.drawRoundRect(18, 154, 60, 40, 6, ActiveColor);
     tft.fillRoundRect(240, 154, 60, 40, 6, FrameColor);
@@ -4594,14 +4569,6 @@ void DoMenu() {
         default: tft.pushImage (13, 30, 292, 170, popupbackground); break;
       }
       showMenuOpenTouchButtons();
-
-      if (menupage == CONNECTIVITY && menuoption == ITEM3) {
-        switch (CurrentTheme) {
-          case 7: tft.pushImage (0, 0, 320, 240, configurationbackground_wo); break;
-          default: tft.pushImage (0, 0, 320, 240, configurationbackground); break;
-        }
-        tftPrint(ACENTER, textUI(189 + menupage - 1), 160, 6, ActiveColor, ActiveColorSmooth, 16);
-      }
     }
 
     switch (CurrentTheme) {
@@ -5361,7 +5328,7 @@ void DoMenu() {
           case ITEM1:
             Infoboxprint(textUI(5));
 
-            OneBigLineSprite.drawString((USBmode ? "RDS Spy" : "XDRGTK"), 135, 0);
+            OneBigLineSprite.drawString(getUSBModeString(), 135, 0);
             OneBigLineSprite.pushSprite(24, 118);
             break;
 

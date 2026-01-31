@@ -60,6 +60,7 @@ extern byte rdsblockold;
 extern byte rdsqualityold;
 extern byte showrdserrors;
 extern byte stationlistid;
+extern byte USBmode;
 extern char eonpicodeold[20][6];
 extern char programTypePrevious[18];
 extern int ActiveColor;

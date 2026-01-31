@@ -57,7 +57,7 @@ extern bool Stereostatusold;
 extern bool StereoToggle;
 extern bool TAold;
 extern bool TPold;
-extern bool USBmode;
+extern byte USBmode;
 extern bool XDRGTKMuteScreen;
 extern bool wifi;
 extern byte af;

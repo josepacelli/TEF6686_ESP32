@@ -48,6 +48,7 @@ extern byte EQset;
 extern byte fmscansens;
 extern byte iMSEQ;
 extern byte iMSset;
+extern byte USBmode;
 extern byte language;
 extern byte memorypos;
 extern byte scanhold;

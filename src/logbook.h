@@ -20,6 +20,7 @@ extern byte chipmodel;
 extern byte language;
 extern byte scanhold;
 extern byte unit;
+extern byte USBmode;
 extern int16_t SStatus;
 extern int8_t NTPoffset;
 extern unsigned int ConverterSet;
@@ -43,6 +44,7 @@ bool isDST(time_t t);
 void handleLogo();
 void printLogbookCSV();
 void sendUDPlog();
+void log_info(const char* message);
 IPAddress makeBroadcastAddress(IPAddress ip);
 
 extern const char* textUI(uint16_t number);

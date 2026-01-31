@@ -8,6 +8,18 @@ extern mem presets[];
 
 void Communication() {
   if (!menu) {
+    // Initialize RDSSPYUSB and XDRGTKUSB based on USBmode
+    if (USBmode == USB_MODE_RDS_SPY) {
+      RDSSPYUSB = true;
+      XDRGTKUSB = false;
+    } else if (USBmode == USB_MODE_XDRGTK) {
+      XDRGTKUSB = true;
+      RDSSPYUSB = false;
+    } else if (USBmode == USB_MODE_LOG) {
+      RDSSPYUSB = false;
+      XDRGTKUSB = false;
+    }
+
     if (wifi) {
       int packetSize = Udp.parsePacket();
       if (packetSize > 0) {

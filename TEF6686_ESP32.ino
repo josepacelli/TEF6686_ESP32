@@ -144,7 +144,7 @@ bool TPold;
 bool touchrepeat = false;
 bool touch_detect;
 bool tuned;
-bool USBmode;
+byte USBmode;
 bool XDRGTKdata;
 bool XDRGTKMuteScreen;
 bool XDRGTKTCP;
@@ -653,7 +653,7 @@ void setup() {
     }
   }
 
-  if (USBmode) Serial.begin(19200);
+  if (USBmode == USB_MODE_RDS_SPY) Serial.begin(19200);
   else Serial.begin(115200);
 
   if (iMSset && EQset) iMSEQ = 2;
@@ -4987,7 +4987,7 @@ void endMenu() {
   else radio.rds.afreg = false;
   Serial.end();
   if (wifi) remoteip = IPAddress(WiFi.localIP()[0], WiFi.localIP()[1], WiFi.localIP()[2], subnetclient);
-  if (USBmode) Serial.begin(19200);
+  if (USBmode == USB_MODE_RDS_SPY) Serial.begin(19200);
   else Serial.begin(115200);
 
   leave = true;

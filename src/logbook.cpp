@@ -5,6 +5,13 @@
 
 String UDPlogold = "";
 
+// LOG Serial mode function
+void log_info(const char* message) {
+  if (USBmode == USB_MODE_LOG) {
+    Serial.println(message);
+  }
+}
+
 void handleRoot() {
   fs::File file = SPIFFS.open("/logbook.csv", "r");
   if (!file) {

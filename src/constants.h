@@ -11,6 +11,11 @@
 #define ACENTER                     0
 #define ARIGHT                      1
 
+// USB Mode constants
+#define USB_MODE_XDRGTK             0
+#define USB_MODE_RDS_SPY            1
+#define USB_MODE_LOG                2
+
 #define MAX(x, y) ((x) < (y) ? (y) : (x))
 #define MIN(X, Y) ({\
     typeof (X) x_ = (X);\

@@ -13,6 +13,10 @@ echo TEF6686_ESP32 - Build and Flash Tool
 echo ======================================
 echo.
 
+echo Cleaning previous build outputs...
+echo del /Q  "%OUTPUT_DIR%\*" 
+del /Q  "%OUTPUT_DIR%\*" 
+
 REM Check if esptool is available
 where esptool.py >nul 2>&1
 if !errorlevel! equ 0 (
