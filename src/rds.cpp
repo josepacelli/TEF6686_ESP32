@@ -3,6 +3,7 @@
 #include "rds.h"
 #include "constants.h"
 #include "custom_ptys.h"
+#include "logbook.h"
 #include <TimeLib.h>
 
 // External variables
@@ -653,6 +654,7 @@ void showPTY() {
         if (PTYString.length() > 0) {
           //PTYString += " (NF)";
           PTYString = "10-Pop Music";
+          log_info("No custom PTY found for frequency: " + String(currentFreqKhz) + " kHz\n");
         }
       }
     }
