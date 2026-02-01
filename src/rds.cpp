@@ -653,7 +653,6 @@ void showPTY() {
         if (PTYString.length() > 0) {
           //PTYString += " (NF)";
           PTYString = "10-Pop Music";
-          log_info("No custom PTY found for frequency: " + String(currentFreqKhz) + " kHz" + " - " + String(frequency) + " MHz\n");
         }
       }
     }

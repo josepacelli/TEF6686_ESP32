@@ -121,8 +121,39 @@ if (-not (Test-Path $SPIFFS_BIN)) {
     if ($mkspiffs) {
         Write-Host "Generating SPIFFS..."
         New-Item -ItemType Directory -Force -Path $OUTPUT_DIR | Out-Null
-        & $mkspiffs -c data -b 4096 -p 256 -s 819200 $SPIFFS_BIN
-        Write-Green "[OK] SPIFFS generated"
+
+        # compute total size of data folder to choose adequate SPIFFS image size
+        $dataSize = (Get-ChildItem -Path data -Recurse -File | Measure-Object -Property Length -Sum).Sum
+        if (-not $dataSize) { $dataSize = 0 }
+        Write-Host "Total bytes in data/: $dataSize"
+
+        # preferred sizes to try (bytes)
+        $preferredSizes = @(819200, 1048576, 1310720, 1572864) # 800KB, 1MB, 1.25MB, 1.5MB
+
+        # pick starting size: first preferred >= dataSize + 4096 overhead
+        $startSize = $preferredSizes | Where-Object { $_ -ge ($dataSize + 4096) } | Select-Object -First 1
+        if (-not $startSize) { $startSize = $preferredSizes[-1] }
+
+        $mkspiffsSucceeded = $false
+        foreach ($size in $preferredSizes) {
+            if ($size -lt ($dataSize + 1024)) { continue }
+            Write-Host "Trying mkspiffs with size $size bytes..."
+            & $mkspiffs -c data -b 4096 -p 256 -s $size $SPIFFS_BIN
+            if ($LASTEXITCODE -eq 0 -and (Test-Path $SPIFFS_BIN)) {
+                Write-Green "[OK] SPIFFS generated (size $size)"
+                $mkspiffsSucceeded = $true
+                break
+            } else {
+                Write-Yellow "[WARNING] mkspiffs failed with size $size (exit $LASTEXITCODE)"
+                # remove partial output if present
+                if (Test-Path $SPIFFS_BIN) { Remove-Item $SPIFFS_BIN -Force }
+            }
+        }
+
+        if (-not $mkspiffsSucceeded) {
+            Write-Red "[ERROR] mkspiffs failed for all tried sizes."
+            Write-Host "Suggestion: check for very large files in data/ or increase preferredSizes in flash.ps1"
+        }
     }
     else {
         Write-Yellow "[WARNING] mkspiffs not found, skipping SPIFFS"
