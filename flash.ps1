@@ -176,6 +176,58 @@ if ($customPort) {
 }
 
 # =====================================================
+# FORMATAÇÃO DO FILESYSTEM (SPIFFS)
+# =====================================================
+$FORMAT_BIN_SRC = "tools\format_Spiffs.ino.bin"
+$FORMAT_BIN_DST = "$OUTPUT_DIR\format_Spiffs.ino.bin"
+
+if (-not (Test-Path $FORMAT_BIN_SRC)) {
+    Write-Red "[ERROR] format_Spiffs.ino.bin not found in tools\"
+    exit 1
+}
+
+# Copiar formatador para build
+Copy-Item $FORMAT_BIN_SRC $FORMAT_BIN_DST -Force
+Write-Green "Formatting filesystem......"
+
+& $ESP.Cmd @($ESP.Args) `
+    --chip esp32 `
+    --port $SERIAL_PORT `
+    --baud 921600 `
+    --before default_reset `
+    --after hard_reset `
+    write_flash -z `
+    --flash_mode dio `
+    --flash_freq 80m `
+    --flash_size 4MB `
+    0x1000  "$OUTPUT_DIR\bootloader.bin" `
+    0x8000  "$OUTPUT_DIR\partitions.bin" `
+    0xe000  "$OUTPUT_DIR\boot_app0.bin" `
+    0x10000 "$FORMAT_BIN_DST"
+
+if ($LASTEXITCODE -ne 0) {
+    Write-Red "[ERROR] Failed to flash SPIFFS formatter"
+    exit 1
+}
+
+Write-Host ""
+$answer = Read-Host "Did the radio show 'Formatting finished'? (Y/n)"
+if ($answer -match "^[Yy]$" -or $answer -eq "") {
+
+    Write-Host ""
+    Write-Host "Now switch your radio OFF and back ON."
+    Write-Host "When you see the message 'Formatting finished' on your radio, switch OFF the radio."
+    Write-Host "Next, switch your radio ON while holding the BOOT-button."
+    Write-Host "Press ENTER to continue..."
+    Read-Host | Out-Null
+}
+else {
+    Write-Host "Waiting 14 seconds..."
+    Start-Sleep -Seconds 14
+}
+
+
+# =====================================================
 # PREPARAR FLASH
 # =====================================================
 $FLASH_FILES = @(

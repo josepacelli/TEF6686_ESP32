@@ -4990,6 +4990,9 @@ void endMenu() {
   if (USBmode == USB_MODE_RDS_SPY) Serial.begin(19200);
   else Serial.begin(115200);
 
+  // Diagnostic: print current USB mode after reinitializing Serial
+  Serial.println("USBmode=" + String(USBmode));
+
   leave = true;
   PSSprite.unloadFont();
   if (language == LANGUAGE_CHS) PSSprite.loadFont(FONT28_CHS);
