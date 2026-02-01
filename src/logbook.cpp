@@ -6,7 +6,7 @@
 String UDPlogold = "";
 
 // LOG Serial mode function
-void log_info(const char* message) {
+void log_info(const String& message) {
   if (USBmode == USB_MODE_LOG) {
     Serial.println(message);
   }

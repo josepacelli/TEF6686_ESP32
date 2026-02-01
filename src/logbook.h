@@ -44,7 +44,7 @@ bool isDST(time_t t);
 void handleLogo();
 void printLogbookCSV();
 void sendUDPlog();
-void log_info(const char* message);
+void log_info(const String& message);
 IPAddress makeBroadcastAddress(IPAddress ip);
 
 extern const char* textUI(uint16_t number);
