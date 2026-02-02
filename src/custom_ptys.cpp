@@ -7,16 +7,60 @@
 static std::vector<PTYEntry> customPtys;
 static const char * CUSTOM_PTY_PATH = "/custom_ptys.csv";
 
+void loadIsaacPTYs() {
+  // load default PTYs from provided list (MHz -> kHz)
+  log_info("Loading default Isaac PTYs");
+  customPtys.clear();
+  PTYEntry e;
+  e.freq_khz = 102700; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 88900; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 95500; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 105700; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 96700; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 97700; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 87100; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 90700; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 103300; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 103900; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 104300; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 88300; e.pty = "Religion"; customPtys.push_back(e);
+  e.freq_khz = 91700; e.pty = "Religion"; customPtys.push_back(e);
+  e.freq_khz = 92100; e.pty = "Religion"; customPtys.push_back(e);
+  e.freq_khz = 92500; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 92900; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 93500; e.pty = "Religion"; customPtys.push_back(e);
+  e.freq_khz = 93900; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 94300; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 94700; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 96100; e.pty = "Religion"; customPtys.push_back(e);
+  e.freq_khz = 97100; e.pty = "Religion"; customPtys.push_back(e);
+  e.freq_khz = 98300; e.pty = "Religion"; customPtys.push_back(e);
+  e.freq_khz = 99100; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 99900; e.pty = "Religion"; customPtys.push_back(e);
+  e.freq_khz = 100900; e.pty = "Religion"; customPtys.push_back(e);
+  e.freq_khz = 101300; e.pty = "Religion"; customPtys.push_back(e);
+  e.freq_khz = 101700; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 102300; e.pty = "Religion"; customPtys.push_back(e);
+  e.freq_khz = 105100; e.pty = "Religion"; customPtys.push_back(e);
+  e.freq_khz = 106500; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 107500; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 107900; e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 95100; e.pty = "Religion"; customPtys.push_back(e);
+  e.freq_khz = 103500; e.pty = "Religion"; customPtys.push_back(e);
+  log_info("Default Isaac PTYs loaded.");
+}
+
 void loadCustomPTYS() {
   customPtys.clear();
-  log_info("Iniciando leitura do CSV de PTYs personalizados...\n");
+  log_info("Iniciando leitura do CSV de PTYs personalizados");
   if (!SPIFFS.exists(CUSTOM_PTY_PATH)) {
-    log_info("Arquivo de PTYs personalizados não existe.\n");
+    log_info("Arquivo de PTYs personalizados nao existe.");
+    loadIsaacPTYs();
     return;
   };
   fs::File f = SPIFFS.open(CUSTOM_PTY_PATH, "r");
   if (!f) {
-    log_info("Erro ao abrir o arquivo de PTYs personalizados.\n");
+    log_info("Erro ao abrir o arquivo de PTYs personalizados");
     return;
   }
   while (f.available()) {
