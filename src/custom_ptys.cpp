@@ -16,6 +16,7 @@ void loadIsaacPTYs() {
   e.freq_khz = 88300;  e.pty = "Religion";  customPtys.push_back(e);
   e.freq_khz = 88900;  e.pty = "Pop Music"; customPtys.push_back(e);
   e.freq_khz = 90700;  e.pty = "Pop Music"; customPtys.push_back(e);
+  e.freq_khz = 91300;  e.pty = "Religion";  customPtys.push_back(e);
   e.freq_khz = 91700;  e.pty = "Religion";  customPtys.push_back(e);
   e.freq_khz = 92100;  e.pty = "Religion";  customPtys.push_back(e);
   e.freq_khz = 92500;  e.pty = "Pop Music"; customPtys.push_back(e);
