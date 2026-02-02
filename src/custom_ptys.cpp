@@ -9,12 +9,20 @@ static const char * CUSTOM_PTY_PATH = "/custom_ptys.csv";
 
 void loadCustomPTYS() {
   customPtys.clear();
-  if (!SPIFFS.exists(CUSTOM_PTY_PATH)) return;
+  log_info("Iniciando leitura do CSV de PTYs personalizados...\n");
+  if (!SPIFFS.exists(CUSTOM_PTY_PATH)) {
+    log_info("Arquivo de PTYs personalizados não existe.\n");
+    return;
+  };
   fs::File f = SPIFFS.open(CUSTOM_PTY_PATH, "r");
-  if (!f) return;
+  if (!f) {
+    log_info("Erro ao abrir o arquivo de PTYs personalizados.\n");
+    return;
+  }
   while (f.available()) {
     String line = f.readStringUntil('\n');
     line.trim();
+    log_info("Read line: " + line + "\n");
     if (line.length() == 0) continue;
     int comma = line.indexOf(',');
     if (comma == -1) continue;
@@ -34,6 +42,7 @@ void loadCustomPTYS() {
     }
 
     PTYEntry e; e.freq_khz = freq_khz; e.pty = pty;
+    log_info("PTY: freq_khz=" + String(e.freq_khz) + " pty=" + e.pty + "\n");
     customPtys.push_back(e);
   }
   f.close();

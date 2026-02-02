@@ -15,6 +15,9 @@ YELLOW='\033[1;33m'
 
 NC='\033[0m' # No Color
 
+
+
+
 # Display the tool header
 echo -e "======================================"
 echo -e "TEF6686_ESP32 - Build and Flash Tool"
@@ -49,6 +52,12 @@ fi
 echo
 read -rp "Do you want to compile again? (y/n): " COMPILE
 if [[ "${COMPILE}" =~ ^[Yy]$ ]]; then
+
+    echo -e "Limpando pasta de build..."
+    echo
+
+    rm -rvf $OUTPUT_DIR
+
     echo
     echo "Compiling with Arduino CLI..."
     echo

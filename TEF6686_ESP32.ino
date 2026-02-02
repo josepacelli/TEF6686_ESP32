@@ -723,8 +723,12 @@ void setup() {
   tft.setSwapBytes(true);
   tft.fillScreen(BackgroundColor);
 
+  log_info("Starting SPIFFS...");
   SPIFFS.begin();
+
+  log_info("CSV carregando.");
   loadCustomPTYS();
+  log_info("CSV carregado.");
 
   FrequencySprite.createSprite(200, 50);
   FrequencySprite.setTextDatum(TR_DATUM);
