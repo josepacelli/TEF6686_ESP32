@@ -49,7 +49,7 @@ void loadIsaacPTYs() {
   e.freq_khz = 107500; e.pty = "Pop Music"; customPtys.push_back(e);
   e.freq_khz = 107900; e.pty = "Pop Music"; customPtys.push_back(e);
   log_info("Default Isaac PTYs loaded.");
-}
+
 
 void loadCustomPTYS() {
   customPtys.clear();

@@ -77,6 +77,7 @@ if ($compile -match "^[Yy]$") {
     Write-Host "Compiling with Arduino CLI..."
 
     arduino-cli compile `
+        --verbose `
         --fqbn esp32:esp32:esp32:PartitionScheme=huge_app,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none,EraseFlash=none `
         --export-binaries `
         TEF6686_ESP32.ino

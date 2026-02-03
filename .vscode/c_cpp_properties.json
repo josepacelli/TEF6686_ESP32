@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "ESP32",
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${env:USERPROFILE}/AppData/Local/Arduino15/packages/esp32/hardware/esp32/**"
+            ],
+            "defines": [
+                "ARDUINO=10813",
+                "ESP32"
+            ]
+        }
+    ],
+    "version": 4
+}
