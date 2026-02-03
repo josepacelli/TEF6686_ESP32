@@ -688,7 +688,21 @@ void showPTY() {
 
 void showPS() {
   // Check if station name or errors have changed, or long PS should be displayed
-  if ((radio.rds.stationName != PSold) ||
+  // Busca PS customizado pelo custom_ptys
+  uint32_t currentFreqKhz = 0;
+  if (band == BAND_FM) {
+    currentFreqKhz = frequency * 10;
+  } else if (band == BAND_OIRT) {
+    currentFreqKhz = frequency_OIRT * 10;
+  }
+  String customPS = "";
+  if (currentFreqKhz > 0) {
+    customPS = findCustomPSForFreq(currentFreqKhz);
+  }
+
+  String stationNameToShow = customPS.length() > 0 ? customPS : radio.rds.stationName;
+
+  if ((stationNameToShow != PSold) ||
       (RDSstatus && !(ps12errorold == radio.rds.ps12error ||
                       ps34errorold == radio.rds.ps34error ||
                       ps56errorold == radio.rds.ps56error ||
@@ -698,19 +712,19 @@ void showPS() {
     // Handle AF screen update
     if (afscreen) {
       if (!screenmute) {
-        tftReplace(ACENTER, PSold, radio.rds.stationName, 160, 201, BWAutoColor, BWAutoColorSmooth, BackgroundColor, 16);
+        tftReplace(ACENTER, PSold, stationNameToShow, 160, 201, BWAutoColor, BWAutoColorSmooth, BackgroundColor, 16);
       }
     } else if (!rdsstatscreen) {
       // Handle long PS display
       if (radio.rds.hasLongPS && showlongps) {
-        String stationNameLongString = String(radio.rds.stationNameLong) + "     "; // Add trailing spaces for scrolling
+        String stationNameLongString = String(stationNameToShow) + "     "; // Add trailing spaces for scrolling
         if (stationNameLongString != stationNameLongOld) {
           PSLongWidth = PSSprite.textWidth(stationNameLongString); // Measure new width
           stationNameLongOld = stationNameLongString;
         }
 
         // Handle scrolling logic for long PS
-        if (PSSprite.textWidth(radio.trimTrailingSpaces(radio.rds.stationNameLong)) < 150) {
+        if (PSSprite.textWidth(radio.trimTrailingSpaces(stationNameToShow)) < 150) {
           xPos5 = 0;
           PSSprite.fillSprite(BackgroundColor);
           PSSprite.setTextColor(RDSstatus ? RDSColor : RDSDropoutColor, RDSstatus ? RDSColorSmooth : RDSDropoutColorSmooth, false);
@@ -740,7 +754,7 @@ void showPS() {
 
         // Calculate widths for individual characters (ensures proper spacing)
         for (int i = 0; i < 7; i++) {
-          lengths[i] = PSSprite.textWidth(radio.rds.stationName.substring(0, i + 1));
+          lengths[i] = PSSprite.textWidth(stationNameToShow.substring(0, i + 1));
           if (i > 0 && lengths[i] <= lengths[i - 1]) {
             lengths[i] = lengths[i - 1] + 23; // Ensure consistent spacing
           }
@@ -755,22 +769,22 @@ void showPS() {
         // Set text color based on RDS status and error state
         if (!RDSstatus || band > BAND_GAP) {
           PSSprite.setTextColor(RDSDropoutColor, RDSDropoutColorSmooth, false);
-          PSSprite.drawString(radio.rds.stationName, 0, 2);
+          PSSprite.drawString(stationNameToShow, 0, 2);
         } else if ((ps12errorold || ps34errorold || ps56errorold || ps78errorold) && radio.ps_process) {
           for (int i = 0; i < 7; i++) {
             PSSprite.setTextColor((i < 2 && ps12errorold) || (i < 4 && ps34errorold) ||
                                   (i < 6 && ps56errorold) || ps78errorold ?
                                   RDSDropoutColor : RDSColor,
                                   RDSColorSmooth, false);
-            PSSprite.drawString(radio.rds.stationName.substring(i, i + 1), i == 0 ? 0 : lengths[i - 1], 2);
+            PSSprite.drawString(stationNameToShow.substring(i, i + 1), i == 0 ? 0 : lengths[i - 1], 2);
           }
         } else {
           PSSprite.setTextColor(RDSColor, RDSColorSmooth, false);
-          PSSprite.drawString(radio.rds.stationName, 0, 2);
+          PSSprite.drawString(stationNameToShow, 0, 2);
         }
 
         // Reset PS error flags if the station name changes
-        if (PSold != radio.rds.stationName) {
+        if (PSold != stationNameToShow) {
           ps12errorold = ps34errorold = ps56errorold = ps78errorold = true;
         }
       }
@@ -781,11 +795,11 @@ void showPS() {
       }
 
       // Handle WiFi update if PS has changed
-      if (wifi && radio.rds.stationName.length() > 0 && PSold != radio.rds.stationName) {
+      if (wifi && stationNameToShow.length() > 0 && PSold != stationNameToShow) {
         Udp.beginPacket(remoteip, 9030);
         Udp.print("from=TEF_tuner_" + String(stationlistid, DEC) + ";PS=");
         char PShex[9];
-        radio.rds.stationName.toCharArray(PShex, 9);
+        stationNameToShow.toCharArray(PShex, 9);
         for (int i = 0; i < 8; i++) {
           if (PShex[i] < 0x10) Udp.print("0");
           if (PShex[i] == 0x20) PShex[i] = '_';
@@ -796,7 +810,7 @@ void showPS() {
     }
 
     // Save the updated station name
-    PSold = radio.rds.stationName;
+    PSold = stationNameToShow;
   }
 }
 

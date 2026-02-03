@@ -7,6 +7,19 @@
 static std::vector<PTYEntry> customPtys;
 static const char * CUSTOM_PTY_PATH = "/custom_ptys.csv";
 
+// Função para buscar o PS pelo customPtys
+String findCustomPSForFreq(uint32_t freq_khz) {
+  // Busca exata primeiro
+  for (auto &e : customPtys) {
+    if (e.freq_khz == freq_khz) return e.ps;
+  }
+  // Busca com tolerância de 100 kHz
+  for (auto &e : customPtys) {
+    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.ps;
+  }
+  return String("");
+}
+
 void loadIsaacPTYs() {
   // load default PTYs from provided list (MHz -> kHz)
   log_info("Loading default Isaac PTYs");
