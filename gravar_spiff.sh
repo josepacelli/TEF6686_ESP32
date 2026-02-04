@@ -50,7 +50,9 @@ fi
 
 # Check if we need to compile first
 echo
-read -rp "Do you want to compile again? (y/n): " COMPILE
+read -rp "Do you want to compile again? (y/N): " COMPILE
+# Default to No when empty
+COMPILE=${COMPILE:-N}
 if [[ "${COMPILE}" =~ ^[Yy]$ ]]; then
 
     echo -e "Limpando pasta de build..."
