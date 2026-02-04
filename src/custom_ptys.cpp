@@ -61,11 +61,11 @@ void loadIsaacPTYs() {
   e.freq_khz = 104300; e.pty = "Pop Music"; e.ps = "EXPRESSO FM 104.3"; customPtys.push_back(e);
   e.freq_khz = 105100; e.pty = "Religion";  e.ps = "AD CIDADE FM 105.1MHZ"; customPtys.push_back(e);
   e.freq_khz = 105700; e.pty = "Pop Music"; e.ps = "ATLANTICO SUL FM 105.7"; customPtys.push_back(e);
-  e.freq_khz = 106500; e.pty = "Pop Music"; e.ps = "NOVABRASILFM106.5"; customPtys.push_back(e);
+  e.freq_khz = 106500; e.pty = "Pop Music"; e.ps = "NOVABRASIL FM 106.5"; customPtys.push_back(e);
   e.freq_khz = 107500; e.pty = "Pop Music"; e.ps = "MIX FM 107.5"; customPtys.push_back(e);
   e.freq_khz = 107900; e.pty = "Pop Music"; e.ps = "107.9MHZ RADIO UNIVERSITARIA FM 107.9MHZ"; customPtys.push_back(e);
   log_info("Default Isaac PTYs loaded.");
-
+}
 
 void loadCustomPTYS() {
   customPtys.clear();

@@ -17,3 +17,6 @@ PTYEntry getCustomPTYEntry(size_t idx);
 String findCustomPTYForFreq(uint32_t freq_khz);
 void addCustomPTY(uint32_t freq_khz, const String &pty, const String &ps);
 void removeCustomPTY(size_t idx);
+
+// Declaração da função para buscar o PS customizado
+String findCustomPSForFreq(uint32_t freq_khz);
