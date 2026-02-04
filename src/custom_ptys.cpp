@@ -40,7 +40,7 @@ void loadIsaacPTYs() {
   e.freq_khz = 93500;  e.pty = "Religion";  e.ps = "CANAA FM 93.5"; customPtys.push_back(e);
   e.freq_khz = 93900;  e.pty = "Pop Music"; e.ps = "FM 93 SEMPRE AO SEU LADO"; customPtys.push_back(e);
   e.freq_khz = 94300;  e.pty = "Pop Music"; e.ps = "SOL FM 94.3 OFICIAL"; customPtys.push_back(e);
-  e.freq_khz = 94700;  e.pty = "Pop Music"; e.ps = "JOVEMPAN"; customPtys.push_back(e);
+  e.freq_khz = 94700;  e.pty = "Pop Music"; e.ps = "JOVEM PAN FORTALEZA FM 94.7"; customPtys.push_back(e);
   e.freq_khz = 95100;  e.pty = "Religion";  e.ps = "LOGOS FM"; customPtys.push_back(e);
   e.freq_khz = 95500;  e.pty = "Pop Music"; e.ps = "CBN O POVO"; customPtys.push_back(e);
   e.freq_khz = 96100;  e.pty = "Religion";  e.ps = "DOMBOSCO FM 96,1"; customPtys.push_back(e);
