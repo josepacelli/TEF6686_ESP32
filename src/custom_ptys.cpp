@@ -25,15 +25,15 @@ void loadIsaacPTYs() {
   log_info("Loading default Isaac PTYs");
   customPtys.clear();
   PTYEntry e;
-  e.freq_khz = 79700;  e.pty = "Pop Music"; e.ps = "RADIO METROPOLITANA FM 79.7MHZ"; customPtys.push_back(e);
-  e.freq_khz = 87100;  e.pty = "Pop Music"; e.ps = "CEARA FM 87.1MHZ"; customPtys.push_back(e);
-  e.freq_khz = 88300;  e.pty = "Religion";  e.ps = "RADIO JERUSALEM FM"; customPtys.push_back(e);
+  e.freq_khz = 79700;  e.pty = "Pop Music"; e.ps = "RADIO METROPOLITANA FM 79.7Mhz"; customPtys.push_back(e);
+  e.freq_khz = 87100;  e.pty = "Pop Music"; e.ps = "CEARA FM 87.1Mhz"; customPtys.push_back(e);
+  e.freq_khz = 88300;  e.pty = "Religion";  e.ps = "RADIO JERUSALEM FM 88.3Mhz"; customPtys.push_back(e);
   e.freq_khz = 88900;  e.pty = "Pop Music"; e.ps = "JANGADEIRO FM"; customPtys.push_back(e);
   e.freq_khz = 89900;  e.pty = "Pop Music"; e.ps = "89 FM 89.9 FM"; customPtys.push_back(e);
   e.freq_khz = 90700;  e.pty = "Pop Music"; e.ps = "FORTALEZA FM"; customPtys.push_back(e);
   e.freq_khz = 90300;  e.pty = "Religion";  e.ps = "RADIO UIRAPURU - REDE ALELUIA"; customPtys.push_back(e);
   e.freq_khz = 91300;  e.pty = "Religion";  e.ps = "LOGOS FM"; customPtys.push_back(e);
-  e.freq_khz = 91700;  e.pty = "Religion";  e.ps = "SHALOM FM 91.7MHZ"; customPtys.push_back(e);
+  e.freq_khz = 91700;  e.pty = "Religion";  e.ps = "SHALOM FM 91.7Mhz"; customPtys.push_back(e);
   e.freq_khz = 92100;  e.pty = "Religion";  e.ps = "RADIO EFRAIM"; customPtys.push_back(e);
   e.freq_khz = 92500;  e.pty = "Pop Music"; e.ps = "VERDINHA FM 92.5"; customPtys.push_back(e);
   e.freq_khz = 92900;  e.pty = "Pop Music"; e.ps = "JOVEM PAN NEWS FORTALEZA"; customPtys.push_back(e);
@@ -44,7 +44,7 @@ void loadIsaacPTYs() {
   e.freq_khz = 95100;  e.pty = "Religion";  e.ps = "LOGOS FM"; customPtys.push_back(e);
   e.freq_khz = 95500;  e.pty = "Pop Music"; e.ps = "CBN O POVO"; customPtys.push_back(e);
   e.freq_khz = 96100;  e.pty = "Religion";  e.ps = "DOMBOSCO FM 96,1"; customPtys.push_back(e);
-  e.freq_khz = 96700;  e.pty = "Pop Music"; e.ps = "ALECE FM 96.7MHZ"; customPtys.push_back(e);
+  e.freq_khz = 96700;  e.pty = "Pop Music"; e.ps = "ALECE FM 96.7Mhz"; customPtys.push_back(e);
   e.freq_khz = 97100;  e.pty = "Religion";  e.ps = "RADIO MARIA BRASIL"; customPtys.push_back(e);
   e.freq_khz = 97700;  e.pty = "Pop Music"; e.ps = "ANTENA 1 FM 97.7"; customPtys.push_back(e);
   e.freq_khz = 98300;  e.pty = "Religion";  e.ps = "RADIO LIDER FM GOSPEL 98.3"; customPtys.push_back(e);
@@ -59,11 +59,11 @@ void loadIsaacPTYs() {
   e.freq_khz = 103500; e.pty = "Religion";  e.ps = "REDE SHALOM DE RADIO"; customPtys.push_back(e);
   e.freq_khz = 103900; e.pty = "Pop Music"; e.ps = "TEMPO FM 103.9 A SUA MELHOR ESTACAO."; customPtys.push_back(e);
   e.freq_khz = 104300; e.pty = "Pop Music"; e.ps = "EXPRESSO FM 104.3"; customPtys.push_back(e);
-  e.freq_khz = 105100; e.pty = "Religion";  e.ps = "AD CIDADE FM 105.1MHZ"; customPtys.push_back(e);
+  e.freq_khz = 105100; e.pty = "Religion";  e.ps = "AD CIDADE FM 105.1Mhz"; customPtys.push_back(e);
   e.freq_khz = 105700; e.pty = "Pop Music"; e.ps = "ATLANTICO SUL FM 105.7"; customPtys.push_back(e);
   e.freq_khz = 106500; e.pty = "Pop Music"; e.ps = "NOVABRASIL FM 106.5"; customPtys.push_back(e);
   e.freq_khz = 107500; e.pty = "Pop Music"; e.ps = "MIX FM 107.5"; customPtys.push_back(e);
-  e.freq_khz = 107900; e.pty = "Pop Music"; e.ps = "107.9MHZ RADIO UNIVERSITARIA FM 107.9MHZ"; customPtys.push_back(e);
+  e.freq_khz = 107900; e.pty = "Pop Music"; e.ps = "107.9Mhz RADIO UNIVERSITARIA FM 107.9Mhz"; customPtys.push_back(e);
   log_info("Default Isaac PTYs loaded.");
 }
 
