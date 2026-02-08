@@ -128,7 +128,7 @@ size_t getCustomPTYSCount() {
 }
 
 PTYEntry getCustomPTYEntry(size_t idx) {
-  PTYEntry e; e.freq_khz = 0; e.pty = "";
+  PTYEntry e; e.freq_khz = 0; e.pty_code = 0; e.ps = "";
   if (idx < customPtys.size()) return customPtys[idx];
   return e;
 }
