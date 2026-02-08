@@ -751,44 +751,73 @@ void showPS() {
           }
         }
       } else {
-        // Handle normal PS display
-        xPos5 = 0;
-        PSSprite.fillSprite(BackgroundColor);
+        // Handle normal PS display — but enable scrolling when it doesn't fit
+        // If the text fits, draw it normally (including PS error handling),
+        // otherwise use the same scrolling logic as for long PS.
+        if (PSSprite.textWidth(radio.trimTrailingSpaces(stationNameToShow)) < 150) {
+          // Small enough: draw statically
+          xPos5 = 0;
+          PSSprite.fillSprite(BackgroundColor);
 
-        // Calculate widths for individual characters (ensures proper spacing)
-        for (int i = 0; i < 7; i++) {
-          lengths[i] = PSSprite.textWidth(stationNameToShow.substring(0, i + 1));
-          if (i > 0 && lengths[i] <= lengths[i - 1]) {
-            lengths[i] = lengths[i - 1] + 23; // Ensure consistent spacing
-          }
-        }
-
-        // Update error states only when their respective flags are true
-        if (ps12errorold) ps12errorold = radio.rds.ps12error;
-        if (ps34errorold) ps34errorold = radio.rds.ps34error;
-        if (ps56errorold) ps56errorold = radio.rds.ps56error;
-        if (ps78errorold) ps78errorold = radio.rds.ps78error;
-
-        // Set text color based on RDS status and error state
-        if (!RDSstatus || band > BAND_GAP) {
-          PSSprite.setTextColor(RDSDropoutColor, RDSDropoutColorSmooth, false);
-          PSSprite.drawString(stationNameToShow, 0, 2);
-        } else if ((ps12errorold || ps34errorold || ps56errorold || ps78errorold) && radio.ps_process) {
+          // Calculate widths for individual characters (ensures proper spacing)
           for (int i = 0; i < 7; i++) {
-            PSSprite.setTextColor((i < 2 && ps12errorold) || (i < 4 && ps34errorold) ||
-                                  (i < 6 && ps56errorold) || ps78errorold ?
-                                  RDSDropoutColor : RDSColor,
-                                  RDSColorSmooth, false);
-            PSSprite.drawString(stationNameToShow.substring(i, i + 1), i == 0 ? 0 : lengths[i - 1], 2);
+            lengths[i] = PSSprite.textWidth(stationNameToShow.substring(0, i + 1));
+            if (i > 0 && lengths[i] <= lengths[i - 1]) {
+              lengths[i] = lengths[i - 1] + 23; // Ensure consistent spacing
+            }
+          }
+
+          // Update error states only when their respective flags are true
+          if (ps12errorold) ps12errorold = radio.rds.ps12error;
+          if (ps34errorold) ps34errorold = radio.rds.ps34error;
+          if (ps56errorold) ps56errorold = radio.rds.ps56error;
+          if (ps78errorold) ps78errorold = radio.rds.ps78error;
+
+          // Set text color based on RDS status and error state
+          if (!RDSstatus || band > BAND_GAP) {
+            PSSprite.setTextColor(RDSDropoutColor, RDSDropoutColorSmooth, false);
+            PSSprite.drawString(stationNameToShow, 0, 2);
+          } else if ((ps12errorold || ps34errorold || ps56errorold || ps78errorold) && radio.ps_process) {
+            for (int i = 0; i < 7; i++) {
+              PSSprite.setTextColor((i < 2 && ps12errorold) || (i < 4 && ps34errorold) ||
+                                    (i < 6 && ps56errorold) || ps78errorold ?
+                                    RDSDropoutColor : RDSColor,
+                                    RDSColorSmooth, false);
+              PSSprite.drawString(stationNameToShow.substring(i, i + 1), i == 0 ? 0 : lengths[i - 1], 2);
+            }
+          } else {
+            PSSprite.setTextColor(RDSColor, RDSColorSmooth, false);
+            PSSprite.drawString(stationNameToShow, 0, 2);
+          }
+
+          // Reset PS error flags if the station name changes
+          if (PSold != stationNameToShow) {
+            ps12errorold = ps34errorold = ps56errorold = ps78errorold = true;
           }
         } else {
-          PSSprite.setTextColor(RDSColor, RDSColorSmooth, false);
-          PSSprite.drawString(stationNameToShow, 0, 2);
-        }
+          // Too wide: use scrolling logic (reuse long-PS behavior)
+          String stationNameLongString = String(stationNameToShow) + "     "; // Add trailing spaces for scrolling
+          if (stationNameLongString != stationNameLongOld) {
+            PSLongWidth = PSSprite.textWidth(stationNameLongString); // Measure new width
+            stationNameLongOld = stationNameLongString;
+          }
 
-        // Reset PS error flags if the station name changes
-        if (PSold != stationNameToShow) {
-          ps12errorold = ps34errorold = ps56errorold = ps78errorold = true;
+          if (millis() - pslongticker >= 5) {
+            if (xPos5 < -PSLongWidth) xPos5 = 0; // Reset position if fully scrolled
+            if (xPos5 == 0 && millis() - pslongtickerhold >= 2000) {
+              xPos5--; // Hold position for 2 seconds before scrolling
+              pslongtickerhold = millis();
+            } else {
+              xPos5--; // Scroll
+            }
+            pslongticker = millis();
+
+            // Draw scrolling PS
+            PSSprite.fillSprite(BackgroundColor);
+            PSSprite.setTextColor(RDSstatus ? RDSColor : RDSDropoutColor, RDSstatus ? RDSColorSmooth : RDSDropoutColorSmooth, false);
+            PSSprite.drawString(stationNameLongString, xPos5, 2);
+            PSSprite.drawString(stationNameLongString, xPos5 + PSLongWidth, 2);
+          }
         }
       }
 
