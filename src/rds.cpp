@@ -4,6 +4,7 @@
 #include "constants.h"
 #include "custom_ptys.h"
 #include "logbook.h"
+#include "language.h"
 #include <TimeLib.h>
 
 // External variables
@@ -644,16 +645,17 @@ void showPTY() {
       currentFreqKhz = frequency_OIRT * 10;
     }
     
-    // Override with custom PTY from CSV if found
+    // Override with custom PTY code from CSV if found
     if (currentFreqKhz > 0) {
-      String customPTY = findCustomPTYForFreq(currentFreqKhz);
-      if (customPTY.length() > 0) {
-        PTYString = customPTY;
+      int8_t customPTYCode = findCustomPTYCodeForFreq(currentFreqKhz);
+      if (customPTYCode >= 0 && customPTYCode <= 31) {
+        // Buscar nome multilíngue
+        // 228 = base do PTY na language.h ("None"), logo 228+code
+        PTYString = myLanguage[language][228 + customPTYCode];
       } else {
-        // Add "(NF)" if no custom PTY found for this frequency
+        // Se não achou, mantém o padrão
         if (PTYString.length() > 0) {
-          //PTYString += " (NF)";
-          PTYString = "Pop Music";
+          PTYString = myLanguage[language][238]; // 238 = Pop Music
           log_info("No custom PTY found for frequency: " + String(currentFreqKhz) + " kHz\n");
         }
       }
