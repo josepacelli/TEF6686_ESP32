@@ -3002,7 +3002,7 @@ void BuildAdvancedRDS() {
   tftPrint(ALEFT, "LIC", 214, 208, ActiveColor, ActiveColorSmooth, 16);
   tftPrint(ALEFT, "PIN", 214, 223, ActiveColor, ActiveColorSmooth, 16);
   tftPrint(ARIGHT, "Dynamic PTY", 300, 130, ActiveColor, ActiveColorSmooth, 16);
-  tftPrint(ARIGHT, "Artificial head", 300, 145, ActiveColor, ActiveColorSmooth, 16);
+  tftPrint(ARIGHT, "Art. head", 300, 145, ActiveColor, ActiveColorSmooth, 16);
   tftPrint(ARIGHT, "Compressed", 300, 160, ActiveColor, ActiveColorSmooth, 16);
   tftPrint(ARIGHT, "Has stereo", 300, 175, ActiveColor, ActiveColorSmooth, 16);
 

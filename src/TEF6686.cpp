@@ -662,7 +662,10 @@ void TEF6686::readRDS(byte showrdserrors) {
               if (packet0 && packet1 && packet2 && packet3) ps_process = true;                                      // OK, we had one runs, now let's go the idle PS writing
             }
 
-            if (offset == 0) rds.hasDynamicPTY = bitRead(rds.rdsB, 2) & 0x1F;                   // Dynamic PTY flag
+            if (offset == 0) {
+              rds.hasDynamicPTY = true;
+              bitRead(rds.rdsB, 2) & 0x1F;
+            };                   // Dynamic PTY flag
             if (offset == 1) rds.hasCompressed = bitRead(rds.rdsB, 2) & 0x1F;                   // Compressed flag
             if (offset == 2) rds.hasArtificialhead = bitRead(rds.rdsB, 2) & 0x1F;               // Artificial head flag
             if (offset == 3) rds.hasStereo = bitRead(rds.rdsB, 2) & 0x1F;                       // Stereo flag
