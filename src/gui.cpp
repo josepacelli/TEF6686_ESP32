@@ -3004,8 +3004,7 @@ void BuildAdvancedRDS() {
   tftPrint(ARIGHT, "Dynamic PTY", 300, 130, ActiveColor, ActiveColorSmooth, 16);
   #ifdef DEEPELEC_DP_66X
     tftPrint(ARIGHT, "Art. head", 300, 145, ActiveColor, ActiveColorSmooth, 16);
-  #endif
-  #ifndef DEEPELEC_DP_66X
+  #else
     tftPrint(ARIGHT, "Artificial head", 300, 145, ActiveColor, ActiveColorSmooth, 16);
   #endif
   tftPrint(ARIGHT, "Compressed", 300, 160, ActiveColor, ActiveColorSmooth, 16);
