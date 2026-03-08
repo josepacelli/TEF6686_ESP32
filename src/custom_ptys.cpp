@@ -26,7 +26,7 @@ void loadIsaacPTYs() {
   customPtys.clear();
   PTYEntry e;
   // Exemplo: Pop Music = 10, Religion = 20 (de acordo com PTY_EU)
-  e.freq_khz = 79700;  e.pty_code = 10; e.ps = "RADIO METROPOLITANA FM 79.7MHZ"; customPtys.push_back(e);
+  e.freq_khz = 79700;  e.pty_code = 20; e.ps = "RADIO METROPOLITANA 79.7MHZ"; customPtys.push_back(e);
   e.freq_khz = 87100;  e.pty_code = 10; e.ps = "CEARA FM 87.1MHZ"; customPtys.push_back(e);
   e.freq_khz = 88300;  e.pty_code = 20; e.ps = "RADIO JERUSALEM FM"; customPtys.push_back(e);
   e.freq_khz = 88900;  e.pty_code = 10; e.ps = "JANGADEIRO FM"; customPtys.push_back(e);
