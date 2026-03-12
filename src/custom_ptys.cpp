@@ -27,6 +27,7 @@ void loadIsaacPTYs() {
   PTYEntry e;
   // Exemplo: Pop Music = 10, Religion = 20 (de acordo com PTY_EU)
   e.freq_khz = 79700;  e.pty_code = 20; e.ps = "RADIO METROPOLITANA 79.7MHZ"; customPtys.push_back(e);
+  e.freq_khz = 86700;  e.pty_code = 10; e.ps = "RADIO EDUCATIVA - IFCE FM"; customPtys.push_back(e);
   e.freq_khz = 87100;  e.pty_code = 10; e.ps = "CEARA FM 87.1MHZ"; customPtys.push_back(e);
   e.freq_khz = 88300;  e.pty_code = 20; e.ps = "RADIO JERUSALEM FM"; customPtys.push_back(e);
   e.freq_khz = 88900;  e.pty_code = 10; e.ps = "JANGADEIRO FM"; customPtys.push_back(e);
@@ -64,7 +65,7 @@ void loadIsaacPTYs() {
   e.freq_khz = 105700; e.pty_code = 10; e.ps = "ATLANTICO SUL FM 105.7"; customPtys.push_back(e);
   e.freq_khz = 106500; e.pty_code = 10; e.ps = "NOVABRASIL FM 106.5"; customPtys.push_back(e);
   e.freq_khz = 107500; e.pty_code = 10; e.ps = "MIX FM 107.5"; customPtys.push_back(e);
-  e.freq_khz = 107900; e.pty_code = 10; e.ps = "107.9MHZ RADIO UNIVERSITARIA FM 107.9MHZ"; customPtys.push_back(e);
+  e.freq_khz = 107900; e.pty_code = 10; e.ps = "107.9MHZ UNIVERSITARIA FM 107.9MHZ"; customPtys.push_back(e);
   log_info("Default Isaac PTYs loaded.");
 }
 
