@@ -34,7 +34,6 @@ void loadIsaacPTYs() {
   e.freq_khz = 89900;  e.pty_code = 10; e.ps = "89 FM 89.9 FM"; customPtys.push_back(e);
   e.freq_khz = 90700;  e.pty_code = 10; e.ps = "FORTALEZA FM"; customPtys.push_back(e);
   e.freq_khz = 90300;  e.pty_code = 20; e.ps = "RADIO UIRAPURU - REDE ALELUIA"; customPtys.push_back(e);
-  e.freq_khz = 91300;  e.pty_code = 20; e.ps = "LOGOS FM"; customPtys.push_back(e);
   e.freq_khz = 91700;  e.pty_code = 20; e.ps = "SHALOM FM 91.7MHZ"; customPtys.push_back(e);
   e.freq_khz = 92100;  e.pty_code = 20; e.ps = "RADIO EFRAIM"; customPtys.push_back(e);
   e.freq_khz = 92500;  e.pty_code = 10; e.ps = "VERDINHA FM 92.5"; customPtys.push_back(e);
@@ -60,7 +59,7 @@ void loadIsaacPTYs() {
   e.freq_khz = 103300; e.pty_code = 10; e.ps = "RADIO SENADO"; customPtys.push_back(e);
   e.freq_khz = 103500; e.pty_code = 20; e.ps = "REDE SHALOM DE RADIO"; customPtys.push_back(e);
   e.freq_khz = 103900; e.pty_code = 10; e.ps = "TEMPO FM 103.9 A SUA MELHOR ESTACAO."; customPtys.push_back(e);
-  e.freq_khz = 104300; e.pty_code = 10; e.ps = "EXPRESSO FM 104.3"; customPtys.push_back(e);
+  e.freq_khz = 104300; e.pty_code = 10; e.ps = "REDE METROPOLITANA FM 104.3"; customPtys.push_back(e);
   e.freq_khz = 105100; e.pty_code = 20; e.ps = "AD CIDADE FM 105.1MHZ"; customPtys.push_back(e);
   e.freq_khz = 105700; e.pty_code = 10; e.ps = "ATLANTICO SUL FM 105.7"; customPtys.push_back(e);
   e.freq_khz = 106500; e.pty_code = 10; e.ps = "NOVABRASIL FM 106.5"; customPtys.push_back(e);
