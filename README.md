@@ -37,3 +37,42 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/pe5pvb)
 
 cd "c:\TOOLS\pac\TEF6686_ESP32"; & "C:\Users\josep\AppData\Local\Arduino15\packages\esp32\tools\mkspiffs\0.2.3\mkspiffs.exe" -c data -b 4096 -p 256 -s 1507328 spiffs.bin
+
+## PTY (Program Type) Codes
+
+Lista padrão de códigos PTY utilizados no RDS:
+
+| Código | Tipo de Programação         |
+|--------|----------------------------|
+| 0      | None                       |
+| 1      | News                       |
+| 2      | Current Affairs            |
+| 3      | Information                |
+| 4      | Sport                      |
+| 5      | Education                  |
+| 6      | Drama                      |
+| 7      | Culture                    |
+| 8      | Science                    |
+| 9      | Varied                     |
+| 10     | Pop Music                  |
+| 11     | Rock Music                 |
+| 12     | Easy Listening             |
+| 13     | Light Classical            |
+| 14     | Serious Classical          |
+| 15     | Other Music                |
+| 16     | Weather                    |
+| 17     | Finance                    |
+| 18     | Children's Progs           |
+| 19     | Social Affairs             |
+| 20     | Religion                   |
+| 21     | Phone-In                   |
+| 22     | Travel                     |
+| 23     | Leisure                    |
+| 24     | Jazz Music                 |
+| 25     | Country Music              |
+| 26     | National Music             |
+| 27     | Oldies Music               |
+| 28     | Folk Music                 |
+| 29     | Documentary                |
+| 30     | Alarm Test                 |
+| 31     | Alarm!!!                   |
