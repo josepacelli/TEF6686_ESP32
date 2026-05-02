@@ -26,45 +26,45 @@ void loadIsaacPTYs() {
   customPtys.clear();
   PTYEntry e;
   // Exemplo: Pop Music = 10, Religion = 20 (de acordo com PTY_EU)
-  e.freq_khz = 79700;  e.pty_code = 20; e.ps = "RADIO METROPOLITANA 79.7MHZ"; customPtys.push_back(e);
-  e.freq_khz = 86700;  e.pty_code = 10; e.ps = "RADIO EDUCATIVA - IFCE FM"; customPtys.push_back(e);
-  e.freq_khz = 87100;  e.pty_code = 10; e.ps = "CEARA FM 87.1MHZ"; customPtys.push_back(e);
-  e.freq_khz = 88300;  e.pty_code = 20; e.ps = "RADIO JERUSALEM FM"; customPtys.push_back(e);
-  e.freq_khz = 88900;  e.pty_code = 10; e.ps = "JANGADEIRO FM"; customPtys.push_back(e);
-  e.freq_khz = 89900;  e.pty_code = 10; e.ps = "89 FM 89.9 FM"; customPtys.push_back(e);
-  e.freq_khz = 90700;  e.pty_code = 10; e.ps = "FORTALEZA FM"; customPtys.push_back(e);
-  e.freq_khz = 90300;  e.pty_code = 20; e.ps = "RADIO UIRAPURU - REDE ALELUIA"; customPtys.push_back(e);
-  e.freq_khz = 91700;  e.pty_code = 20; e.ps = "SHALOM FM 91.7MHZ"; customPtys.push_back(e);
-  e.freq_khz = 92100;  e.pty_code = 20; e.ps = "RADIO EFRAIM"; customPtys.push_back(e);
-  e.freq_khz = 92500;  e.pty_code = 10; e.ps = "VERDINHA FM 92.5"; customPtys.push_back(e);
-  e.freq_khz = 92900;  e.pty_code = 10; e.ps = "JOVEM PAN NEWS FORTALEZA"; customPtys.push_back(e);
-  e.freq_khz = 93500;  e.pty_code = 20; e.ps = "CANAA FM 93.5"; customPtys.push_back(e);
-  e.freq_khz = 93900;  e.pty_code = 10; e.ps = "FM 93 SEMPRE AO SEU LADO"; customPtys.push_back(e);
-  e.freq_khz = 94300;  e.pty_code = 10; e.ps = "SOL FM 94.3 OFICIAL"; customPtys.push_back(e);
-  e.freq_khz = 94700;  e.pty_code = 10; e.ps = "JOVEM PAN FORTALEZA FM 94.7"; customPtys.push_back(e);
-  e.freq_khz = 95100;  e.pty_code = 20; e.ps = "LOGOS FM"; customPtys.push_back(e);
-  e.freq_khz = 95500;  e.pty_code = 10; e.ps = "CBN O POVO"; customPtys.push_back(e);
-  e.freq_khz = 96100;  e.pty_code = 20; e.ps = "DOMBOSCO FM 96,1"; customPtys.push_back(e);
-  e.freq_khz = 96700;  e.pty_code = 10; e.ps = "ALECE FM 96.7MHZ"; customPtys.push_back(e);
-  e.freq_khz = 97100;  e.pty_code = 20; e.ps = "RADIO MARIA BRASIL"; customPtys.push_back(e);
-  e.freq_khz = 97700;  e.pty_code = 10; e.ps = "ANTENA 1 FM 97.7"; customPtys.push_back(e);
-  e.freq_khz = 98300;  e.pty_code = 20; e.ps = "RADIO LIDER FM GOSPEL 98.3"; customPtys.push_back(e);
-  e.freq_khz = 99100;  e.pty_code = 10; e.ps = "CIDADE FM 99.1"; customPtys.push_back(e);
-  e.freq_khz = 99900;  e.pty_code = 20; e.ps = "REDE ALELUIA FM 99.9"; customPtys.push_back(e);
-  e.freq_khz = 100900; e.pty_code = 20; e.ps = "DEUS E AMOR FM 100.9"; customPtys.push_back(e);
-  e.freq_khz = 101300; e.pty_code = 20; e.ps = "NOVA RADIO CRISTA"; customPtys.push_back(e);
-  e.freq_khz = 101700; e.pty_code = 10; e.ps = "BANDNEWS FM 101.7"; customPtys.push_back(e);
-  e.freq_khz = 102300; e.pty_code = 20; e.ps = "TEMPLO CENTRAL FM 102.3"; customPtys.push_back(e);
-  e.freq_khz = 102700; e.pty_code = 10; e.ps = "RADIO BEACH PARK FM 102.7"; customPtys.push_back(e);
-  e.freq_khz = 103300; e.pty_code = 10; e.ps = "RADIO SENADO"; customPtys.push_back(e);
-  e.freq_khz = 103500; e.pty_code = 20; e.ps = "REDE SHALOM DE RADIO"; customPtys.push_back(e);
-  e.freq_khz = 103900; e.pty_code = 10; e.ps = "TEMPO FM 103.9 A SUA MELHOR ESTACAO."; customPtys.push_back(e);
-  e.freq_khz = 104300; e.pty_code = 10; e.ps = "REDE METROPOLITANA FM 104.3"; customPtys.push_back(e);
-  e.freq_khz = 105100; e.pty_code = 20; e.ps = "AD CIDADE FM 105.1MHZ"; customPtys.push_back(e);
-  e.freq_khz = 105700; e.pty_code = 10; e.ps = "ATLANTICO SUL FM 105.7"; customPtys.push_back(e);
-  e.freq_khz = 106500; e.pty_code = 10; e.ps = "NOVABRASIL FM 106.5"; customPtys.push_back(e);
-  e.freq_khz = 107500; e.pty_code = 10; e.ps = "MIX FM 107.5"; customPtys.push_back(e);
-  e.freq_khz = 107900; e.pty_code = 10; e.ps = "107.9MHZ UNIVERSITARIA FM 107.9MHZ"; customPtys.push_back(e);
+  e.freq_khz = 79700;  e.pty_code = 20; e.ps = "RADIO METROPOLITANA 79.7MHZ"; e.rt = "RADIO METROPOLITANA 79.7MHZ"; customPtys.push_back(e);
+  e.freq_khz = 86700;  e.pty_code = 10; e.ps = "RADIO EDUCATIVA - IFCE FM"; e.rt = "RADIO EDUCATIVA - IFCE FM"; customPtys.push_back(e);
+  e.freq_khz = 87100;  e.pty_code = 10; e.ps = "CEARA FM 87.1MHZ"; e.rt = "CEARA FM 87.1MHZ"; customPtys.push_back(e);
+  e.freq_khz = 88300;  e.pty_code = 20; e.ps = "RADIO JERUSALEM FM"; e.rt = "RADIO JERUSALEM FM"; customPtys.push_back(e);
+  e.freq_khz = 88900;  e.pty_code = 10; e.ps = "JANGADEIRO FM"; e.rt = "JANGADEIRO FM"; customPtys.push_back(e);
+  e.freq_khz = 89900;  e.pty_code = 10; e.ps = "89 FM 89.9 FM"; e.rt = "89 FM 89.9 FM"; customPtys.push_back(e);
+  e.freq_khz = 90700;  e.pty_code = 10; e.ps = "FORTALEZA FM"; e.rt = "FORTALEZA FM"; customPtys.push_back(e);
+  e.freq_khz = 90300;  e.pty_code = 20; e.ps = "RADIO UIRAPURU - REDE ALELUIA"; e.rt = "RADIO UIRAPURU - REDE ALELUIA"; customPtys.push_back(e);
+  e.freq_khz = 91700;  e.pty_code = 20; e.ps = "SHALOM FM 91.7MHZ"; e.rt = "SHALOM FM 91.7MHZ"; customPtys.push_back(e);
+  e.freq_khz = 92100;  e.pty_code = 20; e.ps = "RADIO EFRAIM"; e.rt = "RADIO EFRAIM"; customPtys.push_back(e);
+  e.freq_khz = 92500;  e.pty_code = 10; e.ps = "VERDINHA FM 92.5"; e.rt = "VERDINHA FM 92.5"; customPtys.push_back(e);
+  e.freq_khz = 92900;  e.pty_code = 10; e.ps = "JOVEM PAN NEWS FORTALEZA"; e.rt = "JOVEM PAN NEWS FORTALEZA"; customPtys.push_back(e);
+  e.freq_khz = 93500;  e.pty_code = 20; e.ps = "CANAA FM 93.5"; e.rt = "CANAA FM 93.5"; customPtys.push_back(e);
+  e.freq_khz = 93900;  e.pty_code = 10; e.ps = "FM 93 SEMPRE AO SEU LADO"; e.rt = "FM 93 SEMPRE AO SEU LADO"; customPtys.push_back(e);
+  e.freq_khz = 94300;  e.pty_code = 10; e.ps = "SOL FM 94.3 OFICIAL"; e.rt = "SOL FM 94.3 OFICIAL"; customPtys.push_back(e);
+  e.freq_khz = 94700;  e.pty_code = 10; e.ps = "JOVEM PAN FORTALEZA FM 94.7"; e.rt = "JOVEM PAN FORTALEZA FM 94.7"; customPtys.push_back(e);
+  e.freq_khz = 95100;  e.pty_code = 20; e.ps = "LOGOS FM"; e.rt = "LOGOS FM"; customPtys.push_back(e);
+  e.freq_khz = 95500;  e.pty_code = 10; e.ps = "CBN O POVO"; e.rt = "CBN O POVO"; customPtys.push_back(e);
+  e.freq_khz = 96100;  e.pty_code = 20; e.ps = "DOMBOSCO FM 96,1"; e.rt = "DOMBOSCO FM 96,1"; customPtys.push_back(e);
+  e.freq_khz = 96700;  e.pty_code = 10; e.ps = "ALECE FM 96.7MHZ"; e.rt = "ALECE FM 96.7MHZ"; customPtys.push_back(e);
+  e.freq_khz = 97100;  e.pty_code = 20; e.ps = "RADIO MARIA BRASIL"; e.rt = "RADIO MARIA BRASIL"; customPtys.push_back(e);
+  e.freq_khz = 97700;  e.pty_code = 10; e.ps = "ANTENA 1 FM 97.7"; e.rt = "ANTENA 1 FM 97.7"; customPtys.push_back(e);
+  e.freq_khz = 98300;  e.pty_code = 20; e.ps = "RADIO LIDER FM GOSPEL 98.3"; e.rt = "RADIO LIDER FM GOSPEL 98.3"; customPtys.push_back(e);
+  e.freq_khz = 99100;  e.pty_code = 10; e.ps = "CIDADE FM 99.1"; e.rt = "CIDADE FM 99.1"; customPtys.push_back(e);
+  e.freq_khz = 99900;  e.pty_code = 20; e.ps = "REDE ALELUIA FM 99.9"; e.rt = "REDE ALELUIA FM 99.9"; customPtys.push_back(e);
+  e.freq_khz = 100900; e.pty_code = 20; e.ps = "DEUS E AMOR FM 100.9"; e.rt = "DEUS E AMOR FM 100.9"; customPtys.push_back(e);
+  e.freq_khz = 101300; e.pty_code = 20; e.ps = "NOVA RADIO CRISTA"; e.rt = "NOVA RADIO CRISTA"; customPtys.push_back(e);
+  e.freq_khz = 101700; e.pty_code = 10; e.ps = "BANDNEWS FM 101.7"; e.rt = "BANDNEWS FM 101.7"; customPtys.push_back(e);
+  e.freq_khz = 102300; e.pty_code = 20; e.ps = "TEMPLO CENTRAL FM 102.3"; e.rt = "TEMPLO CENTRAL FM 102.3"; customPtys.push_back(e);
+  e.freq_khz = 102700; e.pty_code = 10; e.ps = "RADIO BEACH PARK FM 102.7"; e.rt = "RADIO BEACH PARK FM 102.7"; customPtys.push_back(e);
+  e.freq_khz = 103300; e.pty_code = 10; e.ps = "RADIO SENADO"; e.rt = "RADIO SENADO"; customPtys.push_back(e);
+  e.freq_khz = 103500; e.pty_code = 20; e.ps = "REDE SHALOM DE RADIO"; e.rt = "REDE SHALOM DE RADIO"; customPtys.push_back(e);
+  e.freq_khz = 103900; e.pty_code = 10; e.ps = "TEMPO FM 103.9 A SUA MELHOR ESTACAO."; e.rt = "TEMPO FM 103.9 A SUA MELHOR ESTACAO."; customPtys.push_back(e);
+  e.freq_khz = 104300; e.pty_code = 10; e.ps = "REDE METROPOLITANA FM 104.3"; e.rt = "REDE METROPOLITANA FM 104.3"; customPtys.push_back(e);
+  e.freq_khz = 105100; e.pty_code = 20; e.ps = "AD CIDADE FM 105.1MHZ"; e.rt = "AD CIDADE FM 105.1MHZ"; customPtys.push_back(e);
+  e.freq_khz = 105700; e.pty_code = 10; e.ps = "ATLANTICO SUL FM 105.7"; e.rt = "ATLANTICO SUL FM 105.7"; customPtys.push_back(e);
+  e.freq_khz = 106500; e.pty_code = 10; e.ps = "NOVABRASIL FM 106.5"; e.rt = "NOVABRASIL FM 106.5"; customPtys.push_back(e);
+  e.freq_khz = 107500; e.pty_code = 10; e.ps = "MIX FM 107.5"; e.rt = "MIX FM 107.5"; customPtys.push_back(e);
+  e.freq_khz = 107900; e.pty_code = 10; e.ps = "107.9MHZ UNIVERSITARIA FM 107.9MHZ"; e.rt = "107.9MHZ UNIVERSITARIA FM 107.9MHZ"; customPtys.push_back(e);
   log_info("Default Isaac PTYs loaded.");
 }
 
@@ -128,7 +128,7 @@ size_t getCustomPTYSCount() {
 }
 
 PTYEntry getCustomPTYEntry(size_t idx) {
-  PTYEntry e; e.freq_khz = 0; e.pty_code = 0; e.ps = "";
+  PTYEntry e; e.freq_khz = 0; e.pty_code = 0; e.ps = ""; e.rt = "";
   if (idx < customPtys.size()) return customPtys[idx];
   return e;
 }
@@ -145,8 +145,8 @@ int8_t findCustomPTYCodeForFreq(uint32_t freq_khz) {
   return -1;
 }
 
-void addCustomPTY(uint32_t freq_khz, uint8_t pty_code, const String &ps) {
-  PTYEntry e; e.freq_khz = freq_khz; e.pty_code = pty_code; e.ps = ps;
+void addCustomPTY(uint32_t freq_khz, uint8_t pty_code, const String &ps, const String &rt) {
+  PTYEntry e; e.freq_khz = freq_khz; e.pty_code = pty_code; e.ps = ps; e.rt = rt;
   customPtys.push_back(e);
   saveCustomPTYS();
 }
