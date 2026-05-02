@@ -944,13 +944,19 @@ void showCT() {
 
 void showRadioText() {
   // Build the radio text string
-  String RTString = String(
-                      radio.rds.stationText +
-                      (radio.rds.stationText.length() > 0 ? " " : "") +
-                      radio.rds.stationText32 +
-                      (radio.rds.hasEnhancedRT ? " eRT: " + String(radio.rds.enhancedRTtext) : "") +
-                      "      "
-                    );
+  String radioRT = radio.rds.stationText +
+                   (radio.rds.stationText.length() > 0 ? " " : "") +
+                   radio.rds.stationText32 +
+                   (radio.rds.hasEnhancedRT ? " eRT: " + String(radio.rds.enhancedRTtext) : "");
+  String customRT = findCustomRTForFreq((uint32_t)frequency * 10);
+  String radioRTtrimmed = radioRT; radioRTtrimmed.trim();
+  String RTString;
+  if (customRT.length() > 0 && radioRTtrimmed.length() > 0)
+    RTString = customRT + " - " + radioRT + "      ";
+  else if (customRT.length() > 0)
+    RTString = customRT + "      ";
+  else
+    RTString = radioRT + "      ";
 
   // Check if RT has changed
   if (radio.rds.hasRT && radio.rds.rtAB != rtABold) {

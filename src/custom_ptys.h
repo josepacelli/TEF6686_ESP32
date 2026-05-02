@@ -19,5 +19,5 @@ int8_t findCustomPTYCodeForFreq(uint32_t freq_khz);
 void addCustomPTY(uint32_t freq_khz, uint8_t pty_code, const String &ps, const String &rt);
 void removeCustomPTY(size_t idx);
 
-// Declaração da função para buscar o PS customizado
 String findCustomPSForFreq(uint32_t freq_khz);
+String findCustomRTForFreq(uint32_t freq_khz);
