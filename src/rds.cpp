@@ -704,11 +704,25 @@ void showPS() {
 
   String stationNameToShow = customPS.length() > 0 ? customPS : radio.rds.stationName;
 
+  unsigned long elapsedSec = millis() / 1000UL;
+  unsigned long elapsedMin = elapsedSec / 60UL;
+  unsigned long elapsedDays = elapsedSec / 86400UL;
+
+  int hour = (int)((elapsedMin / 60) % 24);
+  int minute = (int)(elapsedMin % 60);
+  int dayOfMonth = (int)((elapsedDays % 30) + 1);
+  int month = (int)(((elapsedDays / 30) % 12) + 1);
+  int year = (int)((elapsedDays / 365) % 100);
+
+  char timestr[20];
+  sprintf(timestr, "%02d:%02d %02d-%02d-%02d  ", hour, minute, dayOfMonth, month, year);
+  String clockPrefix = String(timestr);
+
   String rtText = radio.rds.stationText;
   rtText.trim();
   String psDisplayString = (rtText.length() > 0)
-    ? stationNameToShow + " - " + rtText
-    : stationNameToShow;
+    ? clockPrefix + stationNameToShow + " - " + rtText
+    : clockPrefix + stationNameToShow;
 
   if ((stationNameToShow != PSold) ||
       (psDisplayString != psDisplayOld) ||
