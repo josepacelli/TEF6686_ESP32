@@ -72,7 +72,7 @@ void loadIsaacPTYs() {
   e.freq_khz = 104300; e.pty_code = 10; e.ps = "REDE METROPOLITANA FM 104.3"; e.rt = "YES!!!"; customPtys.push_back(e);
   e.freq_khz = 105100; e.pty_code = 20; e.ps = "AD CIDADE FM 105.1MHZ"; e.rt = "ASSEMBLEIA DE DEUS NO AR"; customPtys.push_back(e);
   e.freq_khz = 105700; e.pty_code = 10; e.ps = "ATLANTICO SUL FM 105.7"; e.rt = "SUA VIDA NA MELHOR TRILHA"; customPtys.push_back(e);
-  e.freq_khz = 106500; e.pty_code = 10; e.ps = "NOVABRASIL FM 106.5"; e.rt = "O LUGAR DA MPB E BRASILIDADE"; customPtys.push_back(e);
+  e.freq_khz = 106500; e.pty_code = 10; e.ps = "NOVABRASIL FM 106.5"; e.rt = "A MAIOR AUDIENCIA NO PUBLICO ADULTO"; customPtys.push_back(e);
   e.freq_khz = 107500; e.pty_code = 10; e.ps = "MIX FM 107.5"; e.rt = "OS MAIORES HITS DO MOMENTO"; customPtys.push_back(e);
   e.freq_khz = 107900; e.pty_code = 10; e.ps = "107.9MHZ UNIVERSITARIA FM 107.9MHZ"; e.rt = "A RADIO DA UFC - CULTURA E SABER"; customPtys.push_back(e);
   log_info("Default Isaac PTYs loaded.");
