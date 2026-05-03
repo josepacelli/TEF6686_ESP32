@@ -107,6 +107,7 @@ extern String LICString;
 extern String pinstringold;
 extern String PIold;
 extern String PSold;
+extern String psDisplayOld;
 extern String ptynold;
 extern String PTYold;
 extern String rds_clock;

@@ -347,6 +347,7 @@ String LICString;
 String pinstringold;
 String PIold;
 String PSold;
+String psDisplayOld;
 String ptynold = " ";
 String PTYold;
 String RabbitearsPassword;

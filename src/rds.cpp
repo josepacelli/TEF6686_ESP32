@@ -704,12 +704,20 @@ void showPS() {
 
   String stationNameToShow = customPS.length() > 0 ? customPS : radio.rds.stationName;
 
+  String rtText = radio.rds.stationText;
+  rtText.trim();
+  String psDisplayString = (rtText.length() > 0)
+    ? stationNameToShow + " - " + rtText
+    : stationNameToShow;
+
   if ((stationNameToShow != PSold) ||
+      (psDisplayString != psDisplayOld) ||
       (RDSstatus && !(ps12errorold == radio.rds.ps12error ||
                       ps34errorold == radio.rds.ps34error ||
                       ps56errorold == radio.rds.ps56error ||
                       ps78errorold == radio.rds.ps78error)) ||
-      (radio.rds.hasLongPS && showlongps)) {
+      (radio.rds.hasLongPS && showlongps) ||
+      (xPos5 != 0)) {
 
     // Handle AF screen update
     if (afscreen) {
@@ -719,14 +727,14 @@ void showPS() {
     } else if (!rdsstatscreen) {
       // Handle long PS display
       if (radio.rds.hasLongPS && showlongps) {
-        String stationNameLongString = String(stationNameToShow) + "     "; // Add trailing spaces for scrolling
+        String stationNameLongString = psDisplayString + "     "; // Add trailing spaces for scrolling
         if (stationNameLongString != stationNameLongOld) {
           PSLongWidth = PSSprite.textWidth(stationNameLongString); // Measure new width
           stationNameLongOld = stationNameLongString;
         }
 
         // Handle scrolling logic for long PS
-        if (PSSprite.textWidth(radio.trimTrailingSpaces(stationNameToShow)) < 150) {
+        if (PSSprite.textWidth(radio.trimTrailingSpaces(psDisplayString)) < 150) {
           xPos5 = 0;
           PSSprite.fillSprite(BackgroundColor);
           PSSprite.setTextColor(RDSstatus ? RDSColor : RDSDropoutColor, RDSstatus ? RDSColorSmooth : RDSDropoutColorSmooth, false);
@@ -753,7 +761,7 @@ void showPS() {
         // Handle normal PS display — but enable scrolling when it doesn't fit
         // If the text fits, draw it normally (including PS error handling),
         // otherwise use the same scrolling logic as for long PS.
-        if (PSSprite.textWidth(radio.trimTrailingSpaces(stationNameToShow)) < 150) {
+        if (PSSprite.textWidth(radio.trimTrailingSpaces(psDisplayString)) < 150) {
           // Small enough: draw statically
           xPos5 = 0;
           PSSprite.fillSprite(BackgroundColor);
@@ -795,7 +803,7 @@ void showPS() {
           }
         } else {
           // Too wide: use scrolling logic (reuse long-PS behavior)
-          String stationNameLongString = String(stationNameToShow) + "     "; // Add trailing spaces for scrolling
+          String stationNameLongString = psDisplayString + "     "; // Add trailing spaces for scrolling
           if (stationNameLongString != stationNameLongOld) {
             PSLongWidth = PSSprite.textWidth(stationNameLongString); // Measure new width
             stationNameLongOld = stationNameLongString;
@@ -840,8 +848,9 @@ void showPS() {
       }
     }
 
-    // Save the updated station name
+    // Save the updated station name and display string
     PSold = stationNameToShow;
+    psDisplayOld = psDisplayString;
   }
 }
 
