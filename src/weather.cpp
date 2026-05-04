@@ -3,7 +3,7 @@
 #include <WiFi.h>
 #include <WiFiClient.h>
 
-const char* WEATHER_HOST = "api.open-meteo.com";
+const char* WEATHER_HOST = "89.163.128.29";  // Fixed IP for api.open-meteo.com
 const char* WEATHER_PATH = "/v1/forecast?latitude=-3.73&longitude=-38.53&current=temperature_2m,weather_code,relative_humidity_2m&timezone=America/Fortaleza";
 
 const char* getWeatherDesc(int code) {
@@ -47,7 +47,7 @@ void updateWeatherOnRDS() {
   }
 
   String request = String("GET ") + WEATHER_PATH + " HTTP/1.1\r\n";
-  request += "Host: " + String(WEATHER_HOST) + "\r\n";
+  request += "Host: api.open-meteo.com\r\n";  // SNI hostname for HTTPS compatibility
   request += "Connection: close\r\n\r\n";
 
   client.print(request);

@@ -6,7 +6,8 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(arduino-cli compile *)",
-      "Bash(git commit -m 'feat: auto-update weather on PS/RT every 6 hours when WiFi connected *)"
+      "Bash(git commit -m 'feat: auto-update weather on PS/RT every 6 hours when WiFi connected *)",
+      "PowerShell(head -10)"
     ]
   }
 }
