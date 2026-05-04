@@ -12,6 +12,7 @@ extern unsigned int frequency;
 extern unsigned int frequency_OIRT;
 extern unsigned int frequency_AM;
 extern byte band;
+extern ESP32Time rtc;
 
 String HexStringold;
 float smoothBER = 0;
@@ -704,19 +705,21 @@ void showPS() {
 
   String stationNameToShow = customPS.length() > 0 ? customPS : radio.rds.stationName;
 
-  unsigned long elapsedSec = millis() / 1000UL;
-  unsigned long elapsedMin = elapsedSec / 60UL;
-  unsigned long elapsedDays = elapsedSec / 86400UL;
+  String clockPrefix = "";
+  if (rtcset) {
+    time_t now = rtc.getEpoch();
+    tm* timeinfo = localtime(&now);
 
-  int hour = (int)((elapsedMin / 60) % 24);
-  int minute = (int)(elapsedMin % 60);
-  int dayOfMonth = (int)((elapsedDays % 30) + 1);
-  int month = (int)(((elapsedDays / 30) % 12) + 1);
-  int year = (int)((elapsedDays / 365) % 100);
+    int hour = timeinfo->tm_hour;
+    int minute = timeinfo->tm_min;
+    int dayOfMonth = timeinfo->tm_mday;
+    int month = timeinfo->tm_mon + 1;
+    int year = timeinfo->tm_year % 100;
 
-  char timestr[20];
-  sprintf(timestr, "%02d:%02d %02d-%02d-%02d  ", hour, minute, dayOfMonth, month, year);
-  String clockPrefix = String(timestr);
+    char timestr[20];
+    sprintf(timestr, "%02d:%02d %02d-%02d-%02d  ", hour, minute, dayOfMonth, month, year);
+    clockPrefix = String(timestr);
+  }
 
   String rtText = radio.rds.stationText;
   rtText.trim();
