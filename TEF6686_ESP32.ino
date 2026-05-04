@@ -29,6 +29,7 @@ using fs::FS;
 #include "src/touch.h"
 #include "src/logbook.h"
 #include "src/custom_ptys.h"
+#include "src/weather.h"
 
 #define ROTARY_PIN_A 34
 #define ROTARY_PIN_B 36
@@ -444,6 +445,7 @@ unsigned long ModulationpeakPreviousMillis;
 unsigned long NTPtimer;
 unsigned long peakholdmillis;
 unsigned long processed_rdsblocksold[33];
+unsigned long weathertimer;
 unsigned long pslongticker;
 unsigned long pslongtickerhold;
 unsigned long rtplusticker;
@@ -992,6 +994,11 @@ void loop() {
     if (millis() >= NTPtimer + 1800000) {
       NTPupdate();
       NTPtimer = millis();
+    }
+
+    if (millis() >= weathertimer + 21600000) {
+      updateWeatherOnRDS();
+      weathertimer = millis();
     }
   }
 
