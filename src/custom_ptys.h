@@ -6,8 +6,9 @@ struct PTYEntry {
   uint8_t pty_code; // PTY code (0-31)
   String ps;
   String rt;
+  String song;
   String toString() const {
-    return String("PTYEntry(freq_khz=") + String(freq_khz) + ", pty_code=" + String(pty_code) + ", ps=" + ps + ", rt=" + rt + ")";
+    return String("PTYEntry(freq_khz=") + String(freq_khz) + ", pty_code=" + String(pty_code) + ", ps=" + ps + ", rt=" + rt + ", song=" + song + ")";
   }
 };
 
@@ -16,8 +17,9 @@ void saveCustomPTYS();
 size_t getCustomPTYSCount();
 PTYEntry getCustomPTYEntry(size_t idx);
 int8_t findCustomPTYCodeForFreq(uint32_t freq_khz);
-void addCustomPTY(uint32_t freq_khz, uint8_t pty_code, const String &ps, const String &rt);
+void addCustomPTY(uint32_t freq_khz, uint8_t pty_code, const String &ps, const String &rt, const String &song = "");
 void removeCustomPTY(size_t idx);
 
 String findCustomPSForFreq(uint32_t freq_khz);
 String findCustomRTForFreq(uint32_t freq_khz);
+String findCustomSongForFreq(uint32_t freq_khz);

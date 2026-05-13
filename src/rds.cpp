@@ -699,8 +699,10 @@ void showPS() {
     currentFreqKhz = frequency_OIRT * 10;
   }
   String customPS = "";
+  String customSong = "";
   if (currentFreqKhz > 0) {
     customPS = findCustomPSForFreq(currentFreqKhz);
+    customSong = findCustomSongForFreq(currentFreqKhz);
   }
 
   String stationNameToShow = customPS.length() > 0 ? customPS : radio.rds.stationName;
@@ -712,20 +714,28 @@ void showPS() {
 
     int hour = timeinfo->tm_hour;
     int minute = timeinfo->tm_min;
+    int second = timeinfo->tm_sec;
     int dayOfMonth = timeinfo->tm_mday;
     int month = timeinfo->tm_mon + 1;
-    int year = timeinfo->tm_year % 100;
+    int year = timeinfo->tm_year + 1900;
 
-    char timestr[20];
-    sprintf(timestr, "%02d:%02d %02d-%02d-%02d  ", hour, minute, dayOfMonth, month, year);
+    char timestr[25];
+    sprintf(timestr, "%02d:%02d:%02d %02d/%02d/%04d  ", hour, minute, second, dayOfMonth, month, year);
     clockPrefix = String(timestr);
   }
 
   String rtText = radio.rds.stationText;
   rtText.trim();
-  String psDisplayString = (rtText.length() > 0)
-    ? clockPrefix + stationNameToShow + " - " + rtText
-    : clockPrefix + stationNameToShow;
+
+  // Build display string: date/time + song + RT + PS
+  String psDisplayString = clockPrefix;
+  if (customSong.length() > 0) {
+    psDisplayString += customSong + " - ";
+  }
+  if (rtText.length() > 0) {
+    psDisplayString += rtText + " - ";
+  }
+  psDisplayString += stationNameToShow;
 
   if ((stationNameToShow != PSold) ||
       (psDisplayString != psDisplayOld) ||
@@ -975,14 +985,29 @@ void showRadioText() {
                    radio.rds.stationText32 +
                    (radio.rds.hasEnhancedRT ? " eRT: " + String(radio.rds.enhancedRTtext) : "");
   String customRT = findCustomRTForFreq((uint32_t)frequency * 10);
+  String customSong = findCustomSongForFreq((uint32_t)frequency * 10);
   String radioRTtrimmed = radioRT; radioRTtrimmed.trim();
-  String RTString;
+
+  // Build display string: date/time + song + RT + custom RT
+  String RTString = "";
+  if (rtcset) {
+    time_t now = rtc.getEpoch();
+    tm* timeinfo = localtime(&now);
+    char timestr[25];
+    sprintf(timestr, "%02d:%02d:%02d %02d/%02d/%04d", timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec, timeinfo->tm_mday, timeinfo->tm_mon + 1, timeinfo->tm_year + 1900);
+    RTString = String(timestr) + " ";
+  }
+
+  if (customSong.length() > 0) {
+    RTString += customSong + " ";
+  }
+
   if (customRT.length() > 0 && radioRTtrimmed.length() > 0)
-    RTString = customRT + " - " + radioRT + "      ";
+    RTString += customRT + " - " + radioRT + "      ";
   else if (customRT.length() > 0)
-    RTString = customRT + "      ";
+    RTString += customRT + "      ";
   else
-    RTString = radioRT + "      ";
+    RTString += radioRT + "      ";
 
   // Check if RT has changed
   if (radio.rds.hasRT && radio.rds.rtAB != rtABold) {
