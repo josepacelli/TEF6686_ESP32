@@ -1806,7 +1806,7 @@ void TEF6686::clearRDS (bool fullsearchrds) {
   rds.pinHour = 0;
   rds.pinMin = 0;
   rds.pinDay = 0;
-  rds.stationTypeCode = 32;
+  rds.stationTypeCode = 10;
   rds.dabaffreq = 0;
   rds.hasPIN = false;
   rds.hasECC = false;

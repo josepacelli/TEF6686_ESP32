@@ -635,8 +635,6 @@ void showPTY() {
   if (strcmp(radio.rds.stationType, programTypePrevious)) {
     String PTYString = String(radio.rds.stationTypeCode) + "/" + (radio.rds.region != 0 ? radio.rds.stationType : textUI(228 + radio.rds.stationTypeCode));
 
-    if (radio.rds.stationTypeCode == 32) PTYString = "";
-
     // Check for custom PTY from CSV based on current frequency
     uint32_t currentFreqKhz = 0;
     if (band == BAND_FM) {
