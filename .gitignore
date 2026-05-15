@@ -1,4 +1,4 @@
 /build
 /.idea/
 /flash/
-.claude/settings.local.json
+/.claude/
