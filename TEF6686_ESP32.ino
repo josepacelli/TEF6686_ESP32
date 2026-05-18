@@ -197,7 +197,7 @@ byte amgain;
 byte freqoldcount;
 byte HighCutLevel;
 byte HighCutOffset;
-byte items[10] = { 10, static_cast<byte>(dynamicspi ? 10 : 9), 7, 10, 10, 10, 9, 10, 10, 9 };
+byte items[10] = { 10, static_cast<byte>(dynamicspi ? 10 : 9), 7, 11, 10, 10, 9, 10, 10, 9 };
 byte iMSEQ;
 byte iMSset;
 byte language;

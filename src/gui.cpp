@@ -1750,6 +1750,23 @@ void ShowOneLine(byte position, byte item, bool selected) {
           break;
       }
       break;
+
+    case 10:
+      switch (menupage) {
+        case INDEX:
+          break;
+
+        case DISPLAYSETTINGS:
+          FullLineSprite.setTextDatum(TL_DATUM);
+          FullLineSprite.setTextColor(ActiveColor, ActiveColorSmooth, false);
+          FullLineSprite.drawString(removeNewline(textUI(69)), 6, 2);
+
+          FullLineSprite.setTextDatum(TR_DATUM);
+          FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+          FullLineSprite.drawString((invertdisplay ? textUI(31) : textUI(30)), 298, 2);
+          break;
+      }
+      break;
   }
   FullLineSprite.pushSprite(8, 2 + position);
 }
@@ -2871,6 +2888,19 @@ void ShowOneButton(byte position, byte item, bool selected) {
           break;
       }
       break;
+
+    case 10:
+      switch (menupage) {
+        case DISPLAYSETTINGS:
+          PSSprite.setTextDatum(TC_DATUM);
+          PSSprite.setTextColor(ActiveColor, ActiveColorSmooth, false);
+          PSSprite.drawString(shortLine(removeNewline(textUI(69))), 75, 1);
+
+          PSSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+          PSSprite.drawString((invertdisplay ? textUI(31) : textUI(30)), 75, 15);
+          break;
+      }
+      break;
   }
   PSSprite.pushSprite((position > ITEM5 ? 163 : 8), (position * 2) - 22 - (position > ITEM5 ? 200 : 0));
   if (selected) {
@@ -3778,6 +3808,16 @@ void MenuUpDown(bool dir) {
             }
 
             OneBigLineSprite.drawString(FreqFont[freqfont], 135, 0);
+            OneBigLineSprite.pushSprite(24, 118);
+            break;
+
+          case ITEM11:
+            invertdisplay = !invertdisplay;
+            tft.invertDisplay(!invertdisplay);
+            EEPROM.writeByte(EE_BYTE_INVERTDISPLAY, invertdisplay);
+            EEPROM.commit();
+
+            OneBigLineSprite.drawString((invertdisplay ? textUI(31) : textUI(30)), 135, 0);
             OneBigLineSprite.pushSprite(24, 118);
             break;
         }

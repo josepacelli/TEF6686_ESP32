@@ -230,6 +230,7 @@
 #define ITEM8           170
 #define ITEM9           190
 #define ITEM10          210
+#define ITEM11          230
 
 // EEPROM index defines
 #define EE_PRESETS_CNT                99    // When set > 99 change the complete EEPROM adressing!

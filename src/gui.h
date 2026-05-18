@@ -34,6 +34,7 @@ extern bool hasafold;
 extern bool haseonold;
 extern bool hasrtplusold;
 extern bool hastmcold;
+extern bool invertdisplay;
 extern bool LowLevelInit;
 extern bool menu;
 extern bool menuopen;
