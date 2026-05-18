@@ -49,21 +49,21 @@ void loadIsaacPTYs() {
   e.freq_khz = 79700;
   e.pty_code = 20;
   e.ps = "RADIO METROPOLITANA 79.7MHZ - A RADIO DA COMUNIDADE";
-  e.rt = "RADIO METROPOLITANA - A RADIO DA COMUNIDADE";
+  e.rt = "RADIO METROPOLITANA 79.7MHZ - A RADIO DA COMUNIDADE";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 86700;
   e.pty_code = 10;
   e.ps = "RADIO EDUCATIVA - IFCE FM - EDUCACAO E CULTURA NO AR";
-  e.rt = "RADIO EDUCATIVA - IFEC FM - EDUCACAO E CULTURA NO AR";
+  e.rt = "RADIO EDUCATIVA - IFCE FM - EDUCACAO E CULTURA NO AR";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 87100;
   e.pty_code = 10;
   e.ps = "CEARA FM 87.1MHZ - O SOM DO CEARA";
-  e.rt = "O SOM DO CEARA - CEARA FM 87.1MHZ";
+  e.rt = "CEARA FM 87.1MHZ - O SOM DO CEARA";
   e.song = "";
   customPtys.push_back(e);
 
@@ -203,7 +203,7 @@ void loadIsaacPTYs() {
   e.freq_khz = 98300;
   e.pty_code = 20;
   e.ps = "RADIO LIDER FM GOSPEL 98.3 - A LIDER DO GOSPEL DO CEARA";
-  e.rt = "RADIO LIDER FM GOSPEL 98.3 - A LIDER DO GOSPEL NO CEARA";
+  e.rt = "RADIO LIDER FM GOSPEL 98.3 - A LIDER DO GOSPEL DO CEARA";
   e.song = "";
   customPtys.push_back(e);
 
@@ -224,7 +224,7 @@ void loadIsaacPTYs() {
   e.freq_khz = 100900;
   e.pty_code = 20;
   e.ps = "DEUS E AMOR FM 100.9 - DEUS E AMOR - A RADIO DA CURA";
-  e.rt = "DEUS E AMOR FM 100.9 -DEUS E AMOR - A RADIO DA CURA";
+  e.rt = "DEUS E AMOR FM 100.9 - DEUS E AMOR - A RADIO DA CURA";
   e.song = "";
   customPtys.push_back(e);
 
@@ -314,8 +314,8 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 107900;
   e.pty_code = 10;
-  e.ps = "107.9MHZ UNIVERSITARIA FM 107.9MHZ - 107.9MHZ UNIVERSITARIA FM 107.9MHZ - A RADIO DA UFC - CULTURA E SABER";
-  e.rt = "A RADIO DA UFC - CULTURA E SABER";
+  e.ps = "107.9MHZ UNIVERSITARIA FM 107.9MHZ - A RADIO DA UFC - CULTURA E SABER";
+  e.rt = "107.9MHZ UNIVERSITARIA FM 107.9MHZ - A RADIO DA UFC - CULTURA E SABER";
   e.song = "";
   customPtys.push_back(e);
   log_info("Default Isaac PTYs loaded.");
