@@ -181,7 +181,7 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 96700;
   e.pty_code = 10;
-  e.ps = "ALECE FM 96.7MHZ - A RADIO DA ASSEMBLEIA LEGISATIVA";
+  e.ps = "ALECE FM 96.7MHZ - A RADIO DA ASSEMBLEIA LEGISLATIVA";
   e.rt = "ALECE FM 96.7MHZ - A RADIO DA ASSEMBLEIA LEGISLATIVA";
   e.song = "";
   customPtys.push_back(e);
