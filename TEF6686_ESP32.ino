@@ -197,9 +197,15 @@
 #ifdef ARS
 #define VERSION         "v1.16ARS"
 #include "TFT_Colors.h"
-TFT_eSPI tft = TFT_eSPI(320, 240);
 #else
 #define VERSION         "v1.16"
+#endif
+
+#include "src/custom_ptys.h"
+
+#ifdef ARS
+TFT_eSPI tft = TFT_eSPI(320, 240);
+#else
 TFT_eSPI tft = TFT_eSPI(240, 320);
 #endif
 
@@ -407,6 +413,7 @@ void setup() {
   if (TEF != 101 && TEF != 102 && TEF != 205) SetTunerPatch();
 
   radio.init(TEF);
+  loadCustomPTYS();
   uint16_t device;
   uint16_t hw;
   uint16_t sw;
