@@ -1,5 +1,4 @@
 {
     "board": "esp32:esp32:esp32",
-    "port": "COM16",
-    "programmer": "esptool"
+    "port": "COM16"
 }
