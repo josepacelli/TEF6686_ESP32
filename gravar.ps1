@@ -275,29 +275,33 @@ $SPIFFS_ADDR = ("0x{0:X}" -f ((($fwSize + 0x10000 + 0xFFFF) -band 0xFFFF0000)))
 # PORTA SERIAL
 # =====================================================
 Write-Cyan "`n[PORT] Detectando portas COM..."
-$availablePorts = @(Find-ComPorts)
+$detectedPorts = @(Find-ComPorts)
 
-if ($availablePorts.Count -eq 0) {
-    Write-Yellow "[WARN] Nenhuma porta COM detectada"
-    $SERIAL_PORT = Read-Host "Digite a porta COM (ex: COM3)"
-} elseif ($availablePorts.Count -eq 1) {
-    $SERIAL_PORT = $availablePorts[0]
-    Write-Green "[OK] Porta detectada: $SERIAL_PORT"
-} else {
-    Write-Host "Portas disponíveis:"
-    for ($i = 0; $i -lt $availablePorts.Count; $i++) {
-        $marker = if ($availablePorts[$i] -eq $DEFAULT_PORT) { " (padrão)" } else { "" }
-        Write-Host "  $($i+1) - $($availablePorts[$i])$marker"
+# Adicionar porta padrão se não estiver na lista
+$availablePorts = @($DEFAULT_PORT)
+foreach ($port in $detectedPorts) {
+    if ($port -ne $DEFAULT_PORT) {
+        $availablePorts += $port
     }
-
-    $portChoice = Read-Host "Escolha porta [1-$($availablePorts.Count)]"
-    if ($portChoice -match "^\d+$" -and [int]$portChoice -ge 1 -and [int]$portChoice -le $availablePorts.Count) {
-        $SERIAL_PORT = $availablePorts[[int]$portChoice - 1]
-    } else {
-        $SERIAL_PORT = $DEFAULT_PORT
-    }
-    Write-Green "[OK] Usando porta: $SERIAL_PORT"
 }
+
+Write-Host "Portas disponíveis:"
+for ($i = 0; $i -lt $availablePorts.Count; $i++) {
+    $marker = if ($availablePorts[$i] -eq $DEFAULT_PORT) { " ← padrão (dev)" } else { "" }
+    Write-Host "  $($i+1) - $($availablePorts[$i])$marker"
+}
+
+$portChoice = Read-Host "Escolha porta [1-$($availablePorts.Count), Enter = porta padrão]"
+
+if ([string]::IsNullOrWhiteSpace($portChoice)) {
+    $SERIAL_PORT = $DEFAULT_PORT
+} elseif ($portChoice -match "^\d+$" -and [int]$portChoice -ge 1 -and [int]$portChoice -le $availablePorts.Count) {
+    $SERIAL_PORT = $availablePorts[[int]$portChoice - 1]
+} else {
+    $SERIAL_PORT = $DEFAULT_PORT
+}
+
+Write-Green "[OK] Usando porta: $SERIAL_PORT"
 
 # =====================================================
 # APAGAR FLASH (OPCIONAL)
