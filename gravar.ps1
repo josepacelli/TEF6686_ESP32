@@ -1,7 +1,6 @@
 # ======================================
 # TEF6686_ESP32 - Build and Flash Tool
 # Windows PowerShell
-# Porta padrão: COM16
 # ======================================
 
 $ErrorActionPreference = "Stop"
@@ -11,6 +10,7 @@ $ErrorActionPreference = "Stop"
 # =====================================================
 $BUILD_DIR  = "build\esp32.esp32.esp32"
 $OUTPUT_DIR = "build"
+$DATA_DIR   = "data"
 
 $DEFAULT_PORT = "COM16"
 $SERIAL_PORT  = $DEFAULT_PORT
@@ -21,6 +21,24 @@ $SERIAL_PORT  = $DEFAULT_PORT
 function Write-Green($msg)  { Write-Host $msg -ForegroundColor Green }
 function Write-Yellow($msg) { Write-Host $msg -ForegroundColor Yellow }
 function Write-Red($msg)    { Write-Host $msg -ForegroundColor Red }
+function Write-Cyan($msg)   { Write-Host $msg -ForegroundColor Cyan }
+function Write-Gray($msg)   { Write-Host $msg -ForegroundColor Gray }
+
+# =====================================================
+# DETECTAR PORTAS COM
+# =====================================================
+function Find-ComPorts {
+    $ports = @()
+    Get-WmiObject Win32_SerialPort | ForEach-Object { $ports += $_.DeviceID }
+
+    if ($ports.Count -eq 0) {
+        # Fallback: check registry
+        $ports = @(Get-ChildItem "HKLM:\HARDWARE\DEVICEMAP\SERIALCOMM" -ErrorAction SilentlyContinue |
+                   ForEach-Object { $_.GetValue($_) })
+    }
+
+    return $ports | Where-Object { $_ } | Sort-Object
+}
 
 # =====================================================
 # DETECTAR ESPTOOL (FORMA CORRETA)
@@ -41,47 +59,98 @@ function Find-Esptool {
 }
 
 # =====================================================
+# VERIFICAR DEPENDÊNCIAS
+# =====================================================
+function Verify-Dependencies {
+    Write-Cyan "`n[CHECK] Verificando dependências..."
+
+    $missing = @()
+
+    if (-not (Get-Command arduino-cli -ErrorAction SilentlyContinue)) {
+        $missing += "arduino-cli"
+    }
+
+    if (-not (Find-Esptool)) {
+        $missing += "esptool/python"
+    }
+
+    if ($missing.Count -gt 0) {
+        Write-Red "[ERROR] Faltam ferramentas:"
+        foreach ($tool in $missing) {
+            Write-Host "  - $tool"
+        }
+        Write-Host ""
+        Write-Host "Instale com:"
+        Write-Host "  - arduino-cli: https://arduino.github.io/arduino-cli/"
+        Write-Host "  - esptool: pip install --user esptool"
+        exit 1
+    }
+
+    Write-Green "[OK] Todas as dependências encontradas"
+}
+
+# =====================================================
 # HEADER
 # =====================================================
 Write-Host "======================================"
 Write-Host "TEF6686_ESP32 - Build and Flash Tool"
 Write-Host "======================================"
-Write-Host ""
+
+# Verificar dependências
+Verify-Dependencies
 
 # =====================================================
-# ESPTOOL
+# DETECTAR ESPTOOL
 # =====================================================
 $ESP = Find-Esptool
-if (-not $ESP) {
-    Write-Red "[ERROR] esptool not found"
-    Write-Host "Install with:"
-    Write-Host "  pip install --user esptool"
-    Read-Host "Press ENTER to exit"
-    exit 1
+Write-Cyan "`n[INFO] esptool: $($ESP.Cmd) $($ESP.Args -join ' ')"
+
+# =====================================================
+# CRIAR DATA/ SE NÃO EXISTIR
+# =====================================================
+if (-not (Test-Path $DATA_DIR)) {
+    Write-Yellow "[WARN] $DATA_DIR não existe, criando..."
+    New-Item -ItemType Directory -Path $DATA_DIR | Out-Null
+    Write-Green "[OK] $DATA_DIR criado"
 }
 
-Write-Green "Using esptool via: $($ESP.Cmd) $($ESP.Args -join ' ')"
+# =====================================================
+# MENU
+# =====================================================
+Write-Host ""
+Write-Cyan "[OPÇÕES]"
+Write-Host "1 - Compilar + Flash (com SPIFFS)"
+Write-Host "2 - Flash apenas (firmware existente)"
+Write-Host "3 - Erase flash + Flash (limpeza completa)"
+Write-Host "4 - Apenas compilar"
+Write-Host ""
+$choice = Read-Host "Escolha uma opção [1-4]"
+
+$DO_COMPILE = $choice -in @("1", "4")
+$DO_FLASH = $choice -in @("1", "2", "3")
+$ERASE_FIRST = $choice -eq "3"
 
 # =====================================================
-# COMPILAR?
+# COMPILAR
 # =====================================================
-$compile = Read-Host "Do you want to compile again? (y/n)"
-if ($compile -match "^[Yy]$") {
-
-    if (-not (Get-Command arduino-cli -ErrorAction SilentlyContinue)) {
-        Write-Red "[ERROR] arduino-cli not found"
-        Write-Host "Download: https://arduino.github.io/arduino-cli/"
-        exit 1
-    }
-
-    Write-Host "Compiling with Arduino CLI..."
+if ($DO_COMPILE) {
+    Write-Cyan "`n[COMPILE] Compilando com Arduino CLI..."
 
     arduino-cli compile `
         --fqbn esp32:esp32:esp32:PartitionScheme=huge_app,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,DebugLevel=none,EraseFlash=none `
         --export-binaries `
         TEF6686_ESP32.ino
 
-    Write-Green "[OK] Compilation successful"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Red "[ERROR] Compilação falhou"
+        exit 1
+    }
+    Write-Green "[OK] Compilação bem-sucedida"
+}
+
+if (-not $DO_FLASH) {
+    Write-Green "`n[OK] Compilação concluída. Saindo."
+    exit 0
 }
 
 # =====================================================
@@ -89,87 +158,85 @@ if ($compile -match "^[Yy]$") {
 # =====================================================
 $FIRMWARE = "$BUILD_DIR\TEF6686_ESP32.ino.bin"
 if (-not (Test-Path $FIRMWARE)) {
-    Write-Yellow "[WARNING] Firmware not found:"
-    Write-Host "  $FIRMWARE"
-    Read-Host "Press ENTER to continue after exporting the binary"
-    if (-not (Test-Path $FIRMWARE)) {
-        Write-Red "[ERROR] Firmware still not found"
-        exit 1
-    }
+    Write-Red "[ERROR] Firmware não encontrado: $FIRMWARE"
+    Write-Host "Compile primeiro usando a opção 1 ou 4"
+    exit 1
 }
+Write-Cyan "`n[FIRMWARE] $(Get-Item $FIRMWARE | Select-Object -ExpandProperty Length) bytes"
 
 # =====================================================
 # SPIFFS
 # =====================================================
 $SPIFFS_BIN = "$OUTPUT_DIR\TEF6686_ESP32.spiffs.bin"
+$SPIFFS_ENABLED = $false
 
-if (-not (Test-Path $SPIFFS_BIN)) {
+if (Test-Path $DATA_DIR) {
+    $dataSize = (Get-ChildItem -Path $DATA_DIR -Recurse -File -ErrorAction SilentlyContinue |
+                 Measure-Object -Property Length -Sum).Sum
+    if (-not $dataSize) { $dataSize = 0 }
 
-    $mkspiffs = Get-Command mkspiffs -ErrorAction SilentlyContinue
+    if ($dataSize -gt 0) {
+        Write-Cyan "`n[SPIFFS] Tamanho da pasta data/: $dataSize bytes"
 
-    if (-not $mkspiffs) {
-        $mkspiffsExe = Get-ChildItem `
-            "$env:LOCALAPPDATA\Arduino15\packages\esp32\tools\mkspiffs" `
-            -Recurse -Filter mkspiffs.exe -ErrorAction SilentlyContinue |
-            Select-Object -First 1
+        $mkspiffs = Get-Command mkspiffs -ErrorAction SilentlyContinue
 
-        if ($mkspiffsExe) {
-            $mkspiffs = $mkspiffsExe.FullName
-        }
-    }
+        if (-not $mkspiffs) {
+            $mkspiffsExe = Get-ChildItem `
+                "$env:LOCALAPPDATA\Arduino15\packages\esp32\tools\mkspiffs" `
+                -Recurse -Filter mkspiffs.exe -ErrorAction SilentlyContinue |
+                Select-Object -First 1
 
-    if ($mkspiffs) {
-        Write-Host "Generating SPIFFS..."
-        New-Item -ItemType Directory -Force -Path $OUTPUT_DIR | Out-Null
-
-        # compute total size of data folder to choose adequate SPIFFS image size
-        $dataSize = (Get-ChildItem -Path data -Recurse -File | Measure-Object -Property Length -Sum).Sum
-        if (-not $dataSize) { $dataSize = 0 }
-        Write-Host "Total bytes in data/: $dataSize"
-
-        # preferred sizes to try (bytes)
-        $preferredSizes = @(819200, 1048576, 1310720, 1572864) # 800KB, 1MB, 1.25MB, 1.5MB
-
-        # pick starting size: first preferred >= dataSize + 4096 overhead
-        $startSize = $preferredSizes | Where-Object { $_ -ge ($dataSize + 4096) } | Select-Object -First 1
-        if (-not $startSize) { $startSize = $preferredSizes[-1] }
-
-        $mkspiffsSucceeded = $false
-        foreach ($size in $preferredSizes) {
-            if ($size -lt ($dataSize + 1024)) { continue }
-            Write-Host "Trying mkspiffs with size $size bytes..."
-            & $mkspiffs -c data -b 4096 -p 256 -s $size $SPIFFS_BIN
-            if ($LASTEXITCODE -eq 0 -and (Test-Path $SPIFFS_BIN)) {
-                Write-Green "[OK] SPIFFS generated (size $size)"
-                $mkspiffsSucceeded = $true
-                break
-            } else {
-                Write-Yellow "[WARNING] mkspiffs failed with size $size (exit $LASTEXITCODE)"
-                # remove partial output if present
-                if (Test-Path $SPIFFS_BIN) { Remove-Item $SPIFFS_BIN -Force }
+            if ($mkspiffsExe) {
+                $mkspiffs = $mkspiffsExe.FullName
             }
         }
 
-        if (-not $mkspiffsSucceeded) {
-            Write-Red "[ERROR] mkspiffs failed for all tried sizes."
-            Write-Host "Suggestion: check for very large files in data/ or increase preferredSizes in flash.ps1"
+        if ($mkspiffs) {
+            New-Item -ItemType Directory -Force -Path $OUTPUT_DIR | Out-Null
+
+            # Tamanhos preferidos para SPIFFS
+            $preferredSizes = @(819200, 1048576, 1310720, 1572864) # 800KB, 1MB, 1.25MB, 1.5MB
+
+            $mkspiffsSucceeded = $false
+            foreach ($size in $preferredSizes) {
+                if ($size -lt ($dataSize + 1024)) { continue }
+
+                Write-Host "Tentando mkspiffs com $size bytes..."
+                & $mkspiffs -c $DATA_DIR -b 4096 -p 256 -s $size $SPIFFS_BIN 2>&1 | Out-Null
+
+                if ($LASTEXITCODE -eq 0 -and (Test-Path $SPIFFS_BIN)) {
+                    Write-Green "[OK] SPIFFS gerado ($size bytes)"
+                    $SPIFFS_ENABLED = $true
+                    $mkspiffsSucceeded = $true
+                    break
+                } else {
+                    if (Test-Path $SPIFFS_BIN) { Remove-Item $SPIFFS_BIN -Force }
+                }
+            }
+
+            if (-not $mkspiffsSucceeded) {
+                Write-Yellow "[WARN] mkspiffs falhou, continuando sem SPIFFS"
+            }
+        } else {
+            Write-Yellow "[WARN] mkspiffs não encontrado, SPIFFS desabilitado"
         }
+    } else {
+        Write-Gray "[INFO] Pasta data/ vazia, SPIFFS desabilitado"
     }
-    else {
-        Write-Yellow "[WARNING] mkspiffs not found, skipping SPIFFS"
-    }
-}
-else {
-    Write-Green "[OK] SPIFFS already exists"
+} else {
+    Write-Gray "[INFO] Pasta data/ não existe, SPIFFS desabilitado"
 }
 
 # =====================================================
 # COPIAR BINÁRIOS
 # =====================================================
+Write-Cyan "`n[BINS] Copiando binários..."
+New-Item -ItemType Directory -Force -Path $OUTPUT_DIR | Out-Null
+
 Copy-Item "$BUILD_DIR\*.bin" $OUTPUT_DIR -Force -ErrorAction SilentlyContinue
 
-Rename-Item "$OUTPUT_DIR\TEF6686_ESP32.ino.bootloader.bin" "bootloader.bin" -ErrorAction SilentlyContinue
-Rename-Item "$OUTPUT_DIR\TEF6686_ESP32.ino.partitions.bin" "partitions.bin" -ErrorAction SilentlyContinue
+Rename-Item "$OUTPUT_DIR\TEF6686_ESP32.ino.bootloader.bin" "bootloader.bin" -Force -ErrorAction SilentlyContinue
+Rename-Item "$OUTPUT_DIR\TEF6686_ESP32.ino.partitions.bin" "partitions.bin" -Force -ErrorAction SilentlyContinue
 
 # boot_app0.bin
 $BOOT_APP = "$OUTPUT_DIR\boot_app0.bin"
@@ -181,11 +248,21 @@ if (-not (Test-Path $BOOT_APP)) {
 
     if ($bootSrc) {
         Copy-Item $bootSrc.FullName $BOOT_APP
-        Write-Green "[OK] boot_app0.bin copied"
+        Write-Green "[OK] boot_app0.bin"
+    } else {
+        Write-Yellow "[WARN] boot_app0.bin não encontrado"
     }
-    else {
-        Write-Yellow "[WARNING] boot_app0.bin not found"
-    }
+} else {
+    Write-Green "[OK] boot_app0.bin (cached)"
+}
+
+# Verificar binários essenciais
+$bootloader = "$OUTPUT_DIR\bootloader.bin"
+$partitions = "$OUTPUT_DIR\partitions.bin"
+
+if (-not (Test-Path $bootloader) -or -not (Test-Path $partitions)) {
+    Write-Red "[ERROR] Binários necessários não encontrados"
+    exit 1
 }
 
 # =====================================================
@@ -194,21 +271,57 @@ if (-not (Test-Path $BOOT_APP)) {
 $fwSize = (Get-Item $FIRMWARE).Length
 $SPIFFS_ADDR = ("0x{0:X}" -f ((($fwSize + 0x10000 + 0xFFFF) -band 0xFFFF0000)))
 
-Write-Host ""
-Write-Host "SPIFFS address: $SPIFFS_ADDR"
-
 # =====================================================
 # PORTA SERIAL
 # =====================================================
-Write-Green "Using serial port: $SERIAL_PORT"
-$customPort = Read-Host "Press ENTER to keep COM16 or type another COM port"
-if ($customPort) {
-    $SERIAL_PORT = $customPort
+Write-Cyan "`n[PORT] Detectando portas COM..."
+$availablePorts = @(Find-ComPorts)
+
+if ($availablePorts.Count -eq 0) {
+    Write-Yellow "[WARN] Nenhuma porta COM detectada"
+    $SERIAL_PORT = Read-Host "Digite a porta COM (ex: COM3)"
+} elseif ($availablePorts.Count -eq 1) {
+    $SERIAL_PORT = $availablePorts[0]
+    Write-Green "[OK] Porta detectada: $SERIAL_PORT"
+} else {
+    Write-Host "Portas disponíveis:"
+    for ($i = 0; $i -lt $availablePorts.Count; $i++) {
+        $marker = if ($availablePorts[$i] -eq $DEFAULT_PORT) { " (padrão)" } else { "" }
+        Write-Host "  $($i+1) - $($availablePorts[$i])$marker"
+    }
+
+    $portChoice = Read-Host "Escolha porta [1-$($availablePorts.Count)]"
+    if ($portChoice -match "^\d+$" -and [int]$portChoice -ge 1 -and [int]$portChoice -le $availablePorts.Count) {
+        $SERIAL_PORT = $availablePorts[[int]$portChoice - 1]
+    } else {
+        $SERIAL_PORT = $DEFAULT_PORT
+    }
+    Write-Green "[OK] Usando porta: $SERIAL_PORT"
+}
+
+# =====================================================
+# APAGAR FLASH (OPCIONAL)
+# =====================================================
+if ($ERASE_FIRST) {
+    Write-Cyan "`n[ERASE] Apagando flash..."
+
+    & $ESP.Cmd @($ESP.Args) `
+        --chip esp32 `
+        --port $SERIAL_PORT `
+        --baud 460800 `
+        erase_flash
+
+    if ($LASTEXITCODE -ne 0) {
+        Write-Yellow "[WARN] Erase retornou erro, continuando..."
+    } else {
+        Write-Green "[OK] Flash apagado"
+    }
 }
 
 # =====================================================
 # PREPARAR FLASH
 # =====================================================
+Write-Cyan "`n[FLASH] Preparando arquivos..."
 $FLASH_FILES = @(
     "0x1000",  "$OUTPUT_DIR\bootloader.bin",
     "0x8000",  "$OUTPUT_DIR\partitions.bin",
@@ -216,14 +329,18 @@ $FLASH_FILES = @(
     "0x10000", "$OUTPUT_DIR\TEF6686_ESP32.ino.bin"
 )
 
-if (Test-Path $SPIFFS_BIN) {
+if ($SPIFFS_ENABLED -and (Test-Path $SPIFFS_BIN)) {
     $FLASH_FILES += $SPIFFS_ADDR
     $FLASH_FILES += $SPIFFS_BIN
-    Write-Host "Including SPIFFS at $SPIFFS_ADDR"
+    Write-Gray "  SPIFFS em $SPIFFS_ADDR"
 }
 else {
-    Write-Yellow "[WARNING] Flashing without SPIFFS"
+    Write-Gray "  SPIFFS desabilitado"
 }
+
+Write-Gray "  Bootloader: $(Get-Item $OUTPUT_DIR\bootloader.bin | ForEach-Object Length) bytes"
+Write-Gray "  Partitions: $(Get-Item $OUTPUT_DIR\partitions.bin | ForEach-Object Length) bytes"
+Write-Gray "  Firmware: $(Get-Item $FIRMWARE | ForEach-Object Length) bytes"
 
 # =====================================================
 # FLASH (COM FALLBACK DE BAUDRATE)
@@ -232,9 +349,7 @@ $BAUDS = @(921600, 460800, 115200)
 $FLASH_SUCCESS = $false
 
 foreach ($BAUD in $BAUDS) {
-
-    Write-Host ""
-    Write-Host "Flashing at $BAUD baud..."
+    Write-Cyan "`n[UPLOAD] Gravando em $BAUD baud..."
 
     & $ESP.Cmd @($ESP.Args) `
         --chip esp32 `
@@ -246,27 +361,33 @@ foreach ($BAUD in $BAUDS) {
         --flash_mode dio `
         --flash_freq 80m `
         --flash_size 4MB `
-        @FLASH_FILES
+        @FLASH_FILES 2>&1 | Tee-Object -Variable flashOutput | ForEach-Object { Write-Gray $_ }
 
     if ($LASTEXITCODE -eq 0) {
         $FLASH_SUCCESS = $true
         break
-    }
-    else {
-        Write-Yellow "[WARNING] Flash failed at $BAUD, trying next..."
+    } else {
+        Write-Yellow "[WARN] Flash falhou em $BAUD baud, tentando próximo..."
     }
 }
 
 if (-not $FLASH_SUCCESS) {
-    Write-Red "[ERROR] Flash failed at all baud rates"
+    Write-Red "[ERROR] Flash falhou em todos os baudrates"
     exit 1
 }
 
 # =====================================================
-# FINAL
+# SUCESSO
 # =====================================================
 Write-Host ""
 Write-Green "======================================"
-Write-Green "Flash completed successfully!"
+Write-Green "Flash concluído com sucesso!"
 Write-Green "======================================"
 Write-Host ""
+
+# Monitor opcional
+$monitor = Read-Host "Abrir monitor serial? (s/n)"
+if ($monitor -match "^[SsYy]$") {
+    Write-Cyan "`n[MONITOR] Conectando em 115200 baud..."
+    & $ESP.Cmd @($ESP.Args) --chip esp32 --port $SERIAL_PORT --baud 115200 monitor
+}
