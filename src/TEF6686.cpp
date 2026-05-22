@@ -54,6 +54,13 @@ void TEF6686::init(byte TEF) {
   }
 }
 
+String TEF6686::getPTYText(uint8_t ptyCode) {
+  if (ptyCode >= 0 && ptyCode < 32) {
+    return String(PTY[ptyCode]);
+  }
+  return String("");
+}
+
 void TEF6686::power(uint8_t mode) {
   devTEF_APPL_Set_OperationMode(mode);
   if (mode == 0) {

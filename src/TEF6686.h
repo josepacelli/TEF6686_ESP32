@@ -63,6 +63,7 @@ class TEF6686 {
     void setStereoLevel(uint16_t start);
     void setUnMute();
     void setVolume(int16_t volume);
+    String getPTYText(uint8_t ptyCode);
     uint8_t af_counter;
 
   private:

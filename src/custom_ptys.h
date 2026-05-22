@@ -12,14 +12,7 @@ struct PTYEntry {
   }
 };
 
-void loadCustomPTYS();
-void saveCustomPTYS();
-size_t getCustomPTYSCount();
-PTYEntry getCustomPTYEntry(size_t idx);
+void loadIsaacPTYs();
 int8_t findCustomPTYCodeForFreq(uint32_t freq_khz);
-void addCustomPTY(uint32_t freq_khz, uint8_t pty_code, const String &ps, const String &rt, const String &song = "");
-void removeCustomPTY(size_t idx);
-
 String findCustomPSForFreq(uint32_t freq_khz);
 String findCustomRTForFreq(uint32_t freq_khz);
-String findCustomSongForFreq(uint32_t freq_khz);

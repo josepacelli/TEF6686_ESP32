@@ -312,6 +312,10 @@ uint16_t USN;
 uint16_t WAM;
 uint8_t buff_pos = 0;
 uint8_t RDSstatus;
+String customPS = "";
+String customRT = "";
+String customPTY = "";
+uint32_t lastCustomFreq = 0;
 unsigned int change;
 unsigned int freq_scan;
 unsigned int frequency;
@@ -351,7 +355,7 @@ void setup() {
     EEPROM.writeUInt(47, 828);
     EEPROM.writeByte(52, 0);
     EEPROM.writeByte(53, 0);
-    EEPROM.writeByte(54, 0);
+    EEPROM.writeByte(54, 102);
     EEPROM.writeByte(55, 0);
     EEPROM.commit();
   }
@@ -413,7 +417,7 @@ void setup() {
   if (TEF != 101 && TEF != 102 && TEF != 205) SetTunerPatch();
 
   radio.init(TEF);
-  loadCustomPTYS();
+  loadIsaacPTYs();
   uint16_t device;
   uint16_t hw;
   uint16_t sw;
@@ -1371,6 +1375,20 @@ void readRds() {
     RDSstatus = radio.readRDS();
     ShowRDSLogo(RDSstatus);
 
+    // Buscar dados customizados da frequência atual
+    uint32_t currentFreqKhz = (uint32_t)radio.getFrequency() * 10; // FM freq em 10kHz, converter para kHz
+    if (currentFreqKhz != lastCustomFreq) {
+      lastCustomFreq = currentFreqKhz;
+      customPS = findCustomPSForFreq(currentFreqKhz);
+      customRT = findCustomRTForFreq(currentFreqKhz);
+      int8_t ptyCode = findCustomPTYCodeForFreq(currentFreqKhz);
+      if (ptyCode >= 0) {
+        customPTY = radio.getPTYText(ptyCode);
+      } else {
+        customPTY = "";
+      }
+    }
+
     if (RDSstatus == 0) {
       tft.setTextColor(TFT_SKYBLUE);
       tft.drawString(PIold, 244, 192, 4);
@@ -1425,39 +1443,42 @@ void showPI() {
 }
 
 void showPTY() {
-  if (strcmp(radio.rds.stationType, programTypePrevious)) {
+  String ptyToShow = (customPTY.length() > 0) ? customPTY : String(radio.rds.stationType);
+  if (ptyToShow != PTYold) {
     tft.setTextColor(TFT_BLACK);
     tft.drawString(PTYold, 38, 168, 2);
     tft.setTextColor(TFT_YELLOW);
-    tft.drawString(radio.rds.stationType, 38, 168, 2);
-    PTYold = radio.rds.stationType;
-    strcpy(programTypePrevious, radio.rds.stationType);
+    tft.drawString(ptyToShow, 38, 168, 2);
+    PTYold = ptyToShow;
+    ptyToShow.toCharArray(programTypePrevious, sizeof(programTypePrevious));
   }
 }
 
 void showPS() {
-  if (strcmp(radio.rds.stationName, programServicePrevious)) {
+  String psToShow = (customPS.length() > 0) ? customPS : String(radio.rds.stationName);
+  if (psToShow != PSold) {
     tft.setTextColor(TFT_BLACK);
     tft.drawString(PSold, 38, 192, 4);
     tft.setTextColor(TFT_YELLOW);
-    tft.drawString(radio.rds.stationName, 38, 192, 4);
-    PSold = radio.rds.stationName;
-    strcpy(programServicePrevious, radio.rds.stationName);
+    tft.drawString(psToShow, 38, 192, 4);
+    PSold = psToShow;
+    psToShow.toCharArray(programServicePrevious, sizeof(programServicePrevious));
   }
 }
 
 void showRadioText() {
-  if (RDSstatus == 1) {
+  String rtToShow = (customRT.length() > 0) ? customRT : String(radio.rds.stationText);
+  if (RDSstatus == 1 || customRT.length() > 0) {
     if (millis() - rtticker >= 350) {
       xPos -= charWidth;
-      if (xPos < -tft.textWidth(radio.rds.stationText) + (charWidth * 42)) xPos = 6;
+      if (xPos < -tft.textWidth(rtToShow) + (charWidth * 42)) xPos = 6;
       sprite.fillSprite(TFT_BLACK);
       sprite.setTextColor(TFT_YELLOW);
-      sprite.drawString(radio.rds.stationText, xPos, yPos, 2);
+      sprite.drawString(rtToShow, xPos, yPos, 2);
       sprite.pushSprite(6, 220);
       rtticker = millis();
-      RTold = radio.rds.stationText;
-      strcpy(radioTextPrevious, radio.rds.stationText);
+      RTold = rtToShow;
+      rtToShow.toCharArray(radioTextPrevious, sizeof(radioTextPrevious));
       cleanup = true;
     }
   } else if (cleanup == true) {

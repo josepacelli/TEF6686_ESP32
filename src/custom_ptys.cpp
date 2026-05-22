@@ -1,11 +1,9 @@
 #include "custom_ptys.h"
-#include <SPIFFS.h>
 #include <vector>
 #include <cmath>
 #include "logbook.h"
 
 static std::vector<PTYEntry> customPtys;
-static const char * CUSTOM_PTY_PATH = "/custom_ptys.csv";
 
 // Função para buscar o PS pelo customPtys
 String findCustomPSForFreq(uint32_t freq_khz) {
@@ -26,16 +24,6 @@ String findCustomRTForFreq(uint32_t freq_khz) {
   }
   for (auto &e : customPtys) {
     if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.rt;
-  }
-  return String("");
-}
-
-String findCustomSongForFreq(uint32_t freq_khz) {
-  for (auto &e : customPtys) {
-    if (e.freq_khz == freq_khz) return e.song;
-  }
-  for (auto &e : customPtys) {
-    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.song;
   }
   return String("");
 }
@@ -321,99 +309,6 @@ void loadIsaacPTYs() {
   log_info("Default Isaac PTYs loaded.");
 }
 
-void loadCustomPTYS() {
-  customPtys.clear();
-  log_info("Iniciando leitura do CSV de PTYs personalizados");
-  if (!SPIFFS.exists(CUSTOM_PTY_PATH)) {
-    log_info("Arquivo de PTYs personalizados nao existe.");
-    loadIsaacPTYs();
-    return;
-  };
-  fs::File f = SPIFFS.open(CUSTOM_PTY_PATH, "r");
-  if (!f) {
-    log_info("Erro ao abrir o arquivo de PTYs personalizados");
-    return;
-  }
-  while (f.available()) {
-    String line = f.readStringUntil('\n');
-    line.trim();
-    log_info("Read line: " + line + "\n");
-    if (line.length() == 0) continue;
-
-    // Parse CSV: freq,ptycode,ps,rt,song
-    int comma1 = line.indexOf(',');
-    if (comma1 == -1) continue;
-
-    String freqs = line.substring(0, comma1);
-    freqs.trim();
-
-    int comma2 = line.indexOf(',', comma1 + 1);
-    String ptycodeStr = (comma2 == -1) ? line.substring(comma1 + 1) : line.substring(comma1 + 1, comma2);
-    ptycodeStr.trim();
-
-    String ps = "";
-    String rt = "";
-    String song = "";
-
-    if (comma2 != -1) {
-      int comma3 = line.indexOf(',', comma2 + 1);
-      ps = (comma3 == -1) ? line.substring(comma2 + 1) : line.substring(comma2 + 1, comma3);
-      ps.trim();
-
-      if (comma3 != -1) {
-        int comma4 = line.indexOf(',', comma3 + 1);
-        rt = (comma4 == -1) ? line.substring(comma3 + 1) : line.substring(comma3 + 1, comma4);
-        rt.trim();
-
-        if (comma4 != -1) {
-          song = line.substring(comma4 + 1);
-          song.trim();
-        }
-      }
-    }
-
-    // accept either kHz integer or MHz with decimal
-    uint32_t freq_khz = 0;
-    if (freqs.indexOf('.') != -1) {
-      // MHz like 102.7 -> kHz *1000 = 102700
-      float mhz = freqs.toFloat();
-      freq_khz = (uint32_t)round(mhz * 1000.0);
-    } else {
-      freq_khz = (uint32_t)freqs.toInt();
-      // if it looks like MHz without decimal but small, assume MHz
-      if (freq_khz > 0 && freq_khz < 2000) freq_khz = freq_khz * 1000;
-    }
-    uint8_t pty_code = (uint8_t)ptycodeStr.toInt();
-    PTYEntry e; e.freq_khz = freq_khz; e.pty_code = pty_code; e.ps = ps; e.rt = rt; e.song = song;
-    log_info("PTY: freq_khz=" + String(e.freq_khz) + " pty_code=" + String(e.pty_code) + " ps=" + e.ps + " rt=" + e.rt + " song=" + e.song + "\n");
-    customPtys.push_back(e);
-  }
-  f.close();
-}
-
-void saveCustomPTYS() {
-  fs::File f = SPIFFS.open(CUSTOM_PTY_PATH, "w");
-  if (!f) return;
-  for (auto &e : customPtys) {
-    // write frequency as MHz with one decimal
-    // freq_khz is in kHz (e.g., 102700 = 102.7 MHz)
-    String freqStr = String((float)e.freq_khz / 1000.0, 1);
-    f.print(freqStr + "," + String(e.pty_code) + "," + e.ps + "," + e.rt + "," + e.song + "\n");
-  }
-  f.flush();
-  f.close();
-}
-
-size_t getCustomPTYSCount() {
-  return customPtys.size();
-}
-
-PTYEntry getCustomPTYEntry(size_t idx) {
-  PTYEntry e; e.freq_khz = 0; e.pty_code = 0; e.ps = ""; e.rt = ""; e.song = "";
-  if (idx < customPtys.size()) return customPtys[idx];
-  return e;
-}
-
 int8_t findCustomPTYCodeForFreq(uint32_t freq_khz) {
   // exact match first
   for (auto &e : customPtys) {
@@ -424,17 +319,4 @@ int8_t findCustomPTYCodeForFreq(uint32_t freq_khz) {
     if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.pty_code;
   }
   return -1;
-}
-
-void addCustomPTY(uint32_t freq_khz, uint8_t pty_code, const String &ps, const String &rt, const String &song) {
-  PTYEntry e; e.freq_khz = freq_khz; e.pty_code = pty_code; e.ps = ps; e.rt = rt; e.song = song;
-  customPtys.push_back(e);
-  saveCustomPTYS();
-}
-
-void removeCustomPTY(size_t idx) {
-  if (idx < customPtys.size()) {
-    customPtys.erase(customPtys.begin() + idx);
-    saveCustomPTYS();
-  }
 }
