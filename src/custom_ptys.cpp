@@ -320,3 +320,47 @@ int8_t findCustomPTYCodeForFreq(uint32_t freq_khz) {
   }
   return -1;
 }
+
+String findCustomSongForFreq(uint32_t freq_khz) {
+  for (auto &e : customPtys) {
+    if (e.freq_khz == freq_khz) return e.song;
+  }
+  for (auto &e : customPtys) {
+    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.song;
+  }
+  return String("");
+}
+
+String findCustomTimeForFreq(uint32_t freq_khz) {
+  for (auto &e : customPtys) {
+    if (e.freq_khz == freq_khz) return e.hour + ":" + e.minute;
+  }
+  for (auto &e : customPtys) {
+    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.hour + ":" + e.minute;
+  }
+  return String("");
+}
+
+String findCustomDateForFreq(uint32_t freq_khz) {
+  for (auto &e : customPtys) {
+    if (e.freq_khz == freq_khz) return e.day + "/" + e.month + "/" + e.year;
+  }
+  for (auto &e : customPtys) {
+    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.day + "/" + e.month + "/" + e.year;
+  }
+  return String("");
+}
+
+String findCustomPSExtendedForFreq(uint32_t freq_khz) {
+  String psBase = findCustomPSForFreq(freq_khz);
+  String time = findCustomTimeForFreq(freq_khz);
+  String date = findCustomDateForFreq(freq_khz);
+  String song = findCustomSongForFreq(freq_khz);
+
+  String result = psBase;
+  if (time.length() > 0 && time != ":") result += " | " + time;
+  if (date.length() > 0 && date != "//") result += " | " + date;
+  if (song.length() > 0) result += " | " + song;
+
+  return result;
+}

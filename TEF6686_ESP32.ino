@@ -284,6 +284,8 @@ int XDRBWset;
 int XDRBWsetold;
 int xPos = 6;
 int yPos = 2;
+int psXPos = 38;
+int psYPos = 192;
 int16_t OStatus;
 int16_t SAvg;
 int16_t SAvg2;
@@ -326,9 +328,11 @@ unsigned int scanner_start;
 unsigned int scanner_step;
 unsigned long peakholdmillis;
 unsigned long rtticker;
+unsigned long psTicker;
 
 TEF6686 radio;
 TFT_eSprite sprite = TFT_eSprite(&tft);
+TFT_eSprite psSprite = TFT_eSprite(&tft);
 
 void setup() {
   setupmode = true;
@@ -545,6 +549,7 @@ void setup() {
   ShowBW();
   setupmode = false;
   sprite.createSprite(313, 18);
+  psSprite.createSprite(170, 40);
 }
 
 void loop() {
@@ -1392,7 +1397,6 @@ void readRds() {
     if (RDSstatus == 0) {
       tft.setTextColor(TFT_SKYBLUE);
       tft.drawString(PIold, 244, 192, 4);
-      tft.drawString(PSold, 38, 192, 4);
       tft.drawString(PTYold, 38, 168, 2);
       tft.setTextColor(TFT_BLACK);
       tft.drawString(RTold, 6, 222, 2);
@@ -1401,7 +1405,6 @@ void readRds() {
       if (dropout == true && PIold.length() != 0) {
         tft.setTextColor(TFT_YELLOW);
         tft.drawString(PIold, 244, 192, 4);
-        tft.drawString(PSold, 38, 192, 4);
         tft.drawString(PTYold, 38, 168, 2);
         dropout = false;
       }
@@ -1456,18 +1459,40 @@ void showPTY() {
 
 void showPS() {
   String psToShow = (customPS.length() > 0) ? customPS : String(radio.rds.stationName);
+  String song = findCustomSongForFreq(radio.getFrequency());
+  if (song.length() > 0) {
+    psToShow += " | " + song;
+  }
   if (psToShow != PSold) {
-    tft.setTextColor(TFT_BLACK);
-    tft.drawString(PSold, 38, 192, 4);
-    tft.setTextColor(TFT_YELLOW);
-    tft.drawString(psToShow, 38, 192, 4);
+    psXPos = 0;
     PSold = psToShow;
     psToShow.toCharArray(programServicePrevious, sizeof(programServicePrevious));
+  }
+
+  if (psToShow.length() > 0) {
+    if (millis() - psTicker >= 350) {
+      int psCharWidth = tft.textWidth("A");
+      int psTextWidth = tft.textWidth(psToShow);
+
+      psSprite.fillSprite(TFT_BLACK);
+      psSprite.setTextColor(TFT_YELLOW);
+      psSprite.drawString(psToShow, psXPos, 2, 4);
+      psSprite.pushSprite(38, 192);
+
+      psXPos -= psCharWidth;
+      if (psXPos < -psTextWidth + (psCharWidth * 12)) psXPos = 0;
+
+      psTicker = millis();
+    }
   }
 }
 
 void showRadioText() {
   String rtToShow = (customRT.length() > 0) ? customRT : String(radio.rds.stationText);
+  String song = findCustomSongForFreq(radio.getFrequency());
+  if (song.length() > 0) {
+    rtToShow += " | " + song;
+  }
   if (RDSstatus == 1 || customRT.length() > 0) {
     if (millis() - rtticker >= 350) {
       xPos -= charWidth;
