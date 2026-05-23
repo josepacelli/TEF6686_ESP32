@@ -18,7 +18,11 @@ typedef struct _rds_
 {
   char picode[5];
   char stationName[9];
-  char stationText[65];
+  char stationText[257];
+  char rtRadio[257];
+  char rtCustom[257];
+  uint8_t rtScrollIndex = 0;
+  uint32_t rtScrollTimer = 0;
   byte stationTypeCode;
   char stationType[17];
   uint16_t hours, minutes, days, offsetplusmin, stationID = 0, rdsA, rdsB, rdsC, rdsD, rdsError, errors = 0;
@@ -32,6 +36,7 @@ class TEF6686 {
   public:
     rds_ rds;
     bool readRDS(void);
+    void scrollRT(uint16_t scrollIntervalMs = 3000);
     uint16_t getFrequency();
     uint16_t getFrequency_AM();
     uint16_t tuneDown(uint8_t stepsize, uint16_t LowEdge, uint16_t HighEdge, bool fullsearchrds);
@@ -73,9 +78,9 @@ class TEF6686 {
     uint8_t ps_process;
     uint8_t rt_process;
     char ps_buffer[9];
-    char rt_buffer[65];
+    char rt_buffer[257];
     bool ABold;
     byte rt_timer;
     byte offsetold;
-    char stationTextBuffer[65];
+    char stationTextBuffer[257];
 };

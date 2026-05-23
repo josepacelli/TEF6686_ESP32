@@ -304,8 +304,18 @@ bool TEF6686::readRDS()
               rds.stationText[i] = 0;
             }
             if (rt_timer == 64) {
-              String combined = concatenateRTWithCustom(String(stationTextBuffer), Radio_GetCurrentFreq() * 10);
-              strncpy(rds.stationText, combined.c_str(), 64);
+              uint32_t freq_khz = Radio_GetCurrentFreq() * 10;
+              String customRT = findCustomRTForFreq(freq_khz);
+              String customSong = findCustomSongForFreq(freq_khz);
+
+              String result = String(stationTextBuffer);
+              if (customSong.length() > 0) {
+                result += " | " + customSong;
+              }
+              if (customRT.length() > 0) {
+                result += " | " + customRT;
+              }
+              strncpy(rds.stationText, result.c_str(), 64);
               rds.stationText[64] = 0;
             }
             for (int i = 0; i < 65; i++) {
@@ -335,14 +345,7 @@ bool TEF6686::readRDS()
             }
             if (offset == offsetold) {
               strcpy(stationTextBuffer, rt_buffer);
-              if (rt_timer < 64) {
-                String combined = concatenateRTWithCustom(String(stationTextBuffer), Radio_GetCurrentFreq() * 10);
-                strncpy(rds.stationText, combined.c_str(), 64);
-                rds.stationText[64] = 0;
-                rt_timer++;
-              } else {
-                rt_timer = 64;
-              }
+              rt_timer++;
             }
           }
 
