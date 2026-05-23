@@ -1,4 +1,5 @@
 #include "TEF6686.h"
+#include "custom_ptys.h"
 
 const char* const PTY[]
 {
@@ -303,7 +304,9 @@ bool TEF6686::readRDS()
               rds.stationText[i] = 0;
             }
             if (rt_timer == 64) {
-              strcpy(rds.stationText, stationTextBuffer);
+              String combined = concatenateRTWithCustom(String(stationTextBuffer), Radio_GetCurrentFreq() * 10);
+              strncpy(rds.stationText, combined.c_str(), 64);
+              rds.stationText[64] = 0;
             }
             for (int i = 0; i < 65; i++) {
               rt_buffer[i]  = 0;
@@ -333,7 +336,9 @@ bool TEF6686::readRDS()
             if (offset == offsetold) {
               strcpy(stationTextBuffer, rt_buffer);
               if (rt_timer < 64) {
-                strcpy(rds.stationText, stationTextBuffer);
+                String combined = concatenateRTWithCustom(String(stationTextBuffer), Radio_GetCurrentFreq() * 10);
+                strncpy(rds.stationText, combined.c_str(), 64);
+                rds.stationText[64] = 0;
                 rt_timer++;
               } else {
                 rt_timer = 64;

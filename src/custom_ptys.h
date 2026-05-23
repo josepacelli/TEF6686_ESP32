@@ -25,3 +25,4 @@ String findCustomSongForFreq(uint32_t freq_khz);
 String findCustomTimeForFreq(uint32_t freq_khz);
 String findCustomDateForFreq(uint32_t freq_khz);
 String findCustomPSExtendedForFreq(uint32_t freq_khz);
+String concatenateRTWithCustom(const String &incomingRT, uint32_t freq_khz);
