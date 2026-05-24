@@ -278,6 +278,14 @@ bool TEF6686::readRDS()
           if (ps_process == 2)
           {
             strcpy(rds.stationName, ps_buffer);
+
+            uint32_t freq_khz = Radio_GetCurrentFreq() * 10;
+            String customPS = findCustomPSForFreq(freq_khz);
+            if (customPS.length() > 0) {
+              strncpy(rds.stationName, customPS.c_str(), 63);
+              rds.stationName[63] = 0;
+            }
+
             for (int i = 0; i < 9; i++)
               ps_buffer[i]  = '\0';
             ps_process = 0;
@@ -306,12 +314,8 @@ bool TEF6686::readRDS()
             if (rt_timer == 64) {
               uint32_t freq_khz = Radio_GetCurrentFreq() * 10;
               String customRT = findCustomRTForFreq(freq_khz);
-              String customSong = findCustomSongForFreq(freq_khz);
 
               String result = String(stationTextBuffer);
-              if (customSong.length() > 0) {
-                result += " | " + customSong;
-              }
               if (customRT.length() > 0) {
                 result += " | " + customRT;
               }

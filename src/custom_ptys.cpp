@@ -33,25 +33,51 @@ String generateRandomSong() {
 
 // Função para buscar o PS pelo customPtys
 String findCustomPSForFreq(uint32_t freq_khz) {
-  // Busca exata primeiro
+  String ps = String("");
   for (auto &e : customPtys) {
-    if (e.freq_khz == freq_khz) return e.ps;
+    if (e.freq_khz == freq_khz) {
+      ps = e.ps;
+      break;
+    }
   }
-  // Busca com tolerância de 100 kHz
-  for (auto &e : customPtys) {
-    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.ps;
+  if (ps.length() == 0) {
+    for (auto &e : customPtys) {
+      if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) {
+        ps = e.ps;
+        break;
+      }
+    }
   }
-  return String("");
+
+  String song = findCustomSongForFreq(freq_khz);
+  if (ps.length() > 0 && song.length() > 0) {
+    ps += " | " + song;
+  }
+  return ps;
 }
 
 String findCustomRTForFreq(uint32_t freq_khz) {
+  String rt = String("");
   for (auto &e : customPtys) {
-    if (e.freq_khz == freq_khz) return e.rt;
+    if (e.freq_khz == freq_khz) {
+      rt = e.rt;
+      break;
+    }
   }
-  for (auto &e : customPtys) {
-    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.rt;
+  if (rt.length() == 0) {
+    for (auto &e : customPtys) {
+      if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) {
+        rt = e.rt;
+        break;
+      }
+    }
   }
-  return String("");
+
+  String song = findCustomSongForFreq(freq_khz);
+  if (rt.length() > 0 && song.length() > 0) {
+    rt += " - " + song;
+  }
+  return rt;
 }
 
 void loadIsaacPTYs() {
@@ -387,16 +413,3 @@ String findCustomDateForFreq(uint32_t freq_khz) {
   return String("");
 }
 
-String findCustomPSExtendedForFreq(uint32_t freq_khz) {
-  String psBase = findCustomPSForFreq(freq_khz);
-  String time = findCustomTimeForFreq(freq_khz);
-  String date = findCustomDateForFreq(freq_khz);
-  String song = findCustomSongForFreq(freq_khz);
-
-  String result = psBase;
-  if (time.length() > 0 && time != ":") result += " | " + time;
-  if (date.length() > 0 && date != "//") result += " | " + date;
-  if (song.length() > 0) result += " | " + song;
-
-  return result;
-}

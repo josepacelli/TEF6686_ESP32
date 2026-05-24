@@ -24,4 +24,3 @@ String findCustomRTForFreq(uint32_t freq_khz);
 String findCustomSongForFreq(uint32_t freq_khz);
 String findCustomTimeForFreq(uint32_t freq_khz);
 String findCustomDateForFreq(uint32_t freq_khz);
-String findCustomPSExtendedForFreq(uint32_t freq_khz);

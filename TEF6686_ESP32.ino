@@ -1459,10 +1459,8 @@ void showPTY() {
 
 void showPS() {
   String psToShow = (customPS.length() > 0) ? customPS : String(radio.rds.stationName);
-  String song = findCustomSongForFreq(radio.getFrequency());
-  if (song.length() > 0) {
-    psToShow += " | " + song;
-  }
+  String rtToShow = findCustomRTForFreq((uint32_t)radio.getFrequency() * 10);
+  psToShow = psToShow + " - " + rtToShow; // Concatenar PS e RT para exibição conjunta
   if (psToShow != PSold) {
     psXPos = 0;
     PSold = psToShow;
@@ -1489,10 +1487,6 @@ void showPS() {
 
 void showRadioText() {
   String rtToShow = (customRT.length() > 0) ? customRT : String(radio.rds.stationText);
-  String song = findCustomSongForFreq(radio.getFrequency());
-  if (song.length() > 0) {
-    rtToShow += " | " + song;
-  }
   if (RDSstatus == 1 || customRT.length() > 0) {
     if (millis() - rtticker >= 350) {
       xPos -= charWidth;
