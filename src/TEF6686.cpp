@@ -284,6 +284,7 @@ bool TEF6686::readRDS()
             if (customPS.length() > 0) {
               strncpy(rds.stationName, customPS.c_str(), 63);
               rds.stationName[63] = 0;
+              advanceSongScrollPos(freq_khz);
             }
 
             for (int i = 0; i < 9; i++)
@@ -318,6 +319,7 @@ bool TEF6686::readRDS()
               String result = String(stationTextBuffer);
               if (customRT.length() > 0) {
                 result += " | " + customRT;
+                advanceSongScrollPos(freq_khz);
               }
               strncpy(rds.stationText, result.c_str(), 64);
               rds.stationText[64] = 0;

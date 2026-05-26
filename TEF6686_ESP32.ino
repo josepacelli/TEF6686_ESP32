@@ -1487,7 +1487,13 @@ void showPS() {
 
 void showRadioText() {
   String rtToShow = (customRT.length() > 0) ? customRT : String(radio.rds.stationText);
-  if (RDSstatus == 1 || customRT.length() > 0) {
+  if (rtToShow != RTold) {
+    xPos = 6;
+    RTold = rtToShow;
+    rtToShow.toCharArray(radioTextPrevious, sizeof(radioTextPrevious));
+  }
+
+  if (rtToShow.length() > 0) {
     if (millis() - rtticker >= 350) {
       xPos -= charWidth;
       if (xPos < -tft.textWidth(rtToShow) + (charWidth * 42)) xPos = 6;
@@ -1496,8 +1502,6 @@ void showRadioText() {
       sprite.drawString(rtToShow, xPos, yPos, 2);
       sprite.pushSprite(6, 220);
       rtticker = millis();
-      RTold = rtToShow;
-      rtToShow.toCharArray(radioTextPrevious, sizeof(radioTextPrevious));
       cleanup = true;
     }
   } else if (cleanup == true) {

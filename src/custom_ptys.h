@@ -12,6 +12,7 @@ struct PTYEntry {
   String day;     // DD format
   String month;   // MM format
   String year;    // YYYY format
+  int songScrollPos = 0; // scroll position for song rotation
   String toString() const {
     return String("PTYEntry(freq_khz=") + String(freq_khz) + ", pty_code=" + String(pty_code) + ", ps=" + ps + ", rt=" + rt + ", song=" + song + ")";
   }
@@ -24,3 +25,5 @@ String findCustomRTForFreq(uint32_t freq_khz);
 String findCustomSongForFreq(uint32_t freq_khz);
 String findCustomTimeForFreq(uint32_t freq_khz);
 String findCustomDateForFreq(uint32_t freq_khz);
+String rotateSongString(const String& song, int scrollPos);
+void advanceSongScrollPos(uint32_t freq_khz);

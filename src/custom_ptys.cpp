@@ -5,25 +5,28 @@
 
 static std::vector<PTYEntry> customPtys;
 
-#define ARTISTS_COUNT 30
-#define SONGS_COUNT 25
-
-const char* brazilianArtists[ARTISTS_COUNT] = {
-  "Gilberto Gil", "Caetano Veloso", "Tom Jobim", "João Gilberto", "Elis Regina",
-  "Gisele Bündchen", "Anitta", "Pabllo Vittar", "Ludmilla", "Maluma",
-  "Raimundos", "Legião Urbana", "CPM 22", "Jota Quest", "O Terno",
-  "Silva", "Thalles Roberto", "Fernandinho", "Ministério Zoe", "Kemence",
-  "Alceu Valença", "Silvio Santos", "Luiz Gonzaga", "Jackson do Pandeiro", "Fagner",
-  "Gal Costa", "Ivete Sangalo", "Daniela Mercury", "Olodum", "Timbalada"
+const char* brazilianArtists[] = {
+  "Caetano Veloso", "Gilberto Gil", "Tom Jobim", "João Gilberto",
+  "Gal Costa", "Anitta", "Ivete Sangalo", "Pabllo Vittar",
+  "Ludmilla", "Pocah", "Jorge Aragão", "Beth Carvalho",
+  "Alcione", "Cartola", "Nelson Cavaquinho", "Elza Soares",
+  "Marisa Monte", "Adriana Calcanhotto", "Paralamas do Sucesso", "Legião Urbana",
+  "Titãs", "Capital Inicial", "CPM 22", "NX Zero",
+  "Sepultura", "Barão Vermelho", "Os Mutantes", "Os Originais do Samba"
 };
+const int ARTISTS_COUNT = sizeof(brazilianArtists) / sizeof(brazilianArtists[0]);
 
-const char* brazilianSongs[SONGS_COUNT] = {
-  "Clandestino", "Saudade da Bahia", "Noite Carioca", "Samba Enredo", "Mulher Brasileira",
-  "Festa Tropical", "Beijo de Chuva", "Noites de Copa", "Samba da Praia", "Amor Tropical",
-  "Cidade Grande", "Coração do Brasil", "Luz do Luar", "Dança do Ritmo", "Sonho Brasileiro",
-  "Toque de Mágica", "Ritmo Perfeito", "Baile da Favela", "Noite de Luar", "Saudade Infinita",
-  "Batida do Coração", "Encontro de Almas", "Canção do Povo", "Toque Divino", "Espírito Livre"
+const char* brazilianSongs[] = {
+  "Aquele Abraço", "Toda Menina Baiana", "Garota de Ipanema", "Águas de Março",
+  "Carcará", "Saudade", "O Canto da Cidade", "Festa", "Levada Brasileira",
+  "Samba Enredo", "Bateria Certeira", "Sou Samba", "Vou Ficar",
+  "Alma Brasileira", "Ritmo Perfeito", "Noite de Luar", "Som do Brasil",
+  "Ritmo Que Toca", "Melodia Tropical", "Batida Certa", "Samba do Brasil",
+  "Toque Autêntico", "Brasilidade", "Pura Energia", "Cadência Brasileira",
+  "Força da Tradição", "Raízes do Samba", "Grito da Alma"
 };
+const int SONGS_COUNT = sizeof(brazilianSongs) / sizeof(brazilianSongs[0]);
+
 
 String generateRandomSong() {
   int artistIdx = random(0, ARTISTS_COUNT);
@@ -31,12 +34,39 @@ String generateRandomSong() {
   return String(brazilianArtists[artistIdx]) + " - " + String(brazilianSongs[songIdx]);
 }
 
+String rotateSongString(const String& song, int scrollPos) {
+  if (song.length() == 0) return song;
+  int pos = scrollPos % song.length();
+  return song.substring(pos) + song.substring(0, pos);
+}
+
+void advanceSongScrollPos(uint32_t freq_khz) {
+  for (auto &e : customPtys) {
+    if (e.freq_khz == freq_khz) {
+      if (e.song.length() > 0) {
+        e.songScrollPos = (e.songScrollPos + 1) % e.song.length();
+      }
+      return;
+    }
+  }
+  for (auto &e : customPtys) {
+    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) {
+      if (e.song.length() > 0) {
+        e.songScrollPos = (e.songScrollPos + 1) % e.song.length();
+      }
+      return;
+    }
+  }
+}
+
 // Função para buscar o PS pelo customPtys
 String findCustomPSForFreq(uint32_t freq_khz) {
   String ps = String("");
+  int scrollPos = 0;
   for (auto &e : customPtys) {
     if (e.freq_khz == freq_khz) {
       ps = e.ps;
+      scrollPos = e.songScrollPos;
       break;
     }
   }
@@ -44,6 +74,7 @@ String findCustomPSForFreq(uint32_t freq_khz) {
     for (auto &e : customPtys) {
       if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) {
         ps = e.ps;
+        scrollPos = e.songScrollPos;
         break;
       }
     }
@@ -51,16 +82,19 @@ String findCustomPSForFreq(uint32_t freq_khz) {
 
   String song = findCustomSongForFreq(freq_khz);
   if (ps.length() > 0 && song.length() > 0) {
-    ps += " | " + song;
+    String rotatedSong = rotateSongString(song, scrollPos);
+    ps += " | " + rotatedSong;
   }
   return ps;
 }
 
 String findCustomRTForFreq(uint32_t freq_khz) {
   String rt = String("");
+  int scrollPos = 0;
   for (auto &e : customPtys) {
     if (e.freq_khz == freq_khz) {
       rt = e.rt;
+      scrollPos = e.songScrollPos;
       break;
     }
   }
@@ -68,6 +102,7 @@ String findCustomRTForFreq(uint32_t freq_khz) {
     for (auto &e : customPtys) {
       if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) {
         rt = e.rt;
+        scrollPos = e.songScrollPos;
         break;
       }
     }
@@ -75,7 +110,8 @@ String findCustomRTForFreq(uint32_t freq_khz) {
 
   String song = findCustomSongForFreq(freq_khz);
   if (rt.length() > 0 && song.length() > 0) {
-    rt += " - " + song;
+    String rotatedSong = rotateSongString(song, scrollPos);
+    rt += " - " + rotatedSong;
   }
   return rt;
 }
@@ -89,7 +125,7 @@ void loadIsaacPTYs() {
   e.freq_khz = 79700;
   e.pty_code = 20;
   e.ps = "RADIO METROPOLITANA 79.7MHZ";
-  e.rt = "A RADIO DA COMUNIDADE";
+  e.rt = "A RADIO DA CONUNIDADE";
   e.song = "";
   customPtys.push_back(e);
 
@@ -312,15 +348,15 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 103900;
   e.pty_code = 10;
-  e.ps = "TEMPO FM 103.9";
-  e.rt = "A SUA MELHOR ESTACAO. - O TEMPO TODO COM VOCE";
+  e.ps = "TEMPO FM 103.9 A SUA MELHOR ESTACAO";
+  e.rt = "O TEMPO TODO A MELHOR MUSICA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 104300;
   e.pty_code = 10;
   e.ps = "REDE METROPOLITANA FM 104.3";
-  e.rt = "METROPOLITANA YES!!!";
+  e.rt = "POP - SERTANEJA = TOCA TODAS";
   e.song = "";
   customPtys.push_back(e);
 
@@ -354,7 +390,7 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 107900;
   e.pty_code = 10;
-  e.ps = "RU107.9MHZ";
+  e.ps = "107.9MHZ UNIVERSITARIA FM 107.9MHZ";
   e.rt = "A RADIO DA UFC - CULTURA E SABER";
   e.song = "";
   customPtys.push_back(e);
