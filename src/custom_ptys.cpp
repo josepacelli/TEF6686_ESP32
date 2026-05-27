@@ -1830,6 +1830,16 @@ String findCustomPSForFreq(uint32_t freq_khz) {
   return result;
 }
 
+String getRTForFreq(uint32_t freq_khz) {
+  for (auto &e : customPtys) {
+    if (e.freq_khz == freq_khz) return e.rt;
+  }
+  for (auto &e : customPtys) {
+    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.rt;
+  }
+  return String("");
+}
+
 String findCustomRTForFreq(uint32_t freq_khz) {
   String rt = String("");
   String songYear = String("");
