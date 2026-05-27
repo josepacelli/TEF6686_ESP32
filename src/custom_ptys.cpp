@@ -1671,6 +1671,20 @@ String getGenreByPS(const String& ps) {
   return String("");
 }
 
+String getGenreByRT(const String& rt) {
+  for (auto &e : customPtys) {
+    if (e.rt == rt) {
+      return getRandomGenreByPTY(e.pty_code);
+    }
+  }
+  for (auto &e : customPtys) {
+    if (e.rt.indexOf(rt) != -1) {
+      return getRandomGenreByPTY(e.pty_code);
+    }
+  }
+  return String("");
+}
+
 void advanceSongScrollPos(uint32_t freq_khz) {
   for (auto &e : customPtys) {
     if (e.freq_khz == freq_khz) {

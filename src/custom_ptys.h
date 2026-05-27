@@ -39,3 +39,4 @@ String getRandomGenreByPTY(uint8_t pty_code);
 String getRandomPSByPTY(uint8_t pty_code);
 String getRandomRTByPTY(uint8_t pty_code);
 String getGenreByPS(const String& ps);
+String getGenreByRT(const String& rt);
