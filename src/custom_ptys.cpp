@@ -767,16 +767,6 @@ const char* jazzGenres[] = {
 };
 const int JAZZ_GENRES_COUNT = sizeof(jazzGenres) / sizeof(jazzGenres[0]);
 
-const char* sportGenres[] = {
-  "Esporte", "Futebol", "Noticiário Esportivo", "Cobertura ao Vivo", "Comentário Esportivo"
-};
-const int SPORT_GENRES_COUNT = sizeof(sportGenres) / sizeof(sportGenres[0]);
-
-const char* variedSpeechGenres[] = {
-  "Fala Variada", "Talk Radio", "Conversa", "Debate", "Entrevista", "Podcast"
-};
-const int VARIED_SPEECH_GENRES_COUNT = sizeof(variedSpeechGenres) / sizeof(variedSpeechGenres[0]);
-
 // PS (PROGRAM SERVICE) ARRAYS BY PTY
 const char* popPS[] = {
   "POP FM", "MEGA FM", "HIT FM", "RADIO POP", "PURA POP", "POP BRASIL",
@@ -1535,13 +1525,13 @@ String getRandomGenreByPTY(uint8_t pty_code) {
     case 0:  return String(newsGenres[random(0, NEWS_GENRES)]);
     case 1:  return String(currentAffairsGenres[random(0, CURRENT_AFFAIRS_GENRES_COUNT)]);
     case 2:  return String(informationGenres[random(0, INFORMATION_GENRES_COUNT)]);
-    case 3:  return String(sportGenres[random(0, SPORT_GENRES_COUNT)]);
+    case 3:  return String(sportGenres[random(0, SPORT_GENRES)]);
     case 4:  return String(educationGenres[random(0, EDUCATION_GENRES)]);
     case 5:  return String(dramaGenres[random(0, DRAMA_GENRES)]);
     case 6:  return String(cultureGenres[random(0, CULTURE_GENRES)]);
     case 7:  return String(scienceGenres[random(0, SCIENCE_GENRES)]);
     case 8:
-    case 15: return String(variedSpeechGenres[random(0, VARIED_SPEECH_GENRES_COUNT)]);
+    case 15: return String(variedSpeechGenres[random(0, VARIED_SPEECH_GENRES)]);
     case 9:  return String(otherMusicGenres[random(0, OTHER_MUSIC_GENRES_COUNT)]);
     case 10: return String(popGenres[random(0, POP_GENRES_COUNT)]);
     case 11: return String(rockGenres[random(0, ROCK_GENRES_COUNT)]);
