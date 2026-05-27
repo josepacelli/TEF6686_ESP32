@@ -1738,6 +1738,16 @@ void advanceSongScrollPos(uint32_t freq_khz) {
   }
 }
 
+String getPSForFreq(uint32_t freq_khz) {
+  for (auto &e : customPtys) {
+    if (e.freq_khz == freq_khz) return e.ps;
+  }
+  for (auto &e : customPtys) {
+    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.ps;
+  }
+  return String("");
+}
+
 String findCustomPSForFreq(uint32_t freq_khz) {
   String ps = String("");
   String songYear = String("");
