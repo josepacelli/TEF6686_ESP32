@@ -1300,6 +1300,12 @@ const char* oldiesSongs[] = {
 };
 const int OLDIES_SONGS = sizeof(oldiesSongs) / sizeof(oldiesSongs[0]);
 
+const char* oldiesGenres[] = {
+  "Oldies", "Classicos", "Nostalgia", "Retro", "Vintage", "Successo Atemporal",
+  "Musica Eterna", "Memorabilia", "Ouro da Musica", "Lendas do Passado"
+};
+const int OLDIES_GENRES = sizeof(oldiesGenres) / sizeof(oldiesGenres[0]);
+
 const char* oldiesPS[] = {
   "OLDIES FM", "RETRO FM", "CLASSICOS FM", "MEMORIA FM", "NOSTALGIA FM",
   "OURO FM", "VINTAGE FM", "SAUDADE FM", "PASSADO FM", "TRADICAO FM"
@@ -1549,7 +1555,7 @@ String getRandomGenreByPTY(uint8_t pty_code) {
     case 24: return String(jazzGenres[random(0, JAZZ_GENRES_COUNT)]);
     case 25: return String(countryGenres[random(0, COUNTRY_GENRES_COUNT)]);
     case 26: return String(sertanejoGenres[random(0, SERTANEJO_GENRES_COUNT)]);
-    case 27: return String(easyListeningGenres[random(0, EASY_LISTENING_GENRES_COUNT)]);
+    case 27: return String(oldiesGenres[random(0, OLDIES_GENRES)]);
     case 28: return String(folkGenres[random(0, FOLK_GENRES_COUNT)]);
     case 30: return String(alarmTestGenres[random(0, ALARM_TEST_GENRES_COUNT)]);
     case 31: return String(alarmGenres[random(0, ALARM_GENRES_COUNT)]);
@@ -2910,3 +2916,106 @@ String findCustomYearForFreq(uint32_t freq_khz) {
   }
   return String("");
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
