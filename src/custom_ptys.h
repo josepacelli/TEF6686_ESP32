@@ -29,6 +29,7 @@ String findCustomRTForFreq(uint32_t freq_khz);
 String findCustomSongForFreq(uint32_t freq_khz);
 String findCustomTimeForFreq(uint32_t freq_khz);
 String findCustomDateForFreq(uint32_t freq_khz);
+String findCustomGenreForFreq(uint32_t freq_khz);
 String rotateSongString(const String& song, int scrollPos);
 void advanceSongScrollPos(uint32_t freq_khz);
 String formatSongWithYear(const String& song, const String& year);
