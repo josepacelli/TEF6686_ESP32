@@ -27,6 +27,8 @@ int8_t findCustomPTYCodeForFreq(uint32_t freq_khz);
 String findCustomPSForFreq(uint32_t freq_khz);
 String findCustomRTForFreq(uint32_t freq_khz);
 String findCustomSongForFreq(uint32_t freq_khz);
+String generateRandomSong();
+String getSongForPTY(uint8_t pty);
 String findCustomTimeForFreq(uint32_t freq_khz);
 String findCustomDateForFreq(uint32_t freq_khz);
 String findCustomGenreForFreq(uint32_t freq_khz);
