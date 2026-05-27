@@ -1657,6 +1657,20 @@ const char* getPTYName(uint8_t pty_code) {
   return "Unknown";
 }
 
+String getGenreByPS(const String& ps) {
+  for (auto &e : customPtys) {
+    if (e.ps == ps) {
+      return getRandomGenreByPTY(e.pty_code);
+    }
+  }
+  for (auto &e : customPtys) {
+    if (e.ps.indexOf(ps) != -1) {
+      return getRandomGenreByPTY(e.pty_code);
+    }
+  }
+  return String("");
+}
+
 void advanceSongScrollPos(uint32_t freq_khz) {
   for (auto &e : customPtys) {
     if (e.freq_khz == freq_khz) {
