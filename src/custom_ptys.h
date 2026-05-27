@@ -24,6 +24,7 @@ struct PTYEntry {
 
 void loadIsaacPTYs();
 int8_t findCustomPTYCodeForFreq(uint32_t freq_khz);
+String getPTYInfoForFreq(uint32_t freq_khz);
 String findCustomPSForFreq(uint32_t freq_khz);
 String findCustomRTForFreq(uint32_t freq_khz);
 String findCustomSongForFreq(uint32_t freq_khz);

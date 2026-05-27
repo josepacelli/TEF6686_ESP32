@@ -2809,6 +2809,18 @@ int8_t findCustomPTYCodeForFreq(uint32_t freq_khz) {
   return -1;
 }
 
+String getPTYInfoForFreq(uint32_t freq_khz) {
+  int8_t pty = findCustomPTYCodeForFreq(freq_khz);
+  if (pty == -1) return String("");
+
+  String result = String("[") + String(pty) + "] " + String(getPTYName(pty));
+  String genre = findCustomGenreForFreq(freq_khz);
+  if (genre.length() > 0) {
+    result += " | Genre: " + genre;
+  }
+  return result;
+}
+
 String findCustomSongForFreq(uint32_t freq_khz) {
   for (auto &e : customPtys) {
     if (e.freq_khz == freq_khz) {
