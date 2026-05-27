@@ -1020,6 +1020,12 @@ const char* educationRT[] = {
 };
 const int EDUCATION_RT_COUNT = sizeof(educationRT) / sizeof(educationRT[0]);
 
+const char* educationGenres[] = {
+  "Educacao", "Aprendizado", "Aula", "Ensino", "Academico", "Pedagogia",
+  "Instrucao", "Formacao", "Conhecimento", "Ensino Superior"
+};
+const int EDUCATION_GENRES = sizeof(educationGenres) / sizeof(educationGenres[0]);
+
 // DRAMA (PTY 5)
 const char* dramaArtists[] = {
   "Ator Classico", "Atriz Tradicional", "Diretor Drama", "Compositor Dramatico", "Roteirista Cenas"
@@ -1043,6 +1049,12 @@ const char* dramaRT[] = {
   "EMOCOES DRAMATICAS", "CENAS INTENSAS", "PALCO SONORO"
 };
 const int DRAMA_RT_COUNT = sizeof(dramaRT) / sizeof(dramaRT[0]);
+
+const char* dramaGenres[] = {
+  "Drama", "Teatro", "Tragedia", "Comedia Dramatica", "Narrativa", "Producao Teatral",
+  "Encenacao", "Historia Dramatica", "Monodrama", "Peça Teatral"
+};
+const int DRAMA_GENRES = sizeof(dramaGenres) / sizeof(dramaGenres[0]);
 
 // CULTURE (PTY 6)
 const char* cultureArtists[] = {
@@ -1068,6 +1080,12 @@ const char* cultureRT[] = {
 };
 const int CULTURE_RT_COUNT = sizeof(cultureRT) / sizeof(cultureRT[0]);
 
+const char* cultureGenres[] = {
+  "Cultura", "Arte Brasileira", "Patrimonio Cultural", "Manifestacao Cultural", "Tropicalismo",
+  "Musica Tradicional", "Folclore", "Heranca Brasileira", "Identidade Nacional", "Expressao Artistica"
+};
+const int CULTURE_GENRES = sizeof(cultureGenres) / sizeof(cultureGenres[0]);
+
 // SCIENCE (PTY 7)
 const char* scienceArtists[] = {
   "Dr. Astronomia", "Prof. Fisica", "Dra. Biologia", "Prof. Quimica", "Dr. Tecnologia"
@@ -1091,6 +1109,12 @@ const char* scienceRT[] = {
   "PESQUISA AVANCADA", "CONHECIMENTO CIENTIFICO", "FUTURO DA CIENCIA"
 };
 const int SCIENCE_RT_COUNT = sizeof(scienceRT) / sizeof(scienceRT[0]);
+
+const char* scienceGenres[] = {
+  "Ciencia", "Astronomia", "Fisica", "Biologia", "Quimica", "Tecnologia",
+  "Inovacao", "Pesquisa", "Descoberta", "Conhecimento Cientifico"
+};
+const int SCIENCE_GENRES = sizeof(scienceGenres) / sizeof(scienceGenres[0]);
 
 // OTHER MUSIC (PTY 9)
 const char* otherMusicGenres[] = {
@@ -1512,10 +1536,10 @@ String getRandomGenreByPTY(uint8_t pty_code) {
     case 1:  return String(currentAffairsGenres[random(0, CURRENT_AFFAIRS_GENRES_COUNT)]);
     case 2:  return String(informationGenres[random(0, INFORMATION_GENRES_COUNT)]);
     case 3:  return String(sportGenres[random(0, SPORT_GENRES_COUNT)]);
-    case 4:  return String(educationSongs[random(0, EDUCATION_SONGS)]);
-    case 5:  return String(dramaSongs[random(0, DRAMA_SONGS)]);
-    case 6:  return String(cultureSongs[random(0, CULTURE_SONGS)]);
-    case 7:  return String(scienceSongs[random(0, SCIENCE_SONGS)]);
+    case 4:  return String(educationGenres[random(0, EDUCATION_GENRES)]);
+    case 5:  return String(dramaGenres[random(0, DRAMA_GENRES)]);
+    case 6:  return String(cultureGenres[random(0, CULTURE_GENRES)]);
+    case 7:  return String(scienceGenres[random(0, SCIENCE_GENRES)]);
     case 8:
     case 15: return String(variedSpeechGenres[random(0, VARIED_SPEECH_GENRES_COUNT)]);
     case 9:  return String(otherMusicGenres[random(0, OTHER_MUSIC_GENRES_COUNT)]);
