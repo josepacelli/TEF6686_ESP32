@@ -1591,6 +1591,16 @@ String getRandomArtistByPTY(uint8_t pty_code) {
   }
 }
 
+String getRandomYearByPTY(uint8_t pty_code) {
+  switch (pty_code) {
+    case 3:  return String(sportYears[random(0, SPORT_YEARS)]);
+    case 8:
+    case 15: return String(variedSpeechYears[random(0, VARIED_SPEECH_YEARS)]);
+    case 20: return String(gospelYears[random(0, GOSPEL_YEARS)]);
+    default: return String(brazilianYears[random(0, YEARS_COUNT)]);
+  }
+}
+
 String getRandomPSByPTY(uint8_t pty_code) {
   switch (pty_code) {
     case 0:  return String(newsPS[random(0, NEWS_PS_COUNT)]);
@@ -2855,6 +2865,26 @@ String findCustomArtistForFreq(uint32_t freq_khz) {
   }
   for (auto &e : customPtys) {
     if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return getRandomArtistByPTY(e.pty_code);
+  }
+  return String("");
+}
+
+String findCustomYearForFreq(uint32_t freq_khz) {
+  for (auto &e : customPtys) {
+    if (e.freq_khz == freq_khz) {
+      if (e.songYear.length() == 0) {
+        return getRandomYearByPTY(e.pty_code);
+      }
+      return e.songYear;
+    }
+  }
+  for (auto &e : customPtys) {
+    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) {
+      if (e.songYear.length() == 0) {
+        return getRandomYearByPTY(e.pty_code);
+      }
+      return e.songYear;
+    }
   }
   return String("");
 }

@@ -31,6 +31,8 @@ String generateRandomSong();
 String getSongForPTY(uint8_t pty);
 String findCustomTimeForFreq(uint32_t freq_khz);
 String findCustomDateForFreq(uint32_t freq_khz);
+String findCustomYearForFreq(uint32_t freq_khz);
+String getRandomYearByPTY(uint8_t pty_code);
 String findCustomGenreForFreq(uint32_t freq_khz);
 String findCustomArtistForFreq(uint32_t freq_khz);
 String getRandomArtistByPTY(uint8_t pty_code);
