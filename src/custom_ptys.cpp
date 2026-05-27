@@ -1567,6 +1567,30 @@ String getRandomGenreByPTY(uint8_t pty_code) {
   }
 }
 
+String getRandomArtistByPTY(uint8_t pty_code) {
+  switch (pty_code) {
+    case 0:  return String(newsArtists[random(0, NEWS_ARTISTS)]);
+    case 3:  return String(sportArtists[random(0, SPORT_ARTISTS)]);
+    case 4:  return String(educationArtists[random(0, EDUCATION_ARTISTS)]);
+    case 5:  return String(dramaArtists[random(0, DRAMA_ARTISTS)]);
+    case 6:  return String(cultureArtists[random(0, CULTURE_ARTISTS)]);
+    case 7:  return String(scienceArtists[random(0, SCIENCE_ARTISTS)]);
+    case 10: return String(popArtists[random(0, POP_ARTISTS)]);
+    case 11: return String(rockArtists[random(0, ROCK_ARTISTS)]);
+    case 12: return String(easyArtists[random(0, EASY_ARTISTS)]);
+    case 13:
+    case 14: return String(classicalArtists[random(0, CLASSICAL_ARTISTS)]);
+    case 20: return String(gospelArtists[random(0, GOSPEL_ARTISTS)]);
+    case 24: return String(brazilianArtists[random(0, ARTISTS_COUNT)]);
+    case 25: return String(countryArtists[random(0, COUNTRY_ARTISTS)]);
+    case 26: return String(nationalArtists[random(0, NATIONAL_ARTISTS)]);
+    case 27: return String(oldiesArtists[random(0, OLDIES_ARTISTS)]);
+    case 28: return String(folkArtists[random(0, FOLK_ARTISTS)]);
+    case 15: return String(variedSpeechArtists[random(0, VARIED_SPEECH_ARTISTS)]);
+    default: return String(brazilianArtists[random(0, ARTISTS_COUNT)]);
+  }
+}
+
 String getRandomPSByPTY(uint8_t pty_code) {
   switch (pty_code) {
     case 0:  return String(newsPS[random(0, NEWS_PS_COUNT)]);
@@ -2821,6 +2845,16 @@ String findCustomGenreForFreq(uint32_t freq_khz) {
   }
   for (auto &e : customPtys) {
     if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return getRandomGenreByPTY(e.pty_code);
+  }
+  return String("");
+}
+
+String findCustomArtistForFreq(uint32_t freq_khz) {
+  for (auto &e : customPtys) {
+    if (e.freq_khz == freq_khz) return getRandomArtistByPTY(e.pty_code);
+  }
+  for (auto &e : customPtys) {
+    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return getRandomArtistByPTY(e.pty_code);
   }
   return String("");
 }
