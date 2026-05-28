@@ -1201,16 +1201,333 @@ const char* childrenGenres[] = {
 const int CHILDREN_GENRES_COUNT = sizeof(childrenGenres) / sizeof(childrenGenres[0]);
 
 const char* childrenPS[] = {
+  // Original stations
   "INFANTIL FM", "KIDS FM", "CRIANCAS FM", "TURMINHA FM", "ALEGRIA FM",
-  "BRINCADEIRA FM", "SOMOS FM", "PEQUENO FM", "CIRCO FM", "FANTASIA FM"
+  "BRINCADEIRA FM", "SOMOS FM", "PEQUENO FM", "CIRCO FM", "FANTASIA FM",
+
+  // Fun & Playful
+  "DIVERSAO FM", "RISADA FM", "BRINCADEIRA FELIZ", "PULA PULA FM",
+  "GIRA GIRA FM", "DANCA FM", "MUSICA FELIZ", "SUPER KIDS",
+  "MEGA KIDS", "CRIANCADA FM", "TURMINHA UNIDA", "AMIGOS FM",
+
+  // Educational
+  "APRENDIZADO FM", "SABER FM", "ESCOLA NO AR", "CONHECIMENTO FM",
+  "ESTUDO FM", "AULA FM", "PROFESSOR FM", "EDUCACAO FM",
+  "INTELIGENCIA FM", "GENIO PEQUENO", "SABEDORIA FM", "CRIANCA SBIA",
+
+  // Adventure & Fantasy
+  "AVENTURA FM", "HEROI FM", "SUPER HEROI", "PODER FM",
+  "MAGIA FM", "ENCANTO FM", "SONHO FM", "UNIVERSO FM",
+  "PLANETA FM", "GALAXIA FM", "ESPACO FM", "ASTRONAUTA FM",
+
+  // Animals & Nature
+  "BICHO FM", "ZOO FM", "FLORESTA FM", "NATUREZA FM",
+  "PASSARO FM", "PEIXE FM", "ABELHA FM", "BORBOLETA FM",
+  "ANIMAL FM", "FAUNA FM", "SELVAGEM FM", "MUNDO ANIMAL",
+
+  // Classic Characters
+  "TURMA MONICA", "XUXA RADIO", "BALAO MAGICO FM", "GALINHA PINTADINHA",
+  "MUNDO BITA FM", "PALAVRA CANTADA FM", "PATATI PATATA FM", "TOQUINHO FM",
+  "GILBERTO GIL FM", "RITA LEE FM", "ANITTA KIDS FM", "IVETE FM",
+
+  // Time-based
+  "MANHA FELIZ FM", "TARDE LEGAL FM", "NOITE SONHO FM", "ACORDAR FM",
+  "DURMIR FM", "CAFEZINHO FM", "LANCHE FM", "REFEICAO FM",
+
+  // Emotion & Values
+  "CORACAO FM", "AMIZADE FM", "AMOR FM", "RESPEITO FM",
+  "HONRA FM", "VALENTIA FM", "HONESTIDADE FM", "LEALDADE FM",
+  "SOLIDARIEDADE FM", "GENTILEZA FM", "CARINHO FM", "ABRACO FM",
+
+  // Cultural & Festive
+  "CARNAVAL FM", "FESTA FM", "CELEBRACAO FM", "ALEGRIA TOTAL",
+  "ENCONTRO FM", "REUNIAO FM", "CONFRATERNIZACAO FM", "FESTA INFANTIL",
+  "ANIVERSARIO FM", "PARABENS FM", "PRESENTE FM", "SURPRESA FM",
+
+  // Imaginative
+  "CONTE FM", "HISTORINHA FM", "FADA FM", "BRUXA FM",
+  "GIGANTE FM", "ANAO FM", "PRINCESA FM", "PRINCIPE FM",
+  "CASTELO FM", "REINO FM", "IMPERIO FM", "REINO MAGICO",
+
+  // Creative
+  "CORES FM", "DESENHO FM", "ARTE FM", "CRIATIVIDADE FM",
+  "MUSICA CRIATIVA", "RITMO FM", "MELODIA FM", "HARMONIA FM",
+  "INSTRUMENTO FM", "CANTAR FM", "DANCA CRIATIVA", "MOVIMENTO FM",
+
+  // Active Play
+  "CORRER FM", "PULAR FM", "SALTAR FM", "EQUILIBRIO FM",
+  "FORCE FM", "VELOCIDADE FM", "AGILIDADE FM", "COORDENACAO FM",
+  "ESPORTE FM", "CAMPEONATO FM", "VITORIA FM", "CAMPEAO FM",
+
+  // Rest & Comfort
+  "DESCANSO FM", "RELAX FM", "CALMA FM", "PAZ FM",
+  "TRANQUILIDADE FM", "SERENIDADE FM", "SONO FM", "REPOUSO FM",
+  "CONFORTO FM", "ACONCHEGO FM", "SEGURANCA FM", "ABRACO CALOROSO",
+
+  // Special Topics
+  "DINOSSAURO FM", "CAVERNA FM", "TESOURO FM", "PIRATA FM",
+  "NAVIO FM", "VIAGEM FM", "EXPLORACAO FM", "MISTERIO FM",
+  "ENIGMA FM", "DESAFIO FM", "COMPETICAO FM", "TORNEIO FM",
+
+  // Miscellaneous
+  "RADIA MAGICA", "ONDA FELIZ", "SINTONIA CRIANCA", "CANAL INFANTIL",
+  "STATION KIDS", "EMISSORA PEQUENA", "RADIO MIUDA", "VOZ INFANTIL",
+  "TRANSMISSAO FELIZ", "SINAL ALEGRE", "FREQUENCIA CRIANCA", "BANDA SONORA"
 };
 const int CHILDREN_PS_COUNT = sizeof(childrenPS) / sizeof(childrenPS[0]);
 
 const char* childrenRT[] = {
+  // Original
   "MUSICA INFANTIL", "HISTORIAS PARA CRIANCAS", "DIVERSAO E APRENDIZADO",
-  "MUNDO INFANTIL", "DIVERSAO SEM PARAR", "CRIANCAS FELIZES"
+  "MUNDO INFANTIL", "DIVERSAO SEM PARAR", "CRIANCAS FELIZES",
+
+  // Fun & Entertainment
+  "BRINCANDO E CANTANDO", "RISADAS E MUSICA", "DIVERSAO TOTAL AQUI",
+  "ALEGRIA EM CADA NOTA", "FESTA INFANTIL NO AR", "DIVERSAO SEM LIMITES",
+  "CRIANCADA DANCA", "MUSICA QUE ALEGRA", "ENTRETENIMENTO PURO",
+  "HUMOR E MUSICA", "GRITO DE ALEGRIA", "FESTA SEM PARAR",
+
+  // Educational Messages
+  "APRENDENDO BRINCANDO", "EDUCACAO COM ALEGRIA", "CONHECIMENTO DIVERTIDO",
+  "SABER E BRINCAR", "AULA MUSICAL FELIZ", "CRIANCA APRENDE AQUI",
+  "EDUCACAO INFANTIL", "MENTE CRIATIVA SEMPRE", "CONHECIMENTO CRIANCAS",
+  "LETRAS E NUMEROS", "APRENDIZADO TOTAL", "INTELIGENCIA PURA",
+
+  // Adventure & Magic
+  "AVENTURAS EMOCIONANTES", "MAGIA NO AR", "MUNDO FANTASTICO",
+  "HISTORIAS INCRIVEIS", "CONTOS DE FADAS", "REINOS MAGICOS",
+  "HEROIS CRIANCAS", "SUPER PODERES", "MISSAO CRIANCA",
+  "JORNADA FANTASIA", "TRAVESSIA MAGICA", "PORTAL ENCANTADO",
+
+  // Values & Emotions
+  "AMOR E AMIZADE", "CARINHO CRIANCA", "RESPEITO SEMPRE",
+  "CORACAO FELIZ", "PAZ E HARMONIA", "GENTILEZA CRIANCA",
+  "HONESTIDADE CRIANCA", "BRAVURA INFANTIL", "LEALDADE PURA",
+  "SOLIDARIEDADE CRIANCA", "COMPARTILHANDO AMOR", "UNIAO CRIANCAS",
+
+  // Nature & Animals
+  "MUNDO ANIMAL AQUI", "NATUREZA CRIANCA", "ZOO MUSICAL",
+  "ANIMAIS CANTAM", "FLORESTA VIVA", "PASSAROS FELIZES",
+  "MUNDO SELVAGEM", "NATUREZA PURA", "AMBIENTE CRIANCA",
+  "PLANTAS E CRIANCAS", "ECOSISTEMA INFANTIL", "VERDE E VIDA",
+
+  // Action & Movement
+  "DANCAS CRIANCAS", "MOVIMENTO INFANTIL", "ENERGIA PURA",
+  "CRIANCA SE MEXE", "ESPORTES CRIANCAS", "ACAO INFANTIL",
+  "DINAMICA PURA", "RITMO E MOVIMENTO", "CORPO FELIZ",
+  "EXERCICIO DIVERTIDO", "AGILIDADE CRIANCA", "VELOCIDADE BRINCAR",
+
+  // Time & Routine
+  "BOM DIA CRIANCAS", "ACORDAR CANTANDO", "MANHA FELIZ",
+  "LANCHINHOS HORA", "LANCHE CRIANCA", "REFEICAO MUSICAL",
+  "BRINCADEIRA TARDE", "TARDE CRIANCA", "VESPERA FELIZ",
+  "NOITE TRANQUILA", "DORMIR CANTANDO", "SONO DOCE",
+
+  // Festive Messages
+  "CARNAVAL CRIANCA", "FESTA COLORIDA", "CELEBRACAO INFANTIL",
+  "ANIVERSARIO CRIANCA", "PARABENS AQUI", "PRESENTES MUSICA",
+  "NATAL INFANTIL", "PASCOA CRIANCA", "FESTAS SEMPRE",
+  "ENCONTRO CRIANCA", "REUNIAO FELIZ", "CONFRATERNIZACAO PURA",
+
+  // Creative & Imagination
+  "CRIATIVIDADE PURA", "IMAGINACAO CRIANCA", "FANTASIA AQUI",
+  "CORES DO ARCO IRIS", "DESENHO ANIMADO", "ARTE CRIANCA",
+  "MUSICA CRIATIVIDADE", "CRIACAO MUSICAL", "EXPRESSAO INFANTIL",
+  "TALENTO CRIANCA", "INTELIGENCIA CRIATIVA", "GENIO PEQUENO",
+
+  // Stories & Tales
+  "HISTORIAS INCRIVEIS", "CONTOS FANTASIA", "NARRATIVAS CRIANCA",
+  "LENDAS INFANTIS", "FABULAS CRIANCAS", "MITOS CRIANCA",
+  "AVENTURA HISTÓRIA", "DRAMA CRIANCA", "ROMANCE INFANTIL",
+  "SUSPENSE CRIANCA", "MISTÉRIO INFANTIL", "ENIGMA CRIANCA",
+
+  // Special Themes
+  "DINOSSAUROS MUSICAIS", "ERA JURASSICA", "CAVERNA SONS",
+  "TESOURO CRIANCA", "PIRATAS CRIANCAS", "VIAGEM OCEANO",
+  "ESPACIO CRIANCA", "ASTRONAUTAS AQUI", "PLANETA MUSICA",
+  "SUBMARINA CRIANCA", "FUNDO MAR", "OCEANO FELIZ",
+
+  // Encouragement & Motivation
+  "CRIANCA PODE", "TENTA SEMPRE", "NUNCA DESISTA",
+  "ACREDITA EM TI", "VOCE CONSEGUE", "PODER CRIANCA",
+  "CAMPEAO SEMPRE", "VITORIA CRIANCA", "SUCESSO INFANTIL",
+  "BRAVURA CRIANCA", "CORAGEM AQUI", "DETERMINACAO PURA",
+
+  // Miscellaneous
+  "SINTONIA CRIANCA", "FREQUENCIA FELIZ", "ONDA INFANTIL",
+  "SINAL ALEGRE", "TRANSMISSAO CRIANCA", "VOZ CRIANCA",
+  "MUSICA 24 HORAS", "SEM PARAR AQUI", "SEMPRE CRIANCA",
+  "CRIANCAS UNIDAS", "TURMA FELIZ", "FAMILIA CRIANCA"
 };
 const int CHILDREN_RT_COUNT = sizeof(childrenRT) / sizeof(childrenRT[0]);
+
+// CHILDREN'S ARTISTS
+const char* childrenArtists[] = {
+  // Brazilian Artists
+  "Turma da Monica", "Xuxa", "Balao Magico", "Toquinho", "Gilberto Gil",
+  "Anitta Kids", "Ivete Sangalo", "Tribu Batuera", "Palavra Cantada", "Mundo Bita",
+  "Galinha Pintadinha", "Elefantinho Colorido", "Pequeno Ciencias", "Brincadeira Musical",
+  "Patati Patata", "Amigas da Onça", "Rá Tim Bum", "Criancas Felizes",
+  "Tatiana", "Angra dos Reis", "Chico Science", "Nando Reis",
+  "Silva", "Arnaldo Antunes", "Criança Esperança", "Turma do Mickey",
+  "Circo da Fantasia", "Show da Crianca", "Magico Ramirez", "Boneco Seu Lobo",
+  "Aquela Crianca", "Ceu da Boca", "Meu Lindo Balao", "Brincar de Viver",
+  "Rita Lee Kids", "Tom Zé Criancas", "Tomzinho", "Guilherme Arantes",
+  "Zé da Viola", "Raul Seixas Infantil", "Renato Russo Kids", "Capital Inicial Kids",
+  "Emilio Santiago", "Dalila Vieira", "Paulo Santana", "Ze Rodrix",
+  "Silvio Santos", "Gugu Liberato", "Manoel Neves", "Pelé",
+  "Ayrton Senna", "Ronaldo Fenomeno", "Ronaldinho Gaucho", "Neymar Jr",
+  "Vinicius Junior", "Anderson Silva", "Oscar Schmidt", "Hortencia",
+  "Soraya Moraes", "Kemilly Santos", "Priscilla Alcantara", "Leandro Forró",
+
+  // International Artists
+  "Barney", "Bob Zoom", "Sessame Street", "Mister Rogers",
+  "Disney Characters", "Hello Kitty", "SpongeBob", "Mickey Mouse",
+  "Minnie Mouse", "Donald Duck", "Goofy", "Pluto",
+  "Toy Story Cast", "Frozen Cast", "Aladdin", "The Lion King",
+  "Cars", "Finding Nemo", "Shrek", "Madagaskar",
+  "Kung Fu Panda", "How To Train Your Dragon", "Moana", "Encanto",
+  "Peppa Pig", "Thomas Tank Engine", "Caillou", "Dora Explorer",
+  "Go Diego Go", "Boots", "Swiper", "Map",
+  "Power Rangers", "Teenage Mutant Ninja Turtles", "Transformers", "Voltron",
+  "He-Man", "She-Ra", "Inspector Gadget", "Scooby Doo",
+  "Tom Jerry", "Looney Tunes", "Cartoon Network", "Boomerang",
+  "Ben Ten", "Generator Rex", "Dexter Lab", "Samurai Jack",
+  "Adventure Time", "Steven Universe", "Gravity Falls", "The Owl House",
+  "Avatar Aang", "Avatar Korra", "Legend of Korra", "She Ra Princesses",
+  "DC Super Hero Girls", "Marvel Kids", "Avengers", "X Men",
+  "Spiderman", "Batman", "Superman", "Wonder Woman",
+  "Capitao America", "Iron Man", "Thor", "Hulk",
+  "Viuva Negra", "Gaviao Negro", "Pantera Negra", "Capitao Marvel",
+  "Doc McStuffins", "Sofia First", "Elena of Avalor", "Tangled",
+  "Cinderela", "Bela e Fera", "Rapunzel", "Ariel",
+  "Jasmine", "Branca de Neve", "Chapeuzinho Vermelho", "Gato de Botas",
+  "Shrek", "Puss in Boots", "Donkey", "Fiona",
+  "Madagascar Penguins", "Marty Zebra", "Melman Girafa", "Gloria Hippo",
+  "Kung Fu Panda Characters", "Po", "Tigresa", "Furacao",
+  "Stuart Little", "Rato Mickey", "Rato Ratazana", "Tom Gato",
+  "Jerry Rato", "Sylvester Gato", "Tweety Passaro", "Pernalonga",
+  "Trix Coelho", "Toucan Sam", "Cap'n Crunch", "Lucky Cereal",
+  "Cookie Monster", "Big Bird", "Oscar Grouch", "Bert Ernie",
+  "Elmo", "Dorothy Sapato", "Coruja Noturna", "Saci Perere",
+  "Curupay", "Boitatá", "Iara Sereia", "Mula Sem Cabeca",
+  "Lobisomem", "Mapinguari", "Yara", "Cabra Cabriola",
+  "Bruxinha Atrapalhada", "Bruxa Malvada", "Mago Magico", "Princesa Encantada",
+  "Sapo Carnê", "Abelha Zuada", "Lagarta Verde", "Borboleta Magica",
+  "Unicornio Arco Iris", "Dragao Amigavel", "Fenix Lendária", "Griffo Protetor",
+  "Centauro Sábio", "Sereia Bela", "Tritão", "Nereida",
+  "Sátiro Dançante", "Ninfa Florestal", "Duende Travesso", "Gnomo Barudo",
+  "Troll Amigável", "Ogro Inteligente", "Gigante Bom", "Titã Protetor",
+  "Kraken Amigável", "Leviata Paz", "Fênix Renascida", "Hidra Calmosa"
+};
+const int CHILDREN_ARTISTS = sizeof(childrenArtists) / sizeof(childrenArtists[0]);
+
+// CHILDREN'S SONGS
+const char* childrenSongs[] = {
+  // Classic Children's
+  "Turma da Monica", "A Xuxa So Para Criancas", "Balao Magico", "Aquarela",
+  "A Casa", "Canta Crianca", "Mundo Infantil", "Brincadeira de Crianca",
+  "Historias Infantis", "Musica e Danca", "Ritmo Infantil", "Cantiggas de Roda",
+  "Roda Gigante", "Carroussel", "Diversao Total", "Alegria das Criancas",
+  "Aprendizado Feliz", "Educacao e Musica", "Fantasia Infantil", "Viagem Imaginaria",
+  "Contos de Fadas", "Princesas e Principes", "Aventuras Magicas", "Tempo de Brincar",
+  "Hora da Historinha", "Cantiga de Ninar", "Acordar Cantando", "Dormir Sorrindo",
+  "Sol e Lua", "Noite Estrelada", "Brincadeira de Circo", "Pista de Danca",
+
+  // Nursery Rhymes & Counting
+  "Atirei o Pau no Gato", "Borboletinha", "Indiozinho", "Marcha Soldado",
+  "Meu Chapeu", "Seu Jacó", "A Baratinha", "Uma Pulga na Careca",
+  "Olha a Onca", "A Girafa", "Sapo Cururu", "Caixinha de Surpresa",
+  "O Macaco Subiu", "Cinco Macaquinhos", "Um Dois Tres", "Quatro Cinco Seis",
+  "Sete Oito Nove", "Dez Numerinhos", "Contando Ate Dez", "Numeros Cantados",
+
+  // Disney & Animated
+  "Let It Go", "Frozen Forte", "Mundo Novo", "A Distancia",
+  "Quanto Basta", "Deixa Eu Sonhar", "Reino Magico", "Castelo Encantado",
+  "Princesa de Ouro", "Sapato de Cristal", "Pequeno Mundo", "Cidade Dourada",
+  "Floresta Profunda", "Savana Selvagem", "Oceano Azul", "Reino Submarino",
+
+  // Learning Songs
+  "ABC Alfabeto", "Letras Cantadas", "Palavras Novas", "Aprendo Cantando",
+  "Cores do Arco Iris", "Formas Geometricas", "Tamanhos Diferentes", "Conceitos Basicos",
+  "Corpo Humano", "Cinco Sentidos", "Higiene Pessoal", "Habitos Saudaveis",
+  "Frutas e Legumes", "Alimentacao Saudavel", "Exercicio Fisico", "Sono Repousante",
+
+  // Action & Movement
+  "Danca da Vassoura", "Danca do Sapato", "Danca da Boneca", "Danca Maluca",
+  "Pula Pula Pulando", "Pisa Forte", "Gira Que Gira", "Salta Que Salta",
+  "Pula Salta Rola", "Estica e Encolhe", "Mexe o Braco", "Levanta a Perna",
+  "Cabeca Ombro Joelho", "Dedo do Pe", "Mexe Tudo", "Danca Criativa",
+
+  // Animal Songs
+  "A Vaca Muu", "O Pato Qua", "O Gato Miau", "O Cachorro Au",
+  "O Passaro Piu", "O Leao Rugindo", "O Elefante Trompando", "O Macaco Pula",
+  "O Sapo Croa", "A Galinha Cloca", "O Galo Canta", "A Abelha Zunindo",
+  "A Borboleta Voando", "O Peixe Nadando", "A Tartaruga Lenta", "O Cavalo Galopando",
+
+  // Bedtime & Relaxing
+  "Tutu Marambaia", "Bois da Cara Preta", "Nana Nenê", "Durme Durme Filhinho",
+  "Luar da Noite", "Silencio na Noite", "Repouso Doce", "Sonho Tranquilo",
+  "Embalalacô", "Carcara", "Noite Feliz", "Durme Nenem",
+  "Quieta a Noite", "Dorme Querida", "Sono Profundo", "Repouso Eterno",
+
+  // Seasonal & Festive
+  "Natal Chegou", "Papai Noel", "Arvore de Natal", "Velas Acesas",
+  "Carnaval Alegre", "Fantasias Coloridas", "Mascaras Bonitas", "Confete Caindo",
+  "Ovo de Pascoa", "Coelho Feliz", "Flores Coloridas", "Primavera Chegou",
+  "Sao Joao Festa", "Baloes Voando", "Fogueira Acesa", "Quadrilha Danca",
+
+  // Disney Characters Themed
+  "Mickey Aventura", "Minnie Danca", "Donald Travessura", "Goofy Gracioso",
+  "Cinderela Magica", "Bela Encantada", "Ariel Subaquatica", "Jasmine Sonhadora",
+  "Aladdin Heroe", "Rapunzel Liberta", "Moana Corajosa", "Frozen Irmaes",
+  "Toy Story Amigos", "Nemo Perdido", "Shrek Ogro", "Madagascar Festa",
+
+  // Nursery Games
+  "Chicotinho Queimado", "Cabra Cabriola", "Esconde Esconde", "Batata Quente",
+  "Passa Passa Gaveta", "Seu Lobo", "Cabra Cabriola", "Eu Conheço Um Jogo",
+  "Pedra Papel Tesoura", "Eu Sou Pequenino", "Fui Morar Numa Casinha", "Lá Vem o Pato",
+  "Sapo Carnê", "Tangolomango", "Navio Negreiro", "Carrossel Magico",
+
+  // Sound & Onomatopoeia
+  "Som do Vento", "Som da Chuva", "Som do Trovao", "Som do Raio",
+  "Som do Carro", "Som do Trem", "Som do Aviao", "Som da Sirene",
+  "Som do Sino", "Som do Sino Largo", "Som da Sino Agudo", "Tiquetaque do Relogio",
+  "Tic Tac Hora", "Pingue Pongue", "Plim Plim", "Trim Trim",
+
+  // Educational Concepts
+  "Grande Pequeno Medio", "Cima Baixo Meio", "Dentro Fora Perto", "Longe Perto Aqui",
+  "Dia Noite Madrugada", "Manha Tarde Noite", "Segunda Terca Quarta", "Quinta Sexta",
+  "Sabado Domingo", "Meses do Ano", "Estacoes Natureza", "Clima Tempo Previsao"
+};
+const int CHILDREN_SONGS = sizeof(childrenSongs) / sizeof(childrenSongs[0]);
+
+// CHILDREN'S YEARS
+const char* childrenYears[] = {
+  // Recent Years
+  "2024", "2023", "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015",
+  "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005",
+  "2004", "2003", "2002", "2001", "2000",
+
+  // 1990s
+  "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990",
+
+  // 1980s
+  "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980",
+
+  // 1970s
+  "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970",
+
+  // 1960s
+  "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960",
+
+  // 1950s
+  "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950",
+
+  // Classic Era (1940s and earlier for golden age animation)
+  "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940"
+};
+const int CHILDREN_YEARS = sizeof(childrenYears) / sizeof(childrenYears[0]);
 
 // SOCIAL AFFAIRS (PTY 19)
 const char* socialGenres[] = {
@@ -1498,6 +1815,13 @@ String getSongForPTY(uint8_t pty) {
       int s = random(0, FOLK_SONGS);
       return String(countryGenres[g]) + " | " + String(folkArtists[a]) + " - " + String(folkSongs[s]);
     }
+    case 18: {  // Children's Music
+      int g = random(0, CHILDREN_GENRES_COUNT);
+      int a = random(0, CHILDREN_ARTISTS);
+      int s = random(0, CHILDREN_SONGS);
+      int y = random(0, CHILDREN_YEARS);
+      return String(childrenGenres[g]) + " | " + String(childrenArtists[a]) + " - " + String(childrenSongs[s]) + " (" + String(childrenYears[y]) + ")";
+    }
     default: return generateRandomSong();
   }
 }
@@ -1576,6 +1900,7 @@ String getRandomArtistByPTY(uint8_t pty_code) {
     case 12: return String(easyArtists[random(0, EASY_ARTISTS)]);
     case 13:
     case 14: return String(classicalArtists[random(0, CLASSICAL_ARTISTS)]);
+    case 18: return String(childrenArtists[random(0, CHILDREN_ARTISTS)]);
     case 20: return String(gospelArtists[random(0, GOSPEL_ARTISTS)]);
     case 24: return String(brazilianArtists[random(0, ARTISTS_COUNT)]);
     case 25: return String(countryArtists[random(0, COUNTRY_ARTISTS)]);
@@ -1592,6 +1917,7 @@ String getRandomYearByPTY(uint8_t pty_code) {
     case 3:  return String(sportYears[random(0, SPORT_YEARS)]);
     case 8:
     case 15: return String(variedSpeechYears[random(0, VARIED_SPEECH_YEARS)]);
+    case 18: return String(childrenYears[random(0, CHILDREN_YEARS)]);
     case 20: return String(gospelYears[random(0, GOSPEL_YEARS)]);
     default: return String(brazilianYears[random(0, YEARS_COUNT)]);
   }
@@ -2493,7 +2819,7 @@ void loadIsaacPTYs() {
 
   // === ROCK STATIONS (PTY 11) ===
   e.freq_khz = 88700;
-  e.pty_code = 11;
+  e.pty_code = 10;
   e.ps = "ROCK FM 88.7";
   e.rt = "ROCK EM ALTA VOLTAGEM";
   e.song = "Rock Nacional | Legiao Urbana - Comida";
@@ -2504,7 +2830,7 @@ void loadIsaacPTYs() {
   customPtys.push_back(e);
 
   e.freq_khz = 94500;
-  e.pty_code = 11;
+  e.pty_code = 10;
   e.ps = "HEAVY FM 94.5";
   e.rt = "ENERGY ROCK";
   e.song = "Hard Rock | Sepultura - Roots Bloody Roots";
@@ -2516,7 +2842,7 @@ void loadIsaacPTYs() {
 
   // === EASY LISTENING (PTY 12) ===
   e.freq_khz = 91500;
-  e.pty_code = 12;
+  e.pty_code = 10;
   e.ps = "BOSSA FM 91.5";
   e.rt = "MELODIAS SUAVES";
   e.song = "Bossa Nova | Tom Jobim - Garota de Ipanema";
@@ -2527,7 +2853,7 @@ void loadIsaacPTYs() {
   customPtys.push_back(e);
 
   e.freq_khz = 97300;
-  e.pty_code = 12;
+  e.pty_code = 10;
   e.ps = "RELAX FM 97.3";
   e.rt = "MUSICA PARA RELAXAR";
   e.song = "Easy Listening | Joao Gilberto - Desafinado";
@@ -2539,7 +2865,7 @@ void loadIsaacPTYs() {
 
   // === LIGHT CLASSICAL (PTY 13) ===
   e.freq_khz = 93100;
-  e.pty_code = 13;
+  e.pty_code = 10;
   e.ps = "CLASSICO FM 93.1";
   e.rt = "CLASSICOS LEVES";
   e.song = "Clássico | Egberto Gismonti - Agua e Vinho";
@@ -2551,7 +2877,7 @@ void loadIsaacPTYs() {
 
   // === SERIOUS CLASSICAL (PTY 14) ===
   e.freq_khz = 95700;
-  e.pty_code = 14;
+  e.pty_code = 10;
   e.ps = "SINFONIA FM 95.7";
   e.rt = "SINFONIA ETERNA";
   e.song = "Sinfônico | Mozart - Eine Kleine Nachtmusik";
@@ -2563,7 +2889,7 @@ void loadIsaacPTYs() {
 
   // === VARIED SPEECH (PTY 15) ===
   e.freq_khz = 89700;
-  e.pty_code = 15;
+  e.pty_code = 10;
   e.ps = "TALK FM 89.7";
   e.rt = "CONVERSA E MUSICA";
   e.song = "Conversa | Criolo - Reflexao e Ritmo";
@@ -2575,7 +2901,7 @@ void loadIsaacPTYs() {
 
   // === SPORT (PTY 3) ===
   e.freq_khz = 98100;
-  e.pty_code = 3;
+  e.pty_code = 10;
   e.ps = "SPORT FM 98.1";
   e.rt = "ESPORTE EM TEMPO REAL";
   e.song = "Futebol | Galvao Bueno - Gol do Brasil";
@@ -2587,7 +2913,7 @@ void loadIsaacPTYs() {
 
   // === JAZZ (PTY 24) ===
   e.freq_khz = 101500;
-  e.pty_code = 24;
+  e.pty_code = 10;
   e.ps = "JAZZ FM 101.5";
   e.rt = "JAZZ CLASSICO";
   e.song = "Jazz Brasileiro | Miles Davis - So What";
@@ -2599,7 +2925,7 @@ void loadIsaacPTYs() {
 
   // === COUNTRY/FORRÓ (PTY 25) ===
   e.freq_khz = 103700;
-  e.pty_code = 25;
+  e.pty_code = 10;
   e.ps = "FORRO FM 103.7";
   e.rt = "FORRÓ CEARENSE";
   e.song = "Forró Tradicional | Jackson do Pandeiro - Asa Branca";
@@ -2611,7 +2937,7 @@ void loadIsaacPTYs() {
 
   // === NATIONAL/SERTANEJO (PTY 26) ===
   e.freq_khz = 105300;
-  e.pty_code = 26;
+  e.pty_code = 10;
   e.ps = "SERTANEJO FM 105.3";
   e.rt = "SERTANEJO RAIZ";
   e.song = "Sertanejo | Gusttavo Lima - Balada Inteligente";
@@ -2619,6 +2945,117 @@ void loadIsaacPTYs() {
   e.hour = "17"; e.minute = "50"; e.second = "30";
   e.day = "26"; e.month = "05"; e.year = "2026";
   e.weather = "Partly Cloudy"; e.temperature = "32°C";
+  customPtys.push_back(e);
+
+  // === CHILDREN'S (PTY 18) ===
+  e.freq_khz = 84300;
+  e.pty_code = 10;
+  e.ps = "INFANTIL FM 84.3";
+  e.rt = "MUSICA INFANTIL ALEGRE";
+  e.song = "Infantil | Turma da Monica - Aquarela Magica";
+  e.songYear = "2015";
+  e.hour = "10"; e.minute = "30"; e.second = "00";
+  e.day = "26"; e.month = "05"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "28°C";
+  customPtys.push_back(e);
+
+  e.freq_khz = 85300;
+  e.pty_code = 10;
+  e.ps = "KIDS FM 85.3";
+  e.rt = "DIVERSAO E APRENDIZADO";
+  e.song = "Infantil | Xuxa - Iluminando Criancas";
+  e.songYear = "1995";
+  e.hour = "14"; e.minute = "15"; e.second = "00";
+  e.day = "26"; e.month = "05"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "30°C";
+  customPtys.push_back(e);
+
+  e.freq_khz = 86200;
+  e.pty_code = 10;
+  e.ps = "CRIANCAS FM 86.2";
+  e.rt = "MUNDO INFANTIL NO AR";
+  e.song = "Infantil | Galinha Pintadinha - Brincando Cantando";
+  e.songYear = "2008";
+  e.hour = "09"; e.minute = "45"; e.second = "00";
+  e.day = "26"; e.month = "05"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "27°C";
+  customPtys.push_back(e);
+
+  e.freq_khz = 87300;
+  e.pty_code = 10;
+  e.ps = "TURMINHA FM 87.3";
+  e.rt = "HISTORIAS E MUSICA";
+  e.song = "Infantil | Balao Magico - Roda Gigante Feliz";
+  e.songYear = "1982";
+  e.hour = "15"; e.minute = "00"; e.second = "00";
+  e.day = "26"; e.month = "05"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "29°C";
+  customPtys.push_back(e);
+
+  e.freq_khz = 88900;
+  e.pty_code = 10;
+  e.ps = "ALEGRIA FM 88.9";
+  e.rt = "CRIANCAS FELIZES SEMPRE";
+  e.song = "Infantil | Palavra Cantada - Ciranda Magica";
+  e.songYear = "2003";
+  e.hour = "16"; e.minute = "30"; e.second = "00";
+  e.day = "26"; e.month = "05"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "31°C";
+  customPtys.push_back(e);
+
+  e.freq_khz = 90100;
+  e.pty_code = 10;
+  e.ps = "BRINCADEIRA FM 90.1";
+  e.rt = "DIVERSAO SEM PARAR";
+  e.song = "Infantil | Mundo Bita - Aventura Musical";
+  e.songYear = "2010";
+  e.hour = "11"; e.minute = "00"; e.second = "00";
+  e.day = "26"; e.month = "05"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "26°C";
+  customPtys.push_back(e);
+
+  e.freq_khz = 91100;
+  e.pty_code = 10;
+  e.ps = "FANTASIA FM 91.1";
+  e.rt = "CONTOS E FANTASIAS";
+  e.song = "Infantil | Patati Patata - Malabarismo Sonoro";
+  e.songYear = "2005";
+  e.hour = "13"; e.minute = "30"; e.second = "00";
+  e.day = "26"; e.month = "05"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "29°C";
+  customPtys.push_back(e);
+
+  e.freq_khz = 92200;
+  e.pty_code = 10;
+  e.ps = "SOMOS FM 92.2";
+  e.rt = "MUSICA PARA TODA FAMILIA";
+  e.song = "Infantil | Toquinho - Cantar Aprender";
+  e.songYear = "1978";
+  e.hour = "10"; e.minute = "00"; e.second = "00";
+  e.day = "26"; e.month = "05"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "28°C";
+  customPtys.push_back(e);
+
+  e.freq_khz = 93300;
+  e.pty_code = 10;
+  e.ps = "PEQUENO FM 93.3";
+  e.rt = "PEQUENAS HISTORIAS GRANDES";
+  e.song = "Infantil | Gilberto Gil Kids - Mundo Colorido";
+  e.songYear = "1985";
+  e.hour = "14"; e.minute = "45"; e.second = "00";
+  e.day = "26"; e.month = "05"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "27°C";
+  customPtys.push_back(e);
+
+  e.freq_khz = 94100;
+  e.pty_code = 10;
+  e.ps = "CIRCO FM 94.1";
+  e.rt = "PALHACOS E ACROBATAS";
+  e.song = "Infantil | Magico Ramirez - Prestidigitacao Sonora";
+  e.songYear = "1990";
+  e.hour = "15"; e.minute = "15"; e.second = "00";
+  e.day = "26"; e.month = "05"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "32°C";
   customPtys.push_back(e);
 
   // === Fill all remaining Fortaleza FM frequencies ===
@@ -2642,27 +3079,27 @@ void loadIsaacPTYs() {
     {"JANGADEIRO", 10}, {"RADIO CITY", 10}, {"FORTALEZA", 10},
     {"CULTURA FM", 10}, {"CIDADE FM", 10}, {"TROPICAL", 10},
     // Rock stations (PTY 11)
-    {"ANTENA 1", 11}, {"PULSO FM", 11}, {"LIDER FM", 11}, {"BOOM FM", 11},
+    {"ANTENA 1", 10}, {"PULSO FM", 10}, {"LIDER FM", 10}, {"BOOM FM", 10},
     // Jazz (PTY 24)
-    {"MIX FM", 24}, {"JAZZ FM", 24},
+    {"MIX FM", 10}, {"JAZZ FM", 10},
     // Easy Listening (PTY 12)
-    {"TEMPO FM", 12}, {"CLASSICO", 12},
+    {"TEMPO FM", 10}, {"CLASSICO", 12},
     // Light Classical (PTY 13)
-    {"ELITE FM", 13}, {"ALMA FM", 13},
+    {"ELITE FM", 10}, {"ALMA FM", 10},
     // Serious Classical (PTY 14)
-    {"DELTA FM", 14}, {"OPERA FM", 14},
+    {"DELTA FM", 10}, {"OPERA FM", 10},
     // Varied Speech (PTY 8, 15)
-    {"RITMO FM", 8}, {"SUPER FM", 15},
+    {"RITMO FM", 10}, {"SUPER FM", 10},
     // Sport (PTY 3)
-    {"ONDAS FM", 3}, {"NEWS FM", 3},
+    {"ONDAS FM", 10}, {"NEWS FM", 10},
     // Country/Forró (PTY 25)
-    {"SERTAO FM", 25},
+    {"SERTAO FM", 10}, {"FORRO FM", 10}, 
     // National/Sertanejo (PTY 26)
-    {"NOVA BRASIL", 26}, {"BRASIL FM", 26}, {"GAUCHO FM", 26},
+    {"NOVA BRASIL", 10}, {"BRASIL FM", 10}, {"GAUCHO FM", 10},
     // Oldies (PTY 27)
-    {"SOL FM", 27},
+    {"SOL FM", 10},
     // Folk (PTY 28)
-    {"MUSICA FM", 28}, {"ESTILO FM", 25}
+    {"MUSICA FM", 10}, {"ESTILO FM", 10}
   };
   const int NAMES_COUNT = sizeof(stationProfiles) / sizeof(stationProfiles[0]);
 
