@@ -705,6 +705,22 @@ void showPS() {
 
   String stationNameToShow = customPS.length() > 0 ? customPS : radio.rds.stationName;
 
+  // Extract artist and title from RDS+ for clear display next to PS
+  String artistName = "";
+  String titleName = "";
+  if (radio.rds.hasRDSplus) {
+    if (radio.rds.rdsplusTag1 == 115) {  // 115 = Artist
+      artistName = radio.rds.RTContent1;
+    } else if (radio.rds.rdsplusTag1 == 112) {  // 112 = Title
+      titleName = radio.rds.RTContent1;
+    }
+    if (radio.rds.rdsplusTag2 == 115) {  // 115 = Artist
+      artistName = radio.rds.RTContent2;
+    } else if (radio.rds.rdsplusTag2 == 112) {  // 112 = Title
+      titleName = radio.rds.RTContent2;
+    }
+  }
+
   String clockPrefix = "";
   if (rtcset) {
     time_t now = rtc.getEpoch();
@@ -725,8 +741,14 @@ void showPS() {
   String rtText = radio.rds.stationText;
   rtText.trim();
 
-  // Build display string: date/time + song + RT + PS
+  // Build display string: date/time + artist + title + RT + PS
   String psDisplayString = clockPrefix;
+  if (artistName.length() > 0) {
+    psDisplayString += "Artist: " + artistName + " - ";
+  }
+  if (titleName.length() > 0) {
+    psDisplayString += "Title: " + titleName + " - ";
+  }
   if (customSong.length() > 0) {
     psDisplayString += customSong + " - ";
   }
@@ -986,6 +1008,22 @@ void showRadioText() {
   String customSong = findCustomSongForFreq((uint32_t)frequency * 10);
   String radioRTtrimmed = radioRT; radioRTtrimmed.trim();
 
+  // Extract artist and title from RDS+ for clear display
+  String artistName = "";
+  String titleName = "";
+  if (radio.rds.hasRDSplus) {
+    if (radio.rds.rdsplusTag1 == 115) {  // 115 = Artist
+      artistName = radio.rds.RTContent1;
+    } else if (radio.rds.rdsplusTag1 == 112) {  // 112 = Title
+      titleName = radio.rds.RTContent1;
+    }
+    if (radio.rds.rdsplusTag2 == 115) {  // 115 = Artist
+      artistName = radio.rds.RTContent2;
+    } else if (radio.rds.rdsplusTag2 == 112) {  // 112 = Title
+      titleName = radio.rds.RTContent2;
+    }
+  }
+
   // Build display string: date/time + song + RT + custom RT
   String RTString = "";
   if (rtcset) {
@@ -1000,12 +1038,30 @@ void showRadioText() {
     RTString += customSong + " ";
   }
 
+  // Add artist and title with labels if available
+  if (artistName.length() > 0) {
+    RTString += "Artist: " + artistName;
+  }
+  if (titleName.length() > 0) {
+    RTString += (artistName.length() > 0 ? " | " : "") + "Title: " + titleName;
+  }
+
+  // Add RDS Plus data (other tags besides artist/title)
+  if (radio.rds.hasRDSplus) {
+    if (radio.rds.rdsplusTag1 != 169 && radio.rds.rdsplusTag1 != 115 && radio.rds.rdsplusTag1 != 112) {
+      RTString += (RTString.length() > 0 && !RTString.endsWith(" ") ? " | " : "") + String(textUI(radio.rds.rdsplusTag1)) + ": " + String(radio.rds.RTContent1);
+    }
+    if (radio.rds.rdsplusTag2 != 169 && radio.rds.rdsplusTag2 != 115 && radio.rds.rdsplusTag2 != 112) {
+      RTString += (RTString.length() > 0 && !RTString.endsWith(" ") ? " | " : "") + String(textUI(radio.rds.rdsplusTag2)) + ": " + String(radio.rds.RTContent2);
+    }
+  }
+
   if (customRT.length() > 0 && radioRTtrimmed.length() > 0)
-    RTString += customRT + " - " + radioRT + "      ";
+    RTString += (RTString.length() > 0 && !RTString.endsWith(" ") ? " | " : "") + customRT + " - " + radioRT + "      ";
   else if (customRT.length() > 0)
-    RTString += customRT + "      ";
+    RTString += (RTString.length() > 0 && !RTString.endsWith(" ") ? " | " : "") + customRT + "      ";
   else
-    RTString += radioRT + "      ";
+    RTString += (RTString.length() > 0 && !RTString.endsWith(" ") ? " | " : "") + radioRT + "      ";
 
   // Check if RT has changed
   if (radio.rds.hasRT && radio.rds.rtAB != rtABold) {
