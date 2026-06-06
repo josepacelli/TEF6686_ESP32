@@ -249,6 +249,8 @@ byte SStatusoldcount;
 byte stepsize;
 byte TEF;
 byte languageSet;
+byte menuPage = 0;
+byte maxMenuPages = 1;
 char buff[16];
 char programServicePrevious[9];
 char programTypePrevious[17];
@@ -268,6 +270,7 @@ int LevelOffset;
 int LowEdgeSet;
 int lowsignaltimer;
 int menuoption = 30;
+int realMenuoption = 30;
 int MStatusold;
 int OStatusold;
 int peakholdold;
@@ -874,6 +877,8 @@ void ModeButtonPress() {
         ShowFreq(0);
       } else {
         if (menu == false) {
+          menuPage = 0;
+          menuoption = 30;
           BuildMenu();
           menu = true;
         }
@@ -1000,10 +1005,29 @@ void ButtonPress() {
     }
   } else {
     if (menuopen == false) {
+      if (menuPage == 0 && menuoption == 210) {
+        menuPage = 1;
+        menuoption = 30;
+        BuildMenu();
+        return;
+      }
+      if (menuPage == 1 && menuoption == 50) {
+        menuPage = 0;
+        menuoption = 190;
+        BuildMenu();
+        return;
+      }
       menuopen = true;
       tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
       tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
-      switch (menuoption) {
+
+      if (menuPage == 0) {
+        realMenuoption = menuoption;
+      } else {
+        realMenuoption = menuoption + 180;
+      }
+
+      switch (realMenuoption) {
         case 30:
           tft.setTextColor(TFT_WHITE);
           tft.drawCentreString("Volume:", 150, 70, 4);
@@ -1101,6 +1125,7 @@ void ButtonPress() {
     } else {
       menuopen = false;
       BuildMenu();
+      menuPage = 0;
     }
   }
   while (digitalRead(ROTARY_BUTTON) == LOW) delay(50);
@@ -1125,10 +1150,26 @@ void KeyUp() {
     if (menuopen == false) {
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
       menuoption += 20;
-      if (menuoption > 230) menuoption = 30;
+      if (menuPage == 0) {
+        if (menuoption > 210) {
+          menuPage = 1;
+          menuoption = 30;
+        }
+      } else {
+        if (menuoption > 50) {
+          menuPage = 0;
+          menuoption = 30;
+        }
+      }
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
     } else {
-      switch (menuoption) {
+      if (menuPage == 0) {
+        realMenuoption = menuoption;
+      } else {
+        realMenuoption = menuoption + 180;
+      }
+
+      switch (realMenuoption) {
         case 30:
           tft.setTextColor(TFT_BLACK);
           if (VolSet > 0) tft.drawRightString("+" + String(VolSet, DEC), 165, 110, 4); else tft.drawRightString(String(VolSet, DEC), 165, 110, 4);
@@ -1278,12 +1319,26 @@ void KeyDown() {
     if (menuopen == false) {
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
       menuoption -= 20;
-      if (menuoption < 30) {
-        menuoption = 230;
+      if (menuPage == 0) {
+        if (menuoption < 30) {
+          menuPage = 1;
+          menuoption = 50;
+        }
+      } else {
+        if (menuoption < 30) {
+          menuPage = 0;
+          menuoption = 210;
+        }
       }
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
     } else {
-      switch (menuoption) {
+      if (menuPage == 0) {
+        realMenuoption = menuoption;
+      } else {
+        realMenuoption = menuoption + 180;
+      }
+
+      switch (realMenuoption) {
         case 30:
           tft.setTextColor(TFT_BLACK);
           if (VolSet > 0) tft.drawRightString("+" + String(VolSet, DEC), 165, 110, 4); else tft.drawRightString(String(VolSet, DEC), 165, 110, 4);
@@ -1582,43 +1637,54 @@ void BuildMenu() {
   tft.drawString("PRESS MODE TO EXIT AND STORE", 20, 4, 2);
   tft.setTextColor(TFT_WHITE);
   tft.drawRightString(VERSION, 305, 4, 2);
-  tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
-  tft.setTextColor(TFT_WHITE);
-  tft.drawRightString("dB", 305, 30, 2);
-  tft.drawRightString("MHz", 305, 50, 2);
-  tft.drawRightString("MHz", 305, 70, 2);
-  tft.drawRightString("MHz", 305, 90, 2);
-  tft.drawRightString("dB", 305, 110, 2);
-  if (StereoLevel != 0) tft.drawRightString("dBuV", 305, 130, 2);
-  if (HighCutLevel != 0) tft.drawRightString("Hz", 305, 150, 2);
-  if (HighCutOffset != 0) tft.drawRightString("dBuV", 305, 170, 2);
-  tft.drawRightString("dBuV", 305, 190, 2);
-  tft.drawRightString("%", 305, 210, 2);
-  tft.drawString("Set volume", 20, 30, 2);
-  tft.drawString("Set converter offset", 20, 50, 2);
-  tft.drawString("Set low bandedge", 20, 70, 2);
-  tft.drawString("Set high bandedge", 20, 90, 2);
-  tft.drawString("Set level offset", 20, 110, 2);
-  tft.drawString("Set Stereo sep. threshold", 20, 130, 2);
-  tft.drawString("Set high cut corner frequency", 20, 150, 2);
-  tft.drawString("Set High cut threshold", 20, 170, 2);
-  tft.drawString("Set low level threshold", 20, 190, 2);
-  tft.drawString("Set Display brightness", 20, 210, 2);
-  tft.drawString("Set Language (PTY)", 20, 230, 2);
-  tft.setTextColor(TFT_YELLOW);
-  if (VolSet > 0) tft.drawRightString("+" + String(VolSet, DEC), 270, 30, 2); else tft.drawRightString(String(VolSet, DEC), 270, 30, 2);
-  tft.drawRightString(String(ConverterSet, DEC), 270, 50, 2);
-  tft.drawRightString(String(LowEdgeSet + ConverterSet, DEC), 270, 70, 2);
-  tft.drawRightString(String(HighEdgeSet + ConverterSet, DEC), 270, 90, 2);
-  if (LevelOffset > 0) tft.drawRightString("+" + String(LevelOffset, DEC), 270, 110, 2); else tft.drawRightString(String(LevelOffset, DEC), 270, 110, 2);
-  if (StereoLevel != 0) tft.drawRightString(String(StereoLevel, DEC), 270, 130, 2); else tft.drawRightString("Off", 270, 130, 2);
-  if (HighCutLevel != 0) tft.drawRightString(String(HighCutLevel * 100, DEC), 270, 150, 2); else tft.drawRightString("Off", 270, 150, 2);
-  if (HighCutOffset != 0) tft.drawRightString(String(HighCutOffset, DEC), 270, 170, 2); else tft.drawRightString("Off", 270, 170, 2);
-  tft.drawRightString(String(LowLevelSet, DEC), 270, 190, 2);
-  tft.drawRightString(String(ContrastSet, DEC), 270, 210, 2);
-  if (languageSet == 1) tft.drawRightString("English", 270, 230, 2);
-  else if (languageSet == 2) tft.drawRightString("Portugues", 270, 230, 2);
-  else if (languageSet == 3) tft.drawRightString("Espanol", 270, 230, 2);
+
+  if (menuPage == 0) {
+    tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
+    tft.setTextColor(TFT_WHITE);
+    tft.drawRightString("dB", 305, 30, 2);
+    tft.drawRightString("MHz", 305, 50, 2);
+    tft.drawRightString("MHz", 305, 70, 2);
+    tft.drawRightString("MHz", 305, 90, 2);
+    tft.drawRightString("dB", 305, 110, 2);
+    if (StereoLevel != 0) tft.drawRightString("dBuV", 305, 130, 2);
+    if (HighCutLevel != 0) tft.drawRightString("Hz", 305, 150, 2);
+    if (HighCutOffset != 0) tft.drawRightString("dBuV", 305, 170, 2);
+    tft.drawRightString("dBuV", 305, 190, 2);
+    tft.drawString("Set volume", 20, 30, 2);
+    tft.drawString("Set converter offset", 20, 50, 2);
+    tft.drawString("Set low bandedge", 20, 70, 2);
+    tft.drawString("Set high bandedge", 20, 90, 2);
+    tft.drawString("Set level offset", 20, 110, 2);
+    tft.drawString("Set Stereo sep. threshold", 20, 130, 2);
+    tft.drawString("Set high cut corner freq", 20, 150, 2);
+    tft.drawString("Set High cut threshold", 20, 170, 2);
+    tft.drawString("Set low level threshold", 20, 190, 2);
+    tft.setTextColor(TFT_YELLOW);
+    if (VolSet > 0) tft.drawRightString("+" + String(VolSet, DEC), 270, 30, 2); else tft.drawRightString(String(VolSet, DEC), 270, 30, 2);
+    tft.drawRightString(String(ConverterSet, DEC), 270, 50, 2);
+    tft.drawRightString(String(LowEdgeSet + ConverterSet, DEC), 270, 70, 2);
+    tft.drawRightString(String(HighEdgeSet + ConverterSet, DEC), 270, 90, 2);
+    if (LevelOffset > 0) tft.drawRightString("+" + String(LevelOffset, DEC), 270, 110, 2); else tft.drawRightString(String(LevelOffset, DEC), 270, 110, 2);
+    if (StereoLevel != 0) tft.drawRightString(String(StereoLevel, DEC), 270, 130, 2); else tft.drawRightString("Off", 270, 130, 2);
+    if (HighCutLevel != 0) tft.drawRightString(String(HighCutLevel * 100, DEC), 270, 150, 2); else tft.drawRightString("Off", 270, 150, 2);
+    if (HighCutOffset != 0) tft.drawRightString(String(HighCutOffset, DEC), 270, 170, 2); else tft.drawRightString("Off", 270, 170, 2);
+    tft.drawRightString(String(LowLevelSet, DEC), 270, 190, 2);
+    tft.setTextColor(TFT_SKYBLUE);
+    tft.drawString(">> PAGE 2 >>", 20, 210, 2);
+  } else {
+    tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
+    tft.setTextColor(TFT_WHITE);
+    tft.drawRightString("%", 305, 30, 2);
+    tft.drawString("Set Display brightness", 20, 30, 2);
+    tft.drawString("Set Language (PTY)", 20, 50, 2);
+    tft.setTextColor(TFT_YELLOW);
+    tft.drawRightString(String(ContrastSet, DEC), 270, 30, 2);
+    if (languageSet == 1) tft.drawRightString("English", 270, 50, 2);
+    else if (languageSet == 2) tft.drawRightString("Portugues", 270, 50, 2);
+    else if (languageSet == 3) tft.drawRightString("Espanol", 270, 50, 2);
+    tft.setTextColor(TFT_SKYBLUE);
+    tft.drawString("<< PAGE 1", 20, 70, 2);
+  }
   analogWrite(SMETERPIN, 0);
 }
 

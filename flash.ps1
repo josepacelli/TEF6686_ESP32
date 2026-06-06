@@ -45,8 +45,8 @@ Write-Green "Using port: $comPort"
 Write-Host ""
 
 # Compile?
-$compile = Read-Host "Compile firmware first? (y/n) [default: n]"
-if ($compile -match "^[Yy]$") {
+$compile = Read-Host "Compile firmware first? (y/n) [default: y]"
+if ([string]::IsNullOrWhiteSpace($compile) -or $compile -match "^[Yy]$") {
     if (-not (Get-Command arduino-cli -ErrorAction SilentlyContinue)) {
         Write-Red "ERROR: arduino-cli not found"
         exit 1
