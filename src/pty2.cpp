@@ -11,7 +11,7 @@ const char* const PTY_PORTUGUESE[] = {
   "Drama",
   "Culturas",
   "Ciencia",
-  "Discurso Variado",
+  "Variado",
   "Musica Pop",
   "Musica Rock",
   "Facil Escuta",

@@ -1023,8 +1023,12 @@ void ButtonPress() {
 
       if (menuPage == 0) {
         realMenuoption = menuoption;
+      } else if (menuPage == 1) {
+        if (menuoption == 30) realMenuoption = 210;
+        else if (menuoption == 50) realMenuoption = 230;
+        else realMenuoption = 30;
       } else {
-        realMenuoption = menuoption + 180;
+        realMenuoption = menuoption;
       }
 
       switch (realMenuoption) {
