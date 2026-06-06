@@ -1,0 +1,38 @@
+// Portuguese PTY Categories
+#include "pty_language.h"
+
+const char* const PTY_PORTUGUESE[] = {
+  "Nenhum",
+  "Notícias",
+  "Assuntos Atuais",
+  "Informação",
+  "Desporto",
+  "Educação",
+  "Drama",
+  "Culturas",
+  "Ciência",
+  "Discurso Variado",
+  "Música Pop",
+  "Música Rock",
+  "Fácil Escuta",
+  "Clássicos Leves",
+  "Clássicos Sérios",
+  "Outra Música",
+  "Clima",
+  "Finanças",
+  "Programas Infantis",
+  "Assunto Social",
+  "Religião",
+  "Telefone",
+  "Viagem e Turismo",
+  "Lazer e Hobby",
+  "Música Jazz",
+  "Música Country",
+  "Música Nacional",
+  "Música Oldies",
+  "Música Folk",
+  "Documentário",
+  "Teste de Alarme",
+  "Alarme!!!",
+  "                "
+};

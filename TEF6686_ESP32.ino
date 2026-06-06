@@ -176,6 +176,7 @@
 
 #include "src/TEF6686.h"
 #include "src/constants.h"
+#include "src/pty_language.h"
 #include <EEPROM.h>
 #include <Wire.h>
 #include <TFT_eSPI.h>         // https://github.com/Bodmer/TFT_eSPI
@@ -247,6 +248,7 @@ byte SNRold;
 byte SStatusoldcount;
 byte stepsize;
 byte TEF;
+byte languageSet;
 char buff[16];
 char programServicePrevious[9];
 char programTypePrevious[17];
@@ -336,7 +338,7 @@ TFT_eSprite psSprite = TFT_eSprite(&tft);
 
 void setup() {
   setupmode = true;
-  EEPROM.begin(56);
+  EEPROM.begin(57);
   if (EEPROM.readByte(41) != 15) {
     EEPROM.writeByte(2, 0);
     EEPROM.writeByte(3, 0);
@@ -361,6 +363,7 @@ void setup() {
     EEPROM.writeByte(53, 0);
     EEPROM.writeByte(54, 102);
     EEPROM.writeByte(55, 0);
+    EEPROM.writeByte(56, 1);
     EEPROM.commit();
   }
   frequency = EEPROM.readUInt(0);
@@ -383,7 +386,9 @@ void setup() {
   displayflip = EEPROM.readByte(53);
   TEF = EEPROM.readByte(54);
   optenc = EEPROM.readByte(55);
+  languageSet = EEPROM.readByte(56);
   EEPROM.commit();
+  setPTYLanguage(languageSet);
   btStop();
   Serial.begin(115200);
 
@@ -897,6 +902,7 @@ void ModeButtonPress() {
     EEPROM.writeInt(32, HighCutLevel);
     EEPROM.writeInt(36, HighCutOffset);
     EEPROM.writeByte(43, LowLevelSet);
+    EEPROM.writeByte(56, languageSet);
     EEPROM.commit();
   }
   while (digitalRead(MODEBUTTON) == LOW) delay(50);
@@ -1082,6 +1088,15 @@ void ButtonPress() {
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(String(ContrastSet, DEC), 165, 110, 4);
           break;
+
+        case 230:
+          tft.setTextColor(TFT_WHITE);
+          tft.drawCentreString("Language:", 150, 70, 4);
+          tft.setTextColor(TFT_YELLOW);
+          if (languageSet == 1) tft.drawRightString("English", 165, 110, 4);
+          else if (languageSet == 2) tft.drawRightString("Portugues", 165, 110, 4);
+          else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
+          break;
       }
     } else {
       menuopen = false;
@@ -1110,7 +1125,7 @@ void KeyUp() {
     if (menuopen == false) {
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
       menuoption += 20;
-      if (menuoption > 210) menuoption = 30;
+      if (menuoption > 230) menuoption = 30;
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
     } else {
       switch (menuoption) {
@@ -1225,6 +1240,20 @@ void KeyUp() {
           tft.drawRightString(String(ContrastSet, DEC), 165, 110, 4);
           analogWrite(CONTRASTPIN, ContrastSet * 2 + 27);
           break;
+
+        case 230:
+          tft.setTextColor(TFT_BLACK);
+          if (languageSet == 1) tft.drawRightString("English", 165, 110, 4);
+          else if (languageSet == 2) tft.drawRightString("Portugues", 165, 110, 4);
+          else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
+          languageSet++;
+          if (languageSet > 3) languageSet = 1;
+          tft.setTextColor(TFT_YELLOW);
+          if (languageSet == 1) tft.drawRightString("English", 165, 110, 4);
+          else if (languageSet == 2) tft.drawRightString("Portugues", 165, 110, 4);
+          else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
+          setPTYLanguage(languageSet);
+          break;
       }
     }
   }
@@ -1250,7 +1279,7 @@ void KeyDown() {
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
       menuoption -= 20;
       if (menuoption < 30) {
-        menuoption = 210;
+        menuoption = 230;
       }
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
     } else {
@@ -1367,6 +1396,20 @@ void KeyDown() {
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(String(ContrastSet, DEC), 165, 110, 4);
           analogWrite(CONTRASTPIN, ContrastSet * 2 + 27);
+          break;
+
+        case 230:
+          tft.setTextColor(TFT_BLACK);
+          if (languageSet == 1) tft.drawRightString("English", 165, 110, 4);
+          else if (languageSet == 2) tft.drawRightString("Portugues", 165, 110, 4);
+          else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
+          languageSet--;
+          if (languageSet < 1) languageSet = 3;
+          tft.setTextColor(TFT_YELLOW);
+          if (languageSet == 1) tft.drawRightString("English", 165, 110, 4);
+          else if (languageSet == 2) tft.drawRightString("Portugues", 165, 110, 4);
+          else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
+          setPTYLanguage(languageSet);
           break;
       }
     }
@@ -1561,6 +1604,7 @@ void BuildMenu() {
   tft.drawString("Set High cut threshold", 20, 170, 2);
   tft.drawString("Set low level threshold", 20, 190, 2);
   tft.drawString("Set Display brightness", 20, 210, 2);
+  tft.drawString("Set Language (PTY)", 20, 230, 2);
   tft.setTextColor(TFT_YELLOW);
   if (VolSet > 0) tft.drawRightString("+" + String(VolSet, DEC), 270, 30, 2); else tft.drawRightString(String(VolSet, DEC), 270, 30, 2);
   tft.drawRightString(String(ConverterSet, DEC), 270, 50, 2);
@@ -1572,6 +1616,9 @@ void BuildMenu() {
   if (HighCutOffset != 0) tft.drawRightString(String(HighCutOffset, DEC), 270, 170, 2); else tft.drawRightString("Off", 270, 170, 2);
   tft.drawRightString(String(LowLevelSet, DEC), 270, 190, 2);
   tft.drawRightString(String(ContrastSet, DEC), 270, 210, 2);
+  if (languageSet == 1) tft.drawRightString("English", 270, 230, 2);
+  else if (languageSet == 2) tft.drawRightString("Portugues", 270, 230, 2);
+  else if (languageSet == 3) tft.drawRightString("Espanol", 270, 230, 2);
   analogWrite(SMETERPIN, 0);
 }
 

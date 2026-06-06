@@ -1,42 +1,6 @@
 #include "TEF6686.h"
 #include "custom_ptys.h"
-
-const char* const PTY[]
-{
-  "None",
-  "News",
-  "Current Affairs",
-  "Information",
-  "Sport",
-  "Education",
-  "Drama",
-  "Cultures",
-  "Science",
-  "Varied Speech",
-  "Pop Music",
-  "Rock Music",
-  "Easy Listening",
-  "Light Classics",
-  "Serious Classics",
-  "Other Music",
-  "Weather",
-  "Finance",
-  "Children's Progs",
-  "Social Affair",
-  "Religion",
-  "Phone In",
-  "Travel & Touring",
-  "Leisure & Hobby",
-  "Jazz Music",
-  "Country Music",
-  "National Music",
-  "Oldies Music",
-  "Folk Music",
-  "Documentary",
-  "Alarm Test",
-  "Alarm!!!",
-  "                "
-};
+#include "pty_language.h"
 
 void TEF6686::init(byte TEF) {
   uint8_t bootstatus;
@@ -57,7 +21,7 @@ void TEF6686::init(byte TEF) {
 
 String TEF6686::getPTYText(uint8_t ptyCode) {
   if (ptyCode >= 0 && ptyCode < 32) {
-    return String(PTY[ptyCode]);
+    return String(getPTYTextByLanguage(ptyCode, currentPTYLanguage));
   }
   return String("");
 }
@@ -294,7 +258,7 @@ bool TEF6686::readRDS()
 
           //RDS PTY Code
           rds.stationTypeCode = (rds.rdsB >> 5) & 0x1F;
-          strcpy(rds.stationType, PTY[rds.stationTypeCode]);
+          strcpy(rds.stationType, getPTYTextByLanguage(rds.stationTypeCode, currentPTYLanguage));
         } break;
 
       case RDS_GROUP_2A:
