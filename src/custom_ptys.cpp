@@ -2749,6 +2749,43 @@ PTYEntry& getCustomPTYAt(size_t i) {
   return customPtys[i];
 }
 
+const char** getPSListForPTY(int8_t pty_code, int* count) {
+  switch (pty_code) {
+    case  1: *count = NEWS_PS_COUNT;             return (const char**)newsPS;
+    case  2: *count = CURRENT_AFFAIRS_PS_COUNT;  return (const char**)currentAffairsPS;
+    case  3: *count = INFORMATION_PS_COUNT;       return (const char**)informationPS;
+    case  4: *count = SPORT_PS_COUNT;             return (const char**)sportPS;
+    case  5: *count = EDUCATION_PS_COUNT;         return (const char**)educationPS;
+    case  6: *count = DRAMA_PS_COUNT;             return (const char**)dramaPS;
+    case  7: *count = CULTURE_PS_COUNT;           return (const char**)culturePS;
+    case  8: *count = SCIENCE_PS_COUNT;           return (const char**)sciencePS;
+    case  9: *count = OTHER_MUSIC_PS_COUNT;       return (const char**)otherMusicPS;
+    case 10: *count = POP_PS_COUNT;               return (const char**)popPS;
+    case 11: *count = ROCK_PS_COUNT;              return (const char**)rockPS;
+    case 12: *count = EASY_PS_COUNT;              return (const char**)easyPS;
+    case 13:
+    case 14: *count = CLASSICAL_PS_COUNT;         return (const char**)classicalPS;
+    case 15: *count = OTHER_MUSIC_PS_COUNT;       return (const char**)otherMusicPS;
+    case 16: *count = WEATHER_PS_COUNT;           return (const char**)weatherPS;
+    case 17: *count = FINANCE_PS_COUNT;           return (const char**)financePS;
+    case 18: *count = CHILDREN_PS_COUNT;          return (const char**)childrenPS;
+    case 19: *count = SOCIAL_PS_COUNT;            return (const char**)socialPS;
+    case 20: *count = GOSPEL_PS_COUNT;            return (const char**)gospelPS;
+    case 21: *count = TALK_PS_COUNT;              return (const char**)talkPS;
+    case 22: *count = TRAVEL_PS_COUNT;            return (const char**)travelPS;
+    case 23: *count = LEISURE_PS_COUNT;           return (const char**)leisurePS;
+    case 24: *count = JAZZ_PS_COUNT;              return (const char**)jazzPS;
+    case 25: *count = COUNTRY_PS_COUNT;           return (const char**)countryPS;
+    case 26: *count = SERTANEJO_PS_COUNT;         return (const char**)sertanejoPS;
+    case 27: *count = OLDIES_PS_COUNT;            return (const char**)oldiesPS;
+    case 28: *count = FOLK_PS_COUNT;              return (const char**)folkPS;
+    case 29: *count = DOCUMENTARY_PS_COUNT;       return (const char**)documentaryPS;
+    case 30: *count = ALARM_TEST_PS_COUNT;        return (const char**)alarmTestPS;
+    case 31: *count = ALARM_PS_COUNT;             return (const char**)alarmPS;
+    default: *count = TALK_PS_COUNT;              return (const char**)talkPS;
+  }
+}
+
 String findCustomArtistForFreq(uint32_t freq_khz) {
   for (auto &e : customPtys) {
     if (e.freq_khz == freq_khz) return getRandomArtistByPTY(e.pty_code);

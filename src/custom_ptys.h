@@ -32,5 +32,6 @@ String findCustomSongForFreq(uint32_t freq_khz);
 String findCustomGenreForFreq(uint32_t freq_khz);
 size_t getCustomPTYCount();
 PTYEntry& getCustomPTYAt(size_t i);
+const char** getPSListForPTY(int8_t pty_code, int* count);
 
 #endif // CUSTOM_PTYS_H
