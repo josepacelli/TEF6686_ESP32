@@ -3324,6 +3324,14 @@ String findCustomGenreForFreq(uint32_t freq_khz) {
   return String("");
 }
 
+size_t getCustomPTYCount() {
+  return customPtys.size();
+}
+
+PTYEntry& getCustomPTYAt(size_t i) {
+  return customPtys[i];
+}
+
 String findCustomArtistForFreq(uint32_t freq_khz) {
   for (auto &e : customPtys) {
     if (e.freq_khz == freq_khz) return getRandomArtistByPTY(e.pty_code);

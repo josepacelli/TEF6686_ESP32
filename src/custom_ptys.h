@@ -30,5 +30,7 @@ int8_t findCustomPTYCodeForFreq(uint32_t freq_khz);
 void advanceSongScrollPos(uint32_t freq_khz);
 String findCustomSongForFreq(uint32_t freq_khz);
 String findCustomGenreForFreq(uint32_t freq_khz);
+size_t getCustomPTYCount();
+PTYEntry& getCustomPTYAt(size_t i);
 
 #endif // CUSTOM_PTYS_H

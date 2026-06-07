@@ -23,7 +23,7 @@ const char* const PTY_PORTUGUESE[] = {
   "Programas Infantis",
   "Assuntos Sociais",
   "Religiao",
-  "Programas Com Participacao Do Ouvinte",
+  "Ouvinte",
   "Viagens",
   "Lazer",
   "Musica Jazz",
