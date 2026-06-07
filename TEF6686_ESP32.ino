@@ -1019,15 +1019,11 @@ void ButtonPress() {
           menuPage = 1; menuoption = 90; BuildMenu();
         } else {
           menuopen = true;
-          int8_t ptyCode = getCustomPTYAt(psStationIndex).pty_code;
-          if (ptyCode < 0 || ptyCode > 31) ptyCode = 0;
-          psEditList = getPSListForPTY(ptyCode, &psEditCount);
+          psEditCount = (int)getCustomPTYCount();
           psEditIndex = 0;
-          if (psEditList && psEditCount > 0) {
-            String curPS = getCustomPTYAt(psStationIndex).ps;
-            for (int i = 0; i < psEditCount; i++) {
-              if (curPS == String(psEditList[i])) { psEditIndex = i; break; }
-            }
+          String curPS = getCustomPTYAt(psStationIndex).ps;
+          for (int i = 0; i < psEditCount; i++) {
+            if (curPS == getCustomPTYAt(i).ps) { psEditIndex = i; break; }
           }
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
@@ -1036,12 +1032,12 @@ void ButtonPress() {
           tft.drawCentreString(String(f/1000)+"."+String((f%1000)/100)+" MHz", 150, 55, 2);
           tft.drawCentreString("Set PS:", 150, 75, 4);
           tft.setTextColor(TFT_YELLOW);
-          if (psEditList && psEditCount > 0)
-            tft.drawCentreString(psEditList[psEditIndex], 150, 115, 2);
+          if (psEditCount > 0)
+            tft.drawCentreString(getCustomPTYAt(psEditIndex).ps, 150, 115, 2);
         }
       } else {
-        if (psEditList && psEditCount > 0)
-          getCustomPTYAt(psStationIndex).ps = String(psEditList[psEditIndex]);
+        if (psEditCount > 0)
+          getCustomPTYAt(psStationIndex).ps = getCustomPTYAt(psEditIndex).ps;
         lastCustomFreq = 0;
         menuopen = false;
         BuildMenu();
@@ -1273,11 +1269,11 @@ void KeyUp() {
         }
         BuildMenu();
       } else {
-        if (psEditList && psEditCount > 0) {
+        if (psEditCount > 0) {
           tft.fillRect(33, 100, 234, 50, TFT_BLACK);
           psEditIndex = (psEditIndex + 1) % psEditCount;
           tft.setTextColor(TFT_YELLOW);
-          tft.drawCentreString(psEditList[psEditIndex], 150, 115, 2);
+          tft.drawCentreString(getCustomPTYAt(psEditIndex).ps, 150, 115, 2);
         }
       }
       return;
@@ -1475,11 +1471,11 @@ void KeyDown() {
         if (psStationIndex < count && psStationIndex < psScrollTop) psScrollTop = psStationIndex;
         BuildMenu();
       } else {
-        if (psEditList && psEditCount > 0) {
+        if (psEditCount > 0) {
           tft.fillRect(33, 100, 234, 50, TFT_BLACK);
           psEditIndex = (psEditIndex + psEditCount - 1) % psEditCount;
           tft.setTextColor(TFT_YELLOW);
-          tft.drawCentreString(psEditList[psEditIndex], 150, 115, 2);
+          tft.drawCentreString(getCustomPTYAt(psEditIndex).ps, 150, 115, 2);
         }
       }
       return;
@@ -1868,7 +1864,7 @@ void BuildMenu() {
       tft.setTextColor(TFT_WHITE);
       tft.drawString(freqStr, 15, y, 2);
       String curPS = getCustomPTYAt(idx).ps;
-      if (curPS.length() > 16) curPS = curPS.substring(0, 16);
+      if (curPS.length() > 22) curPS = curPS.substring(0, 22);
       tft.setTextColor(TFT_YELLOW);
       tft.drawRightString(curPS, 315, y, 2);
     }

@@ -21,7 +21,7 @@ const char* const PTY_ENGLISH[] = {
   "Weather",
   "Finance",
   "Children's Progs",
-  "Social Affair",
+  "Social Affairs",
   "Religion",
   "Phone In",
   "Travel & Touring",
