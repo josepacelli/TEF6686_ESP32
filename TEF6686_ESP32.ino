@@ -1011,7 +1011,7 @@ void ButtonPress() {
         BuildMenu();
         return;
       }
-      if (menuPage == 1 && menuoption == 50) {
+      if (menuPage == 1 && menuoption == 70) {
         menuPage = 0;
         menuoption = 190;
         BuildMenu();
@@ -1160,7 +1160,7 @@ void KeyUp() {
           menuoption = 30;
         }
       } else {
-        if (menuoption > 50) {
+        if (menuoption > 70) {
           menuPage = 0;
           menuoption = 30;
         }
@@ -1326,7 +1326,7 @@ void KeyDown() {
       if (menuPage == 0) {
         if (menuoption < 30) {
           menuPage = 1;
-          menuoption = 50;
+          menuoption = 70;
         }
       } else {
         if (menuoption < 30) {

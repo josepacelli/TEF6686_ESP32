@@ -26,13 +26,13 @@ const char* const PTY_PORTUGUESE[] = {
   "Telefone",
   "Viagem e Turismo",
   "Lazer e Hobby",
-  "Musica Jazz",
-  "Musica Country",
-  "Musica Nacional",
-  "Musica Oldies",
-  "Musica Folk",
+  "Jazz",
+  "Country",
+  "Nacional",
+  "Oldies",
+  "Folk",
   "Documentario",
-  "Teste de Alarme",
+  "Alarme",
   "Alarme!!!",
-  "                "
+  "         "
 };
