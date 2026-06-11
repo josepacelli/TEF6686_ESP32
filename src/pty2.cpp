@@ -2,7 +2,7 @@
 #include "pty_language.h"
 
 const char* const PTY_PORTUGUESE[] = {
-  "Outro",
+  "Nao Definido",
   "Noticias",
   "Acontecimentos",
   "Informacoes",

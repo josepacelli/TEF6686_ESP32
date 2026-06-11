@@ -1,7 +1,10 @@
-#include "custom_ptys.h"
+﻿#include "custom_ptys.h"
 #include <vector>
 #include <cmath>
 #include "logbook.h"
+#include "frequencia.h"
+#include "ps_language.h"
+#include "rt_language.h"
 
 static std::vector<PTYEntry> customPtys;
 
@@ -1665,11 +1668,13 @@ void loadIsaacPTYs() {
   log_info("Loading default Isaac PTYs");
   customPtys.clear();
   PTYEntry e;
+  int si = 0;
 
   e.freq_khz = 79700;
   e.pty_code = 20;
-  e.ps = "RADIO METROPOLITANA 79.7MHZ - A RADIO DA COMUNIDADE";
-  e.rt = "RADIO METROPOLITANA 79.7MHZ - A RADIO DA COMUNIDADE";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Samba | Jorge Aragao - Samba Eternidade";
   e.songYear = "1995";
   e.hour = "14";
@@ -1684,8 +1689,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 86700;
   e.pty_code = 10;
-  e.ps = "RADIO EDUCATIVA - IFCE FM - EDUCACAO E CULTURA NO AR";
-  e.rt = "RADIO EDUCATIVA - IFCE FM - EDUCACAO E CULTURA NO AR";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "MPB | Gilberto Gil - Aquele Abraco";
   e.songYear = "1969";
   e.hour = "14"; e.minute = "38"; e.second = "03";
@@ -1695,8 +1701,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 87100;
   e.pty_code = 10;
-  e.ps = "CEARA FM 87.1MHZ - O SOM DO CEARA";
-  e.rt = "CEARA FM 87.1MHZ - O SOM DO CEARA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Forró | Luiz Gonzaga - Sertanejo Roots";
   e.songYear = "1952";
   e.hour = "14"; e.minute = "40"; e.second = "06";
@@ -1706,8 +1713,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 88300;
   e.pty_code = 20;
-  e.ps = "RADIO JERUSALEM FM - A VOZ DE DEUS NO AR";
-  e.rt = "RADIO JERUSALEM FM - A VOZ DE DEUS NO AR";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Pagode | Sorriso Maroto - Amor Infinito";
   e.songYear = "2003";
   e.hour = "14"; e.minute = "42"; e.second = "09";
@@ -1717,8 +1725,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 88900;
   e.pty_code = 10;
-  e.ps = "JANGADEIRO FM - A RADIO QUE TODO MUNDO AMA";
-  e.rt = "JANGADEIRO FM - A RADIO QUE TODO MUNDO AMA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Sertanejo | Gusttavo Lima - Festa";
   e.songYear = "2014";
   e.hour = "14"; e.minute = "44"; e.second = "12";
@@ -1728,8 +1737,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 89900;
   e.pty_code = 10;
-  e.ps = "89 FM 89.9 FM - A MAIS TOCADA DE FORTALEZA";
-  e.rt = "89 FM 89.9 FM - A MAIS TOCADA DE FORTALEZA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Funk Carioca | Anitta - Danca da Paixao";
   e.songYear = "2019";
   e.hour = "14"; e.minute = "46"; e.second = "15";
@@ -1739,8 +1749,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 90700;
   e.pty_code = 10;
-  e.ps = "FORTALEZA FM - A RADIO DE FORTALEZA";
-  e.rt = "FORTALEZA FM - A RADIO DE FORTALEZA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Bossa Nova | Tom Jobim - Garota de Ipanema";
   e.songYear = "1962";
   e.hour = "14"; e.minute = "48"; e.second = "18";
@@ -1750,8 +1761,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 90300;
   e.pty_code = 20;
-  e.ps = "RADIO UIRAPURU - REDE ALELUIA - GLORIA A DEUS";
-  e.rt = "RADIO UIRAPURU - REDE ALELUIA - GLORIA A DEUS";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Ivete Sangalo - Noite Sagrada";
   e.songYear = "2007";
   e.hour = "14"; e.minute = "50"; e.second = "21";
@@ -1761,8 +1773,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 91700;
   e.pty_code = 20;
-  e.ps = "SHALOM FM 91.7MHZ - COMUNIDADE SHALOM NO AR";
-  e.rt = "SHALOM FM 91.7MHZ - COMUNIDADE SHALOM NO AR";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Gal Costa - Levada Brasileira";
   e.songYear = "1980";
   e.hour = "14"; e.minute = "52"; e.second = "24";
@@ -1772,8 +1785,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 92100;
   e.pty_code = 20;
-  e.ps = "RADIO EFRAIM - A RADIO GOSPEL DO CEARA";
-  e.rt = "RADIO EFRAIM - A RADIO GOSPEL DO CEARA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Beth Carvalho - Alma Brasileira";
   e.songYear = "1985";
   e.hour = "14"; e.minute = "54"; e.second = "27";
@@ -1783,8 +1797,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 92500;
   e.pty_code = 10;
-  e.ps = "VERDINHA FM 92.5 - JORNALISMO QUE FALA A NOSSA LINGUA";
-  e.rt = "VERDINHA FM 92.5 - JORNALISMO QUE FALA A NOSSA LINGUA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "MPB | Caetano Veloso - Verdade Tropical";
   e.songYear = "1968";
   e.hour = "14"; e.minute = "56"; e.second = "30";
@@ -1794,8 +1809,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 92900;
   e.pty_code = 10;
-  e.ps = "JOVEM PAN NEWS FORTALEZA - A RADIO QUE TOCA NOTICIA";
-  e.rt = "JOVEM PAN NEWS FORTALEZA - A RADIO QUE TOCA NOTICIA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Pop | Marisa Monte - Noite Magica";
   e.songYear = "1998";
   e.hour = "14"; e.minute = "58"; e.second = "33";
@@ -1805,8 +1821,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 93500;
   e.pty_code = 20;
-  e.ps = "CANAA FM 93.5 - A TERRA PROMETIDA DO RADIO";
-  e.rt = "CANAA FM 93.5 - A TERRA PROMETIDA DO RADIO";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Pagode | Dilsinho - Comunidade Shalom";
   e.songYear = "2004";
   e.hour = "15"; e.minute = "00"; e.second = "36";
@@ -1816,8 +1833,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 93900;
   e.pty_code = 10;
-  e.ps = "FM 93 SEMPRE AO SEU LADO - SEMPRE AO SEU LADO";
-  e.rt = "FM 93 SEMPRE AO SEU LADO - SEMPRE AO SEU LADO";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Samba | Cartola - Saudade Profunda";
   e.songYear = "1978";
   e.hour = "15"; e.minute = "02"; e.second = "39";
@@ -1827,8 +1845,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 94300;
   e.pty_code = 10;
-  e.ps = "SOL FM 94.3 OFICIAL - NOSSO BRILHO E VOCE";
-  e.rt = "SOL FM 94.3 OFICIAL - NOSSO BRILHO E VOCE";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Rock Brasileiro | Legiao Urbana - Energia Pura";
   e.songYear = "1987";
   e.hour = "15"; e.minute = "04"; e.second = "42";
@@ -1838,8 +1857,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 94700;
   e.pty_code = 10;
-  e.ps = "JOVEM PAN FORTALEZA FM 94.7 - A MELHOR RADIO DO BRASIL";
-  e.rt = "JOVEM PAN FORTALEZA FM 94.7 - A MELHOR RADIO DO BRASIL";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Sertanejo | Jorge e Mateus - Melhor Trilha";
   e.songYear = "2010";
   e.hour = "15"; e.minute = "06"; e.second = "45";
@@ -1849,8 +1869,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 95100;
   e.pty_code = 20;
-  e.ps = "LOGOS FM - A PALAVRA DE DEUS NO AR";
-  e.rt = "LOGOS FM - A PALAVRA DE DEUS NO AR";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Alcione - Palavra de Deus";
   e.songYear = "1990";
   e.hour = "15"; e.minute = "08"; e.second = "48";
@@ -1860,8 +1881,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 95500;
   e.pty_code = 10;
-  e.ps = "CBN O POVO - A RADIO QUE TOCA NOTICIA";
-  e.rt = "CBN O POVO - A RADIO QUE TOCA NOTICIA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Pop | Adriana Calcanhotto - Noticia Boa";
   e.songYear = "2002";
   e.hour = "15"; e.minute = "10"; e.second = "51";
@@ -1871,8 +1893,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 96100;
   e.pty_code = 20;
-  e.ps = "DOMBOSCO FM 96,1 - A RADIO SALESIANA DO CEARA";
-  e.rt = "DOMBOSCO FM 96,1 - A RADIO SALESIANA DO CEARA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Chico Buarque - Graca Divina";
   e.songYear = "1979";
   e.hour = "15"; e.minute = "12"; e.second = "54";
@@ -1882,8 +1905,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 96700;
   e.pty_code = 10;
-  e.ps = "ALECE FM 96.7MHZ - A RADIO DA ASSEMBLEIA LEGISLATIVA";
-  e.rt = "ALECE FM 96.7MHZ - A RADIO DA ASSEMBLEIA LEGISLATIVA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "MPB | Ivan Lins - Democracia Sonora";
   e.songYear = "1986";
   e.hour = "15"; e.minute = "14"; e.second = "57";
@@ -1893,8 +1917,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 97100;
   e.pty_code = 20;
-  e.ps = "RADIO MARIA BRASIL - AVE MARIA CHEIA DE GRACA";
-  e.rt = "RADIO MARIA BRASIL - AVE MARIA CHEIA DE GRACA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Elza Soares - Maria Sagrada";
   e.songYear = "1988";
   e.hour = "15"; e.minute = "16"; e.second = "00";
@@ -1904,8 +1929,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 97700;
   e.pty_code = 10;
-  e.ps = "ANTENA 1 FM 97.7 - SOM INTERNACIONAL SINTONIA LOCAL";
-  e.rt = "ANTENA 1 FM 97.7 - SOM INTERNACIONAL SINTONIA LOCAL";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Pop | Djavan - Som Internacional";
   e.songYear = "1994";
   e.hour = "15"; e.minute = "18"; e.second = "05";
@@ -1915,8 +1941,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 98300;
   e.pty_code = 20;
-  e.ps = "RADIO LIDER FM GOSPEL 98.3 - A LIDER DO GOSPEL DO CEARA";
-  e.rt = "RADIO LIDER FM GOSPEL 98.3 - A LIDER DO GOSPEL DO CEARA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Belchior - Lider Celestial";
   e.songYear = "1992";
   e.hour = "15"; e.minute = "20"; e.second = "08";
@@ -1926,8 +1953,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 99100;
   e.pty_code = 10;
-  e.ps = "CIDADE FM 99.1 - A RADIO DA CIDADE DE FORTALEZA";
-  e.rt = "CIDADE FM 99.1 - A RADIO DA CIDADE DE FORTALEZA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Samba | Ze Ramalho - Cidade Maravilha";
   e.songYear = "1984";
   e.hour = "15"; e.minute = "22"; e.second = "11";
@@ -1937,8 +1965,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 99900;
   e.pty_code = 20;
-  e.ps = "REDE ALELUIA FM 99.9 - GLORIA A DEUS NAS ALTURAS";
-  e.rt = "REDE ALELUIA FM 99.9 - GLORIA A DEUS NAS ALTURAS";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Geraldo Azevedo - Gloria Eterna";
   e.songYear = "2001";
   e.hour = "15"; e.minute = "24"; e.second = "14";
@@ -1948,8 +1977,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 100900;
   e.pty_code = 20;
-  e.ps = "DEUS E AMOR FM 100.9 - DEUS E AMOR - A RADIO DA CURA";
-  e.rt = "DEUS E AMOR FM 100.9 - DEUS E AMOR - A RADIO DA CURA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Lenine - Amor Divino";
   e.songYear = "2005";
   e.hour = "15"; e.minute = "26"; e.second = "17";
@@ -1959,8 +1989,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 101300;
   e.pty_code = 20;
-  e.ps = "NOVA RADIO CRISTA - A NOVA VOZ DO EVANGELHO";
-  e.rt = "NOVA RADIO CRISTA - A NOVA VOZ DO EVANGELHO";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Criolo - Voz do Evangelho";
   e.songYear = "2011";
   e.hour = "15"; e.minute = "28"; e.second = "20";
@@ -1970,8 +2001,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 101700;
   e.pty_code = 10;
-  e.ps = "BANDNEWS FM 101.7 - TODA HORA TODA NOTICIA";
-  e.rt = "BANDNEWS FM 101.7 - TODA HORA TODA NOTICIA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Pop | Arlindo Cruz - Noticia Sempre";
   e.songYear = "2008";
   e.hour = "15"; e.minute = "30"; e.second = "23";
@@ -1981,8 +2013,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 102300;
   e.pty_code = 20;
-  e.ps = "TEMPLO CENTRAL FM 102.3 - O TEMPLO DE DEUS NO AR";
-  e.rt = "TEMPLO CENTRAL FM 102.3 - O TEMPLO DE DEUS NO AR";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Paulinho da Viola - Templo Sagrado";
   e.songYear = "1989";
   e.hour = "15"; e.minute = "32"; e.second = "26";
@@ -1992,8 +2025,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 102700;
   e.pty_code = 10;
-  e.ps = "RADIO BEACH PARK FM 102.7 - A CADA MUSICA UMA NOVA DESCOBERTA";
-  e.rt = "RADIO BEACH PARK FM 102.7 - A CADA MUSICA UMA NOVA DESCOBERTA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Axé | Martinho da Vila - Descoberta Nova";
   e.songYear = "2006";
   e.hour = "15"; e.minute = "34"; e.second = "29";
@@ -2003,8 +2037,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 103300;
   e.pty_code = 10;
-  e.ps = "RADIO SENADO - O SOM DA DEMOCRACIA";
-  e.rt = "RADIO SENADO - O SOM DA DEMOCRACIA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "MPB | Clara Nunes - Democracia Sonora";
   e.songYear = "1981";
   e.hour = "15"; e.minute = "36"; e.second = "32";
@@ -2014,8 +2049,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 103500;
   e.pty_code = 20;
-  e.ps = "REDE SHALOM DE RADIO - COMUNIDADE SHALOM - PAZ E BEM";
-  e.rt = "REDE SHALOM DE RADIO - COMUNIDADE SHALOM - PAZ E BEM";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Angela Ro Ro - Paz e Bem";
   e.songYear = "2000";
   e.hour = "15"; e.minute = "38"; e.second = "35";
@@ -2025,8 +2061,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 103900;
   e.pty_code = 10;
-  e.ps = "TEMPO FM 103.9 A SUA MELHOR ESTACAO - O TEMPO TODO A MELHOR MUSICA";
-  e.rt = "TEMPO FM 103.9 A SUA MELHOR ESTACAO - O TEMPO TODO A MELHOR MUSICA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Samba | Benito di Paula - Melhor Musica";
   e.songYear = "1983";
   e.hour = "15"; e.minute = "40"; e.second = "38";
@@ -2036,8 +2073,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 104300;
   e.pty_code = 10;
-  e.ps = "REDE METROPOLITANA FM 104.3 - MUSICA POP - MUSICA SERTANEJA = TOCA TODAS";
-  e.rt = "REDE METROPOLITANA FM 104.3 - MUSICA POP - MUSICA SERTANEJA = TOCA TODAS";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Sertanejo | Silas de Oliveira - Todas Tocadas";
   e.songYear = "2009";
   e.hour = "15"; e.minute = "42"; e.second = "41";
@@ -2047,8 +2085,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 105100;
   e.pty_code = 20;
-  e.ps = "AD CIDADE FM 105.1MHZ - ASSEMBLEIA DE DEUS NO AR";
-  e.rt = "AD CIDADE FM 105.1MHZ - ASSEMBLEIA DE DEUS NO AR";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Jorge Ben Jor - Assembleia Sagrada";
   e.songYear = "1997";
   e.hour = "15"; e.minute = "44"; e.second = "44";
@@ -2058,8 +2097,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 105700;
   e.pty_code = 10;
-  e.ps = "ATLANTICO SUL FM 105.7 - SUA VIDA NA MELHOR TRILHA";
-  e.rt = "ATLANTICO SUL FM 105.7 - SUA VIDA NA MELHOR TRILHA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Bossa Nova | Egberto Gismonti - Vida Melhor";
   e.songYear = "1975";
   e.hour = "15"; e.minute = "46"; e.second = "47";
@@ -2069,8 +2109,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 106500;
   e.pty_code = 10;
-  e.ps = "NOVABRASIL FM 106.5 - A MAIOR AUDIENCIA NO PUBLICO ADULTO";
-  e.rt = "NOVABRASIL FM 106.5 - A MAIOR AUDIENCIA NO PUBLICO ADULTO";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "MPB | Milton Nascimento - Brasil Novo";
   e.songYear = "1982";
   e.hour = "15"; e.minute = "48"; e.second = "50";
@@ -2080,8 +2121,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 107500;
   e.pty_code = 10;
-  e.ps = "MIX FM 107.5 - OS MAIORES HITS DO MOMENTO";
-  e.rt = "MIX FM 107.5 - OS MAIORES HITS DO MOMENTO";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Pop | Anitta - Hits Atuais";
   e.songYear = "2020";
   e.hour = "15"; e.minute = "50"; e.second = "53";
@@ -2091,8 +2133,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 107900;
   e.pty_code = 10;
-  e.ps = "107.9MHZ UNIVERSITARIA FM 107.9MHZ - A RADIO DA UFC - CULTURA E SABER";
-  e.rt = "107.9MHZ UNIVERSITARIA FM 107.9MHZ - A RADIO DA UFC - CULTURA E SABER";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Tropicália | Gilberto Gil - Cultura Infinita";
   e.songYear = "1967";
   e.hour = "15"; e.minute = "52"; e.second = "56";
@@ -2103,8 +2146,9 @@ void loadIsaacPTYs() {
   // === GOSPEL STATIONS (PTY 20) ===
   e.freq_khz = 79500;
   e.pty_code = 20;
-  e.ps = "CRISTO VIVE FM 79.5 - LOUVOR AO SENHOR NO AR";
-  e.rt = "CRISTO VIVE FM 79.5 - LOUVOR AO SENHOR NO AR";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel | Gino Amen - Graça Divina";
   e.songYear = "2022";
   e.hour = "16"; e.minute = "00"; e.second = "00";
@@ -2114,8 +2158,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 83400;
   e.pty_code = 20;
-  e.ps = "GRAÇA ETERNA FM 83.4 - BENCAO E PAZ";
-  e.rt = "GRAÇA ETERNA FM 83.4 - BENCAO E PAZ";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel Tradicional | Thalles Roberto - Palavra de Deus";
   e.songYear = "2020";
   e.hour = "16"; e.minute = "05"; e.second = "15";
@@ -2125,8 +2170,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 84900;
   e.pty_code = 20;
-  e.ps = "VOZ DO EVANGELHO FM 84.9 - LUZ E SALVACAO";
-  e.rt = "VOZ DO EVANGELHO FM 84.9 - LUZ E SALVACAO";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel Contemporaneo | Priscilla Alcantara - Eternidade Divina";
   e.songYear = "2023";
   e.hour = "16"; e.minute = "10"; e.second = "30";
@@ -2136,8 +2182,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 85600;
   e.pty_code = 20;
-  e.ps = "BENÇÃO FM 85.6 - A VOZ DA FE";
-  e.rt = "BENÇÃO FM 85.6 - A VOZ DA FE";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel Urbano | Kemilly Santos - Verdade Tropical";
   e.songYear = "2021";
   e.hour = "16"; e.minute = "15"; e.second = "45";
@@ -2147,8 +2194,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 100100;
   e.pty_code = 20;
-  e.ps = "LUZ DO EVANGELHO FM 100.1 - ETERNIDADE DIVINA";
-  e.rt = "LUZ DO EVANGELHO FM 100.1 - ETERNIDADE DIVINA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel Rock | Fernanda Brum - Noite Sagrada";
   e.songYear = "2019";
   e.hour = "16"; e.minute = "20"; e.second = "00";
@@ -2158,8 +2206,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 100500;
   e.pty_code = 20;
-  e.ps = "SALVACAO ETERNA FM 100.5 - LOUVOR SINCERO";
-  e.rt = "SALVACAO ETERNA FM 100.5 - LOUVOR SINCERO";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel Soul | Eyshila - Voz do Evangelho";
   e.songYear = "2022";
   e.hour = "16"; e.minute = "25"; e.second = "20";
@@ -2169,8 +2218,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 102900;
   e.pty_code = 20;
-  e.ps = "ESPERANÇA CRISTÃ FM 102.9 - VERDADEIRO CULTO";
-  e.rt = "ESPERANÇA CRISTÃ FM 102.9 - VERDADEIRO CULTO";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Adoracao | Midian Lima - Paz e Bem";
   e.songYear = "2023";
   e.hour = "16"; e.minute = "30"; e.second = "35";
@@ -2180,8 +2230,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 104100;
   e.pty_code = 20;
-  e.ps = "COMUNIDADE SHALOM FM 104.1 - PURO EVANGELHO";
-  e.rt = "COMUNIDADE SHALOM FM 104.1 - PURO EVANGELHO";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel Sertanejo | Soraya Moraes - Raizes Culturais";
   e.songYear = "2020";
   e.hour = "16"; e.minute = "35"; e.second = "50";
@@ -2191,8 +2242,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 106100;
   e.pty_code = 20;
-  e.ps = "REDE ALELUIA FM 106.1 - SINCERO LOUVOR";
-  e.rt = "REDE ALELUIA FM 106.1 - SINCERO LOUVOR";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel Forró | Gal Costa - Levada Brasileira";
   e.songYear = "1980";
   e.hour = "16"; e.minute = "40"; e.second = "00";
@@ -2202,8 +2254,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 107100;
   e.pty_code = 20;
-  e.ps = "FIEL EVANGELHO FM 107.1 - DOCE MELOQUIA";
-  e.rt = "FIEL EVANGELHO FM 107.1 - DOCE MELOQUIA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Gospel Samba | Beth Carvalho - Alma Brasileira";
   e.songYear = "1985";
   e.hour = "16"; e.minute = "45"; e.second = "15";
@@ -2214,8 +2267,9 @@ void loadIsaacPTYs() {
   // === POP STATIONS (PTY 10) ===
   e.freq_khz = 87500;
   e.pty_code = 10;
-  e.ps = "MUSICA POP FM 87.5 - MUSICA POP NO AR";
-  e.rt = "MUSICA POP FM 87.5 - MUSICA POP NO AR";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Pop Brasileiro | Anitta - Festa";
   e.songYear = "2019";
   e.hour = "16"; e.minute = "50"; e.second = "30";
@@ -2225,8 +2279,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 99300;
   e.pty_code = 10;
-  e.ps = "MEGA FM 99.3 - MEGA HITS";
-  e.rt = "MEGA FM 99.3 - MEGA HITS";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Pop Rock | Marisa Monte - Noite Magica";
   e.songYear = "1998";
   e.hour = "16"; e.minute = "55"; e.second = "45";
@@ -2237,8 +2292,9 @@ void loadIsaacPTYs() {
   // === ROCK STATIONS (PTY 11) ===
   e.freq_khz = 88700;
   e.pty_code = 10;
-  e.ps = "MUSICA ROCK FM 88.7 - MUSICA ROCK EM ALTA VOLTAGEM";
-  e.rt = "MUSICA ROCK FM 88.7 - MUSICA ROCK EM ALTA VOLTAGEM";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Rock Nacional | Legiao Urbana - Comida";
   e.songYear = "1987";
   e.hour = "17"; e.minute = "00"; e.second = "00";
@@ -2248,8 +2304,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 94500;
   e.pty_code = 10;
-  e.ps = "HEAVY FM 94.5 - ENERGIA MUSICA ROCK";
-  e.rt = "HEAVY FM 94.5 - ENERGIA MUSICA ROCK";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Hard Rock | Sepultura - Roots Bloody Roots";
   e.songYear = "1996";
   e.hour = "17"; e.minute = "05"; e.second = "15";
@@ -2260,8 +2317,9 @@ void loadIsaacPTYs() {
   // === EASY LISTENING (PTY 12) ===
   e.freq_khz = 91500;
   e.pty_code = 10;
-  e.ps = "BOSSA FM 91.5 - MELODIAS SUAVES";
-  e.rt = "BOSSA FM 91.5 - MELODIAS SUAVES";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Bossa Nova | Tom Jobim - Garota de Ipanema";
   e.songYear = "1962";
   e.hour = "17"; e.minute = "10"; e.second = "30";
@@ -2271,8 +2329,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 97300;
   e.pty_code = 10;
-  e.ps = "RELAX FM 97.3 - MUSICA PARA RELAXAR";
-  e.rt = "RELAX FM 97.3 - MUSICA PARA RELAXAR";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Easy Listening | Joao Gilberto - Desafinado";
   e.songYear = "1959";
   e.hour = "17"; e.minute = "15"; e.second = "45";
@@ -2283,8 +2342,9 @@ void loadIsaacPTYs() {
   // === LIGHT CLASSICAL (PTY 13) ===
   e.freq_khz = 93100;
   e.pty_code = 10;
-  e.ps = "CLASSICO FM 93.1 - CLASSICOS LEVES";
-  e.rt = "CLASSICO FM 93.1 - CLASSICOS LEVES";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Clássico | Egberto Gismonti - Agua e Vinho";
   e.songYear = "1974";
   e.hour = "17"; e.minute = "20"; e.second = "00";
@@ -2295,8 +2355,9 @@ void loadIsaacPTYs() {
   // === SERIOUS CLASSICAL (PTY 14) ===
   e.freq_khz = 95700;
   e.pty_code = 10;
-  e.ps = "SINFONIA FM 95.7 - SINFONIA ETERNA";
-  e.rt = "SINFONIA FM 95.7 - SINFONIA ETERNA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Sinfônico | Mozart - Eine Kleine Nachtmusik";
   e.songYear = "1787";
   e.hour = "17"; e.minute = "25"; e.second = "15";
@@ -2307,8 +2368,9 @@ void loadIsaacPTYs() {
   // === VARIED SPEECH (PTY 15) ===
   e.freq_khz = 89700;
   e.pty_code = 10;
-  e.ps = "CONVERSA FM 89.7 - CONVERSA E MUSICA";
-  e.rt = "CONVERSA FM 89.7 - CONVERSA E MUSICA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Conversa | Criolo - Reflexao e Ritmo";
   e.songYear = "2014";
   e.hour = "17"; e.minute = "30"; e.second = "30";
@@ -2319,8 +2381,9 @@ void loadIsaacPTYs() {
   // === SPORT (PTY 3) ===
   e.freq_khz = 98100;
   e.pty_code = 10;
-  e.ps = "ESPORTE FM 98.1 - ESPORTE EM TEMPO REAL";
-  e.rt = "ESPORTE FM 98.1 - ESPORTE EM TEMPO REAL";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Futebol | Galvao Bueno - Gol do Brasil";
   e.songYear = "2022";
   e.hour = "17"; e.minute = "35"; e.second = "45";
@@ -2331,8 +2394,9 @@ void loadIsaacPTYs() {
   // === JAZZ (PTY 24) ===
   e.freq_khz = 101500;
   e.pty_code = 10;
-  e.ps = "MUSICA JAZZ FM 101.5 - MUSICA JAZZ CLASSICO";
-  e.rt = "MUSICA JAZZ FM 101.5 - MUSICA JAZZ CLASSICO";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Jazz Brasileiro | Miles Davis - So What";
   e.songYear = "1959";
   e.hour = "17"; e.minute = "40"; e.second = "00";
@@ -2343,8 +2407,9 @@ void loadIsaacPTYs() {
   // === COUNTRY/FORRÓ (PTY 25) ===
   e.freq_khz = 103700;
   e.pty_code = 10;
-  e.ps = "FORRO FM 103.7 - FORRÓ CEARENSE";
-  e.rt = "FORRO FM 103.7 - FORRÓ CEARENSE";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Forró Tradicional | Jackson do Pandeiro - Asa Branca";
   e.songYear = "1947";
   e.hour = "17"; e.minute = "45"; e.second = "15";
@@ -2355,8 +2420,9 @@ void loadIsaacPTYs() {
   // === NATIONAL/SERTANEJO (PTY 26) ===
   e.freq_khz = 105300;
   e.pty_code = 10;
-  e.ps = "SERTANEJO FM 105.3 - SERTANEJO RAIZ";
-  e.rt = "SERTANEJO FM 105.3 - SERTANEJO RAIZ";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Sertanejo | Gusttavo Lima - Balada Inteligente";
   e.songYear = "2013";
   e.hour = "17"; e.minute = "50"; e.second = "30";
@@ -2367,8 +2433,9 @@ void loadIsaacPTYs() {
   // === CHILDREN'S (PTY 18) ===
   e.freq_khz = 84300;
   e.pty_code = 10;
-  e.ps = "MUSICA INFANTIL FM 84.3 - MUSICA INFANTIL ALEGRE";
-  e.rt = "MUSICA INFANTIL FM 84.3 - MUSICA INFANTIL ALEGRE";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Infantil | Turma da Monica - Aquarela Magica";
   e.songYear = "2015";
   e.hour = "10"; e.minute = "30"; e.second = "00";
@@ -2378,8 +2445,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 85300;
   e.pty_code = 10;
-  e.ps = "KIDS FM 85.3 - DIVERSAO E APRENDIZADO";
-  e.rt = "KIDS FM 85.3 - DIVERSAO E APRENDIZADO";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Infantil | Xuxa - Iluminando Criancas";
   e.songYear = "1995";
   e.hour = "14"; e.minute = "15"; e.second = "00";
@@ -2389,8 +2457,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 86200;
   e.pty_code = 10;
-  e.ps = "CRIANCAS FM 86.2 - MUNDO INFANTIL NO AR";
-  e.rt = "CRIANCAS FM 86.2 - MUNDO INFANTIL NO AR";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Infantil | Galinha Pintadinha - Brincando Cantando";
   e.songYear = "2008";
   e.hour = "09"; e.minute = "45"; e.second = "00";
@@ -2400,8 +2469,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 87300;
   e.pty_code = 10;
-  e.ps = "TURMINHA FM 87.3 - HISTORIAS E MUSICA";
-  e.rt = "TURMINHA FM 87.3 - HISTORIAS E MUSICA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Infantil | Balao Magico - Roda Gigante Feliz";
   e.songYear = "1982";
   e.hour = "15"; e.minute = "00"; e.second = "00";
@@ -2411,8 +2481,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 88900;
   e.pty_code = 10;
-  e.ps = "ALEGRIA FM 88.9 - CRIANCAS FELIZES SEMPRE";
-  e.rt = "ALEGRIA FM 88.9 - CRIANCAS FELIZES SEMPRE";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Infantil | Palavra Cantada - Ciranda Magica";
   e.songYear = "2003";
   e.hour = "16"; e.minute = "30"; e.second = "00";
@@ -2422,8 +2493,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 90100;
   e.pty_code = 10;
-  e.ps = "BRINCADEIRA FM 90.1 - DIVERSAO SEM PARAR";
-  e.rt = "BRINCADEIRA FM 90.1 - DIVERSAO SEM PARAR";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Infantil | Mundo Bita - Aventura Musical";
   e.songYear = "2010";
   e.hour = "11"; e.minute = "00"; e.second = "00";
@@ -2433,8 +2505,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 91100;
   e.pty_code = 10;
-  e.ps = "FANTASIA FM 91.1 - CONTOS E FANTASIAS";
-  e.rt = "FANTASIA FM 91.1 - CONTOS E FANTASIAS";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Infantil | Patati Patata - Malabarismo Sonoro";
   e.songYear = "2005";
   e.hour = "13"; e.minute = "30"; e.second = "00";
@@ -2444,8 +2517,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 92200;
   e.pty_code = 10;
-  e.ps = "SOMOS FM 92.2 - MUSICA PARA TODA FAMILIA";
-  e.rt = "SOMOS FM 92.2 - MUSICA PARA TODA FAMILIA";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Infantil | Toquinho - Cantar Aprender";
   e.songYear = "1978";
   e.hour = "10"; e.minute = "00"; e.second = "00";
@@ -2455,8 +2529,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 93300;
   e.pty_code = 10;
-  e.ps = "PEQUENO FM 93.3 - PEQUENAS HISTORIAS GRANDES";
-  e.rt = "PEQUENO FM 93.3 - PEQUENAS HISTORIAS GRANDES";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Infantil | Gilberto Gil Kids - Mundo Colorido";
   e.songYear = "1985";
   e.hour = "14"; e.minute = "45"; e.second = "00";
@@ -2466,8 +2541,9 @@ void loadIsaacPTYs() {
 
   e.freq_khz = 94100;
   e.pty_code = 10;
-  e.ps = "CIRCO FM 94.1 - PALHACOS E ACROBATAS";
-  e.rt = "CIRCO FM 94.1 - PALHACOS E ACROBATAS";
+  e.ps = getPSByLanguage(si, currentPTYLanguage);
+  e.rt = getRTByLanguage(si, currentPTYLanguage);
+  si++;
   e.song = "Infantil | Magico Ramirez - Prestidigitacao Sonora";
   e.songYear = "1990";
   e.hour = "15"; e.minute = "15"; e.second = "00";
@@ -2476,16 +2552,6 @@ void loadIsaacPTYs() {
   customPtys.push_back(e);
 
   // === Fill all remaining Fortaleza FM frequencies ===
-  const uint32_t allFrequencies[] = {
-    88100, 88300, 88500, 88700, 89100, 89300, 89500, 89700, 90100, 90500, 90900,
-    91100, 91300, 91500, 91900, 92300, 92700, 93100, 93300, 93700, 94100, 94500,
-    94900, 95300, 95700, 95900, 96300, 96500, 96900, 97300, 97500, 97900, 98100,
-    98500, 98700, 98900, 99300, 99500, 99700, 100100, 100300, 100500, 100700,
-    101100, 101500, 101900, 102100, 102500, 102900, 103100, 103700, 104100, 104500,
-    104700, 104900, 105300, 105500, 105900, 106100, 106300, 106700, 106900, 107100,
-    107300
-  };
-
   struct StationProfile {
     const char* ps;
     uint8_t pty;
@@ -2543,8 +2609,6 @@ void loadIsaacPTYs() {
     "DANCA E SENTIMENTO NO AR"
   };
   const int RT_COUNT = sizeof(rtMessages) / sizeof(rtMessages[0]);
-
-  const int FREQ_COUNT = sizeof(allFrequencies) / sizeof(allFrequencies[0]);
 
   for (int i = 0; i < FREQ_COUNT; i++) {
     bool exists = false;
