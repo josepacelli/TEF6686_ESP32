@@ -402,6 +402,7 @@ void setup() {
   TEF = EEPROM.readByte(54);
   optenc = EEPROM.readByte(55);
   languageSet = EEPROM.readByte(56);
+  if (languageSet < 1 || languageSet > 3) languageSet = 1; // Default English if invalid
   EEPROM.commit();
   setPTYLanguage(languageSet);
   btStop();
@@ -1495,6 +1496,9 @@ void KeyUp() {
           else if (languageSet == 2) tft.drawRightString("Portugues", 165, 110, 4);
           else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
           setPTYLanguage(languageSet);
+          loadIsaacPTYs();
+          EEPROM.writeByte(56, languageSet);
+          EEPROM.commit();
           break;
       }
     }
@@ -1718,6 +1722,9 @@ void KeyDown() {
           else if (languageSet == 2) tft.drawRightString("Portugues", 165, 110, 4);
           else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
           setPTYLanguage(languageSet);
+          loadIsaacPTYs();
+          EEPROM.writeByte(56, languageSet);
+          EEPROM.commit();
           break;
       }
     }
