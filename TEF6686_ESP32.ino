@@ -626,6 +626,7 @@ void loop() {
           tft.drawString("100", 134, 153, 1);
           tft.drawString("120", 164, 153, 1);
           tft.drawString("%", 196, 153, 1);
+          tft.setTextColor(TFT_WHITE);
           tft.drawString("M", 6, 136, 2);
           tft.drawString("PI:", 216, 195, 2);
           tft.drawString("PS:", 6, 195, 2);
@@ -1707,7 +1708,7 @@ void readRds() {
     }
 
     if (RDSstatus == 0) {
-      tft.setTextColor(TFT_SKYBLUE);
+      tft.setTextColor(TFT_YELLOW);
       tft.drawString(PIold, 244, 192, 4);
       tft.drawString(PTYold, 38, 168, 2);
       tft.setTextColor(TFT_BLACK);
@@ -1762,7 +1763,7 @@ void showPTY() {
   if (ptyToShow != PTYold) {
     tft.setTextColor(TFT_BLACK);
     tft.drawString(PTYold, 38, 168, 2);
-    tft.setTextColor(TFT_YELLOW);
+    tft.setTextColor(TFT_SKYBLUE);
     tft.drawString(ptyToShow, 38, 168, 2);
     PTYold = ptyToShow;
     ptyToShow.toCharArray(programTypePrevious, sizeof(programTypePrevious));
