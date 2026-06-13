@@ -335,6 +335,8 @@ int rtStationIndex = 0;
 int rtScrollTop = 0;
 int rtEditIndex = 0;
 int rtEditCount = 0;
+int rdsStationIndex = 0;
+int rdsScrollTop = 0;
 unsigned int change;
 unsigned int freq_scan;
 unsigned int frequency;
@@ -1017,6 +1019,18 @@ void ButtonPress() {
       EEPROM.commit();
     }
   } else {
+    if (menuPage == 5) {
+      int count = (int)getCustomPTYCount();
+      if (rdsStationIndex == count) {
+        menuPage = 1; menuoption = 130; BuildMenu();
+      } else {
+        getCustomPTYAt(rdsStationIndex).custom_rds_enabled = !getCustomPTYAt(rdsStationIndex).custom_rds_enabled;
+        lastCustomFreq = 0;
+        BuildMenu();
+      }
+      while (digitalRead(ROTARY_BUTTON) == LOW) delay(50);
+      return;
+    }
     if (menuPage == 4) {
       if (menuopen == false) {
         int count = (int)getCustomPTYCount();
@@ -1149,6 +1163,14 @@ void ButtonPress() {
         return;
       }
       if (menuPage == 1 && menuoption == 130) {
+        rdsStationIndex = 0;
+        rdsScrollTop = 0;
+        menuPage = 5;
+        menuoption = 30;
+        BuildMenu();
+        return;
+      }
+      if (menuPage == 1 && menuoption == 150) {
         menuPage = 0;
         menuoption = 190;
         BuildMenu();
@@ -1349,6 +1371,17 @@ void KeyUp() {
       }
       return;
     }
+    if (menuPage == 5) {
+      int count = (int)getCustomPTYCount();
+      rdsStationIndex++;
+      if (rdsStationIndex > count) rdsStationIndex = 0;
+      if (rdsStationIndex < count) {
+        if (rdsStationIndex >= rdsScrollTop + 8) rdsScrollTop = rdsStationIndex - 7;
+        if (rdsScrollTop < 0) rdsScrollTop = 0;
+      }
+      BuildMenu();
+      return;
+    }
     if (menuopen == false) {
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
       menuoption += 20;
@@ -1358,7 +1391,7 @@ void KeyUp() {
           menuoption = 30;
         }
       } else {
-        if (menuoption > 130) {
+        if (menuoption > 150) {
           menuPage = 0;
           menuoption = 30;
         }
@@ -1574,13 +1607,21 @@ void KeyDown() {
       }
       return;
     }
+    if (menuPage == 5) {
+      int count = (int)getCustomPTYCount();
+      rdsStationIndex--;
+      if (rdsStationIndex < 0) rdsStationIndex = count;
+      if (rdsStationIndex < count && rdsStationIndex < rdsScrollTop) rdsScrollTop = rdsStationIndex;
+      BuildMenu();
+      return;
+    }
     if (menuopen == false) {
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
       menuoption -= 20;
       if (menuPage == 0) {
         if (menuoption < 30) {
           menuPage = 1;
-          menuoption = 130;
+          menuoption = 150;
         }
       } else {
         if (menuoption < 30) {
@@ -1944,6 +1985,7 @@ void BuildMenu() {
     tft.drawString("Station PTY Editor", 20, 70, 2);
     tft.drawString("Station PS Editor", 20, 90, 2);
     tft.drawString("Station RT Editor", 20, 110, 2);
+    tft.drawString("Custom RDS Enable", 20, 130, 2);
     tft.setTextColor(TFT_YELLOW);
     tft.drawRightString(String(ContrastSet, DEC), 270, 30, 2);
     if (languageSet == 1) tft.drawRightString("English", 270, 50, 2);
@@ -1953,7 +1995,8 @@ void BuildMenu() {
     tft.drawString(">>", 275, 70, 2);
     tft.drawString(">>", 275, 90, 2);
     tft.drawString(">>", 275, 110, 2);
-    tft.drawString("<< PAGE 1", 20, 130, 2);
+    tft.drawString(">>", 275, 130, 2);
+    tft.drawString("<< PAGE 1", 20, 150, 2);
   } else if (menuPage == 4) {
     size_t count = getCustomPTYCount();
     int visRows = min((int)count, 8);
@@ -2018,6 +2061,28 @@ void BuildMenu() {
     tft.drawString("<< BACK", 20, 190, 2);
     int selY = (ptyStationIndex < (int)count) ? (30 + (ptyStationIndex - ptyScrollTop) * 20) : 190;
     menuoption = selY;
+    tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
+  } else if (menuPage == 5) {
+    size_t count = getCustomPTYCount();
+    int visRows = min((int)count, 8);
+    for (int i = 0; i < visRows; i++) {
+      int idx = rdsScrollTop + i;
+      if (idx >= (int)count) break;
+      int y = 30 + i * 20;
+      uint32_t f = getCustomPTYAt(idx).freq_khz;
+      tft.setTextColor(TFT_WHITE);
+      tft.drawString(String(f/1000)+"."+String((f%1000)/100), 15, y, 2);
+      String psStr = getCustomPTYAt(idx).ps;
+      if (psStr.length() > 12) psStr = psStr.substring(0, 12);
+      tft.drawString(psStr, 75, y, 2);
+      bool en = getCustomPTYAt(idx).custom_rds_enabled;
+      tft.setTextColor(en ? TFT_GREEN : TFT_RED);
+      tft.drawRightString(en ? "ON" : "OFF", 315, y, 2);
+    }
+    tft.setTextColor(TFT_SKYBLUE);
+    tft.drawString("<< BACK", 20, 190, 2);
+    int selY5 = (rdsStationIndex < (int)count) ? (30 + (rdsStationIndex - rdsScrollTop) * 20) : 190;
+    menuoption = selY5;
     tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
   }
   analogWrite(SMETERPIN, 0);

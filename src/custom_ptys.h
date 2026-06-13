@@ -21,6 +21,7 @@ struct PTYEntry {
   String year;
   String weather;
   String temperature;
+  bool custom_rds_enabled = true;
 };
 
 void loadIsaacPTYs();

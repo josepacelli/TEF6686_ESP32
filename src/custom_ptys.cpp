@@ -1506,6 +1506,7 @@ String findCustomPSForFreq(uint32_t freq_khz) {
 
   for (auto &e : customPtys) {
     if (e.freq_khz == freq_khz) {
+      if (!e.custom_rds_enabled) break;
       ps = e.ps;
       pty_code = e.pty_code;
       songYear = e.songYear;
@@ -1524,6 +1525,7 @@ String findCustomPSForFreq(uint32_t freq_khz) {
   if (ps.length() == 0) {
     for (auto &e : customPtys) {
       if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) {
+        if (!e.custom_rds_enabled) continue;
         ps = e.ps;
         pty_code = e.pty_code;
         songYear = e.songYear;
@@ -1598,6 +1600,7 @@ String findCustomRTForFreq(uint32_t freq_khz) {
 
   for (auto &e : customPtys) {
     if (e.freq_khz == freq_khz) {
+      if (!e.custom_rds_enabled) break;
       rt = e.rt;
       pty_code = e.pty_code;
       songYear = e.songYear;
@@ -1616,6 +1619,7 @@ String findCustomRTForFreq(uint32_t freq_khz) {
   if (rt.length() == 0) {
     for (auto &e : customPtys) {
       if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) {
+        if (!e.custom_rds_enabled) continue;
         rt = e.rt;
         pty_code = e.pty_code;
         songYear = e.songYear;
@@ -2735,10 +2739,16 @@ void loadIsaacPTYs() {
 
 int8_t findCustomPTYCodeForFreq(uint32_t freq_khz) {
   for (auto &e : customPtys) {
-    if (e.freq_khz == freq_khz) return e.pty_code;
+    if (e.freq_khz == freq_khz) {
+      if (!e.custom_rds_enabled) return -1;
+      return e.pty_code;
+    }
   }
   for (auto &e : customPtys) {
-    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.pty_code;
+    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) {
+      if (!e.custom_rds_enabled) continue;
+      return e.pty_code;
+    }
   }
   return -1;
 }
