@@ -203,6 +203,7 @@
 #endif
 
 #include "src/custom_ptys.h"
+#include "src/ui_language.h"
 
 #ifdef ARS
 TFT_eSPI tft = TFT_eSPI(320, 240);
@@ -472,8 +473,8 @@ void setup() {
     EEPROM.commit();
     tft.fillScreen(TFT_BLACK);
     tft.setTextColor(TFT_WHITE);
-    tft.drawCentreString("Rotary direction changed", 150, 70, 4);
-    tft.drawCentreString("Please release button", 150, 100, 4);
+    tft.drawCentreString(getUIString(UI_ROTARY_CHANGED,  languageSet), 150, 70, 4);
+    tft.drawCentreString(getUIString(UI_PLEASE_RELEASE,  languageSet), 150, 100, 4);
     while (digitalRead(BWBUTTON) == LOW) delay(50);
   }
 
@@ -489,8 +490,8 @@ void setup() {
     EEPROM.commit();
     tft.fillScreen(TFT_BLACK);
     tft.setTextColor(TFT_WHITE);
-    tft.drawCentreString("Screen flipped", 150, 70, 4);
-    tft.drawCentreString("Please release button", 150, 100, 4);
+    tft.drawCentreString(getUIString(UI_SCREEN_FLIPPED,  languageSet), 150, 70, 4);
+    tft.drawCentreString(getUIString(UI_PLEASE_RELEASE,  languageSet), 150, 100, 4);
     while (digitalRead(MODEBUTTON) == LOW) delay(50);
   }
 
@@ -516,7 +517,7 @@ void setup() {
     }
     EEPROM.writeByte(55, optenc);
     EEPROM.commit();
-    tft.drawCentreString("Please release button", 150, 100, 4);
+    tft.drawCentreString(getUIString(UI_PLEASE_RELEASE, languageSet), 150, 100, 4);
     while (digitalRead(ROTARY_BUTTON) == LOW) delay(50);
   }
 
@@ -525,7 +526,7 @@ void setup() {
   tft.pushImage (0, 99, 211, 140, pe5pvblogo);
   tft.pushImage (239, 200, 80, 30, nxplogo);
   tft.setTextColor(TFT_SKYBLUE);
-  tft.drawCentreString("FM/AM receiver", 160, 10, 4);
+  tft.drawCentreString(getUIString(UI_FM_AM_RECEIVER, languageSet), 160, 10, 4);
   tft.setTextColor(TFT_YELLOW);
   tft.drawCentreString("Software " + String(VERSION), 160, 30, 2);
   tft.setTextColor(TFT_WHITE);
@@ -1075,7 +1076,7 @@ void ButtonPress() {
           tft.setTextColor(TFT_WHITE);
           uint32_t f = getCustomPTYAt(rtStationIndex).freq_khz;
           tft.drawCentreString(String(f/1000)+"."+String((f%1000)/100)+" MHz", 150, 55, 2);
-          tft.drawCentreString("Set RT:", 150, 75, 4);
+          tft.drawCentreString(getUIString(UI_SET_RT, languageSet), 150, 75, 4);
           tft.setTextColor(TFT_YELLOW);
           if (rtEditCount > 0) {
             String rtOpt = getCustomPTYAt(rtEditIndex).rt;
@@ -1111,7 +1112,7 @@ void ButtonPress() {
           tft.setTextColor(TFT_WHITE);
           uint32_t f = getCustomPTYAt(psStationIndex).freq_khz;
           tft.drawCentreString(String(f/1000)+"."+String((f%1000)/100)+" MHz", 150, 55, 2);
-          tft.drawCentreString("Set PS:", 150, 75, 4);
+          tft.drawCentreString(getUIString(UI_SET_PS, languageSet), 150, 75, 4);
           tft.setTextColor(TFT_YELLOW);
           if (psEditCount > 0)
             tft.drawCentreString(getCustomPTYAt(psEditIndex).ps, 150, 115, 2);
@@ -1143,7 +1144,7 @@ void ButtonPress() {
           String psLabel = getCustomPTYAt(ptyStationIndex).ps;
           if (psLabel.length() > 14) psLabel = psLabel.substring(0, 14);
           tft.drawCentreString(psLabel, 150, 55, 2);
-          tft.drawCentreString("Set PTY:", 150, 75, 4);
+          tft.drawCentreString(getUIString(UI_SET_PTY, languageSet), 150, 75, 4);
           tft.setTextColor(TFT_YELLOW);
           tft.drawCentreString(String(ptyEditCode), 150, 105, 4);
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 140, 2);
@@ -1219,7 +1220,7 @@ void ButtonPress() {
       switch (realMenuoption) {
         case 30:
           tft.setTextColor(TFT_WHITE);
-          tft.drawCentreString("Volume:", 150, 70, 4);
+          tft.drawCentreString(getUIString(UI_VOLUME_LABEL, languageSet), 150, 70, 4);
           tft.drawString("dB", 170, 110, 4);
 
           tft.setTextColor(TFT_YELLOW);
@@ -1228,7 +1229,7 @@ void ButtonPress() {
 
         case 50:
           tft.setTextColor(TFT_WHITE);
-          tft.drawCentreString("Converter:", 150, 70, 4);
+          tft.drawCentreString(getUIString(UI_CONVERTER_LABEL, languageSet), 150, 70, 4);
           tft.drawString("MHz", 170, 110, 4);
           tft.setTextColor(TFT_YELLOW);
 
@@ -1237,7 +1238,7 @@ void ButtonPress() {
 
         case 70:
           tft.setTextColor(TFT_WHITE);
-          tft.drawCentreString("Low bandedge:", 150, 70, 4);
+          tft.drawCentreString(getUIString(UI_LOW_BANDEDGE_LABEL, languageSet), 150, 70, 4);
           tft.drawString("MHz", 170, 110, 4);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(String(LowEdgeSet + ConverterSet, DEC), 165, 110, 4);
@@ -1245,7 +1246,7 @@ void ButtonPress() {
 
         case 90:
           tft.setTextColor(TFT_WHITE);
-          tft.drawCentreString("High bandedge:", 150, 70, 4);
+          tft.drawCentreString(getUIString(UI_HIGH_BANDEDGE_LABEL, languageSet), 150, 70, 4);
           tft.drawString("MHz", 170, 110, 4);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(String(HighEdgeSet + ConverterSet, DEC), 165, 110, 4);
@@ -1253,7 +1254,7 @@ void ButtonPress() {
 
         case 110:
           tft.setTextColor(TFT_WHITE);
-          tft.drawCentreString("RF Level offset:", 150, 70, 4);
+          tft.drawCentreString(getUIString(UI_RF_LEVEL_LABEL, languageSet), 150, 70, 4);
           tft.drawString("dB", 170, 110, 4);
           tft.drawString("dBuV", 190, 157, 4);
           tft.setTextColor(TFT_YELLOW);
@@ -1264,31 +1265,31 @@ void ButtonPress() {
 
         case 130:
           tft.setTextColor(TFT_WHITE);
-          tft.drawCentreString("Stereo threshold:", 150, 70, 4);
+          tft.drawCentreString(getUIString(UI_STEREO_THRESH_LABEL, languageSet), 150, 70, 4);
           if (StereoLevel != 0) tft.drawString("dBuV", 170, 110, 4);
           tft.setTextColor(TFT_YELLOW);
-          if (StereoLevel != 0) tft.drawRightString(String(StereoLevel, DEC), 165, 110, 4); else tft.drawRightString("Off", 165, 110, 4);
+          if (StereoLevel != 0) tft.drawRightString(String(StereoLevel, DEC), 165, 110, 4); else tft.drawRightString(getUIString(UI_OFF, languageSet), 165, 110, 4);
           break;
 
         case 150:
           tft.setTextColor(TFT_WHITE);
-          tft.drawCentreString("High Cut corner:", 150, 70, 4);
+          tft.drawCentreString(getUIString(UI_HIGHCUT_CORNER_LABEL, languageSet), 150, 70, 4);
           if (HighCutLevel != 0) tft.drawString("Hz", 170, 110, 4);
           tft.setTextColor(TFT_YELLOW);
-          if (HighCutLevel != 0) tft.drawRightString(String(HighCutLevel * 100, DEC), 165, 110, 4); else tft.drawRightString("Off", 165, 110, 4);
+          if (HighCutLevel != 0) tft.drawRightString(String(HighCutLevel * 100, DEC), 165, 110, 4); else tft.drawRightString(getUIString(UI_OFF, languageSet), 165, 110, 4);
           break;
 
         case 170:
           tft.setTextColor(TFT_WHITE);
-          tft.drawCentreString("Highcut threshold:", 150, 70, 4);
+          tft.drawCentreString(getUIString(UI_HIGHCUT_THRESH_LABEL, languageSet), 150, 70, 4);
           if (HighCutOffset != 0) tft.drawString("dBuV", 170, 110, 4);
           tft.setTextColor(TFT_YELLOW);
-          if (HighCutOffset != 0) tft.drawRightString(String(HighCutOffset, DEC), 165, 110, 4); else tft.drawRightString("Off", 165, 110, 4);
+          if (HighCutOffset != 0) tft.drawRightString(String(HighCutOffset, DEC), 165, 110, 4); else tft.drawRightString(getUIString(UI_OFF, languageSet), 165, 110, 4);
           break;
 
         case 190:
           tft.setTextColor(TFT_WHITE);
-          tft.drawCentreString("Low level threshold:", 150, 70, 4);
+          tft.drawCentreString(getUIString(UI_LOW_LEVEL_LABEL, languageSet), 150, 70, 4);
           tft.drawString("dBuV", 150, 110, 4);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(String(LowLevelSet, DEC), 145, 110, 4);
@@ -1296,7 +1297,7 @@ void ButtonPress() {
 
         case 210:
           tft.setTextColor(TFT_WHITE);
-          tft.drawCentreString("Contrast:", 150, 70, 4);
+          tft.drawCentreString(getUIString(UI_CONTRAST_LABEL, languageSet), 150, 70, 4);
           tft.drawString("%", 170, 110, 4);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(String(ContrastSet, DEC), 165, 110, 4);
@@ -1304,7 +1305,7 @@ void ButtonPress() {
 
         case 230:
           tft.setTextColor(TFT_WHITE);
-          tft.drawCentreString("Language:", 150, 70, 4);
+          tft.drawCentreString(getUIString(UI_LANGUAGE_LABEL, languageSet), 150, 70, 4);
           tft.setTextColor(TFT_YELLOW);
           if (languageSet == 1) tft.drawRightString("English", 165, 110, 4);
           else if (languageSet == 2) tft.drawRightString("Portugues", 165, 110, 4);
@@ -1490,12 +1491,12 @@ void KeyUp() {
           StereoLevel ++;
             if (StereoLevel > 60 || StereoLevel <= 30) if (StereoLevel == 1) StereoLevel = 30; else StereoLevel = 0;
           tft.setTextColor(TFT_BLACK);
-          tft.drawRightString("Off", 165, 110, 4);
+          tft.drawRightString(getUIString(UI_OFF, languageSet), 165, 110, 4);
           tft.drawString("dBuV", 170, 110, 4);
           tft.setTextColor(TFT_WHITE);
           if (StereoLevel != 0) tft.drawString("dBuV", 170, 110, 4);
           tft.setTextColor(TFT_YELLOW);
-          if (StereoLevel != 0) tft.drawRightString(String(StereoLevel, DEC), 165, 110, 4); else tft.drawRightString("Off", 165, 110, 4);
+          if (StereoLevel != 0) tft.drawRightString(String(StereoLevel, DEC), 165, 110, 4); else tft.drawRightString(getUIString(UI_OFF, languageSet), 165, 110, 4);
           radio.setStereoLevel(StereoLevel);
           break;
 
@@ -1515,12 +1516,12 @@ void KeyUp() {
           HighCutOffset ++;
             if (HighCutOffset > 60 || HighCutOffset <= 20) if (HighCutOffset == 1) HighCutOffset = 20; else HighCutOffset = 0;
           tft.setTextColor(TFT_BLACK);
-          tft.drawRightString("Off", 165, 110, 4);
+          tft.drawRightString(getUIString(UI_OFF, languageSet), 165, 110, 4);
           tft.drawString("dBuV", 170, 110, 4);
           tft.setTextColor(TFT_WHITE);
           if (HighCutOffset != 0) tft.drawString("dBuV", 170, 110, 4);
           tft.setTextColor(TFT_YELLOW);
-          if (HighCutOffset != 0) tft.drawRightString(String(HighCutOffset, DEC), 165, 110, 4); else tft.drawRightString("Off", 165, 110, 4);
+          if (HighCutOffset != 0) tft.drawRightString(String(HighCutOffset, DEC), 165, 110, 4); else tft.drawRightString(getUIString(UI_OFF, languageSet), 165, 110, 4);
           radio.setHighCutOffset(HighCutOffset);
           break;
 
@@ -1723,14 +1724,14 @@ void KeyDown() {
           StereoLevel --;
             if (StereoLevel < 30) if (StereoLevel < 0) StereoLevel = 60; else StereoLevel = 0;
           tft.setTextColor(TFT_BLACK);
-          tft.drawRightString("Off", 165, 110, 4);
+          tft.drawRightString(getUIString(UI_OFF, languageSet), 165, 110, 4);
           tft.drawString("dBuV", 170, 110, 4);
           tft.setTextColor(TFT_WHITE);
           if (StereoLevel != 0) {
             tft.drawString("dBuV", 170, 110, 4);
           }
           tft.setTextColor(TFT_YELLOW);
-          if (StereoLevel != 0) tft.drawRightString(String(StereoLevel, DEC), 165, 110, 4); else tft.drawRightString("Off", 165, 110, 4);
+          if (StereoLevel != 0) tft.drawRightString(String(StereoLevel, DEC), 165, 110, 4); else tft.drawRightString(getUIString(UI_OFF, languageSet), 165, 110, 4);
           radio.setStereoLevel(StereoLevel);
           break;
 
@@ -1750,12 +1751,12 @@ void KeyDown() {
           HighCutOffset --;
             if (HighCutOffset < 20) if (HighCutOffset < 0) HighCutOffset = 60; else HighCutOffset = 0;
           tft.setTextColor(TFT_BLACK);
-          tft.drawRightString("Off", 165, 110, 4);
+          tft.drawRightString(getUIString(UI_OFF, languageSet), 165, 110, 4);
           tft.drawString("dBuV", 170, 110, 4);
           tft.setTextColor(TFT_WHITE);
           if (HighCutOffset != 0) tft.drawString("dBuV", 170, 110, 4);
           tft.setTextColor(TFT_YELLOW);
-          if (HighCutOffset != 0) tft.drawRightString(String(HighCutOffset, DEC), 165, 110, 4); else tft.drawRightString("Off", 165, 110, 4);
+          if (HighCutOffset != 0) tft.drawRightString(String(HighCutOffset, DEC), 165, 110, 4); else tft.drawRightString(getUIString(UI_OFF, languageSet), 165, 110, 4);
           radio.setHighCutOffset(HighCutOffset);
           break;
 
@@ -1969,7 +1970,7 @@ void BuildMenu() {
   tft.drawRect(0, 0, 320, 240, TFT_BLUE);
   tft.drawLine(0, 23, 320, 23, TFT_BLUE);
   tft.setTextColor(TFT_SKYBLUE);
-  tft.drawString("PRESS MODE TO EXIT AND STORE", 20, 4, 2);
+  tft.drawString(getUIString(UI_PRESS_MODE_EXIT, languageSet), 20, 4, 2);
   tft.setTextColor(TFT_WHITE);
   tft.drawRightString(VERSION, 305, 4, 2);
 
@@ -1985,37 +1986,37 @@ void BuildMenu() {
     if (HighCutLevel != 0) tft.drawRightString("Hz", 305, 150, 2);
     if (HighCutOffset != 0) tft.drawRightString("dBuV", 305, 170, 2);
     tft.drawRightString("dBuV", 305, 190, 2);
-    tft.drawString("Set volume", 20, 30, 2);
-    tft.drawString("Set converter offset", 20, 50, 2);
-    tft.drawString("Set low bandedge", 20, 70, 2);
-    tft.drawString("Set high bandedge", 20, 90, 2);
-    tft.drawString("Set level offset", 20, 110, 2);
-    tft.drawString("Set Stereo sep. threshold", 20, 130, 2);
-    tft.drawString("Set high cut corner freq", 20, 150, 2);
-    tft.drawString("Set High cut threshold", 20, 170, 2);
-    tft.drawString("Set low level threshold", 20, 190, 2);
+    tft.drawString(getUIString(UI_SET_VOLUME,          languageSet), 20, 30, 2);
+    tft.drawString(getUIString(UI_SET_CONVERTER,       languageSet), 20, 50, 2);
+    tft.drawString(getUIString(UI_SET_LOW_BANDEDGE,    languageSet), 20, 70, 2);
+    tft.drawString(getUIString(UI_SET_HIGH_BANDEDGE,   languageSet), 20, 90, 2);
+    tft.drawString(getUIString(UI_SET_LEVEL_OFFSET,    languageSet), 20, 110, 2);
+    tft.drawString(getUIString(UI_SET_STEREO_THRESH,   languageSet), 20, 130, 2);
+    tft.drawString(getUIString(UI_SET_HIGHCUT_CORNER,  languageSet), 20, 150, 2);
+    tft.drawString(getUIString(UI_SET_HIGHCUT_THRESH,  languageSet), 20, 170, 2);
+    tft.drawString(getUIString(UI_SET_LOW_LEVEL,       languageSet), 20, 190, 2);
     tft.setTextColor(TFT_YELLOW);
     if (VolSet > 0) tft.drawRightString("+" + String(VolSet, DEC), 270, 30, 2); else tft.drawRightString(String(VolSet, DEC), 270, 30, 2);
     tft.drawRightString(String(ConverterSet, DEC), 270, 50, 2);
     tft.drawRightString(String(LowEdgeSet + ConverterSet, DEC), 270, 70, 2);
     tft.drawRightString(String(HighEdgeSet + ConverterSet, DEC), 270, 90, 2);
     if (LevelOffset > 0) tft.drawRightString("+" + String(LevelOffset, DEC), 270, 110, 2); else tft.drawRightString(String(LevelOffset, DEC), 270, 110, 2);
-    if (StereoLevel != 0) tft.drawRightString(String(StereoLevel, DEC), 270, 130, 2); else tft.drawRightString("Off", 270, 130, 2);
-    if (HighCutLevel != 0) tft.drawRightString(String(HighCutLevel * 100, DEC), 270, 150, 2); else tft.drawRightString("Off", 270, 150, 2);
-    if (HighCutOffset != 0) tft.drawRightString(String(HighCutOffset, DEC), 270, 170, 2); else tft.drawRightString("Off", 270, 170, 2);
+    if (StereoLevel != 0) tft.drawRightString(String(StereoLevel, DEC), 270, 130, 2); else tft.drawRightString(getUIString(UI_OFF, languageSet), 270, 130, 2);
+    if (HighCutLevel != 0) tft.drawRightString(String(HighCutLevel * 100, DEC), 270, 150, 2); else tft.drawRightString(getUIString(UI_OFF, languageSet), 270, 150, 2);
+    if (HighCutOffset != 0) tft.drawRightString(String(HighCutOffset, DEC), 270, 170, 2); else tft.drawRightString(getUIString(UI_OFF, languageSet), 270, 170, 2);
     tft.drawRightString(String(LowLevelSet, DEC), 270, 190, 2);
     tft.setTextColor(TFT_SKYBLUE);
-    tft.drawString(">> PAGE 2 >>", 20, 210, 2);
+    tft.drawString(getUIString(UI_PAGE2, languageSet), 20, 210, 2);
   } else if (menuPage == 1) {
     tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
     tft.setTextColor(TFT_WHITE);
     tft.drawRightString("%", 305, 30, 2);
-    tft.drawString("Set Display brightness", 20, 30, 2);
-    tft.drawString("Set Language (PTY)", 20, 50, 2);
-    tft.drawString("Station PTY Editor", 20, 70, 2);
-    tft.drawString("Station PS Editor", 20, 90, 2);
-    tft.drawString("Station RT Editor", 20, 110, 2);
-    tft.drawString("Custom RDS Enable", 20, 130, 2);
+    tft.drawString(getUIString(UI_SET_BRIGHTNESS, languageSet), 20, 30, 2);
+    tft.drawString(getUIString(UI_SET_LANGUAGE,   languageSet), 20, 50, 2);
+    tft.drawString(getUIString(UI_PTY_EDITOR,     languageSet), 20, 70, 2);
+    tft.drawString(getUIString(UI_PS_EDITOR,      languageSet), 20, 90, 2);
+    tft.drawString(getUIString(UI_RT_EDITOR,      languageSet), 20, 110, 2);
+    tft.drawString(getUIString(UI_CUSTOM_RDS,     languageSet), 20, 130, 2);
     tft.setTextColor(TFT_YELLOW);
     tft.drawRightString(String(ContrastSet, DEC), 270, 30, 2);
     if (languageSet == 1) tft.drawRightString("English", 270, 50, 2);
@@ -2026,7 +2027,7 @@ void BuildMenu() {
     tft.drawString(">>", 275, 90, 2);
     tft.drawString(">>", 275, 110, 2);
     tft.drawString(">>", 275, 130, 2);
-    tft.drawString("<< PAGE 1", 20, 150, 2);
+    tft.drawString(getUIString(UI_PAGE1_BACK, languageSet), 20, 150, 2);
   } else if (menuPage == 4) {
     size_t count = getCustomPTYCount();
     int visRows = min((int)count, 8);
@@ -2043,7 +2044,7 @@ void BuildMenu() {
       tft.drawRightString(curRT, 315, y, 2);
     }
     tft.setTextColor(TFT_SKYBLUE);
-    tft.drawString("<< BACK", 20, 190, 2);
+    tft.drawString(getUIString(UI_BACK, languageSet), 20, 190, 2);
     int selY4 = (rtStationIndex < (int)count) ? (30 + (rtStationIndex - rtScrollTop) * 20) : 190;
     menuoption = selY4;
     tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
@@ -2064,7 +2065,7 @@ void BuildMenu() {
       tft.drawRightString(curPS, 315, y, 2);
     }
     tft.setTextColor(TFT_SKYBLUE);
-    tft.drawString("<< BACK", 20, 190, 2);
+    tft.drawString(getUIString(UI_BACK, languageSet), 20, 190, 2);
     int selY3 = (psStationIndex < (int)count) ? (30 + (psStationIndex - psScrollTop) * 20) : 190;
     menuoption = selY3;
     tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
@@ -2088,7 +2089,7 @@ void BuildMenu() {
       tft.drawRightString(radio.getPTYText(pc), 315, y, 2);
     }
     tft.setTextColor(TFT_SKYBLUE);
-    tft.drawString("<< BACK", 20, 190, 2);
+    tft.drawString(getUIString(UI_BACK, languageSet), 20, 190, 2);
     int selY = (ptyStationIndex < (int)count) ? (30 + (ptyStationIndex - ptyScrollTop) * 20) : 190;
     menuoption = selY;
     tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
@@ -2110,7 +2111,7 @@ void BuildMenu() {
       tft.drawRightString(en ? "ON" : "OFF", 315, y, 2);
     }
     tft.setTextColor(TFT_SKYBLUE);
-    tft.drawString("<< BACK", 20, 190, 2);
+    tft.drawString(getUIString(UI_BACK, languageSet), 20, 190, 2);
     int selY5 = (rdsStationIndex < (int)count) ? (30 + (rdsStationIndex - rdsScrollTop) * 20) : 190;
     menuoption = selY5;
     tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
@@ -2129,7 +2130,7 @@ void MuteScreen(int setting) {
     tft.fillScreen(TFT_BLACK);
     tft.drawRect(0, 0, 320, 240, TFT_BLUE);
     tft.setTextColor(TFT_WHITE);
-    tft.drawCentreString("Screen is muted!", 160, 30, 4);
+    tft.drawCentreString(getUIString(UI_SCREEN_MUTED, languageSet), 160, 30, 4);
     tft.drawCentreString("To unmute uncheck RF+ box", 160, 60, 2);
   }
 }
