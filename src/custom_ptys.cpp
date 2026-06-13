@@ -1,4 +1,4 @@
-﻿#include "custom_ptys.h"
+#include "custom_ptys.h"
 #include <vector>
 #include <cmath>
 #include <algorithm>
@@ -1669,1077 +1669,476 @@ void loadIsaacPTYs() {
   log_info("Loading default Isaac PTYs");
   customPtys.clear();
   PTYEntry e;
-  int si = 0;
 
+  // === FORTALEZA FM STATIONS ONLY ===
+
+  // Radio Metropolitana FM 79.7
   e.freq_khz = 79700;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Samba | Jorge Aragao - Samba Eternidade";
-  e.songYear = "1995";
-  e.hour = "14";
-  e.minute = "35";
-  e.second = "00";
-  e.day = "26";
-  e.month = "05";
-  e.year = "2026";
-  e.weather = "Sunny";
-  e.temperature = "32°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 86700;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "MPB | Gilberto Gil - Aquele Abraco";
-  e.songYear = "1969";
-  e.hour = "14"; e.minute = "38"; e.second = "03";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Partly Cloudy"; e.temperature = "31°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 87100;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Forró | Luiz Gonzaga - Sertanejo Roots";
-  e.songYear = "1952";
-  e.hour = "14"; e.minute = "40"; e.second = "06";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "33°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 88300;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Pagode | Sorriso Maroto - Amor Infinito";
-  e.songYear = "2003";
-  e.hour = "14"; e.minute = "42"; e.second = "09";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Cloudy"; e.temperature = "29°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 88900;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Sertanejo | Gusttavo Lima - Festa";
-  e.songYear = "2014";
-  e.hour = "14"; e.minute = "44"; e.second = "12";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "34°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 89900;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Funk Carioca | Anitta - Danca da Paixao";
-  e.songYear = "2019";
-  e.hour = "14"; e.minute = "46"; e.second = "15";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Hot & Humid"; e.temperature = "35°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 90700;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Bossa Nova | Tom Jobim - Garota de Ipanema";
-  e.songYear = "1962";
-  e.hour = "14"; e.minute = "48"; e.second = "18";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "32°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 90300;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Ivete Sangalo - Noite Sagrada";
-  e.songYear = "2007";
-  e.hour = "14"; e.minute = "50"; e.second = "21";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "31°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 91700;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Gal Costa - Levada Brasileira";
-  e.songYear = "1980";
-  e.hour = "14"; e.minute = "52"; e.second = "24";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Partly Cloudy"; e.temperature = "30°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 92100;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Beth Carvalho - Alma Brasileira";
-  e.songYear = "1985";
-  e.hour = "14"; e.minute = "54"; e.second = "27";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Windy"; e.temperature = "28°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 92500;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "MPB | Caetano Veloso - Verdade Tropical";
-  e.songYear = "1968";
-  e.hour = "14"; e.minute = "56"; e.second = "30";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "33°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 92900;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Pop | Marisa Monte - Noite Magica";
-  e.songYear = "1998";
-  e.hour = "14"; e.minute = "58"; e.second = "33";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "32°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 93500;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Pagode | Dilsinho - Comunidade Shalom";
-  e.songYear = "2004";
-  e.hour = "15"; e.minute = "00"; e.second = "36";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Cloudy"; e.temperature = "29°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 93900;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Samba | Cartola - Saudade Profunda";
-  e.songYear = "1978";
-  e.hour = "15"; e.minute = "02"; e.second = "39";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Hot & Humid"; e.temperature = "34°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 94300;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Rock Brasileiro | Legiao Urbana - Energia Pura";
-  e.songYear = "1987";
-  e.hour = "15"; e.minute = "04"; e.second = "42";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "35°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 94700;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Sertanejo | Jorge e Mateus - Melhor Trilha";
-  e.songYear = "2010";
-  e.hour = "15"; e.minute = "06"; e.second = "45";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "33°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 95100;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Alcione - Palavra de Deus";
-  e.songYear = "1990";
-  e.hour = "15"; e.minute = "08"; e.second = "48";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Partly Cloudy"; e.temperature = "31°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 95500;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Pop | Adriana Calcanhotto - Noticia Boa";
-  e.songYear = "2002";
-  e.hour = "15"; e.minute = "10"; e.second = "51";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Windy"; e.temperature = "28°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 96100;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Chico Buarque - Graca Divina";
-  e.songYear = "1979";
-  e.hour = "15"; e.minute = "12"; e.second = "54";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "32°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 96700;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "MPB | Ivan Lins - Democracia Sonora";
-  e.songYear = "1986";
-  e.hour = "15"; e.minute = "14"; e.second = "57";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "30°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 97100;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Elza Soares - Maria Sagrada";
-  e.songYear = "1988";
-  e.hour = "15"; e.minute = "16"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Hot & Humid"; e.temperature = "34°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 97700;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Pop | Djavan - Som Internacional";
-  e.songYear = "1994";
-  e.hour = "15"; e.minute = "18"; e.second = "05";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "33°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 98300;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Belchior - Lider Celestial";
-  e.songYear = "1992";
-  e.hour = "15"; e.minute = "20"; e.second = "08";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Partly Cloudy"; e.temperature = "29°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 99100;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Samba | Ze Ramalho - Cidade Maravilha";
-  e.songYear = "1984";
-  e.hour = "15"; e.minute = "22"; e.second = "11";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "32°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 99900;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Geraldo Azevedo - Gloria Eterna";
-  e.songYear = "2001";
-  e.hour = "15"; e.minute = "24"; e.second = "14";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "35°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 100900;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Lenine - Amor Divino";
-  e.songYear = "2005";
-  e.hour = "15"; e.minute = "26"; e.second = "17";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Cloudy"; e.temperature = "30°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 101300;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Criolo - Voz do Evangelho";
-  e.songYear = "2011";
-  e.hour = "15"; e.minute = "28"; e.second = "20";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Windy"; e.temperature = "27°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 101700;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Pop | Arlindo Cruz - Noticia Sempre";
-  e.songYear = "2008";
-  e.hour = "15"; e.minute = "30"; e.second = "23";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "32°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 102300;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Paulinho da Viola - Templo Sagrado";
-  e.songYear = "1989";
-  e.hour = "15"; e.minute = "32"; e.second = "26";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Hot & Humid"; e.temperature = "33°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 102700;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Axé | Martinho da Vila - Descoberta Nova";
-  e.songYear = "2006";
-  e.hour = "15"; e.minute = "34"; e.second = "29";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "34°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 103300;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "MPB | Clara Nunes - Democracia Sonora";
-  e.songYear = "1981";
-  e.hour = "15"; e.minute = "36"; e.second = "32";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Partly Cloudy"; e.temperature = "31°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 103500;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Angela Ro Ro - Paz e Bem";
-  e.songYear = "2000";
-  e.hour = "15"; e.minute = "38"; e.second = "35";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "33°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 103900;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Samba | Benito di Paula - Melhor Musica";
-  e.songYear = "1983";
-  e.hour = "15"; e.minute = "40"; e.second = "38";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Windy"; e.temperature = "29°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 104300;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Sertanejo | Silas de Oliveira - Todas Tocadas";
-  e.songYear = "2009";
-  e.hour = "15"; e.minute = "42"; e.second = "41";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "32°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 105100;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Jorge Ben Jor - Assembleia Sagrada";
-  e.songYear = "1997";
-  e.hour = "15"; e.minute = "44"; e.second = "44";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Hot & Humid"; e.temperature = "35°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 105700;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Bossa Nova | Egberto Gismonti - Vida Melhor";
-  e.songYear = "1975";
-  e.hour = "15"; e.minute = "46"; e.second = "47";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Cloudy"; e.temperature = "28°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 106500;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "MPB | Milton Nascimento - Brasil Novo";
-  e.songYear = "1982";
-  e.hour = "15"; e.minute = "48"; e.second = "50";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "31°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 107500;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Pop | Anitta - Hits Atuais";
-  e.songYear = "2020";
-  e.hour = "15"; e.minute = "50"; e.second = "53";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "34°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 107900;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Tropicália | Gilberto Gil - Cultura Infinita";
-  e.songYear = "1967";
-  e.hour = "15"; e.minute = "52"; e.second = "56";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Partly Cloudy"; e.temperature = "30°C";
-  customPtys.push_back(e);
-
-  // === GOSPEL STATIONS (PTY 20) ===
-  e.freq_khz = 79500;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel | Gino Amen - Graça Divina";
-  e.songYear = "2022";
-  e.hour = "16"; e.minute = "00"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "32°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 83400;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel Tradicional | Thalles Roberto - Palavra de Deus";
-  e.songYear = "2020";
-  e.hour = "16"; e.minute = "05"; e.second = "15";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Partly Cloudy"; e.temperature = "31°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 84900;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel Contemporaneo | Priscilla Alcantara - Eternidade Divina";
-  e.songYear = "2023";
-  e.hour = "16"; e.minute = "10"; e.second = "30";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "33°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 85600;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel Urbano | Kemilly Santos - Verdade Tropical";
+  e.ps = getPSByLanguage(0, currentPTYLanguage);
+  e.rt = getRTByLanguage(0, currentPTYLanguage);
+  e.song = "Pop | Anitta - Envolver";
   e.songYear = "2021";
-  e.hour = "16"; e.minute = "15"; e.second = "45";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "34°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 100100;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel Rock | Fernanda Brum - Noite Sagrada";
-  e.songYear = "2019";
-  e.hour = "16"; e.minute = "20"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Hot & Humid"; e.temperature = "35°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 100500;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel Soul | Eyshila - Voz do Evangelho";
-  e.songYear = "2022";
-  e.hour = "16"; e.minute = "25"; e.second = "20";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Cloudy"; e.temperature = "29°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 102900;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Adoracao | Midian Lima - Paz e Bem";
-  e.songYear = "2023";
-  e.hour = "16"; e.minute = "30"; e.second = "35";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Windy"; e.temperature = "28°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 104100;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel Sertanejo | Soraya Moraes - Raizes Culturais";
-  e.songYear = "2020";
-  e.hour = "16"; e.minute = "35"; e.second = "50";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "32°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 106100;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel Forró | Gal Costa - Levada Brasileira";
-  e.songYear = "1980";
-  e.hour = "16"; e.minute = "40"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "33°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 107100;
-  e.pty_code = 20;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Gospel Samba | Beth Carvalho - Alma Brasileira";
-  e.songYear = "1985";
-  e.hour = "16"; e.minute = "45"; e.second = "15";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Partly Cloudy"; e.temperature = "31°C";
-  customPtys.push_back(e);
-
-  // === POP STATIONS (PTY 10) ===
-  e.freq_khz = 87500;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Pop Brasileiro | Anitta - Festa";
-  e.songYear = "2019";
-  e.hour = "16"; e.minute = "50"; e.second = "30";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "32°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 99300;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Pop Rock | Marisa Monte - Noite Magica";
-  e.songYear = "1998";
-  e.hour = "16"; e.minute = "55"; e.second = "45";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "33°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 99500;
-  e.pty_code = 10;
-  e.ps = "Plus FM";
-  e.rt = "Plus FM";
-  e.song = "";
-  e.songYear = "";
-  e.hour = ""; e.minute = ""; e.second = "";
-  e.day = ""; e.month = ""; e.year = "";
-  e.weather = ""; e.temperature = "";
-  customPtys.push_back(e);
-
-  // === ROCK STATIONS (PTY 11) ===
-  e.freq_khz = 88700;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Rock Nacional | Legiao Urbana - Comida";
-  e.songYear = "1987";
-  e.hour = "17"; e.minute = "00"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Hot & Humid"; e.temperature = "35°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 94500;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Hard Rock | Sepultura - Roots Bloody Roots";
-  e.songYear = "1996";
-  e.hour = "17"; e.minute = "05"; e.second = "15";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "31°C";
-  customPtys.push_back(e);
-
-  // === EASY LISTENING (PTY 12) ===
-  e.freq_khz = 91500;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Bossa Nova | Tom Jobim - Garota de Ipanema";
-  e.songYear = "1962";
-  e.hour = "17"; e.minute = "10"; e.second = "30";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Partly Cloudy"; e.temperature = "30°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 97300;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Easy Listening | Joao Gilberto - Desafinado";
-  e.songYear = "1959";
-  e.hour = "17"; e.minute = "15"; e.second = "45";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "32°C";
-  customPtys.push_back(e);
-
-  // === LIGHT CLASSICAL (PTY 13) ===
-  e.freq_khz = 93100;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Clássico | Egberto Gismonti - Agua e Vinho";
-  e.songYear = "1974";
-  e.hour = "17"; e.minute = "20"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "33°C";
-  customPtys.push_back(e);
-
-  // === SERIOUS CLASSICAL (PTY 14) ===
-  e.freq_khz = 95700;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Sinfônico | Mozart - Eine Kleine Nachtmusik";
-  e.songYear = "1787";
-  e.hour = "17"; e.minute = "25"; e.second = "15";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Windy"; e.temperature = "29°C";
-  customPtys.push_back(e);
-
-  // === VARIED SPEECH (PTY 15) ===
-  e.freq_khz = 89700;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Conversa | Criolo - Reflexao e Ritmo";
-  e.songYear = "2014";
-  e.hour = "17"; e.minute = "30"; e.second = "30";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Cloudy"; e.temperature = "28°C";
-  customPtys.push_back(e);
-
-  // === SPORT (PTY 3) ===
-  e.freq_khz = 98100;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Futebol | Galvao Bueno - Gol do Brasil";
-  e.songYear = "2022";
-  e.hour = "17"; e.minute = "35"; e.second = "45";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "34°C";
-  customPtys.push_back(e);
-
-  // === JAZZ (PTY 24) ===
-  e.freq_khz = 101500;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Jazz Brasileiro | Miles Davis - So What";
-  e.songYear = "1959";
-  e.hour = "17"; e.minute = "40"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "31°C";
-  customPtys.push_back(e);
-
-  // === COUNTRY/FORRÓ (PTY 25) ===
-  e.freq_khz = 103700;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Forró Tradicional | Jackson do Pandeiro - Asa Branca";
-  e.songYear = "1947";
-  e.hour = "17"; e.minute = "45"; e.second = "15";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Hot & Humid"; e.temperature = "35°C";
-  customPtys.push_back(e);
-
-  // === NATIONAL/SERTANEJO (PTY 26) ===
-  e.freq_khz = 105300;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Sertanejo | Gusttavo Lima - Balada Inteligente";
-  e.songYear = "2013";
-  e.hour = "17"; e.minute = "50"; e.second = "30";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Partly Cloudy"; e.temperature = "32°C";
-  customPtys.push_back(e);
-
-  // === CHILDREN'S (PTY 18) ===
-  e.freq_khz = 84300;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Infantil | Turma da Monica - Aquarela Magica";
-  e.songYear = "2015";
-  e.hour = "10"; e.minute = "30"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
+  e.hour = "08"; e.minute = "00"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
   e.weather = "Sunny"; e.temperature = "28°C";
   customPtys.push_back(e);
 
-  e.freq_khz = 85300;
+  // Radio Educativa IFCE FM 86.7
+  e.freq_khz = 86700;
+  e.pty_code = 4;
+  e.ps = getPSByLanguage(1, currentPTYLanguage);
+  e.rt = getRTByLanguage(1, currentPTYLanguage);
+  e.song = "Educativo | Programa de Radio - Cultura e Informacao";
+  e.songYear = "2026";
+  e.hour = "08"; e.minute = "15"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "28°C";
+  customPtys.push_back(e);
+
+  // Radio Jerusalem FM 88.3
+  e.freq_khz = 88300;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(3, currentPTYLanguage);
+  e.rt = getRTByLanguage(3, currentPTYLanguage);
+  e.song = "Gospel | Eyshila - Voz do Evangelho";
+  e.songYear = "2018";
+  e.hour = "08"; e.minute = "30"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "29°C";
+  customPtys.push_back(e);
+
+  // Radio Jangadeiro FM 88.9
+  e.freq_khz = 88900;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Infantil | Xuxa - Iluminando Criancas";
-  e.songYear = "1995";
-  e.hour = "14"; e.minute = "15"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
+  e.ps = getPSByLanguage(4, currentPTYLanguage);
+  e.rt = getRTByLanguage(4, currentPTYLanguage);
+  e.song = "Sertanejo | Gusttavo Lima - Balada";
+  e.songYear = "2014";
+  e.hour = "08"; e.minute = "45"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "30°C";
+  customPtys.push_back(e);
+
+  // Radio Uirapuru 90.3
+  e.freq_khz = 90300;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(7, currentPTYLanguage);
+  e.rt = getRTByLanguage(7, currentPTYLanguage);
+  e.song = "Pop | Ivete Sangalo - Festa";
+  e.songYear = "2006";
+  e.hour = "09"; e.minute = "00"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
   e.weather = "Clear"; e.temperature = "30°C";
   customPtys.push_back(e);
 
-  e.freq_khz = 86200;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Infantil | Galinha Pintadinha - Brincando Cantando";
-  e.songYear = "2008";
-  e.hour = "09"; e.minute = "45"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Partly Cloudy"; e.temperature = "27°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 87300;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Infantil | Balao Magico - Roda Gigante Feliz";
-  e.songYear = "1982";
-  e.hour = "15"; e.minute = "00"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "29°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 90100;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Infantil | Mundo Bita - Aventura Musical";
-  e.songYear = "2010";
-  e.hour = "11"; e.minute = "00"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Partly Cloudy"; e.temperature = "26°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 91100;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Infantil | Patati Patata - Malabarismo Sonoro";
-  e.songYear = "2005";
-  e.hour = "13"; e.minute = "30"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Sunny"; e.temperature = "29°C";
-  customPtys.push_back(e);
-
+  // Radio Metropolitana FM 91.3
   e.freq_khz = 91300;
+  e.pty_code = 10;
+  e.ps = "RADIO METROPOLITANA";
+  e.rt = "RADIO METROPOLITANA";
+  e.song = "Pop | Marisa Monte - Amor I Love You";
+  e.songYear = "1995";
+  e.hour = "09"; e.minute = "15"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "31°C";
+  customPtys.push_back(e);
+
+  // Radio Shalom FM 91.7
+  e.freq_khz = 91700;
   e.pty_code = 20;
-  e.ps = "Radio Metropolitana";
-  e.rt = "Radio Metropolitana";
-  e.song = "";
-  e.songYear = "";
-  e.hour = ""; e.minute = ""; e.second = "";
-  e.day = ""; e.month = ""; e.year = "";
-  e.weather = ""; e.temperature = "";
+  e.ps = getPSByLanguage(8, currentPTYLanguage);
+  e.rt = getRTByLanguage(8, currentPTYLanguage);
+  e.song = "Gospel | Comunidade Shalom - Ave Maria";
+  e.songYear = "2019";
+  e.hour = "09"; e.minute = "30"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "31°C";
   customPtys.push_back(e);
 
-  e.freq_khz = 92200;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Infantil | Toquinho - Cantar Aprender";
-  e.songYear = "1978";
-  e.hour = "10"; e.minute = "00"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "28°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 93300;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Infantil | Gilberto Gil Kids - Mundo Colorido";
-  e.songYear = "1985";
-  e.hour = "14"; e.minute = "45"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Partly Cloudy"; e.temperature = "27°C";
-  customPtys.push_back(e);
-
-  e.freq_khz = 94100;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Infantil | Magico Ramirez - Prestidigitacao Sonora";
-  e.songYear = "1990";
-  e.hour = "15"; e.minute = "15"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
+  // Radio Efraim 92.1
+  e.freq_khz = 92100;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(9, currentPTYLanguage);
+  e.rt = getRTByLanguage(9, currentPTYLanguage);
+  e.song = "Gospel | Midian Lima - Paz e Bem";
+  e.songYear = "2020";
+  e.hour = "09"; e.minute = "45"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
   e.weather = "Sunny"; e.temperature = "32°C";
   customPtys.push_back(e);
 
-  // === Fill all remaining Fortaleza FM frequencies ===
-  struct StationProfile {
-    const char* ps;
-    uint8_t pty;
-  };
+  // Radio Verdinha FM 92.5
+  e.freq_khz = 92500;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(10, currentPTYLanguage);
+  e.rt = getRTByLanguage(10, currentPTYLanguage);
+  e.song = "Pop | Anitta - Envolver";
+  e.songYear = "2021";
+  e.hour = "10"; e.minute = "00"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Hot & Humid"; e.temperature = "33°C";
+  customPtys.push_back(e);
 
-  const StationProfile stationProfiles[] = {
-    // Pop stations (PTY 10)
-    {"JANGADEIRO", 10}, {"RADIO CITY", 10}, {"FORTALEZA", 10},
-    {"CULTURA FM", 10}, {"CIDADE FM", 10}, {"TROPICAL", 10},
-    // Rock stations (PTY 11)
-    {"ANTENA 1", 10}, {"PULSO FM", 10}, {"LIDER FM", 10}, {"BOOM FM", 10},
-    // Jazz (PTY 24)
-    {"MIX FM", 10}, {"JAZZ FM", 10},
-    // Easy Listening (PTY 12)
-    {"TEMPO FM", 10}, {"CLASSICO", 12},
-    // Light Classical (PTY 13)
-    {"ELITE FM", 10}, {"ALMA FM", 10},
-    // Serious Classical (PTY 14)
-    {"DELTA FM", 10}, {"OPERA FM", 10},
-    // Varied Speech (PTY 8, 15)
-    {"RITMO FM", 10}, {"SUPER FM", 10},
-    // Sport (PTY 3)
-    {"ONDAS FM", 10}, {"NEWS FM", 10},
-    // Country/Forró (PTY 25)
-    {"SERTAO FM", 10}, {"FORRO FM", 10}, 
-    // National/Sertanejo (PTY 26)
-    {"NOVA BRASIL", 10}, {"BRASIL FM", 10}, {"GAUCHO FM", 10},
-    // Oldies (PTY 27)
-    {"SOL FM", 10},
-    // Folk (PTY 28)
-    {"MUSICA FM", 10}, {"ESTILO FM", 10}
-  };
-  const int NAMES_COUNT = sizeof(stationProfiles) / sizeof(stationProfiles[0]);
+  // Radio Jovem Pan News 92.9
+  e.freq_khz = 92900;
+  e.pty_code = 1;
+  e.ps = getPSByLanguage(11, currentPTYLanguage);
+  e.rt = getRTByLanguage(11, currentPTYLanguage);
+  e.song = "Noticias | Jornal - Atualidades";
+  e.songYear = "2026";
+  e.hour = "10"; e.minute = "15"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "32°C";
+  customPtys.push_back(e);
 
-  const char* rtMessages[] = {
-    "O MELHOR DO RADIO FORTALEZA",
-    "MUSICA 24 HORAS NO AR",
-    "SUA ESTACAO PREFERIDA SEMPRE",
-    "QUALIDADE E EMOCAO EM CADA NOTA",
-    "FORTALEZA MUSICAL NO AR",
-    "RITMO E HARMONIA TODO DIA",
-    "VOCE SEMPRE CONOSCO NA SINTONIA",
-    "PURA ENERGIA MUSICAL",
-    "SINTONIA PERFEITA PARA VOCE",
-    "TRANSMITINDO CULTURA BRASILEIRA",
-    "O SOM QUE VOCE AMA AGORA",
-    "RADIO COM PAIXAO NORDESTINA",
-    "SEMPRE CONECTADOS AO MELHOR",
-    "DIVERSIDADE MUSICAL SEM PARAR",
-    "ENCONTRO DE SONS E EMOCOES",
-    "MELHOR PROGRAMACAO DO CEARA",
-    "SUA MUSICA PREFERIDA AQUI",
-    "RITMO DO FORTALEZA",
-    "ONDAS DE MUSICA PURA",
-    "DANCA E SENTIMENTO NO AR"
-  };
-  const int RT_COUNT = sizeof(rtMessages) / sizeof(rtMessages[0]);
+  // Radio Canaa FM 93.5
+  e.freq_khz = 93500;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(12, currentPTYLanguage);
+  e.rt = getRTByLanguage(12, currentPTYLanguage);
+  e.song = "Gospel | Kemilly Santos - Tua Graca";
+  e.songYear = "2022";
+  e.hour = "10"; e.minute = "30"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "33°C";
+  customPtys.push_back(e);
 
-  for (int i = 0; i < FREQ_COUNT; i++) {
-    bool exists = false;
-    for (auto &check : customPtys) {
-      if (check.freq_khz == allFrequencies[i]) {
-        exists = true;
-        break;
-      }
-    }
-    if (!exists) {
-      e.freq_khz = allFrequencies[i];
+  // Radio FM 93 93.9
+  e.freq_khz = 93900;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(13, currentPTYLanguage);
+  e.rt = getRTByLanguage(13, currentPTYLanguage);
+  e.song = "Pop | Luisa Sonza - Cachorrina";
+  e.songYear = "2022";
+  e.hour = "10"; e.minute = "45"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Hot & Humid"; e.temperature = "34°C";
+  customPtys.push_back(e);
 
-      // Get station profile (PS + PTY)
-      StationProfile profile = stationProfiles[i % NAMES_COUNT];
-      e.pty_code = profile.pty;
-      e.ps = String(getRandomPSByPTY(profile.pty)) + " " + String(allFrequencies[i] / 1000.0, 1);
+  // Radio Sol FM 94.3
+  e.freq_khz = 94300;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(14, currentPTYLanguage);
+  e.rt = getRTByLanguage(14, currentPTYLanguage);
+  e.song = "Pop | Claudia Leitte - Largadinho";
+  e.songYear = "2013";
+  e.hour = "11"; e.minute = "00"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "34°C";
+  customPtys.push_back(e);
 
-      // Assign RT based on PTY type with variety
-      const char* rtPop[] = {
-        "MUSICA POP NO AR", "HITS DO MOMENTO", "O MELHOR DO POP",
-        "POP PARA VOCE", "SUCESSOS ATUAIS", "RITMO POP SEMPRE"
-      };
-      const char* rtRock[] = {
-        "ROCK EM ALTA VOLTAGEM", "ENERGIA ROCK", "GUITARRA NO AR",
-        "ROCK NACIONAL E INTERNACIONAL", "RIFF EM ALTA VOLTAGE", "ROCK PURO"
-      };
-      const char* rtEasyListening[] = {
-        "MELODIAS SUAVES E RELAXANTES", "BOSSA NOVA ETERNA", "SOM SUAVE",
-        "MUSICA PARA RELAXAR", "HARMONIA E PAZ", "NOITES TRANQUILAS"
-      };
-      const char* rtClassicalLight[] = {
-        "CLASSICOS LEVES PARA VOCE", "MUSICA REFINADA", "CLASSICOS DOCES",
-        "SINFONIA LEVE", "ELEGANCIA MUSICAL", "ARTE NO AR"
-      };
-      const char* rtClassicalSerious[] = {
-        "CLASSICOS SINFONIA ETERNA", "ÓPERA E ORQUESTRA", "GRANDEZA MUSICAL",
-        "MUSICA ERUDITA", "SINFONIA SUPREMA", "MAESTRIA SONORA"
-      };
-      const char* rtVariedSpeech[] = {
-        "MUSICA COM CONVERSAS", "MISTURA PERFEITA", "VARIEDADE SEMPRE",
-        "CONVERSA E MUSICA", "DIALOGO MUSICAL", "TROCA DE IDEIAS"
-      };
-      const char* rtSport[] = {
-        "NOTICIA E ESPORTE NO AR", "ESPORTE EM TEMPO REAL", "PLACAR VIVO",
-        "COBERTURA ESPORTIVA", "JOGOS E NOTICIAS", "ACAO NO ESPORTE"
-      };
-      const char* rtJazz[] = {
-        "JAZZ E IMPROVISO NO AR", "IMPROVISO PURO", "JAZZ CLASSICO",
-        "SAXOFONE E HARMONIA", "JAZZ BRASILEIRO", "RITMO SINCOPADO"
-      };
-      const char* rtCountry[] = {
-        "RITMO NORDESTINO AUTENTICO", "FORRÓ CEARENSE", "DANCA NORDESTINA",
-        "RAIZ DO SERTAO", "FORRÓ TRADICIONAL", "BATIDA CEARENSE"
-      };
-      const char* rtNational[] = {
-        "SERTANEJO DO SERTAO CEARENSE", "SERTANEJO RAIZ", "MUSICA SERTANEJA",
-        "SERTAO SONORO", "CABAÇO E VIOLA", "ABOIO DO SERTAO"
-      };
-      const char* rtOldies[] = {
-        "SUCESSOS QUE NAO ENVELHECEM", "CLASSICOS DO PASSADO", "NOSTALGIA MUSICAL",
-        "OURO DO RADIO", "MEMORIAS SONORAS", "ETERNOS SUCESSOS"
-      };
-      const char* rtFolk[] = {
-        "MUSICA FOLCLORICA BRASILEIRA", "RAIZES CULTURAIS", "TRADIÇÃO MUSICAL",
-        "FOLCLORE VIVO", "CULTURA POPULAR", "EXPRESSÃO NORDESTINA"
-      };
+  // Radio Jovem Pan FM 94.7
+  e.freq_khz = 94700;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(15, currentPTYLanguage);
+  e.rt = getRTByLanguage(15, currentPTYLanguage);
+  e.song = "Pop | Alok - Never Let Me Go";
+  e.songYear = "2020";
+  e.hour = "11"; e.minute = "15"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "33°C";
+  customPtys.push_back(e);
 
-      e.rt = getRandomRTByPTY(e.pty_code);
-      e.song = getSongForPTY(e.pty_code);
-      e.songYear = String(2010 + (i % 16));
+  // Radio Logos FM 95.1
+  e.freq_khz = 95100;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(16, currentPTYLanguage);
+  e.rt = getRTByLanguage(16, currentPTYLanguage);
+  e.song = "Gospel | Fernanda Brum - Eternamente";
+  e.songYear = "2019";
+  e.hour = "11"; e.minute = "30"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "34°C";
+  customPtys.push_back(e);
 
-      // Time variation: spread across 24 hours
-      int totalMins = (i * 23) % 1440;  // 1440 mins in a day
-      int hrs = totalMins / 60;
-      int mins = totalMins % 60;
-      int secs = (i * 7) % 60;
+  // Radio O Povo CBN 95.5
+  e.freq_khz = 95500;
+  e.pty_code = 1;
+  e.ps = getPSByLanguage(17, currentPTYLanguage);
+  e.rt = getRTByLanguage(17, currentPTYLanguage);
+  e.song = "Noticias | CBN - Jornal da Manha";
+  e.songYear = "2026";
+  e.hour = "11"; e.minute = "45"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "33°C";
+  customPtys.push_back(e);
 
-      char timeStr[3];
-      snprintf(timeStr, sizeof(timeStr), "%02d", hrs);
-      e.hour = String(timeStr);
-      snprintf(timeStr, sizeof(timeStr), "%02d", mins);
-      e.minute = String(timeStr);
-      snprintf(timeStr, sizeof(timeStr), "%02d", secs);
-      e.second = String(timeStr);
+  // Radio Dom Bosco FM 96.1
+  e.freq_khz = 96100;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(18, currentPTYLanguage);
+  e.rt = getRTByLanguage(18, currentPTYLanguage);
+  e.song = "Gospel | Padre Zezinho - Presenca de Deus";
+  e.songYear = "2010";
+  e.hour = "12"; e.minute = "00"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "35°C";
+  customPtys.push_back(e);
 
-      // Date variation: spread across month
-      // Vary month across the year
-      const char* months[] = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-      const int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  // Radio Alece FM 96.7
+  e.freq_khz = 96700;
+  e.pty_code = 2;
+  e.ps = getPSByLanguage(19, currentPTYLanguage);
+  e.rt = getRTByLanguage(19, currentPTYLanguage);
+  e.song = "Informativo | Assembleia Legislativa - Cidadania";
+  e.songYear = "2026";
+  e.hour = "12"; e.minute = "15"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "35°C";
+  customPtys.push_back(e);
 
-      int monthIdx = (i * 5) % 12;
-      int monthNum = monthIdx + 1;
-      int maxDaysInMonth = daysInMonth[monthIdx];
-      int dayOfMonth = 1 + ((i * 3) % maxDaysInMonth);
+  // Radio Maria Brasil 97.1
+  e.freq_khz = 97100;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(20, currentPTYLanguage);
+  e.rt = getRTByLanguage(20, currentPTYLanguage);
+  e.song = "Gospel | Radio Maria - Terco e Oracao";
+  e.songYear = "2024";
+  e.hour = "12"; e.minute = "30"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "36°C";
+  customPtys.push_back(e);
 
-      snprintf(timeStr, sizeof(timeStr), "%02d", dayOfMonth);
-      e.day = String(timeStr);
-      e.month = String(months[monthIdx]);
+  // Radio Antena 1 97.7
+  e.freq_khz = 97700;
+  e.pty_code = 12;
+  e.ps = getPSByLanguage(21, currentPTYLanguage);
+  e.rt = getRTByLanguage(21, currentPTYLanguage);
+  e.song = "Easy Listening | Tom Jobim - Garota de Ipanema";
+  e.songYear = "1962";
+  e.hour = "13"; e.minute = "00"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "35°C";
+  customPtys.push_back(e);
 
-      // Year variation: 2024-2026
-      int yearVar = 2024 + ((i * 2) % 3);
-      e.year = String(yearVar);
+  // Radio Lider FM 98.3
+  e.freq_khz = 98300;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(22, currentPTYLanguage);
+  e.rt = getRTByLanguage(22, currentPTYLanguage);
+  e.song = "Gospel | Thalles Roberto - Lugar Secreto";
+  e.songYear = "2021";
+  e.hour = "13"; e.minute = "15"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Hot & Humid"; e.temperature = "36°C";
+  customPtys.push_back(e);
 
-      // Realistic Fortaleza weather (tropical)
-      const char* weatherConditions[] = {
-        "Sunny", "Clear", "Partly Cloudy", "Cloudy", "Overcast",
-        "Light Rain", "Scattered Showers", "Rainy", "Tropical Storm", "Humid",
-        "Hot & Sunny", "Hot & Humid", "Breezy", "Windy", "Sea Breeze"
-      };
-      const int WEATHER_COUNT = sizeof(weatherConditions) / sizeof(weatherConditions[0]);
+  // Radio Cidade FM 99.1
+  e.freq_khz = 99100;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(23, currentPTYLanguage);
+  e.rt = getRTByLanguage(23, currentPTYLanguage);
+  e.song = "Pop | Gusttavo Lima - Apaixonado por Voce";
+  e.songYear = "2019";
+  e.hour = "13"; e.minute = "30"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "36°C";
+  customPtys.push_back(e);
 
-      int tempBase = 26 + ((i * 3) % 12);  // 26-37°C range (tropical)
-      int weatherIdx = (i * 7) % WEATHER_COUNT;
+  // Radio Rede Aleluia 99.9
+  e.freq_khz = 99900;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(24, currentPTYLanguage);
+  e.rt = getRTByLanguage(24, currentPTYLanguage);
+  e.song = "Gospel | Ministério Ipiranga - Com Licenca";
+  e.songYear = "2023";
+  e.hour = "14"; e.minute = "00"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Hot & Humid"; e.temperature = "36°C";
+  customPtys.push_back(e);
 
-      e.weather = String(weatherConditions[weatherIdx]);
-      e.temperature = String(tempBase) + "°C";
+  // Radio Deus E Amor 100.9
+  e.freq_khz = 100900;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(25, currentPTYLanguage);
+  e.rt = getRTByLanguage(25, currentPTYLanguage);
+  e.song = "Gospel | IPDA - Deus e Amor";
+  e.songYear = "2022";
+  e.hour = "14"; e.minute = "15"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Hot & Humid"; e.temperature = "36°C";
+  customPtys.push_back(e);
 
-      customPtys.push_back(e);
-    }
-  }
+  // Radio BandNews FM 101.7
+  e.freq_khz = 101700;
+  e.pty_code = 1;
+  e.ps = getPSByLanguage(27, currentPTYLanguage);
+  e.rt = getRTByLanguage(27, currentPTYLanguage);
+  e.song = "Noticias | BandNews - Edicao do Meio-Dia";
+  e.songYear = "2026";
+  e.hour = "14"; e.minute = "30"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "35°C";
+  customPtys.push_back(e);
+
+  // Radio Templo Central FM 102.3
+  e.freq_khz = 102300;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(28, currentPTYLanguage);
+  e.rt = getRTByLanguage(28, currentPTYLanguage);
+  e.song = "Gospel | Priscilla Alcantara - Deus Cuida de Mim";
+  e.songYear = "2022";
+  e.hour = "14"; e.minute = "45"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "35°C";
+  customPtys.push_back(e);
+
+  // Radio Beach Park FM 102.7
+  e.freq_khz = 102700;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(29, currentPTYLanguage);
+  e.rt = getRTByLanguage(29, currentPTYLanguage);
+  e.song = "Pop | Wesley Safadao - Camarote";
+  e.songYear = "2015";
+  e.hour = "15"; e.minute = "00"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "34°C";
+  customPtys.push_back(e);
+
+  // Radio Senado 103.3
+  e.freq_khz = 103300;
+  e.pty_code = 2;
+  e.ps = getPSByLanguage(30, currentPTYLanguage);
+  e.rt = getRTByLanguage(30, currentPTYLanguage);
+  e.song = "Informativo | Senado Federal - Plenario";
+  e.songYear = "2026";
+  e.hour = "15"; e.minute = "15"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "34°C";
+  customPtys.push_back(e);
+
+  // Radio Tempo FM 103.9
+  e.freq_khz = 103900;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(32, currentPTYLanguage);
+  e.rt = getRTByLanguage(32, currentPTYLanguage);
+  e.song = "Pop | Kevinho - Olha a Explosao";
+  e.songYear = "2017";
+  e.hour = "15"; e.minute = "30"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "34°C";
+  customPtys.push_back(e);
+
+  // Radio Metropolitana FM 104.3
+  e.freq_khz = 104300;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(33, currentPTYLanguage);
+  e.rt = getRTByLanguage(33, currentPTYLanguage);
+  e.song = "Pop | Xand Aviao - Ao Vivo em Fortaleza";
+  e.songYear = "2018";
+  e.hour = "15"; e.minute = "45"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Hot & Humid"; e.temperature = "35°C";
+  customPtys.push_back(e);
+
+  // Radio Metropolitana FM 105.1
+  e.freq_khz = 105100;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(34, currentPTYLanguage);
+  e.rt = getRTByLanguage(34, currentPTYLanguage);
+  e.song = "Pop | Forró dos Plays - Fui Fiel";
+  e.songYear = "2023";
+  e.hour = "16"; e.minute = "00"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "34°C";
+  customPtys.push_back(e);
+
+  // Radio Atlantico Sul FM 105.7
+  e.freq_khz = 105700;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(35, currentPTYLanguage);
+  e.rt = getRTByLanguage(35, currentPTYLanguage);
+  e.song = "Pop | Matheus e Kauan - Na Praia";
+  e.songYear = "2016";
+  e.hour = "16"; e.minute = "15"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Breezy"; e.temperature = "33°C";
+  customPtys.push_back(e);
+
+  // Radio Nova Brasil FM 106.5
+  e.freq_khz = 106500;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(36, currentPTYLanguage);
+  e.rt = getRTByLanguage(36, currentPTYLanguage);
+  e.song = "MPB | Maria Gadu - Shimbalaiê";
+  e.songYear = "2009";
+  e.hour = "16"; e.minute = "30"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "33°C";
+  customPtys.push_back(e);
+
+  // Radio Mix FM 107.5
+  e.freq_khz = 107500;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(37, currentPTYLanguage);
+  e.rt = getRTByLanguage(37, currentPTYLanguage);
+  e.song = "Pop | Anitta - Girl From Rio";
+  e.songYear = "2021";
+  e.hour = "16"; e.minute = "45"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "32°C";
+  customPtys.push_back(e);
+
+  // Radio Universitaria FM 107.9
+  e.freq_khz = 107900;
+  e.pty_code = 4;
+  e.ps = getPSByLanguage(38, currentPTYLanguage);
+  e.rt = getRTByLanguage(38, currentPTYLanguage);
+  e.song = "Educativo | UFC Radio - Cultura e Ciencia";
+  e.songYear = "2026";
+  e.hour = "17"; e.minute = "00"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "31°C";
+  customPtys.push_back(e);
+
+  // Radio Ceara 87.1
+  e.freq_khz = 87100;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(2, currentPTYLanguage);
+  e.rt = getRTByLanguage(2, currentPTYLanguage);
+  e.song = "Pop | Fortaleza FM - O Som do Ceara";
+  e.songYear = "2024";
+  e.hour = "09"; e.minute = "05"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "29°C";
+  customPtys.push_back(e);
+
+  // Radio 89 FM 89.9
+  e.freq_khz = 89900;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(5, currentPTYLanguage);
+  e.rt = getRTByLanguage(5, currentPTYLanguage);
+  e.song = "Pop | Anitta - Show das Poderosas";
+  e.songYear = "2013";
+  e.hour = "09"; e.minute = "20"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "30°C";
+  customPtys.push_back(e);
+
+  // Radio Plus FM 99.5
+  e.freq_khz = 99500;
+  e.pty_code = 10;
+  e.ps = "PLUS FM";
+  e.rt = "PLUS FM 99.5";
+  e.song = "Pop | Hits do Momento";
+  e.songYear = "2026";
+  e.hour = "13"; e.minute = "50"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "36°C";
+  customPtys.push_back(e);
+
+  // Radio Shalom FM 103.5
+  e.freq_khz = 103500;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(31, currentPTYLanguage);
+  e.rt = getRTByLanguage(31, currentPTYLanguage);
+  e.song = "Gospel | Comunidade Shalom - Paz e Bem";
+  e.songYear = "2023";
+  e.hour = "15"; e.minute = "22"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "34°C";
+  customPtys.push_back(e);
 
   std::sort(customPtys.begin(), customPtys.end(), [](const PTYEntry& a, const PTYEntry& b) {
     return a.freq_khz < b.freq_khz;
