@@ -1,6 +1,10 @@
 #pragma once
 #include <stdint.h>
 
+extern const char* const UI_ENGLISH[];
+extern const char* const UI_PORTUGUESE[];
+extern const char* const UI_SPANISH[];
+
 enum UIStringID {
   UI_PRESS_MODE_EXIT = 0,
   UI_SET_VOLUME,
