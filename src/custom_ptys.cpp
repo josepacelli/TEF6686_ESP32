@@ -1732,11 +1732,23 @@ void loadIsaacPTYs() {
   e.weather = "Clear"; e.temperature = "30°C";
   customPtys.push_back(e);
 
-  // Radio Metropolitana FM 91.3
-  e.freq_khz = 91300;
+  // Radio Fortaleza FM 90.7
+  e.freq_khz = 90700;
   e.pty_code = 10;
   e.ps = getPSByLanguage(7, currentPTYLanguage);
   e.rt = getRTByLanguage(7, currentPTYLanguage);
+  e.song = "Pop | Fortaleza FM - A Mais Tocada";
+  e.songYear = "2024";
+  e.hour = "09"; e.minute = "10"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "30°C";
+  customPtys.push_back(e);
+
+  // Radio Metropolitana FM 91.3
+  e.freq_khz = 91300;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(8, currentPTYLanguage);
+  e.rt = getRTByLanguage(8, currentPTYLanguage);
   e.song = "Pop | Marisa Monte - Amor I Love You";
   e.songYear = "1995";
   e.hour = "09"; e.minute = "15"; e.second = "00";
@@ -1747,8 +1759,8 @@ void loadIsaacPTYs() {
   // Radio Shalom FM 91.7
   e.freq_khz = 91700;
   e.pty_code = 20;
-  e.ps = getPSByLanguage(8, currentPTYLanguage);
-  e.rt = getRTByLanguage(8, currentPTYLanguage);
+  e.ps = getPSByLanguage(9, currentPTYLanguage);
+  e.rt = getRTByLanguage(9, currentPTYLanguage);
   e.song = "Gospel | Comunidade Shalom - Ave Maria";
   e.songYear = "2019";
   e.hour = "09"; e.minute = "30"; e.second = "00";
@@ -1759,8 +1771,8 @@ void loadIsaacPTYs() {
   // Radio Efraim 92.1
   e.freq_khz = 92100;
   e.pty_code = 20;
-  e.ps = getPSByLanguage(9, currentPTYLanguage);
-  e.rt = getRTByLanguage(9, currentPTYLanguage);
+  e.ps = getPSByLanguage(10, currentPTYLanguage);
+  e.rt = getRTByLanguage(10, currentPTYLanguage);
   e.song = "Gospel | Midian Lima - Paz e Bem";
   e.songYear = "2020";
   e.hour = "09"; e.minute = "45"; e.second = "00";
@@ -1771,8 +1783,8 @@ void loadIsaacPTYs() {
   // Radio Verdinha FM 92.5
   e.freq_khz = 92500;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(10, currentPTYLanguage);
-  e.rt = getRTByLanguage(10, currentPTYLanguage);
+  e.ps = getPSByLanguage(11, currentPTYLanguage);
+  e.rt = getRTByLanguage(11, currentPTYLanguage);
   e.song = "Pop | Anitta - Envolver";
   e.songYear = "2021";
   e.hour = "10"; e.minute = "00"; e.second = "00";
@@ -1783,8 +1795,8 @@ void loadIsaacPTYs() {
   // Radio Jovem Pan News 92.9
   e.freq_khz = 92900;
   e.pty_code = 1;
-  e.ps = getPSByLanguage(11, currentPTYLanguage);
-  e.rt = getRTByLanguage(11, currentPTYLanguage);
+  e.ps = getPSByLanguage(12, currentPTYLanguage);
+  e.rt = getRTByLanguage(12, currentPTYLanguage);
   e.song = "Noticias | Jornal - Atualidades";
   e.songYear = "2026";
   e.hour = "10"; e.minute = "15"; e.second = "00";
@@ -1795,8 +1807,8 @@ void loadIsaacPTYs() {
   // Radio Canaa FM 93.5
   e.freq_khz = 93500;
   e.pty_code = 20;
-  e.ps = getPSByLanguage(12, currentPTYLanguage);
-  e.rt = getRTByLanguage(12, currentPTYLanguage);
+  e.ps = getPSByLanguage(13, currentPTYLanguage);
+  e.rt = getRTByLanguage(13, currentPTYLanguage);
   e.song = "Gospel | Kemilly Santos - Tua Graca";
   e.songYear = "2022";
   e.hour = "10"; e.minute = "30"; e.second = "00";
@@ -1807,8 +1819,8 @@ void loadIsaacPTYs() {
   // Radio FM 93 93.9
   e.freq_khz = 93900;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(13, currentPTYLanguage);
-  e.rt = getRTByLanguage(13, currentPTYLanguage);
+  e.ps = getPSByLanguage(14, currentPTYLanguage);
+  e.rt = getRTByLanguage(14, currentPTYLanguage);
   e.song = "Pop | Luisa Sonza - Cachorrina";
   e.songYear = "2022";
   e.hour = "10"; e.minute = "45"; e.second = "00";
@@ -1819,8 +1831,8 @@ void loadIsaacPTYs() {
   // Radio Sol FM 94.3
   e.freq_khz = 94300;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(14, currentPTYLanguage);
-  e.rt = getRTByLanguage(14, currentPTYLanguage);
+  e.ps = getPSByLanguage(15, currentPTYLanguage);
+  e.rt = getRTByLanguage(15, currentPTYLanguage);
   e.song = "Pop | Claudia Leitte - Largadinho";
   e.songYear = "2013";
   e.hour = "11"; e.minute = "00"; e.second = "00";
@@ -1831,8 +1843,8 @@ void loadIsaacPTYs() {
   // Radio Jovem Pan FM 94.7
   e.freq_khz = 94700;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(15, currentPTYLanguage);
-  e.rt = getRTByLanguage(15, currentPTYLanguage);
+  e.ps = getPSByLanguage(16, currentPTYLanguage);
+  e.rt = getRTByLanguage(16, currentPTYLanguage);
   e.song = "Pop | Alok - Never Let Me Go";
   e.songYear = "2020";
   e.hour = "11"; e.minute = "15"; e.second = "00";
@@ -1843,8 +1855,8 @@ void loadIsaacPTYs() {
   // Radio Logos FM 95.1
   e.freq_khz = 95100;
   e.pty_code = 20;
-  e.ps = getPSByLanguage(16, currentPTYLanguage);
-  e.rt = getRTByLanguage(16, currentPTYLanguage);
+  e.ps = getPSByLanguage(17, currentPTYLanguage);
+  e.rt = getRTByLanguage(17, currentPTYLanguage);
   e.song = "Gospel | Fernanda Brum - Eternamente";
   e.songYear = "2019";
   e.hour = "11"; e.minute = "30"; e.second = "00";
@@ -1855,8 +1867,8 @@ void loadIsaacPTYs() {
   // Radio O Povo CBN 95.5
   e.freq_khz = 95500;
   e.pty_code = 1;
-  e.ps = getPSByLanguage(17, currentPTYLanguage);
-  e.rt = getRTByLanguage(17, currentPTYLanguage);
+  e.ps = getPSByLanguage(18, currentPTYLanguage);
+  e.rt = getRTByLanguage(18, currentPTYLanguage);
   e.song = "Noticias | CBN - Jornal da Manha";
   e.songYear = "2026";
   e.hour = "11"; e.minute = "45"; e.second = "00";
@@ -1867,8 +1879,8 @@ void loadIsaacPTYs() {
   // Radio Dom Bosco FM 96.1
   e.freq_khz = 96100;
   e.pty_code = 20;
-  e.ps = getPSByLanguage(18, currentPTYLanguage);
-  e.rt = getRTByLanguage(18, currentPTYLanguage);
+  e.ps = getPSByLanguage(19, currentPTYLanguage);
+  e.rt = getRTByLanguage(19, currentPTYLanguage);
   e.song = "Gospel | Padre Zezinho - Presenca de Deus";
   e.songYear = "2010";
   e.hour = "12"; e.minute = "00"; e.second = "00";
@@ -1879,8 +1891,8 @@ void loadIsaacPTYs() {
   // Radio Alece FM 96.7
   e.freq_khz = 96700;
   e.pty_code = 2;
-  e.ps = getPSByLanguage(19, currentPTYLanguage);
-  e.rt = getRTByLanguage(19, currentPTYLanguage);
+  e.ps = getPSByLanguage(20, currentPTYLanguage);
+  e.rt = getRTByLanguage(20, currentPTYLanguage);
   e.song = "Informativo | Assembleia Legislativa - Cidadania";
   e.songYear = "2026";
   e.hour = "12"; e.minute = "15"; e.second = "00";
@@ -1891,8 +1903,8 @@ void loadIsaacPTYs() {
   // Radio Maria Brasil 97.1
   e.freq_khz = 97100;
   e.pty_code = 20;
-  e.ps = getPSByLanguage(20, currentPTYLanguage);
-  e.rt = getRTByLanguage(20, currentPTYLanguage);
+  e.ps = getPSByLanguage(21, currentPTYLanguage);
+  e.rt = getRTByLanguage(21, currentPTYLanguage);
   e.song = "Gospel | Radio Maria - Terco e Oracao";
   e.songYear = "2024";
   e.hour = "12"; e.minute = "30"; e.second = "00";
@@ -1903,8 +1915,8 @@ void loadIsaacPTYs() {
   // Radio Antena 1 97.7
   e.freq_khz = 97700;
   e.pty_code = 12;
-  e.ps = getPSByLanguage(21, currentPTYLanguage);
-  e.rt = getRTByLanguage(21, currentPTYLanguage);
+  e.ps = getPSByLanguage(22, currentPTYLanguage);
+  e.rt = getRTByLanguage(22, currentPTYLanguage);
   e.song = "Easy Listening | Tom Jobim - Garota de Ipanema";
   e.songYear = "1962";
   e.hour = "13"; e.minute = "00"; e.second = "00";
@@ -1915,8 +1927,8 @@ void loadIsaacPTYs() {
   // Radio Lider FM 98.3
   e.freq_khz = 98300;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(22, currentPTYLanguage);
-  e.rt = getRTByLanguage(22, currentPTYLanguage);
+  e.ps = getPSByLanguage(23, currentPTYLanguage);
+  e.rt = getRTByLanguage(23, currentPTYLanguage);
   e.song = "Gospel | Thalles Roberto - Lugar Secreto";
   e.songYear = "2021";
   e.hour = "13"; e.minute = "15"; e.second = "00";
@@ -1927,8 +1939,8 @@ void loadIsaacPTYs() {
   // Radio Cidade FM 99.1
   e.freq_khz = 99100;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(23, currentPTYLanguage);
-  e.rt = getRTByLanguage(23, currentPTYLanguage);
+  e.ps = getPSByLanguage(24, currentPTYLanguage);
+  e.rt = getRTByLanguage(24, currentPTYLanguage);
   e.song = "Pop | Gusttavo Lima - Apaixonado por Voce";
   e.songYear = "2019";
   e.hour = "13"; e.minute = "30"; e.second = "00";
@@ -1939,8 +1951,8 @@ void loadIsaacPTYs() {
   // Radio Rede Aleluia 99.9
   e.freq_khz = 99900;
   e.pty_code = 20;
-  e.ps = getPSByLanguage(25, currentPTYLanguage);
-  e.rt = getRTByLanguage(25, currentPTYLanguage);
+  e.ps = getPSByLanguage(26, currentPTYLanguage);
+  e.rt = getRTByLanguage(26, currentPTYLanguage);
   e.song = "Gospel | Ministério Ipiranga - Com Licenca";
   e.songYear = "2023";
   e.hour = "14"; e.minute = "00"; e.second = "00";
@@ -1951,8 +1963,8 @@ void loadIsaacPTYs() {
   // Radio Deus E Amor 100.9
   e.freq_khz = 100900;
   e.pty_code = 20;
-  e.ps = getPSByLanguage(26, currentPTYLanguage);
-  e.rt = getRTByLanguage(26, currentPTYLanguage);
+  e.ps = getPSByLanguage(27, currentPTYLanguage);
+  e.rt = getRTByLanguage(27, currentPTYLanguage);
   e.song = "Gospel | IPDA - Deus e Amor";
   e.songYear = "2022";
   e.hour = "14"; e.minute = "15"; e.second = "00";
@@ -1963,8 +1975,8 @@ void loadIsaacPTYs() {
   // Radio BandNews FM 101.7
   e.freq_khz = 101700;
   e.pty_code = 1;
-  e.ps = getPSByLanguage(27, currentPTYLanguage);
-  e.rt = getRTByLanguage(27, currentPTYLanguage);
+  e.ps = getPSByLanguage(28, currentPTYLanguage);
+  e.rt = getRTByLanguage(28, currentPTYLanguage);
   e.song = "Noticias | BandNews - Edicao do Meio-Dia";
   e.songYear = "2026";
   e.hour = "14"; e.minute = "30"; e.second = "00";
@@ -1975,8 +1987,8 @@ void loadIsaacPTYs() {
   // Radio Templo Central FM 102.3
   e.freq_khz = 102300;
   e.pty_code = 20;
-  e.ps = getPSByLanguage(28, currentPTYLanguage);
-  e.rt = getRTByLanguage(28, currentPTYLanguage);
+  e.ps = getPSByLanguage(29, currentPTYLanguage);
+  e.rt = getRTByLanguage(29, currentPTYLanguage);
   e.song = "Gospel | Priscilla Alcantara - Deus Cuida de Mim";
   e.songYear = "2022";
   e.hour = "14"; e.minute = "45"; e.second = "00";
@@ -1987,8 +1999,8 @@ void loadIsaacPTYs() {
   // Radio Beach Park FM 102.7
   e.freq_khz = 102700;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(29, currentPTYLanguage);
-  e.rt = getRTByLanguage(29, currentPTYLanguage);
+  e.ps = getPSByLanguage(30, currentPTYLanguage);
+  e.rt = getRTByLanguage(30, currentPTYLanguage);
   e.song = "Pop | Wesley Safadao - Camarote";
   e.songYear = "2015";
   e.hour = "15"; e.minute = "00"; e.second = "00";
@@ -1999,8 +2011,8 @@ void loadIsaacPTYs() {
   // Radio Senado 103.3
   e.freq_khz = 103300;
   e.pty_code = 2;
-  e.ps = getPSByLanguage(30, currentPTYLanguage);
-  e.rt = getRTByLanguage(30, currentPTYLanguage);
+  e.ps = getPSByLanguage(31, currentPTYLanguage);
+  e.rt = getRTByLanguage(31, currentPTYLanguage);
   e.song = "Informativo | Senado Federal - Plenario";
   e.songYear = "2026";
   e.hour = "15"; e.minute = "15"; e.second = "00";
@@ -2011,8 +2023,8 @@ void loadIsaacPTYs() {
   // Radio Tempo FM 103.9
   e.freq_khz = 103900;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(32, currentPTYLanguage);
-  e.rt = getRTByLanguage(32, currentPTYLanguage);
+  e.ps = getPSByLanguage(33, currentPTYLanguage);
+  e.rt = getRTByLanguage(33, currentPTYLanguage);
   e.song = "Pop | Kevinho - Olha a Explosao";
   e.songYear = "2017";
   e.hour = "15"; e.minute = "30"; e.second = "00";
@@ -2023,8 +2035,8 @@ void loadIsaacPTYs() {
   // Radio Metropolitana FM 104.3
   e.freq_khz = 104300;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(33, currentPTYLanguage);
-  e.rt = getRTByLanguage(33, currentPTYLanguage);
+  e.ps = getPSByLanguage(34, currentPTYLanguage);
+  e.rt = getRTByLanguage(34, currentPTYLanguage);
   e.song = "Pop | Xand Aviao - Ao Vivo em Fortaleza";
   e.songYear = "2018";
   e.hour = "15"; e.minute = "45"; e.second = "00";
@@ -2032,12 +2044,12 @@ void loadIsaacPTYs() {
   e.weather = "Hot & Humid"; e.temperature = "35°C";
   customPtys.push_back(e);
 
-  // Radio Metropolitana FM 105.1
+  // Radio AD Cidade FM 105.1
   e.freq_khz = 105100;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(34, currentPTYLanguage);
-  e.rt = getRTByLanguage(34, currentPTYLanguage);
-  e.song = "Pop | Forró dos Plays - Fui Fiel";
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(35, currentPTYLanguage);
+  e.rt = getRTByLanguage(35, currentPTYLanguage);
+  e.song = "Gospel | Assembleia de Deus - Louvor ao Senhor";
   e.songYear = "2023";
   e.hour = "16"; e.minute = "00"; e.second = "00";
   e.day = "13"; e.month = "06"; e.year = "2026";
@@ -2047,8 +2059,8 @@ void loadIsaacPTYs() {
   // Radio Atlantico Sul FM 105.7
   e.freq_khz = 105700;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(35, currentPTYLanguage);
-  e.rt = getRTByLanguage(35, currentPTYLanguage);
+  e.ps = getPSByLanguage(36, currentPTYLanguage);
+  e.rt = getRTByLanguage(36, currentPTYLanguage);
   e.song = "Pop | Matheus e Kauan - Na Praia";
   e.songYear = "2016";
   e.hour = "16"; e.minute = "15"; e.second = "00";
@@ -2059,8 +2071,8 @@ void loadIsaacPTYs() {
   // Radio Nova Brasil FM 106.5
   e.freq_khz = 106500;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(36, currentPTYLanguage);
-  e.rt = getRTByLanguage(36, currentPTYLanguage);
+  e.ps = getPSByLanguage(37, currentPTYLanguage);
+  e.rt = getRTByLanguage(37, currentPTYLanguage);
   e.song = "MPB | Maria Gadu - Shimbalaiê";
   e.songYear = "2009";
   e.hour = "16"; e.minute = "30"; e.second = "00";
@@ -2071,8 +2083,8 @@ void loadIsaacPTYs() {
   // Radio Mix FM 107.5
   e.freq_khz = 107500;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(37, currentPTYLanguage);
-  e.rt = getRTByLanguage(37, currentPTYLanguage);
+  e.ps = getPSByLanguage(38, currentPTYLanguage);
+  e.rt = getRTByLanguage(38, currentPTYLanguage);
   e.song = "Pop | Anitta - Girl From Rio";
   e.songYear = "2021";
   e.hour = "16"; e.minute = "45"; e.second = "00";
@@ -2083,8 +2095,8 @@ void loadIsaacPTYs() {
   // Radio Universitaria FM 107.9
   e.freq_khz = 107900;
   e.pty_code = 4;
-  e.ps = getPSByLanguage(38, currentPTYLanguage);
-  e.rt = getRTByLanguage(38, currentPTYLanguage);
+  e.ps = getPSByLanguage(39, currentPTYLanguage);
+  e.rt = getRTByLanguage(39, currentPTYLanguage);
   e.song = "Educativo | UFC Radio - Cultura e Ciencia";
   e.songYear = "2026";
   e.hour = "17"; e.minute = "00"; e.second = "00";
@@ -2119,8 +2131,8 @@ void loadIsaacPTYs() {
   // Radio Plus FM 99.5
   e.freq_khz = 99500;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(24, currentPTYLanguage);
-  e.rt = getRTByLanguage(24, currentPTYLanguage);
+  e.ps = getPSByLanguage(25, currentPTYLanguage);
+  e.rt = getRTByLanguage(25, currentPTYLanguage);
   e.song = "Pop | Hits do Momento";
   e.songYear = "2026";
   e.hour = "13"; e.minute = "50"; e.second = "00";
@@ -2131,8 +2143,8 @@ void loadIsaacPTYs() {
   // Radio Shalom FM 103.5
   e.freq_khz = 103500;
   e.pty_code = 20;
-  e.ps = getPSByLanguage(31, currentPTYLanguage);
-  e.rt = getRTByLanguage(31, currentPTYLanguage);
+  e.ps = getPSByLanguage(32, currentPTYLanguage);
+  e.rt = getRTByLanguage(32, currentPTYLanguage);
   e.song = "Gospel | Comunidade Shalom - Paz e Bem";
   e.songYear = "2023";
   e.hour = "15"; e.minute = "22"; e.second = "00";
