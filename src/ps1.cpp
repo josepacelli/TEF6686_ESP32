@@ -3,7 +3,7 @@
 
 const char* const PS_ENGLISH[] = {
   /* 00 */ "METROPOLITAN RADIO 79.7MHZ",
-  /* 01 */ "EDUCATIONAL RADIO",
+  /* 01 */ "EDUCATIONAL RADIO - IFCE FM",
   /* 02 */ "CEARA FM 87.1MHZ",
   /* 03 */ "JERUSALEM RADIO FM",
   /* 04 */ "JANGADEIRO FM",

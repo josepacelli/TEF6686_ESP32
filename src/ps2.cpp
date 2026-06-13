@@ -3,7 +3,7 @@
 
 const char* const PS_PORTUGUESE[] = {
   /* 00 */ "RADIO METROPOLITANA 79.7MHZ",
-  /* 01 */ "RADIO EDUCATIVA",
+  /* 01 */ "RADIO EDUCATIVA - IFCE FM",
   /* 02 */ "CEARA FM 87.1MHZ",
   /* 03 */ "RADIO JERUSALEM FM",
   /* 04 */ "JANGADEIRO FM",
