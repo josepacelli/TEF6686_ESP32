@@ -1723,8 +1723,8 @@ void loadIsaacPTYs() {
   // Radio Uirapuru 90.3
   e.freq_khz = 90300;
   e.pty_code = 10;
-  e.ps = getPSByLanguage(7, currentPTYLanguage);
-  e.rt = getRTByLanguage(7, currentPTYLanguage);
+  e.ps = getPSByLanguage(6, currentPTYLanguage);
+  e.rt = getRTByLanguage(6, currentPTYLanguage);
   e.song = "Pop | Ivete Sangalo - Festa";
   e.songYear = "2006";
   e.hour = "09"; e.minute = "00"; e.second = "00";
@@ -1735,8 +1735,8 @@ void loadIsaacPTYs() {
   // Radio Metropolitana FM 91.3
   e.freq_khz = 91300;
   e.pty_code = 10;
-  e.ps = "RADIO METROPOLITANA";
-  e.rt = "RADIO METROPOLITANA";
+  e.ps = getPSByLanguage(7, currentPTYLanguage);
+  e.rt = getRTByLanguage(7, currentPTYLanguage);
   e.song = "Pop | Marisa Monte - Amor I Love You";
   e.songYear = "1995";
   e.hour = "09"; e.minute = "15"; e.second = "00";
@@ -1939,8 +1939,8 @@ void loadIsaacPTYs() {
   // Radio Rede Aleluia 99.9
   e.freq_khz = 99900;
   e.pty_code = 20;
-  e.ps = getPSByLanguage(24, currentPTYLanguage);
-  e.rt = getRTByLanguage(24, currentPTYLanguage);
+  e.ps = getPSByLanguage(25, currentPTYLanguage);
+  e.rt = getRTByLanguage(25, currentPTYLanguage);
   e.song = "Gospel | Ministério Ipiranga - Com Licenca";
   e.songYear = "2023";
   e.hour = "14"; e.minute = "00"; e.second = "00";
@@ -1951,8 +1951,8 @@ void loadIsaacPTYs() {
   // Radio Deus E Amor 100.9
   e.freq_khz = 100900;
   e.pty_code = 20;
-  e.ps = getPSByLanguage(25, currentPTYLanguage);
-  e.rt = getRTByLanguage(25, currentPTYLanguage);
+  e.ps = getPSByLanguage(26, currentPTYLanguage);
+  e.rt = getRTByLanguage(26, currentPTYLanguage);
   e.song = "Gospel | IPDA - Deus e Amor";
   e.songYear = "2022";
   e.hour = "14"; e.minute = "15"; e.second = "00";
@@ -2119,8 +2119,8 @@ void loadIsaacPTYs() {
   // Radio Plus FM 99.5
   e.freq_khz = 99500;
   e.pty_code = 10;
-  e.ps = "PLUS FM";
-  e.rt = "PLUS FM 99.5";
+  e.ps = getPSByLanguage(24, currentPTYLanguage);
+  e.rt = getRTByLanguage(24, currentPTYLanguage);
   e.song = "Pop | Hits do Momento";
   e.songYear = "2026";
   e.hour = "13"; e.minute = "50"; e.second = "00";

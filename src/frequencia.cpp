@@ -1,13 +1,45 @@
 #include "frequencia.h"
 
 const uint32_t allFrequencies[] = {
-  88100, 88300, 88500, 88700, 89100, 89300, 89500, 89700, 90100, 90500, 90900,
-  91100, 91300, 91500, 91900, 92300, 92700, 93100, 93300, 93700, 94100, 94500,
-  94900, 95300, 95700, 95900, 96300, 96500, 96900, 97300, 97500, 97900, 98100,
-  98500, 98700, 98900, 99300, 99500, 99700, 100100, 100300, 100500, 100700,
-  101100, 101500, 101900, 102100, 102500, 102900, 103100, 103700, 104100, 104500,
-  104700, 104900, 105300, 105500, 105900, 106100, 106300, 106700, 106900, 107100,
-  107300
+  79700,   // 00 Radio Metropolitana FM 79.7
+  86700,   // 01 Radio Educativa IFCE FM
+  87100,   // 02 Radio Ceara FM
+  88300,   // 03 Radio Jerusalem FM
+  88900,   // 04 Radio Jangadeiro FM
+  89900,   // 05 Radio 89 FM
+  90300,   // 06 Radio Uirapuru
+  91300,   // 07 Radio Metropolitana FM 91.3
+  91700,   // 08 Radio Shalom FM 91.7
+  92100,   // 09 Radio Efraim
+  92500,   // 10 Radio Verdinha FM
+  92900,   // 11 Radio Jovem Pan News
+  93500,   // 12 Radio Canaa FM
+  93900,   // 13 Radio FM 93
+  94300,   // 14 Radio Sol FM
+  94700,   // 15 Radio Jovem Pan FM
+  95100,   // 16 Radio Logos FM
+  95500,   // 17 Radio O Povo CBN
+  96100,   // 18 Radio Dom Bosco FM
+  96700,   // 19 Radio Alece FM
+  97100,   // 20 Radio Maria Brasil
+  97700,   // 21 Radio Antena 1
+  98300,   // 22 Radio Lider FM
+  99100,   // 23 Radio Cidade FM
+  99500,   // 24 Radio Plus FM
+  99900,   // 25 Radio Rede Aleluia
+  100900,  // 26 Radio Deus E Amor
+  101700,  // 27 Radio BandNews FM
+  102300,  // 28 Radio Templo Central FM
+  102700,  // 29 Radio Beach Park FM
+  103300,  // 30 Radio Senado
+  103500,  // 31 Radio Shalom FM 103.5
+  103900,  // 32 Radio Tempo FM
+  104300,  // 33 Radio Metropolitana FM 104.3
+  105100,  // 34 Radio Metropolitana FM 105.1
+  105700,  // 35 Radio Atlantico Sul FM
+  106500,  // 36 Radio Nova Brasil FM
+  107500,  // 37 Radio Mix FM
+  107900   // 38 Radio Universitaria FM
 };
 
 const int FREQ_COUNT = sizeof(allFrequencies) / sizeof(allFrequencies[0]);
