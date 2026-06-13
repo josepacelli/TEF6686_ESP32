@@ -1497,6 +1497,7 @@ void KeyUp() {
           else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
           setPTYLanguage(languageSet);
           loadIsaacPTYs();
+          lastCustomFreq = 0;
           EEPROM.writeByte(56, languageSet);
           EEPROM.commit();
           break;
@@ -1723,6 +1724,7 @@ void KeyDown() {
           else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
           setPTYLanguage(languageSet);
           loadIsaacPTYs();
+          lastCustomFreq = 0;
           EEPROM.writeByte(56, languageSet);
           EEPROM.commit();
           break;
@@ -1818,7 +1820,9 @@ void showPTY() {
 void showPS() {
   String psToShow = (customPS.length() > 0) ? customPS : String(radio.rds.stationName);
   String rtToShow = findCustomRTForFreq((uint32_t)radio.getFrequency() * 10);
-  psToShow = psToShow + " - " + rtToShow; // Concatenar PS e RT para exibição conjunta
+  unsigned int freq = radio.getFrequency();
+  String freqStr = String(freq / 100) + "." + (freq % 100 < 10 ? "0" : "") + String(freq % 100);
+  psToShow = freqStr + " | " + psToShow + " | " + rtToShow;
   if (psToShow != PSold) {
     psXPos = 0;
     PSold = psToShow;
