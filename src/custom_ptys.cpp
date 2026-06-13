@@ -2289,6 +2289,17 @@ void loadIsaacPTYs() {
   e.weather = "Sunny"; e.temperature = "33°C";
   customPtys.push_back(e);
 
+  e.freq_khz = 99500;
+  e.pty_code = 10;
+  e.ps = "Plus FM";
+  e.rt = "Plus FM";
+  e.song = "";
+  e.songYear = "";
+  e.hour = ""; e.minute = ""; e.second = "";
+  e.day = ""; e.month = ""; e.year = "";
+  e.weather = ""; e.temperature = "";
+  customPtys.push_back(e);
+
   // === ROCK STATIONS (PTY 11) ===
   e.freq_khz = 88700;
   e.pty_code = 10;
@@ -2501,6 +2512,17 @@ void loadIsaacPTYs() {
   e.hour = "13"; e.minute = "30"; e.second = "00";
   e.day = "26"; e.month = "05"; e.year = "2026";
   e.weather = "Sunny"; e.temperature = "29°C";
+  customPtys.push_back(e);
+
+  e.freq_khz = 91300;
+  e.pty_code = 20;
+  e.ps = "Radio Metropolitana";
+  e.rt = "Radio Metropolitana";
+  e.song = "";
+  e.songYear = "";
+  e.hour = ""; e.minute = ""; e.second = "";
+  e.day = ""; e.month = ""; e.year = "";
+  e.weather = ""; e.temperature = "";
   customPtys.push_back(e);
 
   e.freq_khz = 92200;
