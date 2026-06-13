@@ -1972,6 +1972,18 @@ void loadIsaacPTYs() {
   e.weather = "Hot & Humid"; e.temperature = "36°C";
   customPtys.push_back(e);
 
+  // Nova Radio Crista FM 101.3
+  e.freq_khz = 101300;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(40, currentPTYLanguage);
+  e.rt = getRTByLanguage(40, currentPTYLanguage);
+  e.song = "Gospel | Fernandinho - Grande e Bom";
+  e.songYear = "2016";
+  e.hour = "14"; e.minute = "20"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "35°C";
+  customPtys.push_back(e);
+
   // Radio BandNews FM 101.7
   e.freq_khz = 101700;
   e.pty_code = 1;

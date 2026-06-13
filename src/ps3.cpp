@@ -42,4 +42,5 @@ const char* const PS_SPANISH[] = {
   /* 37 */ "NOVABRASIL FM 106.5",
   /* 38 */ "MIX FM 107.5",
   /* 39 */ "107.9MHZ UNIVERSITARIA FM 107.9MHZ",
+  /* 40 */ "NUEVA RADIO CRISTIANA 101.3",
 };

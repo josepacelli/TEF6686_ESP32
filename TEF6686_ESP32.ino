@@ -1710,6 +1710,7 @@ void readRds() {
     if (RDSstatus == 0) {
       tft.setTextColor(TFT_YELLOW);
       tft.drawString(PIold, 244, 192, 4);
+      tft.setTextColor(TFT_SKYBLUE);
       tft.drawString(PTYold, 38, 168, 2);
       tft.setTextColor(TFT_BLACK);
       tft.drawString(RTold, 6, 222, 2);
@@ -1718,6 +1719,7 @@ void readRds() {
       if (dropout == true && PIold.length() != 0) {
         tft.setTextColor(TFT_YELLOW);
         tft.drawString(PIold, 244, 192, 4);
+        tft.setTextColor(TFT_SKYBLUE);
         tft.drawString(PTYold, 38, 168, 2);
         dropout = false;
       }
