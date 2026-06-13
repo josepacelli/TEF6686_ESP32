@@ -1710,7 +1710,7 @@ void readRds() {
     if (RDSstatus == 0) {
       tft.setTextColor(TFT_YELLOW);
       tft.drawString(PIold, 244, 192, 4);
-      tft.setTextColor(TFT_SKYBLUE);
+      tft.setTextColor(TFT_YELLOW);
       tft.drawString(PTYold, 38, 168, 2);
       tft.setTextColor(TFT_BLACK);
       tft.drawString(RTold, 6, 222, 2);
@@ -1765,7 +1765,7 @@ void showPTY() {
   if (ptyToShow != PTYold) {
     tft.setTextColor(TFT_BLACK);
     tft.drawString(PTYold, 38, 168, 2);
-    tft.setTextColor(TFT_SKYBLUE);
+    tft.setTextColor(TFT_YELLOW);
     tft.drawString(ptyToShow, 38, 168, 2);
     PTYold = ptyToShow;
     ptyToShow.toCharArray(programTypePrevious, sizeof(programTypePrevious));
@@ -2216,7 +2216,7 @@ void ShowRDSLogo(bool RDSstatus) {
   if (screenmute == false) {
     if (RDSstatus != RDSstatusold)
     {
-      if (RDSstatus == true) tft.drawBitmap(110, 5, RDSLogo, 67, 22, TFT_SKYBLUE); else tft.drawBitmap(110, 5, RDSLogo, 67, 22, TFT_GREYOUT);
+      if (RDSstatus == true) tft.drawBitmap(110, 5, RDSLogo, 67, 22, TFT_YELLOW); else tft.drawBitmap(110, 5, RDSLogo, 67, 22, TFT_GREYOUT);
       RDSstatusold = RDSstatus;
     }
   }
