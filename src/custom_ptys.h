@@ -25,6 +25,7 @@ struct PTYEntry {
 };
 
 void loadIsaacPTYs();
+bool isCustomRDSEnabled(uint32_t freq_khz);
 String findCustomPSForFreq(uint32_t freq_khz);
 String findCustomRTForFreq(uint32_t freq_khz);
 int8_t findCustomPTYCodeForFreq(uint32_t freq_khz);

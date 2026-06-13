@@ -1506,7 +1506,6 @@ String findCustomPSForFreq(uint32_t freq_khz) {
 
   for (auto &e : customPtys) {
     if (e.freq_khz == freq_khz) {
-      if (!e.custom_rds_enabled) break;
       ps = e.ps;
       pty_code = e.pty_code;
       songYear = e.songYear;
@@ -1525,7 +1524,6 @@ String findCustomPSForFreq(uint32_t freq_khz) {
   if (ps.length() == 0) {
     for (auto &e : customPtys) {
       if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) {
-        if (!e.custom_rds_enabled) continue;
         ps = e.ps;
         pty_code = e.pty_code;
         songYear = e.songYear;
@@ -1600,7 +1598,6 @@ String findCustomRTForFreq(uint32_t freq_khz) {
 
   for (auto &e : customPtys) {
     if (e.freq_khz == freq_khz) {
-      if (!e.custom_rds_enabled) break;
       rt = e.rt;
       pty_code = e.pty_code;
       songYear = e.songYear;
@@ -1619,7 +1616,6 @@ String findCustomRTForFreq(uint32_t freq_khz) {
   if (rt.length() == 0) {
     for (auto &e : customPtys) {
       if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) {
-        if (!e.custom_rds_enabled) continue;
         rt = e.rt;
         pty_code = e.pty_code;
         songYear = e.songYear;
@@ -2483,18 +2479,6 @@ void loadIsaacPTYs() {
   e.weather = "Sunny"; e.temperature = "29°C";
   customPtys.push_back(e);
 
-  e.freq_khz = 88900;
-  e.pty_code = 10;
-  e.ps = getPSByLanguage(si, currentPTYLanguage);
-  e.rt = getRTByLanguage(si, currentPTYLanguage);
-  si++;
-  e.song = "Infantil | Palavra Cantada - Ciranda Magica";
-  e.songYear = "2003";
-  e.hour = "16"; e.minute = "30"; e.second = "00";
-  e.day = "26"; e.month = "05"; e.year = "2026";
-  e.weather = "Clear"; e.temperature = "31°C";
-  customPtys.push_back(e);
-
   e.freq_khz = 90100;
   e.pty_code = 10;
   e.ps = getPSByLanguage(si, currentPTYLanguage);
@@ -2735,6 +2719,16 @@ void loadIsaacPTYs() {
   }
 
   log_info("Default Isaac PTYs loaded.");
+}
+
+bool isCustomRDSEnabled(uint32_t freq_khz) {
+  for (auto &e : customPtys) {
+    if (e.freq_khz == freq_khz) return e.custom_rds_enabled;
+  }
+  for (auto &e : customPtys) {
+    if (abs((int32_t)e.freq_khz - (int32_t)freq_khz) <= 100) return e.custom_rds_enabled;
+  }
+  return true;
 }
 
 int8_t findCustomPTYCodeForFreq(uint32_t freq_khz) {

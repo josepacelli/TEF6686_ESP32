@@ -355,7 +355,7 @@ TFT_eSprite psSprite = TFT_eSprite(&tft);
 
 void setup() {
   setupmode = true;
-  EEPROM.begin(57);
+  EEPROM.begin(73);
   if (EEPROM.readByte(41) != 15) {
     EEPROM.writeByte(2, 0);
     EEPROM.writeByte(3, 0);
@@ -445,6 +445,7 @@ void setup() {
 
   radio.init(TEF);
   loadIsaacPTYs();
+  loadCustomRDSEnabled();
   uint16_t device;
   uint16_t hw;
   uint16_t sw;
@@ -791,6 +792,30 @@ void StoreFrequency() {
   EEPROM.commit();
 }
 
+void saveCustomRDSEnabled() {
+  size_t count = getCustomPTYCount();
+  for (int b = 0; b < 16; b++) {
+    uint8_t mask = 0;
+    for (int bit = 0; bit < 8; bit++) {
+      size_t idx = b * 8 + bit;
+      if (idx < count && getCustomPTYAt(idx).custom_rds_enabled) mask |= (1 << bit);
+    }
+    EEPROM.writeByte(57 + b, mask);
+  }
+  EEPROM.commit();
+}
+
+void loadCustomRDSEnabled() {
+  size_t count = getCustomPTYCount();
+  for (int b = 0; b < 16; b++) {
+    uint8_t mask = EEPROM.readByte(57 + b);
+    for (int bit = 0; bit < 8; bit++) {
+      size_t idx = b * 8 + bit;
+      if (idx < count) getCustomPTYAt(idx).custom_rds_enabled = (mask >> bit) & 1;
+    }
+  }
+}
+
 void SelectBand() {
   if (band == 1) {
     seek = false;
@@ -1025,6 +1050,7 @@ void ButtonPress() {
         menuPage = 1; menuoption = 130; BuildMenu();
       } else {
         getCustomPTYAt(rdsStationIndex).custom_rds_enabled = !getCustomPTYAt(rdsStationIndex).custom_rds_enabled;
+        saveCustomRDSEnabled();
         lastCustomFreq = 0;
         BuildMenu();
       }
@@ -1530,6 +1556,7 @@ void KeyUp() {
           else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
           setPTYLanguage(languageSet);
           loadIsaacPTYs();
+          loadCustomRDSEnabled();
           lastCustomFreq = 0;
           EEPROM.writeByte(56, languageSet);
           EEPROM.commit();
@@ -1765,6 +1792,7 @@ void KeyDown() {
           else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
           setPTYLanguage(languageSet);
           loadIsaacPTYs();
+          loadCustomRDSEnabled();
           lastCustomFreq = 0;
           EEPROM.writeByte(56, languageSet);
           EEPROM.commit();
@@ -1785,12 +1813,14 @@ void readRds() {
     uint32_t currentFreqKhz = (uint32_t)radio.getFrequency() * 10; // FM freq em 10kHz, converter para kHz
     if (currentFreqKhz != lastCustomFreq) {
       lastCustomFreq = currentFreqKhz;
-      customPS = findCustomPSForFreq(currentFreqKhz);
-      customRT = findCustomRTForFreq(currentFreqKhz);
-      int8_t ptyCode = findCustomPTYCodeForFreq(currentFreqKhz);
-      if (ptyCode >= 0) {
-        customPTY = radio.getPTYText(ptyCode);
+      if (isCustomRDSEnabled(currentFreqKhz)) {
+        customPS = findCustomPSForFreq(currentFreqKhz);
+        customRT = findCustomRTForFreq(currentFreqKhz);
+        int8_t ptyCode = findCustomPTYCodeForFreq(currentFreqKhz);
+        customPTY = (ptyCode >= 0) ? radio.getPTYText(ptyCode) : "";
       } else {
+        customPS = "";
+        customRT = "";
         customPTY = "";
       }
     }
@@ -1860,7 +1890,7 @@ void showPTY() {
 
 void showPS() {
   String psToShow = (customPS.length() > 0) ? customPS : String(radio.rds.stationName);
-  String rtToShow = findCustomRTForFreq((uint32_t)radio.getFrequency() * 10);
+  String rtToShow = (customRT.length() > 0) ? customRT : String(radio.rds.stationText);
   unsigned int freq = radio.getFrequency();
   String freqStr = String(freq / 100) + "." + (freq % 100 < 10 ? "0" : "") + String(freq % 100);
   psToShow = freqStr + " | " + psToShow + " | " + rtToShow;
