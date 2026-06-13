@@ -1,6 +1,7 @@
 ﻿#include "custom_ptys.h"
 #include <vector>
 #include <cmath>
+#include <algorithm>
 #include "logbook.h"
 #include "frequencia.h"
 #include "ps_language.h"
@@ -2739,6 +2740,10 @@ void loadIsaacPTYs() {
       customPtys.push_back(e);
     }
   }
+
+  std::sort(customPtys.begin(), customPtys.end(), [](const PTYEntry& a, const PTYEntry& b) {
+    return a.freq_khz < b.freq_khz;
+  });
 
   log_info("Default Isaac PTYs loaded.");
 }
