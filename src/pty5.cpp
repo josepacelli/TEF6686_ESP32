@@ -1,0 +1,38 @@
+// RBDS PTY Categories - Portuguese (NRSC-4-B North American standard)
+#include "pty_language.h"
+
+const char* const PTY_RBDS_PORTUGUESE[] = {
+  "NENHUM",
+  "NOTICIAS",
+  "INFORMACOES",
+  "ESPORTES",
+  "TALK RADIO",
+  "ROCK",
+  "ROCK CLASSICO",
+  "ADULT HITS",
+  "ROCK SUAVE",
+  "TOP 40",
+  "COUNTRY",
+  "OLDIES",
+  "SUAVE",
+  "NOSTALGIA",
+  "JAZZ",
+  "CLASSICO",
+  "RITMO E BLUES",
+  "RB SUAVE",
+  "LINGUA ESTRANGEIRA",
+  "MUSICA RELIGIOSA",
+  "CONVERSA RELIGIOSA",
+  "PERSONALIDADE",
+  "PUBLICO",
+  "UNIVERSITARIO",
+  "NAO DEFINIDO",
+  "NAO DEFINIDO",
+  "NAO DEFINIDO",
+  "NAO DEFINIDO",
+  "NAO DEFINIDO",
+  "METEOROLOGIA",
+  "TESTE DE EMERGENCIA",
+  "EMERGENCIA",
+  "                "
+};

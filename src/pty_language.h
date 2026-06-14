@@ -7,13 +7,19 @@
 enum PTYLanguage {
   PTY_LANG_ENGLISH = 1,
   PTY_LANG_PORTUGUESE = 2,
-  PTY_LANG_SPANISH = 3
+  PTY_LANG_SPANISH = 3,
+  PTY_LANG_RBDS = 4,
+  PTY_LANG_RBDS_PORTUGUESE = 5,
+  PTY_LANG_RBDS_SPANISH = 6
 };
 
 // Declare external PTY arrays
 extern const char* const PTY_ENGLISH[];
 extern const char* const PTY_PORTUGUESE[];
 extern const char* const PTY_SPANISH[];
+extern const char* const PTY_RBDS[];
+extern const char* const PTY_RBDS_PORTUGUESE[];
+extern const char* const PTY_RBDS_SPANISH[];
 
 // Global language selection variable
 extern uint8_t currentPTYLanguage;

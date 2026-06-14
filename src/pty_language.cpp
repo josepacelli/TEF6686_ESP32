@@ -5,7 +5,7 @@ uint8_t currentPTYLanguage = PTY_LANG_ENGLISH;
 
 // Set current language
 void setPTYLanguage(uint8_t language) {
-  if (language >= PTY_LANG_ENGLISH && language <= PTY_LANG_SPANISH) {
+  if (language >= PTY_LANG_ENGLISH && language <= PTY_LANG_RBDS_SPANISH) {
     currentPTYLanguage = language;
   }
 }
@@ -18,6 +18,12 @@ const char* getPTYTextByLanguage(uint8_t ptyCode, uint8_t language) {
         return PTY_PORTUGUESE[ptyCode];
       case PTY_LANG_SPANISH:
         return PTY_SPANISH[ptyCode];
+      case PTY_LANG_RBDS:
+        return PTY_RBDS[ptyCode];
+      case PTY_LANG_RBDS_PORTUGUESE:
+        return PTY_RBDS_PORTUGUESE[ptyCode];
+      case PTY_LANG_RBDS_SPANISH:
+        return PTY_RBDS_SPANISH[ptyCode];
       case PTY_LANG_ENGLISH:
       default:
         return PTY_ENGLISH[ptyCode];

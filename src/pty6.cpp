@@ -1,0 +1,38 @@
+// RBDS PTY Categories - Spanish (NRSC-4-B North American standard)
+#include "pty_language.h"
+
+const char* const PTY_RBDS_SPANISH[] = {
+  "NINGUNO",
+  "NOTICIAS",
+  "INFORMACION",
+  "DEPORTES",
+  "TALK RADIO",
+  "ROCK",
+  "ROCK CLASICO",
+  "ADULT HITS",
+  "ROCK SUAVE",
+  "TOP 40",
+  "COUNTRY",
+  "OLDIES",
+  "SUAVE",
+  "NOSTALGIA",
+  "JAZZ",
+  "CLASICA",
+  "RITMO Y BLUES",
+  "RB SUAVE",
+  "IDIOMA EXTRANJERO",
+  "MUSICA RELIGIOSA",
+  "CHARLA RELIGIOSA",
+  "PERSONALIDAD",
+  "PUBLICO",
+  "UNIVERSITARIO",
+  "SIN ASIGNAR",
+  "SIN ASIGNAR",
+  "SIN ASIGNAR",
+  "SIN ASIGNAR",
+  "SIN ASIGNAR",
+  "CLIMA",
+  "PRUEBA DE EMERGENCIA",
+  "EMERGENCIA",
+  "                "
+};

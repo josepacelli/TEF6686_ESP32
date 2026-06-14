@@ -1722,7 +1722,7 @@ void loadIsaacPTYs() {
 
   // Radio Uirapuru 90.3
   e.freq_khz = 90300;
-  e.pty_code = 10;
+  e.pty_code = 20;
   e.ps = getPSByLanguage(6, currentPTYLanguage);
   e.rt = getRTByLanguage(6, currentPTYLanguage);
   e.song = "Pop | Ivete Sangalo - Festa";
@@ -1926,7 +1926,7 @@ void loadIsaacPTYs() {
 
   // Radio Lider FM 98.3
   e.freq_khz = 98300;
-  e.pty_code = 10;
+  e.pty_code = 20;
   e.ps = getPSByLanguage(23, currentPTYLanguage);
   e.rt = getRTByLanguage(23, currentPTYLanguage);
   e.song = "Gospel | Thalles Roberto - Lugar Secreto";
@@ -2162,6 +2162,246 @@ void loadIsaacPTYs() {
   e.hour = "15"; e.minute = "22"; e.second = "00";
   e.day = "13"; e.month = "06"; e.year = "2026";
   e.weather = "Partly Cloudy"; e.temperature = "34°C";
+  customPtys.push_back(e);
+
+  // Radio Poti FM 87.5
+  e.freq_khz = 87500;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(41, currentPTYLanguage);
+  e.rt = getRTByLanguage(41, currentPTYLanguage);
+  e.song = "Pop | Anitta - Envolver";
+  e.songYear = "2021";
+  e.hour = "08"; e.minute = "05"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "28°C";
+  customPtys.push_back(e);
+
+  // Radio Novo Tempo FM 87.9
+  e.freq_khz = 87900;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(42, currentPTYLanguage);
+  e.rt = getRTByLanguage(42, currentPTYLanguage);
+  e.song = "Gospel | Novo Tempo - Segura na Mao de Deus";
+  e.songYear = "2019";
+  e.hour = "08"; e.minute = "10"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "28°C";
+  customPtys.push_back(e);
+
+  // Radio Nordeste FM 88.1
+  e.freq_khz = 88100;
+  e.pty_code = 25;
+  e.ps = getPSByLanguage(43, currentPTYLanguage);
+  e.rt = getRTByLanguage(43, currentPTYLanguage);
+  e.song = "Forro | Luiz Gonzaga - Asa Branca";
+  e.songYear = "1947";
+  e.hour = "08"; e.minute = "20"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "28°C";
+  customPtys.push_back(e);
+
+  // Radio Record News Fortaleza 89.1
+  e.freq_khz = 89100;
+  e.pty_code = 1;
+  e.ps = getPSByLanguage(44, currentPTYLanguage);
+  e.rt = getRTByLanguage(44, currentPTYLanguage);
+  e.song = "Noticias | Record News - Edicao da Tarde";
+  e.songYear = "2026";
+  e.hour = "09"; e.minute = "00"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "30°C";
+  customPtys.push_back(e);
+
+  // Radio Maranata FM 89.5
+  e.freq_khz = 89500;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(45, currentPTYLanguage);
+  e.rt = getRTByLanguage(45, currentPTYLanguage);
+  e.song = "Gospel | Grupo Logos - Maranata";
+  e.songYear = "2018";
+  e.hour = "09"; e.minute = "10"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "30°C";
+  customPtys.push_back(e);
+
+  // Radio Impacto FM 91.1
+  e.freq_khz = 91100;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(46, currentPTYLanguage);
+  e.rt = getRTByLanguage(46, currentPTYLanguage);
+  e.song = "Pop | Wesley Safadao - Tipo Gin";
+  e.songYear = "2020";
+  e.hour = "09"; e.minute = "25"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "31°C";
+  customPtys.push_back(e);
+
+  // Radio Globo Fortaleza 93.1
+  e.freq_khz = 93100;
+  e.pty_code = 8;
+  e.ps = getPSByLanguage(47, currentPTYLanguage);
+  e.rt = getRTByLanguage(47, currentPTYLanguage);
+  e.song = "Talk | Radio Globo - Programa de Variedades";
+  e.songYear = "2026";
+  e.hour = "10"; e.minute = "40"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "33°C";
+  customPtys.push_back(e);
+
+  // Radio Vida FM 94.1
+  e.freq_khz = 94100;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(48, currentPTYLanguage);
+  e.rt = getRTByLanguage(48, currentPTYLanguage);
+  e.song = "Gospel | Rede Vida - Louvor e Adoracao";
+  e.songYear = "2022";
+  e.hour = "11"; e.minute = "05"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "34°C";
+  customPtys.push_back(e);
+
+  // Radio Cultura CE FM 95.3
+  e.freq_khz = 95300;
+  e.pty_code = 6;
+  e.ps = getPSByLanguage(49, currentPTYLanguage);
+  e.rt = getRTByLanguage(49, currentPTYLanguage);
+  e.song = "Cultura | Programa Cultural - Arte Cearense";
+  e.songYear = "2026";
+  e.hour = "11"; e.minute = "38"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "33°C";
+  customPtys.push_back(e);
+
+  // Radio Cristo Vive FM 96.3
+  e.freq_khz = 96300;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(50, currentPTYLanguage);
+  e.rt = getRTByLanguage(50, currentPTYLanguage);
+  e.song = "Gospel | Thalles Roberto - Sou Livre";
+  e.songYear = "2021";
+  e.hour = "12"; e.minute = "08"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "35°C";
+  customPtys.push_back(e);
+
+  // Radio Tupi Fortaleza 97.3
+  e.freq_khz = 97300;
+  e.pty_code = 8;
+  e.ps = getPSByLanguage(51, currentPTYLanguage);
+  e.rt = getRTByLanguage(51, currentPTYLanguage);
+  e.song = "Talk | Radio Tupi - Programa de Variedades";
+  e.songYear = "2026";
+  e.hour = "12"; e.minute = "45"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "35°C";
+  customPtys.push_back(e);
+
+  // Radio Iguatemi FM 98.7
+  e.freq_khz = 98700;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(52, currentPTYLanguage);
+  e.rt = getRTByLanguage(52, currentPTYLanguage);
+  e.song = "Pop | Gusttavo Lima - Embaixador";
+  e.songYear = "2018";
+  e.hour = "13"; e.minute = "22"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Hot & Humid"; e.temperature = "36°C";
+  customPtys.push_back(e);
+
+  // Radio Novo Tempo FM 100.1
+  e.freq_khz = 100100;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(53, currentPTYLanguage);
+  e.rt = getRTByLanguage(53, currentPTYLanguage);
+  e.song = "Gospel | Novo Tempo - Esperanca Para a Vida";
+  e.songYear = "2023";
+  e.hour = "13"; e.minute = "42"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "36°C";
+  customPtys.push_back(e);
+
+  // Radio Forro 100 FM 100.5
+  e.freq_khz = 100500;
+  e.pty_code = 25;
+  e.ps = getPSByLanguage(54, currentPTYLanguage);
+  e.rt = getRTByLanguage(54, currentPTYLanguage);
+  e.song = "Forro | Xand Aviao - Nao Precisa";
+  e.songYear = "2019";
+  e.hour = "13"; e.minute = "55"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Hot & Humid"; e.temperature = "36°C";
+  customPtys.push_back(e);
+
+  // Radio Paz FM 101.1
+  e.freq_khz = 101100;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(55, currentPTYLanguage);
+  e.rt = getRTByLanguage(55, currentPTYLanguage);
+  e.song = "Gospel | Fernandinho - Lugar Secreto";
+  e.songYear = "2017";
+  e.hour = "14"; e.minute = "12"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "35°C";
+  customPtys.push_back(e);
+
+  // Radio Difusora FM 102.5
+  e.freq_khz = 102500;
+  e.pty_code = 8;
+  e.ps = getPSByLanguage(56, currentPTYLanguage);
+  e.rt = getRTByLanguage(56, currentPTYLanguage);
+  e.song = "Variedades | Programa de Entretenimento";
+  e.songYear = "2026";
+  e.hour = "14"; e.minute = "38"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "35°C";
+  customPtys.push_back(e);
+
+  // Radio Litoral FM 104.7
+  e.freq_khz = 104700;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(57, currentPTYLanguage);
+  e.rt = getRTByLanguage(57, currentPTYLanguage);
+  e.song = "Pop | Mc Kevinho - Olha a Explosao";
+  e.songYear = "2017";
+  e.hour = "16"; e.minute = "02"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Breezy"; e.temperature = "33°C";
+  customPtys.push_back(e);
+
+  // Radio Evangelica FM 106.1
+  e.freq_khz = 106100;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(58, currentPTYLanguage);
+  e.rt = getRTByLanguage(58, currentPTYLanguage);
+  e.song = "Gospel | Ludmila Ferber - Ressuscita-Me";
+  e.songYear = "2014";
+  e.hour = "16"; e.minute = "48"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "33°C";
+  customPtys.push_back(e);
+
+  // Radio Sertao FM 106.9
+  e.freq_khz = 106900;
+  e.pty_code = 25;
+  e.ps = getPSByLanguage(59, currentPTYLanguage);
+  e.rt = getRTByLanguage(59, currentPTYLanguage);
+  e.song = "Forro | Dominguinhos - Forro Nordestino";
+  e.songYear = "1985";
+  e.hour = "17"; e.minute = "10"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "32°C";
+  customPtys.push_back(e);
+
+  // Radio Total FM 107.3
+  e.freq_khz = 107300;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(60, currentPTYLanguage);
+  e.rt = getRTByLanguage(60, currentPTYLanguage);
+  e.song = "Pop | Alok - Never Let Me Go";
+  e.songYear = "2020";
+  e.hour = "17"; e.minute = "25"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "31°C";
   customPtys.push_back(e);
 
   std::sort(customPtys.begin(), customPtys.end(), [](const PTYEntry& a, const PTYEntry& b) {

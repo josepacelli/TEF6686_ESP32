@@ -1,0 +1,38 @@
+// RBDS PTY Categories (NRSC-4-B North American standard)
+#include "pty_language.h"
+
+const char* const PTY_RBDS[] = {
+  "NONE",
+  "NEWS",
+  "INFORMATION",
+  "SPORTS",
+  "TALK",
+  "ROCK",
+  "CLASSIC ROCK",
+  "ADULT HITS",
+  "SOFT ROCK",
+  "TOP 40",
+  "COUNTRY",
+  "OLDIES",
+  "SOFT",
+  "NOSTALGIA",
+  "JAZZ",
+  "CLASSICAL",
+  "RHYTHM AND BLUES",
+  "SOFT RB",
+  "FOREIGN LANGUAGE",
+  "RELIGIOUS MUSIC",
+  "RELIGIOUS TALK",
+  "PERSONALITY",
+  "PUBLIC",
+  "COLLEGE",
+  "UNASSIGNED",
+  "UNASSIGNED",
+  "UNASSIGNED",
+  "UNASSIGNED",
+  "UNASSIGNED",
+  "WEATHER",
+  "EMERGENCY TEST",
+  "EMERGENCY",
+  "                "
+};
