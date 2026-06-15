@@ -644,12 +644,12 @@ void carregarEstacoes() {
   e.tempo = "Clear"; e.temperatura = "30°C";
   estacoes.push_back(e);
 
-  // Radio Impacto FM 91.1
+  // Radio Bons Ventos FM 91.1
   e.freq_khz = 91100;
   e.pty_code = 10;
   e.ps = getPSByLanguage(46, currentPTYLanguage);
   e.rt = getRTByLanguage(46, currentPTYLanguage);
-  e.musica = "Pop | Wesley Safadao - Tipo Gin";
+  e.musica = "Pop | Anitta - Envolver";
   e.anoMusica = "2020";
   e.hora = "09"; e.minuto = "25"; e.segundo = "00";
   e.dia = "13"; e.mes = "06"; e.ano = "2026";
@@ -716,12 +716,12 @@ void carregarEstacoes() {
   e.tempo = "Clear"; e.temperatura = "35°C";
   estacoes.push_back(e);
 
-  // Radio Iguatemi FM 98.7
+  // Radio Plus FM 98.7
   e.freq_khz = 98700;
   e.pty_code = 10;
   e.ps = getPSByLanguage(52, currentPTYLanguage);
   e.rt = getRTByLanguage(52, currentPTYLanguage);
-  e.musica = "Pop | Gusttavo Lima - Embaixador";
+  e.musica = "Pop | Hits do Momento";
   e.anoMusica = "2018";
   e.hora = "13"; e.minuto = "22"; e.segundo = "00";
   e.dia = "13"; e.mes = "06"; e.ano = "2026";
@@ -740,12 +740,12 @@ void carregarEstacoes() {
   e.tempo = "Sunny"; e.temperatura = "36°C";
   estacoes.push_back(e);
 
-  // Radio Forro 100 FM 100.5
+  // Radio Omega - Deus E Amor FM 100.5
   e.freq_khz = 100500;
-  e.pty_code = 25;
+  e.pty_code = 20;
   e.ps = getPSByLanguage(54, currentPTYLanguage);
   e.rt = getRTByLanguage(54, currentPTYLanguage);
-  e.musica = "Forro | Xand Aviao - Nao Precisa";
+  e.musica = "Gospel | IPDA - Deus e Amor";
   e.anoMusica = "2019";
   e.hora = "13"; e.minuto = "55"; e.segundo = "00";
   e.dia = "13"; e.mes = "06"; e.ano = "2026";
