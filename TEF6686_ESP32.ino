@@ -202,7 +202,7 @@
 #define VERSION         "v1.16"
 #endif
 
-#include "src/custom_ptys.h"
+#include "src/estacoes.h"
 #include "src/ui_language.h"
 
 #ifdef ARS
@@ -445,7 +445,7 @@ void setup() {
   if (TEF != 101 && TEF != 102 && TEF != 205) SetTunerPatch();
 
   radio.init(TEF);
-  loadIsaacPTYs();
+  carregarEstacoes();
   loadCustomRDSEnabled();
   uint16_t device;
   uint16_t hw;
@@ -795,12 +795,12 @@ void StoreFrequency() {
 }
 
 void saveCustomRDSEnabled() {
-  size_t count = getCustomPTYCount();
+  size_t count = totalEstacoes();
   for (int b = 0; b < 16; b++) {
     uint8_t mask = 0;
     for (int bit = 0; bit < 8; bit++) {
       size_t idx = b * 8 + bit;
-      if (idx < count && getCustomPTYAt(idx).custom_rds_enabled) mask |= (1 << bit);
+      if (idx < count && getEstacao(idx).rds_ativo) mask |= (1 << bit);
     }
     EEPROM.writeByte(57 + b, mask);
   }
@@ -808,12 +808,12 @@ void saveCustomRDSEnabled() {
 }
 
 void loadCustomRDSEnabled() {
-  size_t count = getCustomPTYCount();
+  size_t count = totalEstacoes();
   for (int b = 0; b < 16; b++) {
     uint8_t mask = EEPROM.readByte(57 + b);
     for (int bit = 0; bit < 8; bit++) {
       size_t idx = b * 8 + bit;
-      if (idx < count) getCustomPTYAt(idx).custom_rds_enabled = (mask >> bit) & 1;
+      if (idx < count) getEstacao(idx).rds_ativo = (mask >> bit) & 1;
     }
   }
 }
@@ -1051,16 +1051,16 @@ void ButtonPress() {
         if (menuoption == 110) {
           menuPage = 2; menuoption = 30; BuildMenu();
         } else if (menuoption == 90) {
-          getCustomPTYAt(ptyStationIndex).custom_rds_enabled = !getCustomPTYAt(ptyStationIndex).custom_rds_enabled;
+          getEstacao(ptyStationIndex).rds_ativo = !getEstacao(ptyStationIndex).rds_ativo;
           saveCustomRDSEnabled(); lastCustomFreq = 0; BuildMenu();
         } else if (menuoption == 30) {
           menuopen = true;
-          ptyEditCode = getCustomPTYAt(ptyStationIndex).pty_code;
+          ptyEditCode = getEstacao(ptyStationIndex).pty_code;
           if (ptyEditCode < 0 || ptyEditCode > 31) ptyEditCode = 0;
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
           tft.setTextColor(TFT_WHITE);
-          String psLbl = getCustomPTYAt(ptyStationIndex).ps;
+          String psLbl = getEstacao(ptyStationIndex).ps;
           if (psLbl.length() > 14) psLbl = psLbl.substring(0, 14);
           tft.drawCentreString(psLbl, 150, 55, 2);
           tft.drawCentreString(getUIString(UI_SET_PTY, languageSet), 150, 75, 4);
@@ -1069,49 +1069,49 @@ void ButtonPress() {
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 140, 2);
         } else if (menuoption == 50) {
           menuopen = true;
-          psEditCount = (int)getCustomPTYCount();
+          psEditCount = (int)totalEstacoes();
           psEditIndex = 0;
-          String curPS = getCustomPTYAt(ptyStationIndex).ps;
+          String curPS = getEstacao(ptyStationIndex).ps;
           for (int i = 0; i < psEditCount; i++) {
-            if (curPS == getCustomPTYAt(i).ps) { psEditIndex = i; break; }
+            if (curPS == getEstacao(i).ps) { psEditIndex = i; break; }
           }
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
           tft.setTextColor(TFT_WHITE);
-          uint32_t fp = getCustomPTYAt(ptyStationIndex).freq_khz;
+          uint32_t fp = getEstacao(ptyStationIndex).freq_khz;
           tft.drawCentreString(String(fp/1000)+"."+String((fp%1000)/100)+" MHz", 150, 55, 2);
           tft.drawCentreString(getUIString(UI_SET_PS, languageSet), 150, 75, 4);
           tft.setTextColor(TFT_YELLOW);
           if (psEditCount > 0)
-            tft.drawCentreString(getCustomPTYAt(psEditIndex).ps, 150, 115, 2);
+            tft.drawCentreString(getEstacao(psEditIndex).ps, 150, 115, 2);
         } else if (menuoption == 70) {
           menuopen = true;
-          rtEditCount = (int)getCustomPTYCount();
+          rtEditCount = (int)totalEstacoes();
           rtEditIndex = 0;
-          String curRT = getCustomPTYAt(ptyStationIndex).rt;
+          String curRT = getEstacao(ptyStationIndex).rt;
           for (int i = 0; i < rtEditCount; i++) {
-            if (curRT == getCustomPTYAt(i).rt) { rtEditIndex = i; break; }
+            if (curRT == getEstacao(i).rt) { rtEditIndex = i; break; }
           }
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
           tft.setTextColor(TFT_WHITE);
-          uint32_t fr = getCustomPTYAt(ptyStationIndex).freq_khz;
+          uint32_t fr = getEstacao(ptyStationIndex).freq_khz;
           tft.drawCentreString(String(fr/1000)+"."+String((fr%1000)/100)+" MHz", 150, 55, 2);
           tft.drawCentreString(getUIString(UI_SET_RT, languageSet), 150, 75, 4);
           tft.setTextColor(TFT_YELLOW);
           if (rtEditCount > 0) {
-            String rtOpt = getCustomPTYAt(rtEditIndex).rt;
+            String rtOpt = getEstacao(rtEditIndex).rt;
             if (rtOpt.length() > 22) rtOpt = rtOpt.substring(0, 22);
             tft.drawCentreString(rtOpt, 150, 115, 2);
           }
         }
       } else {
         if (menuoption == 30) {
-          getCustomPTYAt(ptyStationIndex).pty_code = (int8_t)ptyEditCode;
+          getEstacao(ptyStationIndex).pty_code = (int8_t)ptyEditCode;
         } else if (menuoption == 50) {
-          if (psEditCount > 0) getCustomPTYAt(ptyStationIndex).ps = getCustomPTYAt(psEditIndex).ps;
+          if (psEditCount > 0) getEstacao(ptyStationIndex).ps = getEstacao(psEditIndex).ps;
         } else if (menuoption == 70) {
-          if (rtEditCount > 0) getCustomPTYAt(ptyStationIndex).rt = getCustomPTYAt(rtEditIndex).rt;
+          if (rtEditCount > 0) getEstacao(ptyStationIndex).rt = getEstacao(rtEditIndex).rt;
         }
         lastCustomFreq = 0; menuopen = false; BuildMenu();
       }
@@ -1119,7 +1119,7 @@ void ButtonPress() {
       return;
     }
     if (menuPage == 2) {
-      int count = (int)getCustomPTYCount();
+      int count = (int)totalEstacoes();
       if (ptyStationIndex == count) {
         menuPage = 1; menuoption = 70; BuildMenu();
       } else {
@@ -1281,7 +1281,7 @@ void KeyUp() {
   } else {
     if (menuPage == 2) {
       if (menuopen == false) {
-        int count = (int)getCustomPTYCount();
+        int count = (int)totalEstacoes();
         ptyStationIndex++;
         if (ptyStationIndex > count) ptyStationIndex = 0;
         if (ptyStationIndex < count) {
@@ -1310,14 +1310,14 @@ void KeyUp() {
             tft.fillRect(33, 100, 234, 50, TFT_BLACK);
             psEditIndex = (psEditIndex + 1) % psEditCount;
             tft.setTextColor(TFT_YELLOW);
-            tft.drawCentreString(getCustomPTYAt(psEditIndex).ps, 150, 115, 2);
+            tft.drawCentreString(getEstacao(psEditIndex).ps, 150, 115, 2);
           }
         } else if (menuoption == 70) {
           if (rtEditCount > 0) {
             tft.fillRect(33, 100, 234, 50, TFT_BLACK);
             rtEditIndex = (rtEditIndex + 1) % rtEditCount;
             tft.setTextColor(TFT_YELLOW);
-            String rtOpt = getCustomPTYAt(rtEditIndex).rt;
+            String rtOpt = getEstacao(rtEditIndex).rt;
             if (rtOpt.length() > 22) rtOpt = rtOpt.substring(0, 22);
             tft.drawCentreString(rtOpt, 150, 115, 2);
           }
@@ -1478,7 +1478,7 @@ void KeyUp() {
           else if (languageSet == 8) tft.drawRightString("BR-PT", 165, 110, 4);
           else if (languageSet == 9) tft.drawRightString("BR-ES", 165, 110, 4);
           setPTYLanguage(languageSet);
-          loadIsaacPTYs();
+          carregarEstacoes();
           loadCustomRDSEnabled();
           lastCustomFreq = 0;
           EEPROM.writeByte(56, languageSet);
@@ -1507,7 +1507,7 @@ void KeyDown() {
   } else {
     if (menuPage == 2) {
       if (menuopen == false) {
-        int count = (int)getCustomPTYCount();
+        int count = (int)totalEstacoes();
         ptyStationIndex--;
         if (ptyStationIndex < 0) ptyStationIndex = count;
         if (ptyStationIndex < count && ptyStationIndex < ptyScrollTop) ptyScrollTop = ptyStationIndex;
@@ -1533,14 +1533,14 @@ void KeyDown() {
             tft.fillRect(33, 100, 234, 50, TFT_BLACK);
             psEditIndex = (psEditIndex + psEditCount - 1) % psEditCount;
             tft.setTextColor(TFT_YELLOW);
-            tft.drawCentreString(getCustomPTYAt(psEditIndex).ps, 150, 115, 2);
+            tft.drawCentreString(getEstacao(psEditIndex).ps, 150, 115, 2);
           }
         } else if (menuoption == 70) {
           if (rtEditCount > 0) {
             tft.fillRect(33, 100, 234, 50, TFT_BLACK);
             rtEditIndex = (rtEditIndex + rtEditCount - 1) % rtEditCount;
             tft.setTextColor(TFT_YELLOW);
-            String rtOpt = getCustomPTYAt(rtEditIndex).rt;
+            String rtOpt = getEstacao(rtEditIndex).rt;
             if (rtOpt.length() > 22) rtOpt = rtOpt.substring(0, 22);
             tft.drawCentreString(rtOpt, 150, 115, 2);
           }
@@ -1703,7 +1703,7 @@ void KeyDown() {
           else if (languageSet == 8) tft.drawRightString("BR-PT", 165, 110, 4);
           else if (languageSet == 9) tft.drawRightString("BR-ES", 165, 110, 4);
           setPTYLanguage(languageSet);
-          loadIsaacPTYs();
+          carregarEstacoes();
           loadCustomRDSEnabled();
           lastCustomFreq = 0;
           EEPROM.writeByte(56, languageSet);
@@ -1725,10 +1725,10 @@ void readRds() {
     uint32_t currentFreqKhz = (uint32_t)radio.getFrequency() * 10; // FM freq em 10kHz, converter para kHz
     if (currentFreqKhz != lastCustomFreq) {
       lastCustomFreq = currentFreqKhz;
-      if (isCustomRDSEnabled(currentFreqKhz)) {
-        customPS = findCustomPSForFreq(currentFreqKhz);
-        customRT = findCustomRTForFreq(currentFreqKhz);
-        int8_t ptyCode = findCustomPTYCodeForFreq(currentFreqKhz);
+      if (isRDSAtivo(currentFreqKhz)) {
+        customPS = buscarPS(currentFreqKhz);
+        customRT = buscarRT(currentFreqKhz);
+        int8_t ptyCode = buscarPTY(currentFreqKhz);
         customPTY = (ptyCode >= 0) ? radio.getPTYText(ptyCode) : "";
       } else {
         customPS = "";
@@ -1942,17 +1942,17 @@ void BuildMenu() {
     tft.drawString(">>", 275, 70, 2);
     tft.drawString(getUIString(UI_PAGE1_BACK, languageSet), 20, 90, 2);
   } else if (menuPage == 2) {
-    size_t count = getCustomPTYCount();
+    size_t count = totalEstacoes();
     int visRows = min((int)count, 8);
     for (int i = 0; i < visRows; i++) {
       int idx = ptyScrollTop + i;
       if (idx >= (int)count) break;
       int y = 30 + i * 20;
-      uint32_t f = getCustomPTYAt(idx).freq_khz;
+      uint32_t f = getEstacao(idx).freq_khz;
       String freqStr = String(f / 1000) + "." + String((f % 1000) / 100);
       tft.setTextColor(TFT_WHITE);
       tft.drawString(freqStr, 15, y, 2);
-      String psStr = getCustomPTYAt(idx).ps;
+      String psStr = getEstacao(idx).ps;
       if (psStr.length() > 20) psStr = psStr.substring(0, 20);
       tft.setTextColor(TFT_YELLOW);
       tft.drawString(psStr, 80, y, 2);
@@ -1963,9 +1963,9 @@ void BuildMenu() {
     menuoption = selY;
     tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
   } else if (menuPage == 6) {
-    size_t count6 = getCustomPTYCount();
+    size_t count6 = totalEstacoes();
     if (ptyStationIndex >= (int)count6) { menuPage = 2; BuildMenu(); return; }
-    int8_t pc6 = getCustomPTYAt(ptyStationIndex).pty_code;
+    int8_t pc6 = getEstacao(ptyStationIndex).pty_code;
     if (pc6 < 0 || pc6 > 31) pc6 = 0;
     tft.setTextColor(TFT_WHITE);
     tft.drawString("PTY:", 15, 30, 2);
@@ -1974,18 +1974,18 @@ void BuildMenu() {
     tft.setTextColor(TFT_WHITE);
     tft.drawString("PS:", 15, 50, 2);
     tft.setTextColor(TFT_YELLOW);
-    String ps6 = getCustomPTYAt(ptyStationIndex).ps;
+    String ps6 = getEstacao(ptyStationIndex).ps;
     if (ps6.length() > 20) ps6 = ps6.substring(0, 20);
     tft.drawString(ps6, 60, 50, 2);
     tft.setTextColor(TFT_WHITE);
     tft.drawString("RT:", 15, 70, 2);
     tft.setTextColor(TFT_YELLOW);
-    String rt6 = getCustomPTYAt(ptyStationIndex).rt;
+    String rt6 = getEstacao(ptyStationIndex).rt;
     if (rt6.length() > 20) rt6 = rt6.substring(0, 20);
     tft.drawString(rt6, 60, 70, 2);
     tft.setTextColor(TFT_WHITE);
     tft.drawString("RDS:", 15, 90, 2);
-    bool rdsEn6 = getCustomPTYAt(ptyStationIndex).custom_rds_enabled;
+    bool rdsEn6 = getEstacao(ptyStationIndex).rds_ativo;
     tft.setTextColor(rdsEn6 ? TFT_GREEN : TFT_RED);
     tft.drawString(rdsEn6 ? "ON" : "OFF", 60, 90, 2);
     tft.setTextColor(TFT_SKYBLUE);

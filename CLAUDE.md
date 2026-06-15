@@ -52,17 +52,20 @@ For the ARS display variant (BGR type), define `#define ARS` in the main `.ino`.
 | `Tuner_Interface.{h,cpp}` | I2C transport layer |
 | `Tuner_Patch_Lithio_V*.h` | Firmware patch blobs for chip versions 101, 102, 205 — selected at runtime via `TEF` byte from EEPROM |
 
-### Custom PTY Station Database (`src/custom_ptys.{h,cpp}`)
+### Banco de Estações (`src/estacoes.{h,cpp}` + `src/conteudo.{h,cpp}`)
 
-`PTYEntry` struct: `freq_khz`, `ps`, `rt`, `pty_code`, `song`, `songYear`, `songScrollPos`, `hour/minute/second`, `day/month/year`, `weather`, `temperature`.
+`Estacao` struct: `freq_khz`, `ps`, `rt`, `pty_code`, `musica`, `anoMusica`, `posScroll`, `hora/minuto/segundo`, `dia/mes/ano`, `tempo`, `temperatura`, `rds_ativo`.
 
-`loadIsaacPTYs()` fills a `std::vector<PTYEntry> customPtys` (static, file-local) with ~100 Fortaleza/CE Brazilian radio stations. Called once in `setup()`.
+`carregarEstacoes()` fills a `std::vector<Estacao> estacoes` (static, file-local) with ~100 Fortaleza/CE Brazilian radio stations. Called once in `setup()`.
+
+`conteudo.cpp` contains genre arrays and random generation helpers used as fallback when station has no song data.
 
 Lookup API (used in main sketch when tuning):
-- `findCustomPSForFreq(freq_khz)` → PS string
-- `findCustomRTForFreq(freq_khz)` → RT string
-- `findCustomPTYCodeForFreq(freq_khz)` → PTY code
-- `findCustomSongForFreq()`, `advanceSongScrollPos()`, `getCustomPTYCount()`, `getCustomPTYAt(i)`
+- `buscarPS(freq_khz)` → PS string (full formatted)
+- `buscarRT(freq_khz)` → RT string (full formatted)
+- `buscarPTY(freq_khz)` → PTY code
+- `buscarMusica()`, `avancarScroll()`, `totalEstacoes()`, `getEstacao(i)`
+- `isRDSAtivo(freq_khz)` → bool
 
 ### PTY Language System (`src/pty_language.{h,cpp}`)
 
@@ -70,7 +73,7 @@ Three PTY category string arrays: `PTY_ENGLISH` (pty1.cpp), `PTY_PORTUGUESE` (pt
 
 ### Music Data (`src/musicas.{h,cpp}`)
 
-Global arrays for random content generation: `brazilianArtists[]`, `musicGenres[]`, `brazilianYears[]`, `brazilianSongs[]`. Used by `custom_ptys.cpp` helper functions (`getRandomRTByPTY`, `getSongForPTY`, etc.) to populate filler entries.
+Global arrays for random content generation: `brazilianArtists[]`, `musicGenres[]`, `brazilianYears[]`, `brazilianSongs[]`. Used by `conteudo.cpp` helper functions (`getRandomRTByPTY`, `getSongForPTY`, etc.) to populate filler entries.
 
 ## EEPROM Layout (57 bytes)
 

@@ -1,5 +1,5 @@
 #include "TEF6686.h"
-#include "custom_ptys.h"
+#include "estacoes.h"
 #include "pty_language.h"
 
 void TEF6686::init(byte TEF) {
@@ -244,11 +244,11 @@ bool TEF6686::readRDS()
             strcpy(rds.stationName, ps_buffer);
 
             uint32_t freq_khz = Radio_GetCurrentFreq() * 10;
-            String customPS = findCustomPSForFreq(freq_khz);
+            String customPS = buscarPS(freq_khz);
             if (customPS.length() > 0) {
               strncpy(rds.stationName, customPS.c_str(), 63);
               rds.stationName[63] = 0;
-              advanceSongScrollPos(freq_khz);
+              avancarScroll(freq_khz);
             }
 
             for (int i = 0; i < 9; i++)
@@ -278,12 +278,12 @@ bool TEF6686::readRDS()
             }
             if (rt_timer == 64) {
               uint32_t freq_khz = Radio_GetCurrentFreq() * 10;
-              String customRT = findCustomRTForFreq(freq_khz);
+              String customRT = buscarRT(freq_khz);
 
               String result = String(stationTextBuffer);
               if (customRT.length() > 0) {
                 result += " | " + customRT;
-                advanceSongScrollPos(freq_khz);
+                avancarScroll(freq_khz);
               }
               strncpy(rds.stationText, result.c_str(), 64);
               rds.stationText[64] = 0;
