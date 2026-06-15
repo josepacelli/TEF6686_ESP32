@@ -2404,6 +2404,246 @@ void loadIsaacPTYs() {
   e.weather = "Partly Cloudy"; e.temperature = "31°C";
   customPtys.push_back(e);
 
+  // Radio WR FM 87.3
+  e.freq_khz = 87300;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(61, currentPTYLanguage);
+  e.rt = getRTByLanguage(61, currentPTYLanguage);
+  e.song = "Pop | Anitta - Vai Malandra";
+  e.songYear = "2017";
+  e.hour = "08"; e.minute = "02"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "27°C";
+  customPtys.push_back(e);
+
+  // Radio Cristal FM 87.7
+  e.freq_khz = 87700;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(62, currentPTYLanguage);
+  e.rt = getRTByLanguage(62, currentPTYLanguage);
+  e.song = "Gospel | Ministerio Ipiranga - Tu es Fiel";
+  e.songYear = "2019";
+  e.hour = "08"; e.minute = "08"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "27°C";
+  customPtys.push_back(e);
+
+  // Radio Panorama FM 88.5
+  e.freq_khz = 88500;
+  e.pty_code = 1;
+  e.ps = getPSByLanguage(63, currentPTYLanguage);
+  e.rt = getRTByLanguage(63, currentPTYLanguage);
+  e.song = "Noticias | Panorama - Debate Politico Cearense";
+  e.songYear = "2026";
+  e.hour = "08"; e.minute = "25"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Partly Cloudy"; e.temperature = "28°C";
+  customPtys.push_back(e);
+
+  // Radio Clube FM 90.1
+  e.freq_khz = 90100;
+  e.pty_code = 12;
+  e.ps = getPSByLanguage(64, currentPTYLanguage);
+  e.rt = getRTByLanguage(64, currentPTYLanguage);
+  e.song = "MPB | Djavan - Se";
+  e.songYear = "1987";
+  e.hour = "08"; e.minute = "55"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "29°C";
+  customPtys.push_back(e);
+
+  // Radio Litoral Norte FM 90.5
+  e.freq_khz = 90500;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(65, currentPTYLanguage);
+  e.rt = getRTByLanguage(65, currentPTYLanguage);
+  e.song = "Pop | Ivete Sangalo - A Lua Que Eu Te Dei";
+  e.songYear = "2008";
+  e.hour = "09"; e.minute = "05"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "30°C";
+  customPtys.push_back(e);
+
+  // Radio Cultural FM 91.5
+  e.freq_khz = 91500;
+  e.pty_code = 6;
+  e.ps = getPSByLanguage(66, currentPTYLanguage);
+  e.rt = getRTByLanguage(66, currentPTYLanguage);
+  e.song = "Cultura | Programa Cultural - Arte Cearense";
+  e.songYear = "2026";
+  e.hour = "09"; e.minute = "20"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "31°C";
+  customPtys.push_back(e);
+
+  // Radio Betania FM 91.9
+  e.freq_khz = 91900;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(67, currentPTYLanguage);
+  e.rt = getRTByLanguage(67, currentPTYLanguage);
+  e.song = "Gospel | Eyshila - Identidade";
+  e.songYear = "2016";
+  e.hour = "09"; e.minute = "35"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "31°C";
+  customPtys.push_back(e);
+
+  // Radio Transamerica FM 92.3
+  e.freq_khz = 92300;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(68, currentPTYLanguage);
+  e.rt = getRTByLanguage(68, currentPTYLanguage);
+  e.song = "Dance | Alok - On & On";
+  e.songYear = "2018";
+  e.hour = "09"; e.minute = "48"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "32°C";
+  customPtys.push_back(e);
+
+  // Radio Verdes Mares FM 92.7
+  e.freq_khz = 92700;
+  e.pty_code = 1;
+  e.ps = getPSByLanguage(69, currentPTYLanguage);
+  e.rt = getRTByLanguage(69, currentPTYLanguage);
+  e.song = "Noticias | Verdes Mares - Jornal da Manha";
+  e.songYear = "2026";
+  e.hour = "10"; e.minute = "02"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "32°C";
+  customPtys.push_back(e);
+
+  // Radio Pajucara FM 93.3
+  e.freq_khz = 93300;
+  e.pty_code = 1;
+  e.ps = getPSByLanguage(70, currentPTYLanguage);
+  e.rt = getRTByLanguage(70, currentPTYLanguage);
+  e.song = "Noticias | Pajucara - Jornalismo Nordestino";
+  e.songYear = "2026";
+  e.hour = "10"; e.minute = "30"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "33°C";
+  customPtys.push_back(e);
+
+  // Radio Energia FM 93.7
+  e.freq_khz = 93700;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(71, currentPTYLanguage);
+  e.rt = getRTByLanguage(71, currentPTYLanguage);
+  e.song = "Dance | Alok - Piece of Me";
+  e.songYear = "2020";
+  e.hour = "10"; e.minute = "50"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "33°C";
+  customPtys.push_back(e);
+
+  // Radio Sociedade FM 96.5
+  e.freq_khz = 96500;
+  e.pty_code = 8;
+  e.ps = getPSByLanguage(72, currentPTYLanguage);
+  e.rt = getRTByLanguage(72, currentPTYLanguage);
+  e.song = "Variedades | Programa Comunitario - Sociedade em Pauta";
+  e.songYear = "2026";
+  e.hour = "12"; e.minute = "05"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Hot & Humid"; e.temperature = "35°C";
+  customPtys.push_back(e);
+
+  // Radio Jornal FM 96.9
+  e.freq_khz = 96900;
+  e.pty_code = 1;
+  e.ps = getPSByLanguage(73, currentPTYLanguage);
+  e.rt = getRTByLanguage(73, currentPTYLanguage);
+  e.song = "Noticias | Jornal FM - Edicao da Tarde";
+  e.songYear = "2026";
+  e.hour = "12"; e.minute = "20"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "35°C";
+  customPtys.push_back(e);
+
+  // Radio Capital FM 97.5
+  e.freq_khz = 97500;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(74, currentPTYLanguage);
+  e.rt = getRTByLanguage(74, currentPTYLanguage);
+  e.song = "Pop | Henrique e Juliano - Liberdade Provisoria";
+  e.songYear = "2019";
+  e.hour = "12"; e.minute = "55"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "35°C";
+  customPtys.push_back(e);
+
+  // Radio Mais FM 97.9
+  e.freq_khz = 97900;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(75, currentPTYLanguage);
+  e.rt = getRTByLanguage(75, currentPTYLanguage);
+  e.song = "Pop | Ludmilla - Verdinha";
+  e.songYear = "2020";
+  e.hour = "13"; e.minute = "08"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Hot & Humid"; e.temperature = "36°C";
+  customPtys.push_back(e);
+
+  // Radio Continental FM 98.1
+  e.freq_khz = 98100;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(76, currentPTYLanguage);
+  e.rt = getRTByLanguage(76, currentPTYLanguage);
+  e.song = "International | Ed Sheeran - Shape of You";
+  e.songYear = "2017";
+  e.hour = "13"; e.minute = "18"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Hot & Humid"; e.temperature = "36°C";
+  customPtys.push_back(e);
+
+  // Radio Tropical FM 98.5
+  e.freq_khz = 98500;
+  e.pty_code = 25;
+  e.ps = getPSByLanguage(77, currentPTYLanguage);
+  e.rt = getRTByLanguage(77, currentPTYLanguage);
+  e.song = "Forro | Xand Aviao - Nordeste Bom";
+  e.songYear = "2017";
+  e.hour = "13"; e.minute = "28"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "36°C";
+  customPtys.push_back(e);
+
+  // Radio Nacional FM 98.9
+  e.freq_khz = 98900;
+  e.pty_code = 26;
+  e.ps = getPSByLanguage(78, currentPTYLanguage);
+  e.rt = getRTByLanguage(78, currentPTYLanguage);
+  e.song = "Sertanejo | Jorge e Mateus - Sossega";
+  e.songYear = "2016";
+  e.hour = "13"; e.minute = "38"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "36°C";
+  customPtys.push_back(e);
+
+  // Radio Acropolis FM 99.3
+  e.freq_khz = 99300;
+  e.pty_code = 13;
+  e.ps = getPSByLanguage(79, currentPTYLanguage);
+  e.rt = getRTByLanguage(79, currentPTYLanguage);
+  e.song = "Classico | Tom Jobim - Aguas de Marco";
+  e.songYear = "1972";
+  e.hour = "14"; e.minute = "05"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Clear"; e.temperature = "35°C";
+  customPtys.push_back(e);
+
+  // Radio Alencar FM 99.7
+  e.freq_khz = 99700;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(80, currentPTYLanguage);
+  e.rt = getRTByLanguage(80, currentPTYLanguage);
+  e.song = "Pop | Wesley Safadao - Camarote";
+  e.songYear = "2015";
+  e.hour = "14"; e.minute = "20"; e.second = "00";
+  e.day = "13"; e.month = "06"; e.year = "2026";
+  e.weather = "Sunny"; e.temperature = "35°C";
+  customPtys.push_back(e);
+
   std::sort(customPtys.begin(), customPtys.end(), [](const PTYEntry& a, const PTYEntry& b) {
     return a.freq_khz < b.freq_khz;
   });

@@ -1,0 +1,38 @@
+// Brazilian Radio PTY Categories - English
+#include "pty_language.h"
+
+const char* const PTY_BR_ENGLISH[] = {
+  /* 00 */ "NONE",
+  /* 01 */ "NEWS",
+  /* 02 */ "TALK / DEBATE",
+  /* 03 */ "SPORTS",
+  /* 04 */ "EDUCATION",
+  /* 05 */ "GOSPEL",
+  /* 06 */ "CULTURE / MPB",
+  /* 07 */ "POP",
+  /* 08 */ "FORRO",
+  /* 09 */ "SERTANEJO",
+  /* 10 */ "ROCK",
+  /* 11 */ "FUNK",
+  /* 12 */ "PAGODE / SAMBA",
+  /* 13 */ "BOSSA NOVA",
+  /* 14 */ "CLASSICAL",
+  /* 15 */ "JAZZ",
+  /* 16 */ "HIP HOP / RAP",
+  /* 17 */ "ELECTRONIC",
+  /* 18 */ "CHILDREN",
+  /* 19 */ "RELIGION",
+  /* 20 */ "REGIONAL",
+  /* 21 */ "INTERNATIONAL",
+  /* 22 */ "OLDIES",
+  /* 23 */ "COMMUNITY",
+  /* 24 */ "PUBLIC / GOV",
+  /* 25 */ "UNIVERSITY",
+  /* 26 */ "LEISURE",
+  /* 27 */ "DOCUMENTARY",
+  /* 28 */ "SCIENCE / TECH",
+  /* 29 */ "SOCIAL",
+  /* 30 */ "ALARM TEST",
+  /* 31 */ "ALARM",
+  /* 32 */ "                "
+};

@@ -69,67 +69,67 @@ const uint32_t allFrequencies[] = {
 // 8=Varied Speech    10=Pop Music   12=Easy Listening
 // 20=Religion/Gospel 25=Country/Forro
 const int8_t allPTYCodes[] = {
-  10,  // 79700  Radio Metropolitana 79.7       Religion
-   4,  // 86700  Radio Educativa IFCE           Pop Music
+  10,  // 79700  Radio Metropolitana 79.7       Pop Music
+   4,  // 86700  Radio Educativa IFCE           Education
   10,  // 87100  Radio Ceara FM                 Pop Music
   10,  // 87500  Radio Poti FM                  Pop Music
-  20,  // 87900  Radio Novo Tempo FM            Religion
-  25,  // 88100  Radio Nordeste FM              Pop Music
-  20,  // 88300  Radio Jerusalem FM             Religion
+  20,  // 87900  Radio Novo Tempo FM            Gospel/Religion
+  25,  // 88100  Radio Nordeste FM              Country/Forro
+  20,  // 88300  Radio Jerusalem FM             Gospel/Religion
   10,  // 88900  Radio Jangadeiro FM            Pop Music
-   1,  // 89100  Radio Record News FM           Pop Music
-  20,  // 89500  Radio Maranata FM              Religion
+   1,  // 89100  Radio Record News FM           Current Affairs
+  20,  // 89500  Radio Maranata FM              Gospel/Religion
   10,  // 89900  Radio 89 FM                    Pop Music
-  10,  // 90300  Radio Uirapuru                 Religion
+  20,  // 90300  Radio Uirapuru/Rede Aleluia    Gospel/Religion
   10,  // 90700  Radio Fortaleza FM             Pop Music
   10,  // 91100  Radio Impacto FM               Pop Music
   10,  // 91300  Radio Metropolitana 91.3       Pop Music
-  20,  // 91700  Radio Shalom FM                Religion
-  20,  // 92100  Radio Efraim                   Religion
-  10,  // 92500  Radio Verdinha FM              Pop Music
-   1,  // 92900  Radio Jovem Pan News           Pop Music
-   8,  // 93100  Radio Globo Fortaleza          Pop Music
-  20,  // 93500  Radio Canaa FM                 Religion
+  20,  // 91700  Radio Shalom FM                Gospel/Religion
+  20,  // 92100  Radio Efraim                   Gospel/Religion
+   1,  // 92500  Radio Verdinha FM              Current Affairs
+   1,  // 92900  Radio Jovem Pan News           Current Affairs
+   8,  // 93100  Radio Globo Fortaleza          Varied Speech
+  20,  // 93500  Radio Canaa FM                 Gospel/Religion
   10,  // 93900  Radio FM 93                    Pop Music
-  20,  // 94100  Radio Rede Vida FM             Religion
+  20,  // 94100  Radio Rede Vida FM             Gospel/Religion
   10,  // 94300  Radio Sol FM                   Pop Music
   10,  // 94700  Radio Jovem Pan FM             Pop Music
-  20,  // 95100  Radio Logos FM                 Religion
-   6,  // 95300  Radio Cultura CE FM            Religion
-   1,  // 95500  Radio O Povo CBN               Pop Music
-  20,  // 96100  Radio Dom Bosco FM             Religion
-  20,  // 96300  Radio Cristo Vive FM           Religion
-   2,  // 96700  Radio Alece FM                 Pop Music
-  20,  // 97100  Radio Maria Brasil             Religion
-   8,  // 97300  Radio Tupi Fortaleza           Pop Music
-  12,  // 97700  Radio Antena 1                 Pop Music
-  10,  // 98300  Radio Lider FM                 Pop Music
+  20,  // 95100  Radio Logos FM                 Gospel/Religion
+   6,  // 95300  Radio Cultura CE FM            Culture
+   1,  // 95500  Radio O Povo CBN               Current Affairs
+  20,  // 96100  Radio Dom Bosco FM             Gospel/Religion
+  20,  // 96300  Radio Cristo Vive FM           Gospel/Religion
+   2,  // 96700  Radio Alece FM                 Information
+  20,  // 97100  Radio Maria Brasil             Gospel/Religion
+   8,  // 97300  Radio Tupi Fortaleza           Varied Speech
+  12,  // 97700  Radio Antena 1                 Easy Listening
+  20,  // 98300  Radio Lider FM                 Gospel/Religion
   10,  // 98700  Radio Iguatemi FM              Pop Music
   10,  // 99100  Radio Cidade FM                Pop Music
   10,  // 99500  Radio Plus FM                  Pop Music
-  20,  // 99900  Radio Rede Aleluia             Religion
-  20,  // 100100 Radio Novo Tempo FM 100.1      Religion
-  25,  // 100500 Radio Forro 100 FM             Pop Music
-  20,  // 100900 Radio Deus E Amor              Religion
-  20,  // 101100 Radio Paz FM                   Religion
-  20,  // 101300 Nova Radio Crista FM           Religion
-   1,  // 101700 Radio BandNews FM              Pop Music
-  20,  // 102300 Radio Templo Central FM        Religion
-   8,  // 102500 Radio Difusora FM              Pop Music
+  20,  // 99900  Radio Rede Aleluia             Gospel/Religion
+  20,  // 100100 Radio Novo Tempo FM 100.1      Gospel/Religion
+  25,  // 100500 Radio Forro 100 FM             Country/Forro
+  20,  // 100900 Radio Deus E Amor              Gospel/Religion
+  20,  // 101100 Radio Paz FM                   Gospel/Religion
+  20,  // 101300 Nova Radio Crista FM           Gospel/Religion
+   1,  // 101700 Radio BandNews FM              Current Affairs
+  20,  // 102300 Radio Templo Central FM        Gospel/Religion
+   8,  // 102500 Radio Difusora FM              Varied Speech
   10,  // 102700 Radio Beach Park FM            Pop Music
-   2,  // 103300 Radio Senado                   Pop Music
-  20,  // 103500 Radio Shalom FM 103.5          Pop Music
+   2,  // 103300 Radio Senado                   Information
+  20,  // 103500 Radio Shalom FM 103.5          Gospel/Religion
   10,  // 103900 Radio Tempo FM                 Pop Music
   10,  // 104300 Radio Metropolitana 104.3      Pop Music
   10,  // 104700 Radio Litoral FM               Pop Music
-  20,  // 105100 Radio AD Cidade FM             Religion
+  20,  // 105100 Radio AD Cidade FM             Gospel/Religion
   10,  // 105700 Radio Atlantico Sul FM         Pop Music
-  20,  // 106100 Radio Evangelica FM            Religion
+  20,  // 106100 Radio Evangelica FM            Gospel/Religion
   10,  // 106500 Radio Nova Brasil FM           Pop Music
-  25,  // 106900 Radio Sertao FM                Pop Music
+  25,  // 106900 Radio Sertao FM                Country/Forro
   10,  // 107300 Radio Total FM                 Pop Music
   10,  // 107500 Radio Mix FM                   Pop Music
-   4,  // 107900 Radio Universitaria FM         Pop Music
+   4,  // 107900 Radio Universitaria FM         Education
 };
 
 const int FREQ_COUNT = sizeof(allFrequencies) / sizeof(allFrequencies[0]);

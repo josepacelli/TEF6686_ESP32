@@ -405,7 +405,7 @@ void setup() {
   TEF = EEPROM.readByte(54);
   optenc = EEPROM.readByte(55);
   languageSet = EEPROM.readByte(56);
-  if (languageSet < 1 || languageSet > 4) languageSet = 1; // Default English if invalid
+  if (languageSet < 1 || languageSet > 9) languageSet = 1; // Default English if invalid
   EEPROM.commit();
   setPTYLanguage(languageSet);
   btStop();
@@ -1247,6 +1247,11 @@ void ButtonPress() {
           else if (languageSet == 2) tft.drawRightString("Portugues", 165, 110, 4);
           else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
           else if (languageSet == 4) tft.drawRightString("RBDS", 165, 110, 4);
+          else if (languageSet == 5) tft.drawRightString("RBDS PT", 165, 110, 4);
+          else if (languageSet == 6) tft.drawRightString("RBDS ES", 165, 110, 4);
+          else if (languageSet == 7) tft.drawRightString("BR-EN", 165, 110, 4);
+          else if (languageSet == 8) tft.drawRightString("BR-PT", 165, 110, 4);
+          else if (languageSet == 9) tft.drawRightString("BR-ES", 165, 110, 4);
           break;
       }
     } else {
@@ -1455,13 +1460,23 @@ void KeyUp() {
           else if (languageSet == 2) tft.drawRightString("Portugues", 165, 110, 4);
           else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
           else if (languageSet == 4) tft.drawRightString("RBDS", 165, 110, 4);
+          else if (languageSet == 5) tft.drawRightString("RBDS PT", 165, 110, 4);
+          else if (languageSet == 6) tft.drawRightString("RBDS ES", 165, 110, 4);
+          else if (languageSet == 7) tft.drawRightString("BR-EN", 165, 110, 4);
+          else if (languageSet == 8) tft.drawRightString("BR-PT", 165, 110, 4);
+          else if (languageSet == 9) tft.drawRightString("BR-ES", 165, 110, 4);
           languageSet++;
-          if (languageSet > 4) languageSet = 1;
+          if (languageSet > 9) languageSet = 1;
           tft.setTextColor(TFT_YELLOW);
           if (languageSet == 1) tft.drawRightString("English", 165, 110, 4);
           else if (languageSet == 2) tft.drawRightString("Portugues", 165, 110, 4);
           else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
           else if (languageSet == 4) tft.drawRightString("RBDS", 165, 110, 4);
+          else if (languageSet == 5) tft.drawRightString("RBDS PT", 165, 110, 4);
+          else if (languageSet == 6) tft.drawRightString("RBDS ES", 165, 110, 4);
+          else if (languageSet == 7) tft.drawRightString("BR-EN", 165, 110, 4);
+          else if (languageSet == 8) tft.drawRightString("BR-PT", 165, 110, 4);
+          else if (languageSet == 9) tft.drawRightString("BR-ES", 165, 110, 4);
           setPTYLanguage(languageSet);
           loadIsaacPTYs();
           loadCustomRDSEnabled();
@@ -1670,13 +1685,23 @@ void KeyDown() {
           else if (languageSet == 2) tft.drawRightString("Portugues", 165, 110, 4);
           else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
           else if (languageSet == 4) tft.drawRightString("RBDS", 165, 110, 4);
+          else if (languageSet == 5) tft.drawRightString("RBDS PT", 165, 110, 4);
+          else if (languageSet == 6) tft.drawRightString("RBDS ES", 165, 110, 4);
+          else if (languageSet == 7) tft.drawRightString("BR-EN", 165, 110, 4);
+          else if (languageSet == 8) tft.drawRightString("BR-PT", 165, 110, 4);
+          else if (languageSet == 9) tft.drawRightString("BR-ES", 165, 110, 4);
           languageSet--;
-          if (languageSet < 1) languageSet = 4;
+          if (languageSet < 1) languageSet = 9;
           tft.setTextColor(TFT_YELLOW);
           if (languageSet == 1) tft.drawRightString("English", 165, 110, 4);
           else if (languageSet == 2) tft.drawRightString("Portugues", 165, 110, 4);
           else if (languageSet == 3) tft.drawRightString("Espanol", 165, 110, 4);
           else if (languageSet == 4) tft.drawRightString("RBDS", 165, 110, 4);
+          else if (languageSet == 5) tft.drawRightString("RBDS PT", 165, 110, 4);
+          else if (languageSet == 6) tft.drawRightString("RBDS ES", 165, 110, 4);
+          else if (languageSet == 7) tft.drawRightString("BR-EN", 165, 110, 4);
+          else if (languageSet == 8) tft.drawRightString("BR-PT", 165, 110, 4);
+          else if (languageSet == 9) tft.drawRightString("BR-ES", 165, 110, 4);
           setPTYLanguage(languageSet);
           loadIsaacPTYs();
           loadCustomRDSEnabled();
@@ -1795,7 +1820,7 @@ void showPS() {
       int psTextWidth = tft.textWidth(psToShow);
 
       psSprite.fillSprite(TFT_BLACK);
-      psSprite.setTextColor(TFT_YELLOW);
+      psSprite.setTextColor(TFT_CYAN);
       psSprite.drawString(psToShow, psXPos, 2, 4);
       psSprite.pushSprite(38, 192);
 
@@ -1820,7 +1845,7 @@ void showRadioText() {
       xPos -= charWidth;
       if (xPos < -tft.textWidth(rtToShow) + (charWidth * 42)) xPos = 6;
       sprite.fillSprite(TFT_BLACK);
-      sprite.setTextColor(TFT_YELLOW);
+      sprite.setTextColor(TFT_CYAN);
       sprite.drawString(rtToShow, xPos, yPos, 2);
       sprite.pushSprite(6, 220);
       rtticker = millis();
@@ -1908,6 +1933,11 @@ void BuildMenu() {
     else if (languageSet == 2) tft.drawRightString("Portugues", 270, 50, 2);
     else if (languageSet == 3) tft.drawRightString("Espanol", 270, 50, 2);
     else if (languageSet == 4) tft.drawRightString("RBDS", 270, 50, 2);
+    else if (languageSet == 5) tft.drawRightString("RBDS PT", 270, 50, 2);
+    else if (languageSet == 6) tft.drawRightString("RBDS ES", 270, 50, 2);
+    else if (languageSet == 7) tft.drawRightString("BR-EN", 270, 50, 2);
+    else if (languageSet == 8) tft.drawRightString("BR-PT", 270, 50, 2);
+    else if (languageSet == 9) tft.drawRightString("BR-ES", 270, 50, 2);
     tft.setTextColor(TFT_SKYBLUE);
     tft.drawString(">>", 275, 70, 2);
     tft.drawString(getUIString(UI_PAGE1_BACK, languageSet), 20, 90, 2);
