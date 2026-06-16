@@ -476,13 +476,13 @@ void carregarEstacoes() {
   e.tempo = "Hot & Humid"; e.temperatura = "35°C";
   estacoes.push_back(e);
 
-  // Radio AD Cidade FM 105.1
+  // Radio Metropolitana FM 105.1
   e.freq_khz = 105100;
-  e.pty_code = 20;
+  e.pty_code = 10;
   e.ps = getPSByLanguage(35, currentPTYLanguage);
   e.rt = getRTByLanguage(35, currentPTYLanguage);
-  e.musica = "Gospel | Assembleia de Deus - Louvor ao Senhor";
-  e.anoMusica = "2023";
+  e.musica = "Pop | Wesley Safadao - Camarote";
+  e.anoMusica = "2018";
   e.hora = "16"; e.minuto = "00"; e.segundo = "00";
   e.dia = "13"; e.mes = "06"; e.ano = "2026";
   e.tempo = "Sunny"; e.temperatura = "34°C";
