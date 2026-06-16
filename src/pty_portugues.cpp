@@ -4,7 +4,7 @@
 const char* const PTY_PORTUGUESE[] = {
   /* 00 */ "NAO DEFINIDO",
   /* 01 */ "NOTICIAS",
-  /* 02 */ "ATUALIDADES",
+  /* 02 */ "ACONTECIMENTOS",
   /* 03 */ "INFORMACOES",
   /* 04 */ "ESPORTES",
   /* 05 */ "EDUCATIVO",
