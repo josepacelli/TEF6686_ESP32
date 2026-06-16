@@ -788,13 +788,13 @@ void carregarEstacoes() {
   e.tempo = "Breezy"; e.temperatura = "33°C";
   estacoes.push_back(e);
 
-  // Radio Evangelica FM 106.1
+  // Radio Plus FM 106.1
   e.freq_khz = 106100;
-  e.pty_code = 20;
+  e.pty_code = 10;
   e.ps = getPSByLanguage(58, currentPTYLanguage);
   e.rt = getRTByLanguage(58, currentPTYLanguage);
-  e.musica = "Gospel | Ludmila Ferber - Ressuscita-Me";
-  e.anoMusica = "2014";
+  e.musica = "Pop | Hits do Momento";
+  e.anoMusica = "2026";
   e.hora = "16"; e.minuto = "48"; e.segundo = "00";
   e.dia = "13"; e.mes = "06"; e.ano = "2026";
   e.tempo = "Clear"; e.temperatura = "33°C";
@@ -872,7 +872,7 @@ void carregarEstacoes() {
   e.tempo = "Sunny"; e.temperatura = "29°C";
   estacoes.push_back(e);
 
-  // Radio Litoral Norte FM 90.5
+  // Radio Costa Leste FM 90.5
   e.freq_khz = 90500;
   e.pty_code = 10;
   e.ps = getPSByLanguage(65, currentPTYLanguage);
@@ -932,7 +932,7 @@ void carregarEstacoes() {
   e.tempo = "Clear"; e.temperatura = "32°C";
   estacoes.push_back(e);
 
-  // Radio Pajucara FM 93.3
+  // Radio FM Maior 93.3
   e.freq_khz = 93300;
   e.pty_code = 1;
   e.ps = getPSByLanguage(70, currentPTYLanguage);
@@ -1062,6 +1062,18 @@ void carregarEstacoes() {
   e.hora = "14"; e.minuto = "20"; e.segundo = "00";
   e.dia = "13"; e.mes = "06"; e.ano = "2026";
   e.tempo = "Sunny"; e.temperatura = "35°C";
+  estacoes.push_back(e);
+
+  // Radio Vinde FM 107.1
+  e.freq_khz = 107100;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(81, currentPTYLanguage);
+  e.rt = getRTByLanguage(81, currentPTYLanguage);
+  e.musica = "Gospel | Fernandinho - Nao Existe Lugar";
+  e.anoMusica = "2020";
+  e.hora = "17"; e.minuto = "20"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Partly Cloudy"; e.temperatura = "31°C";
   estacoes.push_back(e);
 
   std::sort(estacoes.begin(), estacoes.end(), [](const Estacao& a, const Estacao& b) {
