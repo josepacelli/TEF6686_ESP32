@@ -56,7 +56,9 @@ For the ARS display variant (BGR type), define `#define ARS` in the main `.ino`.
 
 `Estacao` struct: `freq_khz`, `ps`, `rt`, `pty_code`, `musica`, `anoMusica`, `posScroll`, `hora/minuto/segundo`, `dia/mes/ano`, `tempo`, `temperatura`, `rds_ativo`.
 
-`carregarEstacoes()` fills a `std::vector<Estacao> estacoes` (static, file-local) with ~100 Fortaleza/CE Brazilian radio stations. Called once in `setup()`.
+`carregarEstacoes()` fills a `std::vector<Estacao> estacoes` (static, file-local) with ~100 Fortaleza/CE Brazilian radio stations. Called once in `setup()`. Vector is sorted by `freq_khz` at the end of the function.
+
+`findEstacao()` (file-local) matches exact `freq_khz` first, then falls back to ±100 kHz tolerance.
 
 `conteudo.cpp` contains genre arrays and random generation helpers used as fallback when station has no song data.
 
@@ -67,13 +69,39 @@ Lookup API (used in main sketch when tuning):
 - `buscarMusica()`, `avancarScroll()`, `totalEstacoes()`, `getEstacao(i)`
 - `isRDSAtivo(freq_khz)` → bool
 
+### Multi-Language PS/RT System — Critical
+
+There are **6 parallel language array files** for station PS and RT strings, all using the **same integer index** (currently 0–81):
+
+| File | Content |
+|------|---------|
+| `src/ps_portugues.cpp` | Full Portuguese station name + tagline |
+| `src/ps_ingles.cpp` | Short English station name + frequency |
+| `src/ps_espanhol.cpp` | Short Spanish station name |
+| `src/rt_portugues.cpp` | Full Portuguese RT string (max 64 chars) |
+| `src/rt_ingles.cpp` | Full English RT string |
+| `src/rt_espanhol.cpp` | Full Spanish RT string |
+
+**When adding or renaming a station, all 6 files must be updated at the same index.**
+
+`getPSByLanguage(index, language)` and `getRTByLanguage(index, language)` dispatch via the `PTYLanguage` enum (stored in EEPROM byte 56 as `languageSet`):
+- Values 2, 5, 8 → Portuguese arrays
+- Values 3, 6, 9 → Spanish arrays
+- All others / default → English arrays
+
+The `Estacao.ps` and `Estacao.rt` fields are populated at `carregarEstacoes()` time by calling `getPSByLanguage(index, currentPTYLanguage)`.
+
+### UI String System
+
+`src/ui_language.h` defines `UIStringID` enum (0 to `UI_STRING_COUNT`). Menu labels and prompts are looked up via `getUIString(UIStringID, language)` which dispatches across `UI_ENGLISH[]`, `UI_PORTUGUESE[]`, `UI_SPANISH[]`.
+
 ### PTY Language System (`src/pty_language.{h,cpp}`)
 
-Three PTY category string arrays: `PTY_ENGLISH` (pty1.cpp), `PTY_PORTUGUESE` (pty2.cpp), `PTY_SPANISH` (pty3.cpp). Language selected via `languageSet` EEPROM byte (56), applied via `setPTYLanguage()` in `setup()`.
+Nine PTY category string arrays covering RBDS and Brazilian variants. Language selected via `languageSet` EEPROM byte (56), applied via `setPTYLanguage()` in `setup()`. `getPTYName(code)` (in `conteudo.cpp`) returns current-language PTY label.
 
 ### Music Data (`src/musicas.{h,cpp}`)
 
-Global arrays for random content generation: `brazilianArtists[]`, `musicGenres[]`, `brazilianYears[]`, `brazilianSongs[]`. Used by `conteudo.cpp` helper functions (`getRandomRTByPTY`, `getSongForPTY`, etc.) to populate filler entries.
+Global arrays for random content generation: `brazilianArtists[]`, `musicGenres[]`, `brazilianYears[]`, `brazilianSongs[]`. Used by `conteudo.cpp` helpers (`generateRandomSong`, `getRandomGenreByPTY`, etc.) to populate filler entries.
 
 ## EEPROM Layout (57 bytes)
 
@@ -100,7 +128,7 @@ Global arrays for random content generation: `brazilianArtists[]`, `musicGenres[
 | 53 | byte | `displayflip` |
 | 54 | byte | `TEF` (chip version: 101/102/205) |
 | 55 | byte | `optenc` (optical encoder flag) |
-| 56 | byte | `languageSet` (PTY language) |
+| 56 | byte | `languageSet` (PTYLanguage enum value) |
 
 ## Key Constants (Hardware Pins)
 
@@ -110,8 +138,15 @@ PIN_POT=35  PWRBUTTON=4  BWBUTTON=25  MODEBUTTON=26
 CONTRASTPIN=2  STANDBYLED=19  SMETERPIN=27
 ```
 
+## Adding a New Station — Checklist
+
+1. Pick next available index (currently max is 81).
+2. Add entry to **all 6 language files** at that index.
+3. Add `Estacao` block in `carregarEstacoes()` — `freq_khz` in kHz (e.g. 107100 for 107.1 MHz). The sort at the end handles ordering.
+4. Common `pty_code` values: 1=News, 2=Affairs, 4=Education, 6=Culture, 8=Talk, 10=Pop, 12=Easy Listening, 13=Classical, 20=Religious, 25=Folk/Forró, 26=Country.
+
 ## In-Progress Files
 
-- `src/frequencia.cpp` — new, currently empty
-- `src/rds3.cpp` — new, currently empty
-- `src/rds1.cpp`, `src/rds2.cpp` — listed in git status but don't exist on disk yet
+- `src/frequencia.cpp` — declares `allFrequencies[]`, `allPTYCodes[]`, `getPTYCodeForFreq()` — body currently empty
+- `src/rds3.cpp` — currently empty
+- `src/rds1.cpp`, `src/rds2.cpp` — referenced in git but don't exist on disk yet
