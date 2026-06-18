@@ -31,5 +31,6 @@ String buscarMusica(uint32_t freq_khz);
 String buscarGenero(uint32_t freq_khz);
 size_t totalEstacoes();
 Estacao& getEstacao(size_t i);
+void   setAllRDS(bool ativo);
 
 #endif // ESTACOES_H

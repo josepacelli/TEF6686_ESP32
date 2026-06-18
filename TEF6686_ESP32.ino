@@ -1079,6 +1079,8 @@ void ButtonPress() {
         } else if (menuoption == 110) {
           getEstacao(ptyStationIndex).rds_ativo = !getEstacao(ptyStationIndex).rds_ativo;
           saveCustomRDSEnabled(); lastCustomFreq = 0; BuildMenu();
+        } else if (menuoption == 150) {
+          habilitarTodasRDS(); BuildMenu();
         } else if (menuoption == 90) {
           menuopen = true;
           piEditCode = getEstacao(ptyStationIndex).pi_code;
@@ -1342,7 +1344,7 @@ void KeyUp() {
       if (menuopen == false) {
         tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
         menuoption += 20;
-        if (menuoption > 130) menuoption = 30;
+        if (menuoption > 150) menuoption = 30;
         tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
       } else {
         if (menuoption == 30) {
@@ -1573,7 +1575,7 @@ void KeyDown() {
       if (menuopen == false) {
         tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
         menuoption -= 20;
-        if (menuoption < 30) menuoption = 130;
+        if (menuoption < 30) menuoption = 150;
         tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
       } else {
         if (menuoption == 30) {
@@ -2061,6 +2063,10 @@ void BuildMenu() {
     bool rdsEn6 = getEstacao(ptyStationIndex).rds_ativo;
     tft.setTextColor(rdsEn6 ? TFT_GREEN : TFT_RED);
     tft.drawString(rdsEn6 ? "ON" : "OFF", 60, 110, 2);
+    tft.setTextColor(TFT_WHITE);
+    tft.drawString("Todos RDS:", 15, 150, 2);
+    tft.setTextColor(TFT_CYAN);
+    tft.drawString("LIGAR", 110, 150, 2);
     tft.setTextColor(TFT_SKYBLUE);
     tft.drawString(getUIString(UI_BACK, languageSet), 15, 130, 2);
     tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);

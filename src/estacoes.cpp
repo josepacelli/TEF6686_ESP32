@@ -94,10 +94,15 @@ size_t totalEstacoes() { return estacoes.size(); }
 
 Estacao& getEstacao(size_t i) { return estacoes[i]; }
 
+void setAllRDS(bool ativo) {
+  for (auto& e : estacoes) e.rds_ativo = ativo;
+}
+
 void carregarEstacoes() {
   log_info("Carregando estacoes...");
   estacoes.clear();
   Estacao e;
+  e.rds_ativo = true;
 
   // === FORTALEZA FM STATIONS - SORTED BY FREQUENCY ===
 
