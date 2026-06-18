@@ -42,4 +42,6 @@ const char* const UI_PORTUGUESE[] = {
   /* 36 UI_SCREEN_FLIPPED        */ "Tela invertida",
   /* 37 UI_SCREEN_MUTED          */ "Tela esta muda!",
   /* 38 UI_FM_AM_RECEIVER        */ "Receptor FM/AM",
+  /* 39 UI_SET_PI               */ "Ajustar Codigo PI:",
+  /* 40 UI_ENABLE_ALL_RDS       */ "Habilitar Todos RDS",
 };

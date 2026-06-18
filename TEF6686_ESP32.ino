@@ -323,6 +323,7 @@ uint8_t RDSstatus;
 String customPS = "";
 String customRT = "";
 String customPTY = "";
+String customPI = "";
 uint32_t lastCustomFreq = 0;
 int ptyStationIndex = 0;
 int ptyScrollTop = 0;
@@ -336,6 +337,7 @@ int rtStationIndex = 0;
 int rtScrollTop = 0;
 int rtEditIndex = 0;
 int rtEditCount = 0;
+int piEditCode = 0;
 int rdsStationIndex = 0;
 int rdsScrollTop = 0;
 unsigned int change;
@@ -356,7 +358,7 @@ TFT_eSprite psSprite = TFT_eSprite(&tft);
 
 void setup() {
   setupmode = true;
-  EEPROM.begin(73);
+  EEPROM.begin(300);
   if (EEPROM.readByte(41) != 15) {
     EEPROM.writeByte(2, 0);
     EEPROM.writeByte(3, 0);
@@ -447,6 +449,7 @@ void setup() {
   radio.init(TEF);
   carregarEstacoes();
   loadCustomRDSEnabled();
+  loadCustomPICodes();
   uint16_t device;
   uint16_t hw;
   uint16_t sw;
@@ -818,6 +821,29 @@ void loadCustomRDSEnabled() {
   }
 }
 
+void saveCustomPICodes() {
+  size_t count = totalEstacoes();
+  for (size_t i = 0; i < count; i++) {
+    EEPROM.writeUShort(73 + i * 2, getEstacao(i).pi_code);
+  }
+  EEPROM.commit();
+}
+
+void loadCustomPICodes() {
+  size_t count = totalEstacoes();
+  for (size_t i = 0; i < count; i++) {
+    uint16_t val = EEPROM.readUShort(73 + i * 2);
+    if (val != 0xFFFF) getEstacao(i).pi_code = val;
+  }
+}
+
+void habilitarTodasRDS() {
+  size_t count = totalEstacoes();
+  for (size_t i = 0; i < count; i++) getEstacao(i).rds_ativo = true;
+  saveCustomRDSEnabled();
+  lastCustomFreq = 0;
+}
+
 void SelectBand() {
   if (band == 1) {
     seek = false;
@@ -1048,11 +1074,25 @@ void ButtonPress() {
   } else {
     if (menuPage == 6) {
       if (menuopen == false) {
-        if (menuoption == 110) {
+        if (menuoption == 130) {
           menuPage = 2; menuoption = 30; BuildMenu();
-        } else if (menuoption == 90) {
+        } else if (menuoption == 110) {
           getEstacao(ptyStationIndex).rds_ativo = !getEstacao(ptyStationIndex).rds_ativo;
           saveCustomRDSEnabled(); lastCustomFreq = 0; BuildMenu();
+        } else if (menuoption == 90) {
+          menuopen = true;
+          piEditCode = getEstacao(ptyStationIndex).pi_code;
+          tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
+          tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
+          tft.setTextColor(TFT_WHITE);
+          String piLbl = getEstacao(ptyStationIndex).ps;
+          if (piLbl.length() > 14) piLbl = piLbl.substring(0, 14);
+          tft.drawCentreString(piLbl, 150, 55, 2);
+          tft.drawCentreString(getUIString(UI_SET_PI, languageSet), 150, 75, 4);
+          tft.setTextColor(TFT_YELLOW);
+          String piHex = String((uint16_t)piEditCode, HEX); piHex.toUpperCase();
+          while (piHex.length() < 4) piHex = "0" + piHex;
+          tft.drawCentreString(piHex, 150, 115, 4);
         } else if (menuoption == 30) {
           menuopen = true;
           ptyEditCode = getEstacao(ptyStationIndex).pty_code;
@@ -1112,6 +1152,9 @@ void ButtonPress() {
           if (psEditCount > 0) getEstacao(ptyStationIndex).ps = getEstacao(psEditIndex).ps;
         } else if (menuoption == 70) {
           if (rtEditCount > 0) getEstacao(ptyStationIndex).rt = getEstacao(rtEditIndex).rt;
+        } else if (menuoption == 90) {
+          getEstacao(ptyStationIndex).pi_code = (uint16_t)piEditCode;
+          saveCustomPICodes();
         }
         lastCustomFreq = 0; menuopen = false; BuildMenu();
       }
@@ -1137,6 +1180,9 @@ void ButtonPress() {
         menuPage = 2; menuoption = 30; BuildMenu(); return;
       }
       if (menuPage == 1 && menuoption == 90) {
+        habilitarTodasRDS(); BuildMenu(); return;
+      }
+      if (menuPage == 1 && menuoption == 110) {
         menuPage = 0; menuoption = 190; BuildMenu(); return;
       }
       menuopen = true;
@@ -1296,7 +1342,7 @@ void KeyUp() {
       if (menuopen == false) {
         tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
         menuoption += 20;
-        if (menuoption > 110) menuoption = 30;
+        if (menuoption > 130) menuoption = 30;
         tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
       } else {
         if (menuoption == 30) {
@@ -1321,6 +1367,13 @@ void KeyUp() {
             if (rtOpt.length() > 22) rtOpt = rtOpt.substring(0, 22);
             tft.drawCentreString(rtOpt, 150, 115, 2);
           }
+        } else if (menuoption == 90) {
+          tft.fillRect(33, 100, 234, 50, TFT_BLACK);
+          piEditCode = (piEditCode + 1) & 0xFFFF;
+          tft.setTextColor(TFT_YELLOW);
+          String piHex = String((uint16_t)piEditCode, HEX); piHex.toUpperCase();
+          while (piHex.length() < 4) piHex = "0" + piHex;
+          tft.drawCentreString(piHex, 150, 115, 4);
         }
       }
       return;
@@ -1331,7 +1384,7 @@ void KeyUp() {
       if (menuPage == 0) {
         if (menuoption > 210) { menuPage = 1; menuoption = 30; }
       } else {
-        if (menuoption > 90) { menuPage = 0; menuoption = 30; }
+        if (menuoption > 110) { menuPage = 0; menuoption = 30; }
       }
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
     } else {
@@ -1480,6 +1533,7 @@ void KeyUp() {
           setPTYLanguage(languageSet);
           carregarEstacoes();
           loadCustomRDSEnabled();
+          loadCustomPICodes();
           lastCustomFreq = 0;
           EEPROM.writeByte(56, languageSet);
           EEPROM.commit();
@@ -1519,7 +1573,7 @@ void KeyDown() {
       if (menuopen == false) {
         tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
         menuoption -= 20;
-        if (menuoption < 30) menuoption = 110;
+        if (menuoption < 30) menuoption = 130;
         tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
       } else {
         if (menuoption == 30) {
@@ -1544,6 +1598,13 @@ void KeyDown() {
             if (rtOpt.length() > 22) rtOpt = rtOpt.substring(0, 22);
             tft.drawCentreString(rtOpt, 150, 115, 2);
           }
+        } else if (menuoption == 90) {
+          tft.fillRect(33, 100, 234, 50, TFT_BLACK);
+          piEditCode = (piEditCode + 0xFFFF) & 0xFFFF;
+          tft.setTextColor(TFT_YELLOW);
+          String piHex = String((uint16_t)piEditCode, HEX); piHex.toUpperCase();
+          while (piHex.length() < 4) piHex = "0" + piHex;
+          tft.drawCentreString(piHex, 150, 115, 4);
         }
       }
       return;
@@ -1552,7 +1613,7 @@ void KeyDown() {
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
       menuoption -= 20;
       if (menuPage == 0) {
-        if (menuoption < 30) { menuPage = 1; menuoption = 90; }
+        if (menuoption < 30) { menuPage = 1; menuoption = 110; }
       } else {
         if (menuoption < 30) { menuPage = 0; menuoption = 210; }
       }
@@ -1705,6 +1766,7 @@ void KeyDown() {
           setPTYLanguage(languageSet);
           carregarEstacoes();
           loadCustomRDSEnabled();
+          loadCustomPICodes();
           lastCustomFreq = 0;
           EEPROM.writeByte(56, languageSet);
           EEPROM.commit();
@@ -1730,10 +1792,12 @@ void readRds() {
         customRT = buscarRT(currentFreqKhz);
         int8_t ptyCode = buscarPTY(currentFreqKhz);
         customPTY = (ptyCode >= 0) ? radio.getPTYText(ptyCode) : "";
+        customPI = buscarPI(currentFreqKhz);
       } else {
         customPS = "";
         customRT = "";
         customPTY = "";
+        customPI = "";
       }
     }
 
@@ -1780,13 +1844,14 @@ void readRds() {
 }
 
 void showPI() {
-  if (strcmp(radio.rds.picode, radioIdPrevious)) {
+  String piToShow = (customPI.length() > 0) ? customPI : String(radio.rds.picode);
+  if (piToShow != PIold) {
     tft.setTextColor(TFT_BLACK);
     tft.drawString(PIold, 244, 192, 4);
     tft.setTextColor(TFT_YELLOW);
-    tft.drawString(radio.rds.picode, 244, 192, 4);
-    PIold = radio.rds.picode;
-    strcpy(radioIdPrevious, radio.rds.picode);
+    tft.drawString(piToShow, 244, 192, 4);
+    PIold = piToShow;
+    piToShow.toCharArray(radioIdPrevious, sizeof(radioIdPrevious));
   }
 }
 
@@ -1940,7 +2005,8 @@ void BuildMenu() {
     else if (languageSet == 9) tft.drawRightString("BR-ES", 270, 50, 2);
     tft.setTextColor(TFT_SKYBLUE);
     tft.drawString(">>", 275, 70, 2);
-    tft.drawString(getUIString(UI_PAGE1_BACK, languageSet), 20, 90, 2);
+    tft.drawString(getUIString(UI_ENABLE_ALL_RDS, languageSet), 20, 90, 2);
+    tft.drawString(getUIString(UI_PAGE1_BACK, languageSet), 20, 110, 2);
   } else if (menuPage == 2) {
     size_t count = totalEstacoes();
     int visRows = min((int)count, 8);
@@ -1967,6 +2033,7 @@ void BuildMenu() {
     if (ptyStationIndex >= (int)count6) { menuPage = 2; BuildMenu(); return; }
     int8_t pc6 = getEstacao(ptyStationIndex).pty_code;
     if (pc6 < 0 || pc6 > 31) pc6 = 0;
+    uint16_t piCode6 = getEstacao(ptyStationIndex).pi_code;
     tft.setTextColor(TFT_WHITE);
     tft.drawString("PTY:", 15, 30, 2);
     tft.setTextColor(TFT_YELLOW);
@@ -1984,12 +2051,18 @@ void BuildMenu() {
     if (rt6.length() > 20) rt6 = rt6.substring(0, 20);
     tft.drawString(rt6, 60, 70, 2);
     tft.setTextColor(TFT_WHITE);
-    tft.drawString("RDS:", 15, 90, 2);
+    tft.drawString("PI:", 15, 90, 2);
+    tft.setTextColor(TFT_YELLOW);
+    String piStr6 = String(piCode6, HEX); piStr6.toUpperCase();
+    while (piStr6.length() < 4) piStr6 = "0" + piStr6;
+    tft.drawString(piStr6, 60, 90, 2);
+    tft.setTextColor(TFT_WHITE);
+    tft.drawString("RDS:", 15, 110, 2);
     bool rdsEn6 = getEstacao(ptyStationIndex).rds_ativo;
     tft.setTextColor(rdsEn6 ? TFT_GREEN : TFT_RED);
-    tft.drawString(rdsEn6 ? "ON" : "OFF", 60, 90, 2);
+    tft.drawString(rdsEn6 ? "ON" : "OFF", 60, 110, 2);
     tft.setTextColor(TFT_SKYBLUE);
-    tft.drawString(getUIString(UI_BACK, languageSet), 15, 110, 2);
+    tft.drawString(getUIString(UI_BACK, languageSet), 15, 130, 2);
     tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
   }
   analogWrite(SMETERPIN, 0);

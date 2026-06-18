@@ -42,4 +42,6 @@ const char* const UI_ENGLISH[] = {
   /* 36 UI_SCREEN_FLIPPED        */ "Screen flipped",
   /* 37 UI_SCREEN_MUTED          */ "Screen is muted!",
   /* 38 UI_FM_AM_RECEIVER        */ "FM/AM receiver",
+  /* 39 UI_SET_PI               */ "Set PI Code:",
+  /* 40 UI_ENABLE_ALL_RDS       */ "Enable All RDS",
 };

@@ -76,6 +76,15 @@ int8_t buscarPTY(uint32_t freq_khz) {
   return e->pty_code;
 }
 
+String buscarPI(uint32_t freq_khz) {
+  Estacao* e = findEstacao(freq_khz);
+  if (!e || !e->rds_ativo || e->pi_code == 0) return String("");
+  String s = String(e->pi_code, HEX);
+  s.toUpperCase();
+  while (s.length() < 4) s = "0" + s;
+  return s;
+}
+
 String buscarGenero(uint32_t freq_khz) {
   Estacao* e = findEstacao(freq_khz);
   return e ? getRandomGenreByPTY(e->pty_code) : String("");
