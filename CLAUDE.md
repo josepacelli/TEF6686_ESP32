@@ -56,22 +56,27 @@ For the ARS display variant (BGR type), define `#define ARS` in the main `.ino`.
 
 `Estacao` struct: `freq_khz`, `ps`, `rt`, `pty_code`, `musica`, `anoMusica`, `posScroll`, `hora/minuto/segundo`, `dia/mes/ano`, `tempo`, `temperatura`, `rds_ativo`.
 
-`carregarEstacoes()` fills a `std::vector<Estacao> estacoes` (static, file-local) with ~100 Fortaleza/CE Brazilian radio stations. Called once in `setup()`. Vector is sorted by `freq_khz` at the end of the function.
+`carregarEstacoes()` fills a `std::vector<Estacao> estacoes` (static, file-local) with 84 Fortaleza/CE Brazilian radio stations. Stations are added in ascending frequency order (79.7–107.9 MHz) for readability. Called once in `setup()`. Vector is sorted by `freq_khz` at the end of the function.
 
 `findEstacao()` (file-local) matches exact `freq_khz` first, then falls back to ±100 kHz tolerance.
 
 `conteudo.cpp` contains genre arrays and random generation helpers used as fallback when station has no song data.
 
+**PS/RT/Music Flow:**
+- `buscarPS(freq_khz)` formats: `[pty_code] PtyName | ps_text | song_name (year) | date time | weather`
+- `buscarRT(freq_khz)` formats: `[pty_code] PtyName | rt_text - song_name (year) | date time | weather`
+- Music is fetched via `buscarMusica()` and rotated (scrolled) via `avancarScroll()` for long song names.
+
 Lookup API (used in main sketch when tuning):
-- `buscarPS(freq_khz)` → PS string (full formatted)
-- `buscarRT(freq_khz)` → RT string (full formatted)
+- `buscarPS(freq_khz)` → PS string (full formatted with music)
+- `buscarRT(freq_khz)` → RT string (full formatted with music)
 - `buscarPTY(freq_khz)` → PTY code
-- `buscarMusica()`, `avancarScroll()`, `totalEstacoes()`, `getEstacao(i)`
-- `isRDSAtivo(freq_khz)` → bool
+- `buscarMusica(freq_khz)` → song name (auto-generates random if empty)
+- `avancarScroll(freq_khz)`, `totalEstacoes()`, `getEstacao(i)`, `isRDSAtivo(freq_khz)`
 
 ### Multi-Language PS/RT System — Critical
 
-There are **6 parallel language array files** for station PS and RT strings, all using the **same integer index** (currently 0–81):
+There are **6 parallel language array files** for station PS and RT strings, all using the **same integer index** (currently 0–83):
 
 | File | Content |
 |------|---------|
@@ -82,18 +87,25 @@ There are **6 parallel language array files** for station PS and RT strings, all
 | `src/rt_ingles.cpp` | Full English RT string |
 | `src/rt_espanhol.cpp` | Full Spanish RT string |
 
-**When adding or renaming a station, all 6 files must be updated at the same index.**
+**When adding or renaming a station, all 6 language files must be updated at the same index.**
 
 `getPSByLanguage(index, language)` and `getRTByLanguage(index, language)` dispatch via the `PTYLanguage` enum (stored in EEPROM byte 56 as `languageSet`):
 - Values 2, 5, 8 → Portuguese arrays
 - Values 3, 6, 9 → Spanish arrays
 - All others / default → English arrays
 
-The `Estacao.ps` and `Estacao.rt` fields are populated at `carregarEstacoes()` time by calling `getPSByLanguage(index, currentPTYLanguage)`.
+The `Estacao.ps` and `Estacao.rt` fields are populated at `carregarEstacoes()` time by calling `getPSByLanguage(index, currentPTYLanguage)`. These base strings are then formatted by `montarPS()` and `buscarRT()` to include metadata (PTY, music, weather, etc.).
 
-### UI String System
+### UI Rendering System (`src/ui_language.h`, `src/ui*.cpp`)
 
 `src/ui_language.h` defines `UIStringID` enum (0 to `UI_STRING_COUNT`). Menu labels and prompts are looked up via `getUIString(UIStringID, language)` which dispatches across `UI_ENGLISH[]`, `UI_PORTUGUESE[]`, `UI_SPANISH[]`.
+
+UI screens are split across three files:
+- `src/ui1.cpp` — Main tuner display, frequency, signal meter, menu navigation
+- `src/ui2.cpp` — Settings menus (volume, contrast, language, bandwidth, etc.)
+- `src/ui3.cpp` — RDS editor, custom PS/RT/PTY edit screens, station details
+
+Each file renders to a TFT_eSPI display. Menu system uses button interrupts (MODE/BW/POWER) and rotary encoder for input.
 
 ### PTY Language System (`src/pty_language.{h,cpp}`)
 
@@ -140,13 +152,16 @@ CONTRASTPIN=2  STANDBYLED=19  SMETERPIN=27
 
 ## Adding a New Station — Checklist
 
-1. Pick next available index (currently max is 81).
-2. Add entry to **all 6 language files** at that index.
-3. Add `Estacao` block in `carregarEstacoes()` — `freq_khz` in kHz (e.g. 107100 for 107.1 MHz). The sort at the end handles ordering.
+1. Pick next available index (currently max is 83; next would be 84).
+2. Add entry to **all 6 language files** (`ps_portugues.cpp`, `ps_ingles.cpp`, `ps_espanhol.cpp`, `rt_portugues.cpp`, `rt_ingles.cpp`, `rt_espanhol.cpp`) at that index.
+3. Add `Estacao` block in `carregarEstacoes()` in **frequency order** (ascending, 79.7–107.9 MHz). Format: `freq_khz` in kHz (e.g. 107100 for 107.1 MHz). Include all metadata: `pty_code`, PS/RT language indices, `musica`, times, weather. The sort at the end ensures consistency.
 4. Common `pty_code` values: 1=News, 2=Affairs, 4=Education, 6=Culture, 8=Talk, 10=Pop, 12=Easy Listening, 13=Classical, 20=Religious, 25=Folk/Forró, 26=Country.
 
-## In-Progress Files
+## Frequency Mapping
 
-- `src/frequencia.cpp` — declares `allFrequencies[]`, `allPTYCodes[]`, `getPTYCodeForFreq()` — body currently empty
-- `src/rds3.cpp` — currently empty
-- `src/rds1.cpp`, `src/rds2.cpp` — referenced in git but don't exist on disk yet
+`src/frequencia.cpp` declares `allFrequencies[]` — sorted array of all tunable FM frequencies (79.7–107.9 MHz) with their corresponding `Estacao` language indices. Used for preset scanning and jump-to-frequency logic.
+
+## Empty/Stub Files
+
+- `src/rds3.cpp` — currently empty, reserved for future RDS features
+- `src/rds1.cpp`, `src/rds2.cpp` — referenced in git history but don't exist on disk
