@@ -1194,7 +1194,7 @@ void ButtonPress() {
         menuPage = 1; menuoption = 30; BuildMenu(); return;
       }
       if (menuPage == 1 && menuoption == 70) {
-        themeSet = (themeSet + 1) % 3;
+        themeSet = (themeSet + 1) % 8;
         applyTheme(themeSet);
         EEPROM.writeByte(241, themeSet);
         EEPROM.commit();
@@ -2120,12 +2120,17 @@ const char* getThemeName(uint8_t t) {
   switch (t) {
     case 1:  return "Vermelho";
     case 2:  return "Brasil";
+    case 3:  return "Noturno";
+    case 4:  return "Amber";
+    case 5:  return "Verde";
+    case 6:  return "Roxo";
+    case 7:  return "Azul";
     default: return "Original";
   }
 }
 
 void applyTheme(uint8_t theme) {
-  themeSet = theme % 3;
+  themeSet = theme % 8;
   switch (themeSet) {
     default:
     case 0: // Original — dark navy / cyan
@@ -2136,7 +2141,7 @@ void applyTheme(uint8_t theme) {
       UI_DIM_COLOR    = 0x7BEF;
       UI_BORDER_COLOR = 0x07FF;
       break;
-    case 1: // Vermelho — dark maroon / amber / red
+    case 1: // Vermelho — dark maroon / red / amber
       UI_HEADER_BG    = 0x3000;
       UI_FREQ_COLOR   = 0xFCA0;
       UI_LEVEL_COLOR  = 0xF800;
@@ -2151,6 +2156,46 @@ void applyTheme(uint8_t theme) {
       UI_LABEL_COLOR  = 0xFFE0;
       UI_DIM_COLOR    = 0x3186;
       UI_BORDER_COLOR = 0x07C0;
+      break;
+    case 3: // Noturno — near-black / silver-white
+      UI_HEADER_BG    = 0x2104;
+      UI_FREQ_COLOR   = 0xFFFF;
+      UI_LEVEL_COLOR  = 0xC618;
+      UI_LABEL_COLOR  = 0xAD75;
+      UI_DIM_COLOR    = 0x4208;
+      UI_BORDER_COLOR = 0x8410;
+      break;
+    case 4: // Amber — dark brown / amber / orange (CRT phosphor)
+      UI_HEADER_BG    = 0x28A0;
+      UI_FREQ_COLOR   = 0xFEA0;
+      UI_LEVEL_COLOR  = 0xFD20;
+      UI_LABEL_COLOR  = 0xFDA0;
+      UI_DIM_COLOR    = 0x6300;
+      UI_BORDER_COLOR = 0xFD20;
+      break;
+    case 5: // Verde — dark green / bright green (matrix)
+      UI_HEADER_BG    = 0x0200;
+      UI_FREQ_COLOR   = 0x07E0;
+      UI_LEVEL_COLOR  = 0x0400;
+      UI_LABEL_COLOR  = 0x07E0;
+      UI_DIM_COLOR    = 0x0280;
+      UI_BORDER_COLOR = 0x0400;
+      break;
+    case 6: // Roxo — dark purple / violet / magenta
+      UI_HEADER_BG    = 0x2007;
+      UI_FREQ_COLOR   = 0xE01F;
+      UI_LEVEL_COLOR  = 0xF81F;
+      UI_LABEL_COLOR  = 0xC01F;
+      UI_DIM_COLOR    = 0x500A;
+      UI_BORDER_COLOR = 0xC01F;
+      break;
+    case 7: // Azul — midnight blue / azure / ice
+      UI_HEADER_BG    = 0x000A;
+      UI_FREQ_COLOR   = 0x6FFF;
+      UI_LEVEL_COLOR  = 0x05FF;
+      UI_LABEL_COLOR  = 0x6FFF;
+      UI_DIM_COLOR    = 0x0290;
+      UI_BORDER_COLOR = 0x05FF;
       break;
   }
 }
