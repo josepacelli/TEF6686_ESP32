@@ -913,10 +913,10 @@ void BWButtonPress() {
 void doStereoToggle() {
   if (StereoToggle == true) {
     if (screenmute == false) {
-      tft.drawCircle(81, 15, 10, TFT_BLACK);
-      tft.drawCircle(81, 15, 9, TFT_BLACK);
-      tft.drawCircle(91, 15, 10, TFT_BLACK);
-      tft.drawCircle(91, 15, 9, TFT_BLACK);
+      tft.drawCircle(81, 15, 10, UI_HEADER_BG);
+      tft.drawCircle(81, 15, 9, UI_HEADER_BG);
+      tft.drawCircle(91, 15, 10, UI_HEADER_BG);
+      tft.drawCircle(91, 15, 9, UI_HEADER_BG);
       tft.drawCircle(86, 15, 10, TFT_SKYBLUE);
       tft.drawCircle(86, 15, 9, TFT_SKYBLUE);
     }
@@ -924,8 +924,8 @@ void doStereoToggle() {
     StereoToggle = false;
   } else {
     if (screenmute == false) {
-      tft.drawCircle(86, 15, 10, TFT_BLACK);
-      tft.drawCircle(86, 15, 9, TFT_BLACK);
+      tft.drawCircle(86, 15, 10, UI_HEADER_BG);
+      tft.drawCircle(86, 15, 9, UI_HEADER_BG);
     }
     radio.setMono(0);
     Stereostatusold = false;
@@ -2124,14 +2124,14 @@ void BuildDisplay() {
   tft.drawLine(20, 120, 200, 120, TFT_DARKGREY);
   tft.drawLine(20, 150, 200, 150, TFT_DARKGREY);
 
-  // ── S-meter gradient tick marks (5px tall) ───────────────
+  // ── S-meter gradient tick marks (5px tall, 1px below bar) ─
   for (uint16_t segments = 0; segments < 94; segments++) {
     if (segments > 54) {
       if (((segments - 53) % 10) == 0)
-        tft.fillRect(16 + (2 * segments), 116, 2, 5, TFT_RED);
+        tft.fillRect(16 + (2 * segments), 117, 2, 5, TFT_RED);
     } else {
       if (((segments + 1) % 6) == 0)
-        tft.fillRect(16 + (2 * segments), 116, 2, 5, TFT_GREEN);
+        tft.fillRect(16 + (2 * segments), 117, 2, 5, TFT_GREEN);
     }
   }
 
@@ -2175,17 +2175,6 @@ void BuildDisplay() {
   if (band == 0) tft.drawString("MHz", 256, 78, 4);
   else           tft.drawString("kHz", 256, 78, 4);
 
-  // ── Band badge (filled pill in header) ───────────────────
-  if (band == 0) {
-    tft.fillRoundRect(46, 31, 26, 16, 4, UI_BADGE_FM);
-    tft.setTextColor(TFT_BLACK);
-    tft.drawString("FM", 50, 33, 2);
-  } else {
-    tft.fillRoundRect(46, 31, 26, 16, 4, UI_BADGE_AM);
-    tft.setTextColor(TFT_BLACK);
-    tft.drawString("AM", 50, 33, 2);
-  }
-
   RDSstatusold = false;
   Stereostatusold = false;
   ShowFreq(0);
@@ -2212,6 +2201,9 @@ void BuildDisplay() {
     tft.drawCircle(86, 15, 10, TFT_SKYBLUE);
     tft.drawCircle(86, 15, 9, TFT_SKYBLUE);
   }
+  // ── Band label drawn last (on top of freq zone, y=30) ────
+  tft.setTextColor(band == 0 ? UI_FREQ_COLOR : TFT_SKYBLUE);
+  if (band == 1) tft.drawString("AM", 50, 30, 2); else tft.drawString("FM", 50, 30, 2);
 }
 
 void ShowFreq(int mode) {
