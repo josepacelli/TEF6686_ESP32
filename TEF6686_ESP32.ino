@@ -420,7 +420,7 @@ void setup() {
   languageSet = EEPROM.readByte(56);
   if (languageSet < 1 || languageSet > 9) languageSet = 1;
   themeSet = EEPROM.readByte(241);
-  if (themeSet > 13) themeSet = 0;
+  if (themeSet > 20) themeSet = 0;
   applyTheme(themeSet);
   EEPROM.commit();
   setPTYLanguage(languageSet);
@@ -1569,7 +1569,7 @@ void KeyUp() {
         case 250:
           tft.setTextColor(TFT_BLACK);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
-          themeSet = (themeSet + 1) % 14;
+          themeSet = (themeSet + 1) % 21;
           applyTheme(themeSet);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
@@ -1811,7 +1811,7 @@ void KeyDown() {
         case 250:
           tft.setTextColor(TFT_BLACK);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
-          themeSet = (themeSet + 13) % 14;
+          themeSet = (themeSet + 20) % 21;
           applyTheme(themeSet);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
@@ -2151,12 +2151,19 @@ const char* getThemeName(uint8_t t) {
     case 11: return "Sakura";
     case 12: return "Oceano";
     case 13: return "Tangerina";
+    case 14: return "Carmesim";
+    case 15: return "Dendro";
+    case 16: return "Monocromo";
+    case 17: return "Indigo";
+    case 18: return "Queer";
+    case 19: return "GoldBrite";
+    case 20: return "Bubblegum";
     default: return "Original";
   }
 }
 
 void applyTheme(uint8_t theme) {
-  themeSet = theme % 14;
+  themeSet = theme % 21;
   switch (themeSet) {
     default:
     case 0: // Original — dark navy / cyan
@@ -2270,6 +2277,62 @@ void applyTheme(uint8_t theme) {
       UI_LABEL_COLOR  = 0xF980; // Tangerine
       UI_DIM_COLOR    = 0x9B8D; // Copper
       UI_BORDER_COLOR = 0xED20; // Yolk
+      break;
+    case 14: // Carmesim — crimson / coral (main branch crimson theme)
+      UI_HEADER_BG    = 0x3800; // CrimsonSmooth
+      UI_FREQ_COLOR   = 0xF8C3; // Crimson
+      UI_LEVEL_COLOR  = 0xFBEF; // Coral
+      UI_LABEL_COLOR  = 0xF8C3; // Crimson
+      UI_DIM_COLOR    = 0x4A69; // PaleGrey
+      UI_BORDER_COLOR = 0x3800; // CrimsonSmooth
+      break;
+    case 15: // Dendro — green / cabbage / dark green (main branch dendro)
+      UI_HEADER_BG    = 0x0200; // GreenDark
+      UI_FREQ_COLOR   = 0x07E0; // Green
+      UI_LEVEL_COLOR  = 0x06D0; // Cabbage
+      UI_LABEL_COLOR  = 0x07E0; // Green
+      UI_DIM_COLOR    = 0x4A69; // PaleGrey
+      UI_BORDER_COLOR = 0x0200; // GreenDark
+      break;
+    case 16: // Monocromo — white / grey / green-grey (main branch monochrome)
+      UI_HEADER_BG    = 0x2965; // GreenGrey
+      UI_FREQ_COLOR   = 0xFFFF; // White
+      UI_LEVEL_COLOR  = 0xDFFC; // Honeydew
+      UI_LABEL_COLOR  = 0xFFFF; // White
+      UI_DIM_COLOR    = 0x4A69; // PaleGrey
+      UI_BORDER_COLOR = 0x2965; // GreenGrey
+      break;
+    case 17: // Indigo — indigo / violet / electric (main branch indigo)
+      UI_HEADER_BG    = 0x49AC; // Meteorite
+      UI_FREQ_COLOR   = 0x881F; // Indigo
+      UI_LEVEL_COLOR  = 0xF00A; // Cherry
+      UI_LABEL_COLOR  = 0x881F; // Indigo
+      UI_DIM_COLOR    = 0x49AC; // Meteorite
+      UI_BORDER_COLOR = 0x6016; // Electric
+      break;
+    case 18: // Queer — cherry / coral / electric on maroon (main branch queer)
+      UI_HEADER_BG    = 0x2001; // MaroonSmooth
+      UI_FREQ_COLOR   = 0xF00A; // Cherry
+      UI_LEVEL_COLOR  = 0xD01F; // Violet
+      UI_LABEL_COLOR  = 0xFBEF; // Coral
+      UI_DIM_COLOR    = 0x4124; // CoralSmooth
+      UI_BORDER_COLOR = 0x6016; // Electric
+      break;
+    case 19: // GoldBrite — white freq / yellow labels / blue frame (main branch goldbrite)
+      UI_HEADER_BG    = 0x39E7; // BlackOlive
+      UI_FREQ_COLOR   = 0xFFFF; // White
+      UI_LEVEL_COLOR  = 0x07E0; // Green
+      UI_LABEL_COLOR  = 0xFFE0; // Yellow
+      UI_DIM_COLOR    = 0x39E7; // BlackOlive
+      UI_BORDER_COLOR = 0x001F; // Blue
+      break;
+    case 20: // Bubblegum — pink freq / cyan labels / eerie black (main branch bubblegum)
+      UI_HEADER_BG    = 0x1825; // EerieBlack
+      UI_FREQ_COLOR   = 0xFDBF; // Pink
+      UI_LEVEL_COLOR  = 0x07FF; // Turquoise
+      UI_LABEL_COLOR  = 0x0F3F; // Cyan
+      UI_DIM_COLOR    = 0x49AC; // Meteorite
+      UI_BORDER_COLOR = 0x6016; // Electric
       break;
   }
 }
