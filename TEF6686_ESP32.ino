@@ -1194,11 +1194,17 @@ void ButtonPress() {
         menuPage = 1; menuoption = 30; BuildMenu(); return;
       }
       if (menuPage == 1 && menuoption == 70) {
-        themeSet = (themeSet + 1) % 8;
+        menuPage = 7; menuoption = 30 + themeSet * 20; BuildMenu(); return;
+      }
+      if (menuPage == 7) {
+        if (menuoption == 190) {
+          menuPage = 1; menuoption = 70; BuildMenu(); return;
+        }
+        themeSet = (menuoption - 30) / 20;
         applyTheme(themeSet);
         EEPROM.writeByte(241, themeSet);
         EEPROM.commit();
-        BuildMenu(); return;
+        menuPage = 1; menuoption = 70; BuildMenu(); return;
       }
       if (menuPage == 1 && menuoption == 90) {
         ptyStationIndex = 0; ptyScrollTop = 0;
@@ -1401,6 +1407,13 @@ void KeyUp() {
           tft.drawCentreString(piHex, 150, 115, 4);
         }
       }
+      return;
+    }
+    if (menuPage == 7) {
+      tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
+      menuoption += 20;
+      if (menuoption > 190) menuoption = 30;
+      tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
       return;
     }
     if (menuopen == false) {
@@ -1632,6 +1645,13 @@ void KeyDown() {
           tft.drawCentreString(piHex, 150, 115, 4);
         }
       }
+      return;
+    }
+    if (menuPage == 7) {
+      tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
+      menuoption -= 20;
+      if (menuoption < 30) menuoption = 190;
+      tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
       return;
     }
     if (menuopen == false) {
@@ -2030,7 +2050,10 @@ void BuildMenu() {
     else if (languageSet == 7) tft.drawRightString("BR-EN", 270, 50, 2);
     else if (languageSet == 8) tft.drawRightString("BR-PT", 270, 50, 2);
     else if (languageSet == 9) tft.drawRightString("BR-ES", 270, 50, 2);
-    tft.drawRightString(getThemeName(themeSet), 270, 70, 2);
+    tft.setTextColor(TFT_YELLOW);
+    tft.drawString(getThemeName(themeSet), 170, 70, 2);
+    tft.setTextColor(TFT_SKYBLUE);
+    tft.drawString(">>", 275, 70, 2);
     tft.setTextColor(TFT_SKYBLUE);
     tft.drawString(">>", 275, 90, 2);
     tft.drawString(getUIString(UI_ENABLE_ALL_RDS, languageSet), 20, 110, 2);
@@ -2095,6 +2118,16 @@ void BuildMenu() {
     tft.drawString("LIGAR", 110, 150, 2);
     tft.setTextColor(TFT_SKYBLUE);
     tft.drawString(getUIString(UI_BACK, languageSet), 15, 130, 2);
+    tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
+  } else if (menuPage == 7) {
+    for (uint8_t i = 0; i < 8; i++) {
+      uint8_t y = 30 + i * 20;
+      tft.setTextColor(i == themeSet ? TFT_YELLOW : TFT_WHITE);
+      tft.drawString(getThemeName(i), 30, y, 2);
+      if (i == themeSet) tft.drawRightString("*", 300, y, 2);
+    }
+    tft.setTextColor(TFT_SKYBLUE);
+    tft.drawString(getUIString(UI_BACK, languageSet), 20, 190, 2);
     tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
   }
   analogWrite(SMETERPIN, 0);
