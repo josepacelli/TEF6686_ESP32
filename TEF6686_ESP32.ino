@@ -420,7 +420,7 @@ void setup() {
   languageSet = EEPROM.readByte(56);
   if (languageSet < 1 || languageSet > 9) languageSet = 1;
   themeSet = EEPROM.readByte(241);
-  if (themeSet > 20) themeSet = 0;
+  if (themeSet > 62) themeSet = 0;
   applyTheme(themeSet);
   EEPROM.commit();
   setPTYLanguage(languageSet);
@@ -1569,7 +1569,7 @@ void KeyUp() {
         case 250:
           tft.setTextColor(TFT_BLACK);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
-          themeSet = (themeSet + 1) % 21;
+          themeSet = (themeSet + 1) % 63;
           applyTheme(themeSet);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
@@ -1811,7 +1811,7 @@ void KeyDown() {
         case 250:
           tft.setTextColor(TFT_BLACK);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
-          themeSet = (themeSet + 20) % 21;
+          themeSet = (themeSet + 62) % 63;
           applyTheme(themeSet);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
@@ -2158,12 +2158,54 @@ const char* getThemeName(uint8_t t) {
     case 18: return "Queer";
     case 19: return "GoldBrite";
     case 20: return "Bubblegum";
+    case 21: return "Larico";
+    case 22: return "Esmeralda";
+    case 23: return "Artico";
+    case 24: return "Crepusculo";
+    case 25: return "Turquesa";
+    case 26: return "Ametista";
+    case 27: return "Ferrugem";
+    case 28: return "Neon";
+    case 29: return "Prata";
+    case 30: return "Aurora";
+    case 31: return "Lavanda";
+    case 32: return "Caramelo";
+    case 33: return "Menta";
+    case 34: return "Tomate";
+    case 35: return "Safira";
+    case 36: return "Limoeiro";
+    case 37: return "Marinho";
+    case 38: return "Carmim";
+    case 39: return "Celeste";
+    case 40: return "Abacate";
+    case 41: return "Magenta";
+    case 42: return "Brasa";
+    case 43: return "Ardosia";
+    case 44: return "Cereja";
+    case 45: return "Petroleo";
+    case 46: return "Cobalto";
+    case 47: return "Mel";
+    case 48: return "Vinho";
+    case 49: return "Acqua";
+    case 50: return "Cobre";
+    case 51: return "Algodao";
+    case 52: return "Musgo";
+    case 53: return "Oxido";
+    case 54: return "Manga";
+    case 55: return "Uva";
+    case 56: return "Maracuja";
+    case 57: return "Grafite";
+    case 58: return "Champanhe";
+    case 59: return "Coral";
+    case 60: return "Fantasma";
+    case 61: return "Sertao";
+    case 62: return "Essence";
     default: return "Original";
   }
 }
 
 void applyTheme(uint8_t theme) {
-  themeSet = theme % 21;
+  themeSet = theme % 63;
   switch (themeSet) {
     default:
     case 0: // Original — dark navy / cyan
@@ -2333,6 +2375,342 @@ void applyTheme(uint8_t theme) {
       UI_LABEL_COLOR  = 0x0F3F; // Cyan
       UI_DIM_COLOR    = 0x49AC; // Meteorite
       UI_BORDER_COLOR = 0x6016; // Electric
+      break;
+    case 21: // Larico — fiery orange on dark burnt
+      UI_HEADER_BG    = 0x1880; // DarkBurnt
+      UI_FREQ_COLOR   = 0xFB80; // FireOrange
+      UI_LEVEL_COLOR  = 0xFD40; // GoldOrange
+      UI_LABEL_COLOR  = 0xFB80; // FireOrange
+      UI_DIM_COLOR    = 0x30C0; // CharcoalOrange
+      UI_BORDER_COLOR = 0xFD40; // GoldOrange
+      break;
+    case 22: // Esmeralda — emerald green on deep teal
+      UI_HEADER_BG    = 0x00C3; // DeepTeal
+      UI_FREQ_COLOR   = 0x07F0; // Emerald
+      UI_LEVEL_COLOR  = 0x0610; // MidTeal
+      UI_LABEL_COLOR  = 0x07F0; // Emerald
+      UI_DIM_COLOR    = 0x0262; // DarkEmerald
+      UI_BORDER_COLOR = 0x05D3; // TealBlue
+      break;
+    case 23: // Artico — arctic ice blues on dark
+      UI_HEADER_BG    = 0x1084; // DarkArcticBlue
+      UI_FREQ_COLOR   = 0xAEBF; // ArcticIce
+      UI_LEVEL_COLOR  = 0x45FF; // ArcticBlue
+      UI_LABEL_COLOR  = 0xAEBF; // ArcticIce
+      UI_DIM_COLOR    = 0x2ACF; // SteelBlue
+      UI_BORDER_COLOR = 0x65FF; // IceBlue
+      break;
+    case 24: // Crepusculo — sunset gold/orange on dark dusk
+      UI_HEADER_BG    = 0x1804; // DuskPurple
+      UI_FREQ_COLOR   = 0xFEA0; // SunsetGold
+      UI_LEVEL_COLOR  = 0xFBC0; // SunsetOrange
+      UI_LABEL_COLOR  = 0xFEA0; // SunsetGold
+      UI_DIM_COLOR    = 0x4889; // DuskBlue
+      UI_BORDER_COLOR = 0xC21F; // MagentaDusk
+      break;
+    case 25: // Turquesa — turquoise/aqua
+      UI_HEADER_BG    = 0x0188; // DeepAqua
+      UI_FREQ_COLOR   = 0x07FE; // Turquoise
+      UI_LEVEL_COLOR  = 0x0676; // Aquamarine
+      UI_LABEL_COLOR  = 0x07FE; // Turquoise
+      UI_DIM_COLOR    = 0x02D4; // DeepAquaDim
+      UI_BORDER_COLOR = 0x3EDF; // AquaLight
+      break;
+    case 26: // Ametista — amethyst purple on deep violet
+      UI_HEADER_BG    = 0x3006; // DeepViolet
+      UI_FREQ_COLOR   = 0xB01F; // Amethyst
+      UI_LEVEL_COLOR  = 0x821A; // PurpleHaze
+      UI_LABEL_COLOR  = 0xB01F; // Amethyst
+      UI_DIM_COLOR    = 0x4812; // VioletDim
+      UI_BORDER_COLOR = 0x780F; // PlumFrame
+      break;
+    case 27: // Ferrugem — rust/iron on dark maroon
+      UI_HEADER_BG    = 0x2802; // DarkRust
+      UI_FREQ_COLOR   = 0xCA41; // Rust
+      UI_LEVEL_COLOR  = 0xAD55; // IronGrey
+      UI_LABEL_COLOR  = 0xCA41; // Rust
+      UI_DIM_COLOR    = 0x5964; // Gunmetal
+      UI_BORDER_COLOR = 0xA340; // Terracotta
+      break;
+    case 28: // Neon — acid neon green on black
+      UI_HEADER_BG    = 0x0000; // Black
+      UI_FREQ_COLOR   = 0x87E0; // NeonGreen
+      UI_LEVEL_COLOR  = 0x07E0; // PureGreen
+      UI_LABEL_COLOR  = 0x87E0; // NeonGreen
+      UI_DIM_COLOR    = 0x02E0; // DarkNeon
+      UI_BORDER_COLOR = 0x87E0; // NeonGreen
+      break;
+    case 29: // Prata — silver metallic monochrome
+      UI_HEADER_BG    = 0x4208; // DarkGrey
+      UI_FREQ_COLOR   = 0xFFFF; // White
+      UI_LEVEL_COLOR  = 0xC618; // Silver
+      UI_LABEL_COLOR  = 0xEF7D; // LightSilver
+      UI_DIM_COLOR    = 0x7BEF; // MedGrey
+      UI_BORDER_COLOR = 0x9CF3; // Platinum
+      break;
+    case 30: // Aurora — northern lights multicolor
+      UI_HEADER_BG    = 0x0021; // Midnight
+      UI_FREQ_COLOR   = 0x07FF; // AuroraCyan
+      UI_LEVEL_COLOR  = 0x07C0; // AuroraGreen
+      UI_LABEL_COLOR  = 0xF81F; // AuroraMagenta
+      UI_DIM_COLOR    = 0x1A2F; // NightSky
+      UI_BORDER_COLOR = 0x07E0; // AuroraBorder
+      break;
+    case 31: // Lavanda — lavender / lilac soft purple
+      UI_HEADER_BG    = 0x1806; // DarkPlum
+      UI_FREQ_COLOR   = 0xC41E; // Lavender
+      UI_LEVEL_COLOR  = 0x9318; // PurpleHaze
+      UI_LABEL_COLOR  = 0xC41E; // Lavender
+      UI_DIM_COLOR    = 0x400C; // PlumDim
+      UI_BORDER_COLOR = 0x6194; // LilacFrame
+      break;
+    case 32: // Caramelo — warm caramel / butterscotch
+      UI_HEADER_BG    = 0x2080; // DarkCaramel
+      UI_FREQ_COLOR   = 0xF4C4; // Butterscotch
+      UI_LEVEL_COLOR  = 0xE380; // Caramel
+      UI_LABEL_COLOR  = 0xF4C4; // Butterscotch
+      UI_DIM_COLOR    = 0x6182; // BrownDim
+      UI_BORDER_COLOR = 0xE380; // Caramel
+      break;
+    case 33: // Menta — fresh mint green
+      UI_HEADER_BG    = 0x0204; // DarkMint
+      UI_FREQ_COLOR   = 0x87F6; // Mint
+      UI_LEVEL_COLOR  = 0x0690; // Spearmint
+      UI_LABEL_COLOR  = 0x87F6; // Mint
+      UI_DIM_COLOR    = 0x0388; // DarkMintDim
+      UI_BORDER_COLOR = 0x4610; // LightMint
+      break;
+    case 34: // Tomate — tomato red
+      UI_HEADER_BG    = 0x2800; // DarkTomato
+      UI_FREQ_COLOR   = 0xFA44; // Tomato
+      UI_LEVEL_COLOR  = 0xF804; // BrightRed
+      UI_LABEL_COLOR  = 0xFA44; // Tomato
+      UI_DIM_COLOR    = 0x5800; // Maroon
+      UI_BORDER_COLOR = 0xFA44; // Tomato
+      break;
+    case 35: // Safira — sapphire blue
+      UI_HEADER_BG    = 0x0043; // DeepSapphire
+      UI_FREQ_COLOR   = 0x2B1C; // Sapphire
+      UI_LEVEL_COLOR  = 0x1218; // RoyalBlue
+      UI_LABEL_COLOR  = 0x2B1C; // Sapphire
+      UI_DIM_COLOR    = 0x010A; // DeepNavy
+      UI_BORDER_COLOR = 0x0A5E; // CobaltFrame
+      break;
+    case 36: // Limoeiro — lemon / citrus yellow
+      UI_HEADER_BG    = 0x2140; // DarkLemon
+      UI_FREQ_COLOR   = 0xFFE0; // Lemon
+      UI_LEVEL_COLOR  = 0xC7E0; // LimeGreen
+      UI_LABEL_COLOR  = 0xFFE0; // Lemon
+      UI_DIM_COLOR    = 0x6B20; // DimLemon
+      UI_BORDER_COLOR = 0xC7E0; // Lime
+      break;
+    case 37: // Marinho — deep navy / maritime
+      UI_HEADER_BG    = 0x0022; // DeepNavy
+      UI_FREQ_COLOR   = 0x441F; // MarineBlue
+      UI_LEVEL_COLOR  = 0x231A; // NavyBlue
+      UI_LABEL_COLOR  = 0x441F; // MarineBlue
+      UI_DIM_COLOR    = 0x0086; // NavyDim
+      UI_BORDER_COLOR = 0x231A; // NavyBlue
+      break;
+    case 38: // Carmim — carmine deep rose
+      UI_HEADER_BG    = 0x1800; // DeepCrimson
+      UI_FREQ_COLOR   = 0xD004; // Carmine
+      UI_LEVEL_COLOR  = 0xFA0C; // FlameRose
+      UI_LABEL_COLOR  = 0xFC12; // Rose
+      UI_DIM_COLOR    = 0x5004; // Bordeaux
+      UI_BORDER_COLOR = 0xD004; // Carmine
+      break;
+    case 39: // Celeste — sky blue / celestial
+      UI_HEADER_BG    = 0x00A5; // DarkSky
+      UI_FREQ_COLOR   = 0x661F; // SkyBlue
+      UI_LEVEL_COLOR  = 0x241F; // Azure
+      UI_LABEL_COLOR  = 0x661F; // SkyBlue
+      UI_DIM_COLOR    = 0x018C; // DimSky
+      UI_BORDER_COLOR = 0x241F; // Azure
+      break;
+    case 40: // Abacate — avocado green
+      UI_HEADER_BG    = 0x10C0; // DarkAvocado
+      UI_FREQ_COLOR   = 0x8E48; // Avocado
+      UI_LEVEL_COLOR  = 0x4504; // OliveGreen
+      UI_LABEL_COLOR  = 0x8E48; // Avocado
+      UI_DIM_COLOR    = 0x2242; // DarkOlive
+      UI_BORDER_COLOR = 0x6406; // OliveBorder
+      break;
+    case 41: // Magenta — hot fuchsia / magenta
+      UI_HEADER_BG    = 0x2004; // DarkFuchsia
+      UI_FREQ_COLOR   = 0xF81F; // Magenta
+      UI_LEVEL_COLOR  = 0xFA18; // HotPink
+      UI_LABEL_COLOR  = 0xF81F; // Magenta
+      UI_DIM_COLOR    = 0x600C; // PurpleDim
+      UI_BORDER_COLOR = 0xFA18; // HotPink
+      break;
+    case 42: // Brasa — embers / glowing coals
+      UI_HEADER_BG    = 0x1000; // NearBlack
+      UI_FREQ_COLOR   = 0xFA80; // Ember
+      UI_LEVEL_COLOR  = 0xF900; // Fire
+      UI_LABEL_COLOR  = 0xFA80; // Ember
+      UI_DIM_COLOR    = 0x4040; // AshDim
+      UI_BORDER_COLOR = 0xFA80; // Ember
+      break;
+    case 43: // Ardosia — slate blue-grey
+      UI_HEADER_BG    = 0x1946; // Slate
+      UI_FREQ_COLOR   = 0x8559; // SlateBlue
+      UI_LEVEL_COLOR  = 0x5414; // SteelSlate
+      UI_LABEL_COLOR  = 0x8559; // SlateBlue
+      UI_DIM_COLOR    = 0x320A; // SlateDim
+      UI_BORDER_COLOR = 0x5414; // SteelSlate
+      break;
+    case 44: // Cereja — cherry red / deep rose
+      UI_HEADER_BG    = 0x2001; // DarkCherry
+      UI_FREQ_COLOR   = 0xF80C; // Cherry
+      UI_LEVEL_COLOR  = 0xD008; // DeepCherry
+      UI_LABEL_COLOR  = 0xF80C; // Cherry
+      UI_DIM_COLOR    = 0x6006; // CherryDim
+      UI_BORDER_COLOR = 0xD008; // DeepCherry
+      break;
+    case 45: // Petroleo — petroleum / dark teal
+      UI_HEADER_BG    = 0x0083; // PetroleumDark
+      UI_FREQ_COLOR   = 0x0615; // Petroleum
+      UI_LEVEL_COLOR  = 0x0410; // DarkTeal
+      UI_LABEL_COLOR  = 0x0615; // Petroleum
+      UI_DIM_COLOR    = 0x0146; // OilDim
+      UI_BORDER_COLOR = 0x0410; // DarkTeal
+      break;
+    case 46: // Cobalto — cobalt electric blue
+      UI_HEADER_BG    = 0x0044; // DeepCobalt
+      UI_FREQ_COLOR   = 0x029F; // Cobalt
+      UI_LEVEL_COLOR  = 0x439C; // CobaltMid
+      UI_LABEL_COLOR  = 0x029F; // Cobalt
+      UI_DIM_COLOR    = 0x0088; // NavyDim
+      UI_BORDER_COLOR = 0x439C; // CobaltMid
+      break;
+    case 47: // Mel — honey / warm golden amber
+      UI_HEADER_BG    = 0x20A0; // DarkHoney
+      UI_FREQ_COLOR   = 0xFE60; // Honey
+      UI_LEVEL_COLOR  = 0xE440; // Amber
+      UI_LABEL_COLOR  = 0xFE60; // Honey
+      UI_DIM_COLOR    = 0x6240; // HoneyDim
+      UI_BORDER_COLOR = 0xE440; // Amber
+      break;
+    case 48: // Vinho — wine / burgundy
+      UI_HEADER_BG    = 0x1801; // DarkWine
+      UI_FREQ_COLOR   = 0xC008; // Wine
+      UI_LEVEL_COLOR  = 0x900C; // Burgundy
+      UI_LABEL_COLOR  = 0xE310; // RoseLabel
+      UI_DIM_COLOR    = 0x4804; // WineDim
+      UI_BORDER_COLOR = 0x900C; // Burgundy
+      break;
+    case 49: // Acqua — vivid aqua / blue-green
+      UI_HEADER_BG    = 0x00C4; // DeepAcqua
+      UI_FREQ_COLOR   = 0x07FD; // Acqua
+      UI_LEVEL_COLOR  = 0x0718; // TealGreen
+      UI_LABEL_COLOR  = 0x07FD; // Acqua
+      UI_DIM_COLOR    = 0x0188; // AcquaDim
+      UI_BORDER_COLOR = 0x0718; // TealGreen
+      break;
+    case 50: // Cobre — copper metallic
+      UI_HEADER_BG    = 0x2081; // DarkCopper
+      UI_FREQ_COLOR   = 0xD344; // Copper
+      UI_LEVEL_COLOR  = 0xA243; // DarkCopper
+      UI_LABEL_COLOR  = 0xD344; // Copper
+      UI_DIM_COLOR    = 0x6142; // CopperDim
+      UI_BORDER_COLOR = 0xA243; // BronzeFrame
+      break;
+    case 51: // Algodao — cotton candy pink
+      UI_HEADER_BG    = 0x2845; // DarkCotton
+      UI_FREQ_COLOR   = 0xFC19; // CottonPink
+      UI_LEVEL_COLOR  = 0xF214; // HotRose
+      UI_LABEL_COLOR  = 0xFC19; // CottonPink
+      UI_DIM_COLOR    = 0x610C; // PinkDim
+      UI_BORDER_COLOR = 0xF214; // HotRose
+      break;
+    case 52: // Musgo — moss green
+      UI_HEADER_BG    = 0x08A0; // DarkMoss
+      UI_FREQ_COLOR   = 0x6544; // Moss
+      UI_LEVEL_COLOR  = 0x4400; // OliveGreen
+      UI_LABEL_COLOR  = 0x6544; // Moss
+      UI_DIM_COLOR    = 0x2A02; // MossDim
+      UI_BORDER_COLOR = 0x32C4; // MossFrame
+      break;
+    case 53: // Oxido — oxidized copper / verdigris
+      UI_HEADER_BG    = 0x08C3; // OxideDark
+      UI_FREQ_COLOR   = 0x4634; // Verdigris
+      UI_LEVEL_COLOR  = 0x240C; // PatinaTeal
+      UI_LABEL_COLOR  = 0x4634; // Verdigris
+      UI_DIM_COLOR    = 0x11C5; // OxideDim
+      UI_BORDER_COLOR = 0x240C; // PatinaTeal
+      break;
+    case 54: // Manga — mango fruit
+      UI_HEADER_BG    = 0x2860; // DarkMango
+      UI_FREQ_COLOR   = 0xFC80; // Mango
+      UI_LEVEL_COLOR  = 0xFE00; // MangoYellow
+      UI_LABEL_COLOR  = 0xFC80; // Mango
+      UI_DIM_COLOR    = 0x6180; // MangoDim
+      UI_BORDER_COLOR = 0xFE00; // MangoYellow
+      break;
+    case 55: // Uva — grape purple
+      UI_HEADER_BG    = 0x1805; // DarkGrape
+      UI_FREQ_COLOR   = 0x8819; // Grape
+      UI_LEVEL_COLOR  = 0x6014; // PlumGrape
+      UI_LABEL_COLOR  = 0x8819; // Grape
+      UI_DIM_COLOR    = 0x380B; // GrapeDim
+      UI_BORDER_COLOR = 0x6014; // PlumGrape
+      break;
+    case 56: // Maracuja — passionfruit
+      UI_HEADER_BG    = 0x2003; // DarkPassion
+      UI_FREQ_COLOR   = 0xFE88; // PassionYellow
+      UI_LEVEL_COLOR  = 0xC214; // PassionPurple
+      UI_LABEL_COLOR  = 0xFE88; // PassionYellow
+      UI_DIM_COLOR    = 0x5007; // PassionDim
+      UI_BORDER_COLOR = 0xC214; // PassionPurple
+      break;
+    case 57: // Grafite — graphite / carbon grey
+      UI_HEADER_BG    = 0x18C3; // GraphiteDark
+      UI_FREQ_COLOR   = 0xD69A; // LightGrey
+      UI_LEVEL_COLOR  = 0x9492; // MidGrey
+      UI_LABEL_COLOR  = 0xD69A; // LightGrey
+      UI_DIM_COLOR    = 0x4A09; // DarkGrey
+      UI_BORDER_COLOR = 0x6B4D; // SteelGrey
+      break;
+    case 58: // Champanhe — champagne / gold
+      UI_HEADER_BG    = 0x18A0; // DarkChampagne
+      UI_FREQ_COLOR   = 0xFF50; // Champagne
+      UI_LEVEL_COLOR  = 0xCD00; // Gold
+      UI_LABEL_COLOR  = 0xFF50; // Champagne
+      UI_DIM_COLOR    = 0x8308; // WarmBrown
+      UI_BORDER_COLOR = 0xCD00; // Gold
+      break;
+    case 59: // Coral — vivid coral / salmon
+      UI_HEADER_BG    = 0x2040; // DarkCoral
+      UI_FREQ_COLOR   = 0xFB0A; // Coral
+      UI_LEVEL_COLOR  = 0xFC90; // LightCoral
+      UI_LABEL_COLOR  = 0xFB0A; // Coral
+      UI_DIM_COLOR    = 0x6104; // CoralDim
+      UI_BORDER_COLOR = 0xFC90; // LightCoral
+      break;
+    case 60: // Fantasma — ghost / pale ethereal
+      UI_HEADER_BG    = 0x1083; // GhostDark
+      UI_FREQ_COLOR   = 0xEF9F; // GhostWhite
+      UI_LEVEL_COLOR  = 0xA51A; // PaleBlue
+      UI_LABEL_COLOR  = 0xEF9F; // GhostWhite
+      UI_DIM_COLOR    = 0x420C; // GhostDim
+      UI_BORDER_COLOR = 0xA51A; // PaleBlue
+      break;
+    case 61: // Sertao — Brazilian sertao / earth tones
+      UI_HEADER_BG    = 0x1860; // EarthDark
+      UI_FREQ_COLOR   = 0xD448; // SertaoGold
+      UI_LEVEL_COLOR  = 0xAB04; // ClayBrown
+      UI_LABEL_COLOR  = 0xD448; // SertaoGold
+      UI_DIM_COLOR    = 0x5183; // EarthDim
+      UI_BORDER_COLOR = 0xAB04; // ClayBrown
+      break;
+    case 62: // Essence — pearl white / rose gold on near-black
+      UI_HEADER_BG    = 0x0822; // NearBlack
+      UI_FREQ_COLOR   = 0xFF5C; // Pearl
+      UI_LEVEL_COLOR  = 0xD50E; // RoseGold
+      UI_LABEL_COLOR  = 0xFF19; // Cream
+      UI_DIM_COLOR    = 0x3964; // WarmDark
+      UI_BORDER_COLOR = 0xD50E; // RoseGold
       break;
   }
 }
