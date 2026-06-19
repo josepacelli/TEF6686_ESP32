@@ -184,15 +184,15 @@
 
 #define TFT_GREYOUT     0x38E7
 
-// Modern UI palette
-#define UI_HEADER_BG    0x0820  // very dark navy header strip
-#define UI_FREQ_COLOR   TFT_GREEN
-#define UI_LEVEL_COLOR  TFT_ORANGE
-#define UI_LABEL_COLOR  TFT_CYAN
-#define UI_DIM_COLOR    TFT_DARKGREY
-#define UI_BORDER_COLOR TFT_CYAN
-#define UI_BADGE_FM     0x03E0  // green badge for FM
-#define UI_BADGE_AM     0x001F  // blue badge for AM
+// Runtime theme palette — set by applyTheme()
+uint16_t UI_HEADER_BG    = 0x0820;
+uint16_t UI_FREQ_COLOR   = 0x07E0;
+uint16_t UI_LEVEL_COLOR  = 0xFD20;
+uint16_t UI_LABEL_COLOR  = 0x07FF;
+uint16_t UI_DIM_COLOR    = 0x7BEF;
+uint16_t UI_BORDER_COLOR = 0x07FF;
+uint16_t UI_BADGE_FM     = 0x03E0;
+uint16_t UI_BADGE_AM     = 0x001F;
 #define ROTARY_PIN_A    34
 #define ROTARY_PIN_B    36
 #define ROTARY_BUTTON   39
@@ -260,6 +260,7 @@ byte SStatusoldcount;
 byte stepsize;
 byte TEF;
 byte languageSet;
+byte themeSet = 0;
 byte menuPage = 0;
 byte maxMenuPages = 1;
 char buff[16];
@@ -417,7 +418,10 @@ void setup() {
   TEF = EEPROM.readByte(54);
   optenc = EEPROM.readByte(55);
   languageSet = EEPROM.readByte(56);
-  if (languageSet < 1 || languageSet > 9) languageSet = 1; // Default English if invalid
+  if (languageSet < 1 || languageSet > 9) languageSet = 1;
+  themeSet = EEPROM.readByte(241);
+  if (themeSet > 2) themeSet = 0;
+  applyTheme(themeSet);
   EEPROM.commit();
   setPTYLanguage(languageSet);
   btStop();
@@ -1178,7 +1182,7 @@ void ButtonPress() {
     if (menuPage == 2) {
       int count = (int)totalEstacoes();
       if (ptyStationIndex == count) {
-        menuPage = 1; menuoption = 70; BuildMenu();
+        menuPage = 1; menuoption = 90; BuildMenu();
       } else {
         menuPage = 6; menuoption = 30; BuildMenu();
       }
@@ -1190,13 +1194,20 @@ void ButtonPress() {
         menuPage = 1; menuoption = 30; BuildMenu(); return;
       }
       if (menuPage == 1 && menuoption == 70) {
+        themeSet = (themeSet + 1) % 3;
+        applyTheme(themeSet);
+        EEPROM.writeByte(241, themeSet);
+        EEPROM.commit();
+        BuildMenu(); return;
+      }
+      if (menuPage == 1 && menuoption == 90) {
         ptyStationIndex = 0; ptyScrollTop = 0;
         menuPage = 2; menuoption = 30; BuildMenu(); return;
       }
-      if (menuPage == 1 && menuoption == 90) {
+      if (menuPage == 1 && menuoption == 110) {
         habilitarTodasRDS(); BuildMenu(); return;
       }
-      if (menuPage == 1 && menuoption == 110) {
+      if (menuPage == 1 && menuoption == 130) {
         menuPage = 0; menuoption = 190; BuildMenu(); return;
       }
       menuopen = true;
@@ -1398,7 +1409,7 @@ void KeyUp() {
       if (menuPage == 0) {
         if (menuoption > 210) { menuPage = 1; menuoption = 30; }
       } else {
-        if (menuoption > 110) { menuPage = 0; menuoption = 30; }
+        if (menuoption > 130) { menuPage = 0; menuoption = 30; }
       }
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
     } else {
@@ -1627,7 +1638,7 @@ void KeyDown() {
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
       menuoption -= 20;
       if (menuPage == 0) {
-        if (menuoption < 30) { menuPage = 1; menuoption = 110; }
+        if (menuoption < 30) { menuPage = 1; menuoption = 130; }
       } else {
         if (menuoption < 30) { menuPage = 0; menuoption = 210; }
       }
@@ -2006,7 +2017,8 @@ void BuildMenu() {
     tft.drawRightString("%", 305, 30, 2);
     tft.drawString(getUIString(UI_SET_BRIGHTNESS,  languageSet), 20, 30, 2);
     tft.drawString(getUIString(UI_SET_LANGUAGE,    languageSet), 20, 50, 2);
-    tft.drawString(getUIString(UI_STATION_EDITOR,  languageSet), 20, 70, 2);
+    tft.drawString(getUIString(UI_SET_THEME,       languageSet), 20, 70, 2);
+    tft.drawString(getUIString(UI_STATION_EDITOR,  languageSet), 20, 90, 2);
     tft.setTextColor(TFT_YELLOW);
     tft.drawRightString(String(ContrastSet, DEC), 270, 30, 2);
     if (languageSet == 1) tft.drawRightString("English", 270, 50, 2);
@@ -2018,10 +2030,11 @@ void BuildMenu() {
     else if (languageSet == 7) tft.drawRightString("BR-EN", 270, 50, 2);
     else if (languageSet == 8) tft.drawRightString("BR-PT", 270, 50, 2);
     else if (languageSet == 9) tft.drawRightString("BR-ES", 270, 50, 2);
+    tft.drawRightString(getThemeName(themeSet), 270, 70, 2);
     tft.setTextColor(TFT_SKYBLUE);
-    tft.drawString(">>", 275, 70, 2);
-    tft.drawString(getUIString(UI_ENABLE_ALL_RDS, languageSet), 20, 90, 2);
-    tft.drawString(getUIString(UI_PAGE1_BACK, languageSet), 20, 110, 2);
+    tft.drawString(">>", 275, 90, 2);
+    tft.drawString(getUIString(UI_ENABLE_ALL_RDS, languageSet), 20, 110, 2);
+    tft.drawString(getUIString(UI_PAGE1_BACK, languageSet), 20, 130, 2);
   } else if (menuPage == 2) {
     size_t count = totalEstacoes();
     int visRows = min((int)count, 8);
@@ -2100,6 +2113,45 @@ void MuteScreen(int setting) {
     tft.setTextColor(TFT_WHITE);
     tft.drawCentreString(getUIString(UI_SCREEN_MUTED, languageSet), 160, 30, 4);
     tft.drawCentreString("To unmute uncheck RF+ box", 160, 60, 2);
+  }
+}
+
+const char* getThemeName(uint8_t t) {
+  switch (t) {
+    case 1:  return "Vermelho";
+    case 2:  return "Brasil";
+    default: return "Original";
+  }
+}
+
+void applyTheme(uint8_t theme) {
+  themeSet = theme % 3;
+  switch (themeSet) {
+    default:
+    case 0: // Original — dark navy / cyan
+      UI_HEADER_BG    = 0x0820;
+      UI_FREQ_COLOR   = 0x07E0;
+      UI_LEVEL_COLOR  = 0xFD20;
+      UI_LABEL_COLOR  = 0x07FF;
+      UI_DIM_COLOR    = 0x7BEF;
+      UI_BORDER_COLOR = 0x07FF;
+      break;
+    case 1: // Vermelho — dark maroon / amber / red
+      UI_HEADER_BG    = 0x3000;
+      UI_FREQ_COLOR   = 0xFCA0;
+      UI_LEVEL_COLOR  = 0xF800;
+      UI_LABEL_COLOR  = 0xFD60;
+      UI_DIM_COLOR    = 0x4208;
+      UI_BORDER_COLOR = 0xFC00;
+      break;
+    case 2: // Brasil — deep blue / yellow / green
+      UI_HEADER_BG    = 0x0010;
+      UI_FREQ_COLOR   = 0xFFE0;
+      UI_LEVEL_COLOR  = 0x07C0;
+      UI_LABEL_COLOR  = 0xFFE0;
+      UI_DIM_COLOR    = 0x3186;
+      UI_BORDER_COLOR = 0x07C0;
+      break;
   }
 }
 

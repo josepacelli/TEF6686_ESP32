@@ -44,4 +44,5 @@ const char* const UI_ENGLISH[] = {
   /* 38 UI_FM_AM_RECEIVER        */ "FM/AM receiver",
   /* 39 UI_SET_PI               */ "Set PI Code:",
   /* 40 UI_ENABLE_ALL_RDS       */ "Enable All RDS",
+  /* 41 UI_SET_THEME            */ "Set Display Theme",
 };
