@@ -420,7 +420,7 @@ void setup() {
   languageSet = EEPROM.readByte(56);
   if (languageSet < 1 || languageSet > 9) languageSet = 1;
   themeSet = EEPROM.readByte(241);
-  if (themeSet > 2) themeSet = 0;
+  if (themeSet > 13) themeSet = 0;
   applyTheme(themeSet);
   EEPROM.commit();
   setPTYLanguage(languageSet);
@@ -1569,7 +1569,7 @@ void KeyUp() {
         case 250:
           tft.setTextColor(TFT_BLACK);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
-          themeSet = (themeSet + 1) % 8;
+          themeSet = (themeSet + 1) % 14;
           applyTheme(themeSet);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
@@ -1811,7 +1811,7 @@ void KeyDown() {
         case 250:
           tft.setTextColor(TFT_BLACK);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
-          themeSet = (themeSet + 7) % 8;
+          themeSet = (themeSet + 13) % 14;
           applyTheme(themeSet);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
@@ -2145,12 +2145,18 @@ const char* getThemeName(uint8_t t) {
     case 5:  return "Verde";
     case 6:  return "Roxo";
     case 7:  return "Azul";
+    case 8:  return "PE5PVB";
+    case 9:  return "Ciano";
+    case 10: return "Vulcao";
+    case 11: return "Sakura";
+    case 12: return "Oceano";
+    case 13: return "Tangerina";
     default: return "Original";
   }
 }
 
 void applyTheme(uint8_t theme) {
-  themeSet = theme % 8;
+  themeSet = theme % 14;
   switch (themeSet) {
     default:
     case 0: // Original — dark navy / cyan
@@ -2216,6 +2222,54 @@ void applyTheme(uint8_t theme) {
       UI_LABEL_COLOR  = 0x6FFF;
       UI_DIM_COLOR    = 0x0290;
       UI_BORDER_COLOR = 0x05FF;
+      break;
+    case 8: // PE5PVB — yellow freq / blue frame / green bar (main branch default)
+      UI_HEADER_BG    = 0x1082; // Darkgrey
+      UI_FREQ_COLOR   = 0xFFE0; // Yellow
+      UI_LEVEL_COLOR  = 0x07E0; // Green
+      UI_LABEL_COLOR  = 0xFFE0; // Yellow
+      UI_DIM_COLOR    = 0x39E7; // BlackOlive
+      UI_BORDER_COLOR = 0x001F; // Blue
+      break;
+    case 9: // Ciano — cyan labels / cyan frame (main branch cyan theme)
+      UI_HEADER_BG    = 0x2A08; // CyanGrey
+      UI_FREQ_COLOR   = 0x0F3F; // Cyan
+      UI_LEVEL_COLOR  = 0x867D; // Skyblue
+      UI_LABEL_COLOR  = 0x0F3F; // Cyan
+      UI_DIM_COLOR    = 0x5BAF; // CyanDark
+      UI_BORDER_COLOR = 0x01E9; // CyanFrame
+      break;
+    case 10: // Vulcao — orange on prussian blue bg (main branch volcano)
+      UI_HEADER_BG    = 0x0806; // Prussian
+      UI_FREQ_COLOR   = 0xFC00; // Orange
+      UI_LEVEL_COLOR  = 0xF980; // Tangerine
+      UI_LABEL_COLOR  = 0xFC00; // Orange
+      UI_DIM_COLOR    = 0x5140; // Maroon
+      UI_BORDER_COLOR = 0x2965; // GreenGrey
+      break;
+    case 11: // Sakura — soft pink / blackberry header (main branch sakura)
+      UI_HEADER_BG    = 0x38C5; // Blackberry
+      UI_FREQ_COLOR   = 0xF3D5; // Sakura
+      UI_LEVEL_COLOR  = 0xD01F; // Violet
+      UI_LABEL_COLOR  = 0xF3D5; // Sakura
+      UI_DIM_COLOR    = 0x9B90; // SakuraGrey
+      UI_BORDER_COLOR = 0x3845; // Tyrian
+      break;
+    case 12: // Oceano — deep ocean blue / navy (main branch ocean)
+      UI_HEADER_BG    = 0x0010; // Navy
+      UI_FREQ_COLOR   = 0x01FF; // Ocean
+      UI_LEVEL_COLOR  = 0x051F; // Deepsky
+      UI_LABEL_COLOR  = 0x01FF; // Ocean
+      UI_DIM_COLOR    = 0x420C; // Cornblue
+      UI_BORDER_COLOR = 0x051F; // Deepsky
+      break;
+    case 13: // Tangerina — tangerine / yolk / spice (main branch tangerine)
+      UI_HEADER_BG    = 0x6247; // Spice
+      UI_FREQ_COLOR   = 0xF980; // Tangerine
+      UI_LEVEL_COLOR  = 0xED20; // Yolk
+      UI_LABEL_COLOR  = 0xF980; // Tangerine
+      UI_DIM_COLOR    = 0x9B8D; // Copper
+      UI_BORDER_COLOR = 0xED20; // Yolk
       break;
   }
 }
