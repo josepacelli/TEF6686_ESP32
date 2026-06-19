@@ -587,7 +587,7 @@ void setup() {
   ShowBW();
   setupmode = false;
   sprite.createSprite(313, 18);
-  psSprite.createSprite(170, 40);
+  psSprite.createSprite(170, 28);
 }
 
 void loop() {
@@ -599,19 +599,19 @@ void loop() {
     if ((SStatus / 10 > LowLevelSet) && LowLevelInit == false && menu == false && band == 0) {
       if (screenmute == false) {
         tft.setTextColor(UI_DIM_COLOR);
-        tft.drawString("20", 20, 153, 1);
-        tft.drawString("40", 50, 153, 1);
-        tft.drawString("60", 80, 153, 1);
-        tft.drawString("80", 110, 153, 1);
-        tft.drawString("100", 134, 153, 1);
-        tft.drawString("120", 164, 153, 1);
-        tft.drawString("%", 196, 153, 1);
+        tft.drawString("20", 20, 146, 1);
+        tft.drawString("40", 50, 146, 1);
+        tft.drawString("60", 80, 146, 1);
+        tft.drawString("80", 110, 146, 1);
+        tft.drawString("100", 134, 146, 1);
+        tft.drawString("120", 164, 146, 1);
+        tft.drawString("%", 196, 146, 1);
         tft.setTextColor(UI_LABEL_COLOR);
-        tft.drawString("M", 6, 136, 2);
-        tft.drawString("PI:", 216, 195, 2);
-        tft.drawString("PS:", 6, 195, 2);
-        tft.drawString("PTY:", 6, 168, 2);
-        tft.drawLine(20, 150, 200, 150, TFT_DARKGREY);
+        tft.drawString("M", 6, 129, 2);
+        tft.drawString("PI:", 216, 188, 2);
+        tft.drawString("PS:", 6, 188, 2);
+        tft.drawString("PTY:", 6, 161, 2);
+        tft.drawLine(20, 143, 200, 143, TFT_DARKGREY);
       }
       LowLevelInit = true;
     }
@@ -619,34 +619,34 @@ void loop() {
     if ((SStatus / 10 <= LowLevelSet) && band == 0) {
       if (LowLevelInit == true && menu == false) {
         if (screenmute == false) {
-          tft.fillRect(20, 139, 12, 8, TFT_GREYOUT);
-          tft.fillRect(34, 139, 12, 8, TFT_GREYOUT);
-          tft.fillRect(48, 139, 12, 8, TFT_GREYOUT);
-          tft.fillRect(62, 139, 12, 8, TFT_GREYOUT);
-          tft.fillRect(76, 139, 12, 8, TFT_GREYOUT);
-          tft.fillRect(90, 139, 12, 8, TFT_GREYOUT);
-          tft.fillRect(104, 139, 12, 8, TFT_GREYOUT);
-          tft.fillRect(118, 139, 12, 8, TFT_GREYOUT);
-          tft.fillRect(132, 139, 12, 8, TFT_GREYOUT);
-          tft.fillRect(146, 139, 12, 8, TFT_GREYOUT);
-          tft.fillRect(160, 139, 12, 8, TFT_GREYOUT);
-          tft.fillRect(174, 139, 12, 8, TFT_GREYOUT);
-          tft.fillRect(188, 139, 12, 8, TFT_GREYOUT);
+          tft.fillRect(20, 132, 12, 8, TFT_GREYOUT);
+          tft.fillRect(34, 132, 12, 8, TFT_GREYOUT);
+          tft.fillRect(48, 132, 12, 8, TFT_GREYOUT);
+          tft.fillRect(62, 132, 12, 8, TFT_GREYOUT);
+          tft.fillRect(76, 132, 12, 8, TFT_GREYOUT);
+          tft.fillRect(90, 132, 12, 8, TFT_GREYOUT);
+          tft.fillRect(104, 132, 12, 8, TFT_GREYOUT);
+          tft.fillRect(118, 132, 12, 8, TFT_GREYOUT);
+          tft.fillRect(132, 132, 12, 8, TFT_GREYOUT);
+          tft.fillRect(146, 132, 12, 8, TFT_GREYOUT);
+          tft.fillRect(160, 132, 12, 8, TFT_GREYOUT);
+          tft.fillRect(174, 132, 12, 8, TFT_GREYOUT);
+          tft.fillRect(188, 132, 12, 8, TFT_GREYOUT);
           tft.setTextColor(TFT_GREYOUT);
-          tft.drawString("20", 20, 153, 1);
-          tft.drawString("40", 50, 153, 1);
-          tft.drawString("60", 80, 153, 1);
-          tft.drawString("80", 110, 153, 1);
-          tft.drawString("100", 134, 153, 1);
-          tft.drawString("120", 164, 153, 1);
-          tft.drawString("%", 196, 153, 1);
+          tft.drawString("20", 20, 146, 1);
+          tft.drawString("40", 50, 146, 1);
+          tft.drawString("60", 80, 146, 1);
+          tft.drawString("80", 110, 146, 1);
+          tft.drawString("100", 134, 146, 1);
+          tft.drawString("120", 164, 146, 1);
+          tft.drawString("%", 196, 146, 1);
           tft.setTextColor(UI_LABEL_COLOR);
-          tft.drawString("M", 6, 136, 2);
-          tft.drawString("PI:", 216, 195, 2);
-          tft.drawString("PS:", 6, 195, 2);
-          tft.drawString("PTY:", 6, 168, 2);
-          tft.drawLine(20, 150, 200, 150, TFT_GREYOUT);
-          tft.drawBitmap(110, 5, RDSLogo, 67, 22, TFT_GREYOUT);
+          tft.drawString("M", 6, 129, 2);
+          tft.drawString("PI:", 216, 188, 2);
+          tft.drawString("PS:", 6, 188, 2);
+          tft.drawString("PTY:", 6, 161, 2);
+          tft.drawLine(20, 143, 200, 143, TFT_GREYOUT);
+          tft.drawBitmap(110, 1, RDSLogo, 67, 22, TFT_GREYOUT);
         }
         LowLevelInit = false;
       }
@@ -868,16 +868,16 @@ void SelectBand() {
     radio.getStatus_AM(SStatus, USN, WAM, OStatus, BW, MStatus);
     if (screenmute == false) BuildDisplay();
     tft.setTextColor(UI_LABEL_COLOR);
-    tft.drawString("PI:", 216, 195, 2);
-    tft.drawString("PS:", 6, 195, 2);
-    tft.drawString("PTY:", 6, 168, 2);
-    tft.drawBitmap(110, 5, RDSLogo, 67, 22, TFT_GREYOUT);
-    tft.drawRoundRect(249, 56, 30, 20, 5, TFT_GREYOUT);
+    tft.drawString("PI:", 216, 188, 2);
+    tft.drawString("PS:", 6, 188, 2);
+    tft.drawString("PTY:", 6, 161, 2);
+    tft.drawBitmap(110, 1, RDSLogo, 67, 22, TFT_GREYOUT);
+    tft.drawRoundRect(249, 46, 30, 18, 4, TFT_GREYOUT);
     tft.setTextColor(TFT_GREYOUT);
-    tft.drawCentreString("iMS", 265, 58, 2);
-    tft.drawRoundRect(287, 56, 30, 20, 5, TFT_GREYOUT);
+    tft.drawCentreString("iMS", 265, 48, 2);
+    tft.drawRoundRect(287, 46, 30, 18, 4, TFT_GREYOUT);
     tft.setTextColor(TFT_GREYOUT);
-    tft.drawCentreString("EQ", 303, 58, 2);
+    tft.drawCentreString("EQ", 303, 48, 2);
   } else {
     LowLevelInit == false;
     BWreset = true;
@@ -913,19 +913,19 @@ void BWButtonPress() {
 void doStereoToggle() {
   if (StereoToggle == true) {
     if (screenmute == false) {
-      tft.drawCircle(81, 15, 10, UI_HEADER_BG);
-      tft.drawCircle(81, 15, 9, UI_HEADER_BG);
-      tft.drawCircle(91, 15, 10, UI_HEADER_BG);
-      tft.drawCircle(91, 15, 9, UI_HEADER_BG);
-      tft.drawCircle(86, 15, 10, TFT_SKYBLUE);
-      tft.drawCircle(86, 15, 9, TFT_SKYBLUE);
+      tft.drawCircle(81, 12, 10, UI_HEADER_BG);
+      tft.drawCircle(81, 12, 9, UI_HEADER_BG);
+      tft.drawCircle(91, 12, 10, UI_HEADER_BG);
+      tft.drawCircle(91, 12, 9, UI_HEADER_BG);
+      tft.drawCircle(86, 12, 10, TFT_SKYBLUE);
+      tft.drawCircle(86, 12, 9, TFT_SKYBLUE);
     }
     radio.setMono(2);
     StereoToggle = false;
   } else {
     if (screenmute == false) {
-      tft.drawCircle(86, 15, 10, UI_HEADER_BG);
-      tft.drawCircle(86, 15, 9, UI_HEADER_BG);
+      tft.drawCircle(86, 12, 10, UI_HEADER_BG);
+      tft.drawCircle(86, 12, 9, UI_HEADER_BG);
     }
     radio.setMono(0);
     Stereostatusold = false;
@@ -995,13 +995,13 @@ void ModeButtonPress() {
 }
 
 void ShowStepSize() {
-  tft.fillRect(224, 38, 15, 4, TFT_GREYOUT);
-  tft.fillRect(193, 38, 15, 4, TFT_GREYOUT);
-  if (band == 0) tft.fillRect(148, 38, 15, 4, TFT_GREYOUT); else tft.fillRect(162, 38, 15, 4, TFT_GREYOUT);
-  if (stepsize == 1) tft.fillRect(224, 38, 15, 4, TFT_GREEN);
-  if (stepsize == 2) tft.fillRect(193, 38, 15, 4, TFT_GREEN);
+  tft.fillRect(224, 25, 15, 4, TFT_GREYOUT);
+  tft.fillRect(193, 25, 15, 4, TFT_GREYOUT);
+  if (band == 0) tft.fillRect(148, 25, 15, 4, TFT_GREYOUT); else tft.fillRect(162, 25, 15, 4, TFT_GREYOUT);
+  if (stepsize == 1) tft.fillRect(224, 25, 15, 4, TFT_GREEN);
+  if (stepsize == 2) tft.fillRect(193, 25, 15, 4, TFT_GREEN);
   if (stepsize == 3) {
-    if (band == 0) tft.fillRect(148, 38, 15, 4, TFT_GREEN); else tft.fillRect(162, 38, 15, 4, TFT_GREEN);
+    if (band == 0) tft.fillRect(148, 25, 15, 4, TFT_GREEN); else tft.fillRect(162, 25, 15, 4, TFT_GREEN);
   }
 }
 
@@ -1817,18 +1817,18 @@ void readRds() {
 
     if (RDSstatus == 0) {
       tft.setTextColor(TFT_BLUE);
-      tft.drawString(PIold, 244, 192, 4);
+      tft.drawString(PIold, 244, 185, 4);
       tft.setTextColor(TFT_BLUE);
-      tft.drawString(PTYold, 38, 168, 2);
+      tft.drawString(PTYold, 38, 161, 2);
       tft.setTextColor(TFT_BLACK);
-      tft.drawString(RTold, 6, 222, 2);
+      tft.drawString(RTold, 6, 215, 2);
       dropout = true;
     } else {
       if (dropout == true && PIold.length() != 0) {
         tft.setTextColor(UI_LABEL_COLOR);
-        tft.drawString(PIold, 244, 192, 4);
+        tft.drawString(PIold, 244, 185, 4);
         tft.setTextColor(TFT_WHITE);
-        tft.drawString(PTYold, 38, 168, 2);
+        tft.drawString(PTYold, 38, 161, 2);
         dropout = false;
       }
     }
@@ -1861,9 +1861,9 @@ void showPI() {
   String piToShow = (customPI.length() > 0) ? customPI : String(radio.rds.picode);
   if (piToShow != PIold) {
     tft.setTextColor(TFT_BLACK);
-    tft.drawString(PIold, 244, 192, 4);
+    tft.drawString(PIold, 244, 185, 4);
     tft.setTextColor(UI_LABEL_COLOR);
-    tft.drawString(piToShow, 244, 192, 4);
+    tft.drawString(piToShow, 244, 185, 4);
     PIold = piToShow;
     piToShow.toCharArray(radioIdPrevious, sizeof(radioIdPrevious));
   }
@@ -1873,9 +1873,9 @@ void showPTY() {
   String ptyToShow = (customPTY.length() > 0) ? customPTY : String(radio.rds.stationType);
   if (ptyToShow != PTYold) {
     tft.setTextColor(TFT_BLACK);
-    tft.drawString(PTYold, 38, 168, 2);
+    tft.drawString(PTYold, 38, 161, 2);
     tft.setTextColor(TFT_WHITE);
-    tft.drawString(ptyToShow, 38, 168, 2);
+    tft.drawString(ptyToShow, 38, 161, 2);
     PTYold = ptyToShow;
     ptyToShow.toCharArray(programTypePrevious, sizeof(programTypePrevious));
   }
@@ -1901,7 +1901,7 @@ void showPS() {
       psSprite.fillSprite(TFT_BLACK);
       psSprite.setTextColor(TFT_WHITE);
       psSprite.drawString(psToShow, psXPos, 2, 4);
-      psSprite.pushSprite(38, 192);
+      psSprite.pushSprite(38, 183);
 
       psXPos -= psCharWidth;
       if (psXPos < -psTextWidth + (psCharWidth * 12)) psXPos = 0;
@@ -1926,13 +1926,13 @@ void showRadioText() {
       sprite.fillSprite(TFT_BLACK);
       sprite.setTextColor(TFT_CYAN);
       sprite.drawString(rtToShow, xPos, yPos, 2);
-      sprite.pushSprite(6, 220);
+      sprite.pushSprite(6, 213);
       rtticker = millis();
       cleanup = true;
     }
   } else if (cleanup == true) {
     sprite.fillSprite(TFT_BLACK);
-    sprite.pushSprite(6, 220);
+    sprite.pushSprite(6, 213);
     cleanup = false;
   }
 }
@@ -1950,9 +1950,9 @@ void showCT() {
   }
   if (rds_clock != rds_clockold) {
     tft.setTextColor(TFT_BLACK);
-    tft.drawRightString(rds_clockold, 205, 168, 2);
+    tft.drawRightString(rds_clockold, 205, 161, 2);
     tft.setTextColor(TFT_YELLOW);
-    tft.drawRightString(rds_clock, 205, 168, 2);
+    tft.drawRightString(rds_clock, 205, 161, 2);
     rds_clockold = rds_clock;
   }
 }
@@ -1960,7 +1960,7 @@ void showCT() {
 void BuildMenu() {
   tft.fillScreen(TFT_BLACK);
   tft.fillRect(0, 0, 320, 23, UI_HEADER_BG);
-  tft.drawRect(0, 0, 320, 240, UI_BORDER_COLOR);
+  tft.drawRoundRect(0, 0, 319, 239, 3, UI_BORDER_COLOR);
   tft.drawLine(0, 23, 320, 23, UI_BORDER_COLOR);
   tft.setTextColor(UI_LABEL_COLOR);
   tft.drawString(getUIString(UI_PRESS_MODE_EXIT, languageSet), 20, 4, 2);
@@ -2096,7 +2096,7 @@ void MuteScreen(int setting) {
   } else {
     screenmute = 1;
     tft.fillScreen(TFT_BLACK);
-    tft.drawRect(0, 0, 320, 240, UI_BORDER_COLOR);
+    tft.drawRoundRect(0, 0, 319, 239, 3, UI_BORDER_COLOR);
     tft.setTextColor(TFT_WHITE);
     tft.drawCentreString(getUIString(UI_SCREEN_MUTED, languageSet), 160, 30, 4);
     tft.drawCentreString("To unmute uncheck RF+ box", 160, 60, 2);
@@ -2106,74 +2106,69 @@ void MuteScreen(int setting) {
 void BuildDisplay() {
   tft.fillScreen(TFT_BLACK);
 
-  // ── Header strip (dark navy background) ─────────────────
-  tft.fillRect(0, 0, 320, 30, UI_HEADER_BG);
+  // ── Header strip (dark navy, compact 23px) ───────────────
+  tft.fillRect(0, 0, 320, 23, UI_HEADER_BG);
 
-  // ── Borders and zone dividers ────────────────────────────
-  tft.drawRect(0, 0, 320, 240, UI_BORDER_COLOR);
-  tft.drawLine(0, 30, 320, 30, UI_BORDER_COLOR);
-  tft.drawLine(0, 100, 320, 100, UI_BORDER_COLOR);
-  tft.drawLine(64, 30, 64, 0, UI_BORDER_COLOR);
-  tft.drawLine(210, 100, 210, 218, UI_BORDER_COLOR);
-  tft.drawLine(268, 30, 268, 0, UI_BORDER_COLOR);
-  tft.drawLine(0, 165, 210, 165, UI_BORDER_COLOR);
-  tft.drawLine(0, 187, 320, 187, UI_BORDER_COLOR);
-  tft.drawLine(0, 218, 320, 218, UI_BORDER_COLOR);
-  tft.drawLine(108, 30, 108, 0, UI_BORDER_COLOR);
-  tft.drawLine(174, 30, 174, 0, UI_BORDER_COLOR);
-  tft.drawLine(20, 120, 200, 120, TFT_DARKGREY);
-  tft.drawLine(20, 150, 200, 150, TFT_DARKGREY);
+  // ── Outer border (rounded) + zone dividers ───────────────
+  tft.drawRoundRect(0, 0, 319, 239, 3, UI_BORDER_COLOR);
+  tft.drawLine(0, 23, 320, 23, UI_BORDER_COLOR);
+  tft.drawLine(0, 93, 320, 93, UI_BORDER_COLOR);
+  tft.drawLine(64, 23, 64, 0, UI_BORDER_COLOR);
+  tft.drawLine(210, 93, 210, 180, UI_BORDER_COLOR);
+  tft.drawLine(268, 23, 268, 0, UI_BORDER_COLOR);
+  tft.drawLine(0, 158, 210, 158, UI_BORDER_COLOR);
+  tft.drawLine(0, 180, 320, 180, UI_BORDER_COLOR);
+  tft.drawLine(0, 211, 320, 211, UI_BORDER_COLOR);
+  tft.drawLine(108, 23, 108, 0, UI_BORDER_COLOR);
+  tft.drawLine(174, 23, 174, 0, UI_BORDER_COLOR);
+  tft.drawLine(20, 113, 200, 113, TFT_DARKGREY);
+  tft.drawLine(20, 143, 200, 143, TFT_DARKGREY);
 
-  // ── S-meter gradient tick marks (5px tall, 1px below bar) ─
+  // ── S-meter gradient tick marks (1px below bar) ──────────
   for (uint16_t segments = 0; segments < 94; segments++) {
     if (segments > 54) {
       if (((segments - 53) % 10) == 0)
-        tft.fillRect(16 + (2 * segments), 117, 2, 5, TFT_RED);
+        tft.fillRect(16 + (2 * segments), 110, 2, 5, TFT_RED);
     } else {
       if (((segments + 1) % 6) == 0)
-        tft.fillRect(16 + (2 * segments), 117, 2, 5, TFT_GREEN);
+        tft.fillRect(16 + (2 * segments), 110, 2, 5, TFT_GREEN);
     }
   }
 
   // ── Meter labels (dimmed) ────────────────────────────────
   tft.setTextColor(UI_DIM_COLOR);
-  tft.drawString("SQ:", 216, 155, 2);
-  tft.drawString("S/N", 250, 168, 2);
-  tft.drawString("dB",  300, 168, 2);
-  tft.drawString("%", 196, 153, 1);
-  tft.drawString("1", 24, 123, 1);
-  tft.drawString("3", 48, 123, 1);
-  tft.drawString("5", 72, 123, 1);
-  tft.drawString("7", 96, 123, 1);
-  tft.drawString("9", 120, 123, 1);
-  tft.drawString("+10", 134, 123, 1);
-  tft.drawString("+30", 174, 123, 1);
-  tft.drawString("20", 20, 153, 1);
-  tft.drawString("40", 50, 153, 1);
-  tft.drawString("60", 80, 153, 1);
-  tft.drawString("80", 110, 153, 1);
-  tft.drawString("100", 134, 153, 1);
-  tft.drawString("120", 164, 153, 1);
-  tft.drawString("dBuV", 280, 155, 2);
-  tft.drawPixel(295, 166, UI_DIM_COLOR);
-  tft.drawPixel(295, 167, UI_DIM_COLOR);
-  tft.drawPixel(295, 168, UI_DIM_COLOR);
-  tft.drawPixel(295, 169, UI_DIM_COLOR);
-  tft.drawPixel(295, 170, UI_DIM_COLOR);
+  tft.drawString("SQ:", 216, 148, 2);
+  tft.drawString("S/N", 250, 161, 2);
+  tft.drawString("dB",  300, 161, 2);
+  tft.drawString("%", 196, 146, 1);
+  tft.drawString("1", 24, 116, 1);
+  tft.drawString("3", 48, 116, 1);
+  tft.drawString("5", 72, 116, 1);
+  tft.drawString("7", 96, 116, 1);
+  tft.drawString("9", 120, 116, 1);
+  tft.drawString("+10", 134, 116, 1);
+  tft.drawString("+30", 174, 116, 1);
+  tft.drawString("20", 20, 146, 1);
+  tft.drawString("40", 50, 146, 1);
+  tft.drawString("60", 80, 146, 1);
+  tft.drawString("80", 110, 146, 1);
+  tft.drawString("100", 134, 146, 1);
+  tft.drawString("120", 164, 146, 1);
+  tft.drawString("dBuV", 280, 148, 2);
 
   // ── Accent labels ────────────────────────────────────────
   tft.setTextColor(UI_LABEL_COLOR);
-  tft.drawString("S", 6, 106, 2);
-  tft.drawString("M", 6, 136, 2);
-  tft.drawString("PI:", 216, 195, 2);
-  tft.drawString("PS:", 6, 195, 2);
-  tft.drawString("PTY:", 6, 168, 2);
+  tft.drawString("S", 6, 99, 2);
+  tft.drawString("M", 6, 129, 2);
+  tft.drawString("PI:", 216, 188, 2);
+  tft.drawString("PS:", 6, 188, 2);
+  tft.drawString("PTY:", 6, 161, 2);
 
-  // ── Frequency unit labels (dimmed) ───────────────────────
+  // ── Frequency unit labels ─────────────────────────────────
   tft.setTextColor(UI_DIM_COLOR);
-  tft.drawString("kHz", 225, 6, 4);
-  if (band == 0) tft.drawString("MHz", 256, 78, 4);
-  else           tft.drawString("kHz", 256, 78, 4);
+  tft.drawString("kHz", 225, 5, 2);
+  if (band == 0) tft.drawString("MHz", 256, 79, 2);
+  else           tft.drawString("kHz", 256, 79, 2);
 
   RDSstatusold = false;
   Stereostatusold = false;
@@ -2192,18 +2187,18 @@ void BuildDisplay() {
   strcpy(radioIdPrevious, "");
   strcpy(programServicePrevious, "");
   strcpy(radioTextPrevious, "");
-  tft.drawCircle(81, 15, 10, TFT_GREYOUT);
-  tft.drawCircle(81, 15, 9, TFT_GREYOUT);
-  tft.drawCircle(91, 15, 10, TFT_GREYOUT);
-  tft.drawCircle(91, 15, 9, TFT_GREYOUT);
-  tft.drawBitmap(110, 5, RDSLogo, 67, 22, TFT_GREYOUT);
+  tft.drawCircle(81, 12, 10, TFT_GREYOUT);
+  tft.drawCircle(81, 12, 9, TFT_GREYOUT);
+  tft.drawCircle(91, 12, 10, TFT_GREYOUT);
+  tft.drawCircle(91, 12, 9, TFT_GREYOUT);
+  tft.drawBitmap(110, 1, RDSLogo, 67, 22, TFT_GREYOUT);
   if (StereoToggle == false) {
-    tft.drawCircle(86, 15, 10, TFT_SKYBLUE);
-    tft.drawCircle(86, 15, 9, TFT_SKYBLUE);
+    tft.drawCircle(86, 12, 10, TFT_SKYBLUE);
+    tft.drawCircle(86, 12, 9, TFT_SKYBLUE);
   }
-  // ── Band label drawn last (on top of freq zone, y=30) ────
+  // ── Band label below frequency digits ────────────────────
   tft.setTextColor(band == 0 ? UI_FREQ_COLOR : TFT_SKYBLUE);
-  if (band == 1) tft.drawString("AM", 50, 30, 2); else tft.drawString("FM", 50, 30, 2);
+  if (band == 1) tft.drawString("AM", 48, 79, 2); else tft.drawString("FM", 48, 79, 2);
 }
 
 void ShowFreq(int mode) {
@@ -2222,10 +2217,10 @@ void ShowFreq(int mode) {
       String count = String(freq, DEC);
       if (count.length() != freqoldcount || mode != 0) {
         tft.setTextColor(TFT_BLACK);
-        tft.drawRightString(String(freqold), 248, 45, 7);
+        tft.drawRightString(String(freqold), 248, 30, 7);
       }
       tft.setTextColor(UI_FREQ_COLOR, TFT_BLACK);
-      tft.drawRightString(String(freq), 248, 45, 7);
+      tft.drawRightString(String(freq), 248, 30, 7);
       freqold = freq;
       freqoldcount = count.length();
     } else {
@@ -2233,9 +2228,9 @@ void ShowFreq(int mode) {
       String count = String(freq / 100, DEC);
       if (count.length() != freqoldcount || mode != 0) {
         tft.setTextColor(TFT_BLACK);
-        if (freqoldcount <= 2) tft.setCursor (108, 45);
-        if (freqoldcount == 3) tft.setCursor (76, 45);
-        if (freqoldcount >= 4) tft.setCursor (44, 45);
+        if (freqoldcount <= 2) tft.setCursor (108, 30);
+        if (freqoldcount == 3) tft.setCursor (76, 30);
+        if (freqoldcount >= 4) tft.setCursor (44, 30);
         tft.setTextFont(7);
         tft.print(freqold / 100);
         tft.print(".");
@@ -2245,9 +2240,9 @@ void ShowFreq(int mode) {
 
       tft.setTextColor(UI_FREQ_COLOR, TFT_BLACK);
       if (mode == 0) {
-        if (count.length() <= 2) tft.setCursor (108, 45);
-        if (count.length() == 3) tft.setCursor (76, 45);
-        if (count.length() >= 4) tft.setCursor (44, 45);
+        if (count.length() <= 2) tft.setCursor (108, 30);
+        if (count.length() == 3) tft.setCursor (76, 30);
+        if (count.length() >= 4) tft.setCursor (44, 30);
         tft.setTextFont(7);
         tft.print(freq / 100);
         tft.print(".");
@@ -2257,9 +2252,9 @@ void ShowFreq(int mode) {
         freqoldcount = count.length();
       } else if (mode == 1) {
         tft.setTextColor(TFT_BLACK);
-        if (freqoldcount <= 2) tft.setCursor (98, 45);
-        if (freqoldcount == 3) tft.setCursor (71, 45);
-        if (freqoldcount == 4) tft.setCursor (44, 45);
+        if (freqoldcount <= 2) tft.setCursor (98, 30);
+        if (freqoldcount == 3) tft.setCursor (71, 30);
+        if (freqoldcount == 4) tft.setCursor (44, 30);
         tft.setTextFont(1);
         tft.print(freqold / 100);
         tft.print(".");
@@ -2277,10 +2272,10 @@ void ShowSignalLevel() {
 
   if (SNR > (SNRold + 1) || SNR < (SNRold - 1)) {
     tft.setTextFont(2);
-    tft.setCursor (280, 168);
+    tft.setCursor (280, 161);
     tft.setTextColor(TFT_BLACK);
     if (SNRold == 99) tft.print("--"); else  tft.print(SNRold);
-    tft.setCursor (280, 168);
+    tft.setCursor (280, 161);
     tft.setTextColor(UI_LABEL_COLOR, TFT_BLACK);
     if (tuned == true) {
       tft.print(SNR);
@@ -2321,7 +2316,7 @@ void ShowSignalLevel() {
     if (SStatus < -400) SStatus = -400;
     String count = String(abs(SStatus / 10), DEC);
     tft.setTextColor(1, TFT_BLACK);
-    tft.setCursor (213, 110);
+    tft.setCursor (213, 103);
     tft.setTextFont(6);
     if (SStatus >= 0) {
       if (count.length() == 1) tft.print("00");
@@ -2333,7 +2328,7 @@ void ShowSignalLevel() {
     tft.setTextColor(UI_LEVEL_COLOR, TFT_BLACK);
     if (SStatus < 0) tft.print("-");
     tft.print(abs(SStatus / 10));
-    tft.setCursor (294, 110);
+    tft.setCursor (294, 103);
     tft.setTextFont(4);
     tft.print(".");
     if (SStatus < 0)
@@ -2346,10 +2341,10 @@ void ShowSignalLevel() {
 
     if (band == 0) segments = (SStatus + 200) / 10; else segments = (SStatus + 200) / 10;
 
-    tft.fillRect(16, 109, 2 * constrain(segments, 0, 40), 8, TFT_GREEN);
-    tft.fillRect(16 + 2*40, 109, 2 * (constrain(segments, 40, 54) - 40), 8, TFT_YELLOW);
-    tft.fillRect(16 + 2*54, 109, 2 * (constrain(segments, 54, 94) - 54), 8, TFT_RED);
-    tft.fillRect(16 + 2 * constrain(segments, 0, 94), 109, 2 * (94 - constrain(segments, 0, 94)), 8, TFT_GREYOUT);
+    tft.fillRect(16, 102, 2 * constrain(segments, 0, 40), 8, TFT_GREEN);
+    tft.fillRect(16 + 2*40, 102, 2 * (constrain(segments, 40, 54) - 40), 8, TFT_YELLOW);
+    tft.fillRect(16 + 2*54, 102, 2 * (constrain(segments, 54, 94) - 54), 8, TFT_RED);
+    tft.fillRect(16 + 2 * constrain(segments, 0, 94), 102, 2 * (94 - constrain(segments, 0, 94)), 8, TFT_GREYOUT);
 
     SStatusold = SStatus;
     SStatusoldcount = count.length();
@@ -2360,7 +2355,7 @@ void ShowRDSLogo(bool RDSstatus) {
   if (screenmute == false) {
     if (RDSstatus != RDSstatusold)
     {
-      if (RDSstatus == true) tft.drawBitmap(110, 5, RDSLogo, 67, 22, UI_LABEL_COLOR); else tft.drawBitmap(110, 5, RDSLogo, 67, 22, TFT_GREYOUT);
+      if (RDSstatus == true) tft.drawBitmap(110, 1, RDSLogo, 67, 22, UI_LABEL_COLOR); else tft.drawBitmap(110, 1, RDSLogo, 67, 22, TFT_GREYOUT);
       RDSstatusold = RDSstatus;
     }
   }
@@ -2374,16 +2369,16 @@ void ShowStereoStatus() {
     {
       if (Stereostatus == true && screenmute == false)
       {
-        tft.drawCircle(81, 15, 10, TFT_MAGENTA);
-        tft.drawCircle(81, 15, 9, TFT_MAGENTA);
-        tft.drawCircle(91, 15, 10, TFT_MAGENTA);
-        tft.drawCircle(91, 15, 9, TFT_MAGENTA);
+        tft.drawCircle(81, 12, 10, TFT_MAGENTA);
+        tft.drawCircle(81, 12, 9, TFT_MAGENTA);
+        tft.drawCircle(91, 12, 10, TFT_MAGENTA);
+        tft.drawCircle(91, 12, 9, TFT_MAGENTA);
       } else {
         if (screenmute == false) {
-          tft.drawCircle(81, 15, 10, TFT_GREYOUT);
-          tft.drawCircle(81, 15, 9, TFT_GREYOUT);
-          tft.drawCircle(91, 15, 10, TFT_GREYOUT);
-          tft.drawCircle(91, 15, 9, TFT_GREYOUT);
+          tft.drawCircle(81, 12, 10, TFT_GREYOUT);
+          tft.drawCircle(81, 12, 9, TFT_GREYOUT);
+          tft.drawCircle(91, 12, 10, TFT_GREYOUT);
+          tft.drawCircle(91, 12, 9, TFT_GREYOUT);
         }
       }
       Stereostatusold = Stereostatus;
@@ -2395,90 +2390,90 @@ void ShowOffset() {
   if (OStatus != OStatusold) {
     if (band == 0) {
       if (OStatus < -500) {
-        tft.fillTriangle(6, 8, 6, 22, 14, 14, TFT_GREYOUT);
-        tft.fillTriangle(18, 8, 18, 22, 26, 14, TFT_GREYOUT);
-        tft.fillCircle(32, 15, 3, TFT_GREYOUT);
-        tft.fillTriangle(38, 14, 46, 8, 46, 22, TFT_GREYOUT);
-        tft.fillTriangle(50, 14, 58, 8, 58, 22, TFT_RED);
+        tft.fillTriangle(6, 5, 6, 19, 14, 12, TFT_GREYOUT);
+        tft.fillTriangle(18, 5, 18, 19, 26, 12, TFT_GREYOUT);
+        tft.fillCircle(32, 12, 3, TFT_GREYOUT);
+        tft.fillTriangle(38, 12, 46, 5, 46, 19, TFT_GREYOUT);
+        tft.fillTriangle(50, 12, 58, 5, 58, 19, TFT_RED);
         tuned = false;
       } else if (OStatus < -250 && OStatus > -500) {
-        tft.fillTriangle(6, 8, 6, 22, 14, 14, TFT_GREYOUT);
-        tft.fillTriangle(18, 8, 18, 22, 26, 14, TFT_GREYOUT);
-        tft.fillCircle(32, 15, 3, TFT_GREYOUT);
-        tft.fillTriangle(38, 14, 46, 8, 46, 22, TFT_RED);
-        tft.fillTriangle(50, 14, 58, 8, 58, 22, TFT_GREYOUT);
+        tft.fillTriangle(6, 5, 6, 19, 14, 12, TFT_GREYOUT);
+        tft.fillTriangle(18, 5, 18, 19, 26, 12, TFT_GREYOUT);
+        tft.fillCircle(32, 12, 3, TFT_GREYOUT);
+        tft.fillTriangle(38, 12, 46, 5, 46, 19, TFT_RED);
+        tft.fillTriangle(50, 12, 58, 5, 58, 19, TFT_GREYOUT);
         tuned = false;
       } else if (USN < 250 && WAM < 250 && OStatus > -250 && OStatus < 250 && SQ == false) {
-        tft.fillTriangle(6, 8, 6, 22, 14, 14, TFT_GREYOUT);
-        tft.fillTriangle(18, 8, 18, 22, 26, 14, TFT_GREYOUT);
-        tft.fillCircle(32, 15, 3, TFT_GREEN);
-        tft.fillTriangle(38, 14, 46, 8, 46, 22, TFT_GREYOUT);
-        tft.fillTriangle(50, 14, 58, 8, 58, 22, TFT_GREYOUT);
+        tft.fillTriangle(6, 5, 6, 19, 14, 12, TFT_GREYOUT);
+        tft.fillTriangle(18, 5, 18, 19, 26, 12, TFT_GREYOUT);
+        tft.fillCircle(32, 12, 3, TFT_GREEN);
+        tft.fillTriangle(38, 12, 46, 5, 46, 19, TFT_GREYOUT);
+        tft.fillTriangle(50, 12, 58, 5, 58, 19, TFT_GREYOUT);
         tuned = true;
       } else if (OStatus > 250 && OStatus < 500) {
-        tft.fillTriangle(6, 8, 6, 22, 14, 14, TFT_GREYOUT);
-        tft.fillTriangle(18, 8, 18, 22, 26, 14, TFT_RED);
-        tft.fillCircle(32, 15, 3, TFT_GREYOUT);
-        tft.fillTriangle(38, 14, 46, 8, 46, 22, TFT_GREYOUT);
-        tft.fillTriangle(50, 14, 58, 8, 58, 22, TFT_GREYOUT);
+        tft.fillTriangle(6, 5, 6, 19, 14, 12, TFT_GREYOUT);
+        tft.fillTriangle(18, 5, 18, 19, 26, 12, TFT_RED);
+        tft.fillCircle(32, 12, 3, TFT_GREYOUT);
+        tft.fillTriangle(38, 12, 46, 5, 46, 19, TFT_GREYOUT);
+        tft.fillTriangle(50, 12, 58, 5, 58, 19, TFT_GREYOUT);
         tuned = false;
       } else if (OStatus > 500) {
-        tft.fillTriangle(6, 8, 6, 22, 14, 14, TFT_RED);
-        tft.fillTriangle(18, 8, 18, 22, 26, 14, TFT_GREYOUT);
-        tft.fillCircle(32, 15, 3, TFT_GREYOUT);
-        tft.fillTriangle(38, 14, 46, 8, 46, 22, TFT_GREYOUT);
-        tft.fillTriangle(50, 14, 58, 8, 58, 22, TFT_GREYOUT);
+        tft.fillTriangle(6, 5, 6, 19, 14, 12, TFT_RED);
+        tft.fillTriangle(18, 5, 18, 19, 26, 12, TFT_GREYOUT);
+        tft.fillCircle(32, 12, 3, TFT_GREYOUT);
+        tft.fillTriangle(38, 12, 46, 5, 46, 19, TFT_GREYOUT);
+        tft.fillTriangle(50, 12, 58, 5, 58, 19, TFT_GREYOUT);
         tuned = false;
       } else {
-        tft.fillTriangle(6, 8, 6, 22, 14, 14, TFT_GREYOUT);
-        tft.fillTriangle(18, 8, 18, 22, 26, 14, TFT_GREYOUT);
-        tft.fillCircle(32, 15, 3, TFT_GREYOUT);
-        tft.fillTriangle(38, 14, 46, 8, 46, 22, TFT_GREYOUT);
-        tft.fillTriangle(50, 14, 58, 8, 58, 22, TFT_GREYOUT);
+        tft.fillTriangle(6, 5, 6, 19, 14, 12, TFT_GREYOUT);
+        tft.fillTriangle(18, 5, 18, 19, 26, 12, TFT_GREYOUT);
+        tft.fillCircle(32, 12, 3, TFT_GREYOUT);
+        tft.fillTriangle(38, 12, 46, 5, 46, 19, TFT_GREYOUT);
+        tft.fillTriangle(50, 12, 58, 5, 58, 19, TFT_GREYOUT);
         tuned = false;
       }
     } else {
       if (OStatus <= -3) {
-        tft.fillTriangle(6, 8, 6, 22, 14, 14, TFT_GREYOUT);
-        tft.fillTriangle(18, 8, 18, 22, 26, 14, TFT_GREYOUT);
-        tft.fillCircle(32, 15, 3, TFT_GREYOUT);
-        tft.fillTriangle(38, 14, 46, 8, 46, 22, TFT_GREYOUT);
-        tft.fillTriangle(50, 14, 58, 8, 58, 22, TFT_RED);
+        tft.fillTriangle(6, 5, 6, 19, 14, 12, TFT_GREYOUT);
+        tft.fillTriangle(18, 5, 18, 19, 26, 12, TFT_GREYOUT);
+        tft.fillCircle(32, 12, 3, TFT_GREYOUT);
+        tft.fillTriangle(38, 12, 46, 5, 46, 19, TFT_GREYOUT);
+        tft.fillTriangle(50, 12, 58, 5, 58, 19, TFT_RED);
         tuned = false;
       } else if (OStatus < -2 && OStatus > -3) {
-        tft.fillTriangle(6, 8, 6, 22, 14, 14, TFT_GREYOUT);
-        tft.fillTriangle(18, 8, 18, 22, 26, 14, TFT_GREYOUT);
-        tft.fillCircle(32, 15, 3, TFT_GREYOUT);
-        tft.fillTriangle(38, 14, 46, 8, 46, 22, TFT_RED);
-        tft.fillTriangle(50, 14, 58, 8, 58, 22, TFT_GREYOUT);
+        tft.fillTriangle(6, 5, 6, 19, 14, 12, TFT_GREYOUT);
+        tft.fillTriangle(18, 5, 18, 19, 26, 12, TFT_GREYOUT);
+        tft.fillCircle(32, 12, 3, TFT_GREYOUT);
+        tft.fillTriangle(38, 12, 46, 5, 46, 19, TFT_RED);
+        tft.fillTriangle(50, 12, 58, 5, 58, 19, TFT_GREYOUT);
         tuned = false;
       } else if (OStatus > -2 && OStatus < 2 && SQ == false) {
-        tft.fillTriangle(6, 8, 6, 22, 14, 14, TFT_GREYOUT);
-        tft.fillTriangle(18, 8, 18, 22, 26, 14, TFT_GREYOUT);
-        tft.fillCircle(32, 15, 3, TFT_GREEN);
-        tft.fillTriangle(38, 14, 46, 8, 46, 22, TFT_GREYOUT);
-        tft.fillTriangle(50, 14, 58, 8, 58, 22, TFT_GREYOUT);
+        tft.fillTriangle(6, 5, 6, 19, 14, 12, TFT_GREYOUT);
+        tft.fillTriangle(18, 5, 18, 19, 26, 12, TFT_GREYOUT);
+        tft.fillCircle(32, 12, 3, TFT_GREEN);
+        tft.fillTriangle(38, 12, 46, 5, 46, 19, TFT_GREYOUT);
+        tft.fillTriangle(50, 12, 58, 5, 58, 19, TFT_GREYOUT);
         tuned = true;
       } else if (OStatus > 2 && OStatus < 3) {
-        tft.fillTriangle(6, 8, 6, 22, 14, 14, TFT_GREYOUT);
-        tft.fillTriangle(18, 8, 18, 22, 26, 14, TFT_RED);
-        tft.fillCircle(32, 15, 3, TFT_GREYOUT);
-        tft.fillTriangle(38, 14, 46, 8, 46, 22, TFT_GREYOUT);
-        tft.fillTriangle(50, 14, 58, 8, 58, 22, TFT_GREYOUT);
+        tft.fillTriangle(6, 5, 6, 19, 14, 12, TFT_GREYOUT);
+        tft.fillTriangle(18, 5, 18, 19, 26, 12, TFT_RED);
+        tft.fillCircle(32, 12, 3, TFT_GREYOUT);
+        tft.fillTriangle(38, 12, 46, 5, 46, 19, TFT_GREYOUT);
+        tft.fillTriangle(50, 12, 58, 5, 58, 19, TFT_GREYOUT);
         tuned = false;
       } else if (OStatus >= 3) {
-        tft.fillTriangle(6, 8, 6, 22, 14, 14, TFT_RED);
-        tft.fillTriangle(18, 8, 18, 22, 26, 14, TFT_GREYOUT);
-        tft.fillCircle(32, 15, 3, TFT_GREYOUT);
-        tft.fillTriangle(38, 14, 46, 8, 46, 22, TFT_GREYOUT);
-        tft.fillTriangle(50, 14, 58, 8, 58, 22, TFT_GREYOUT);
+        tft.fillTriangle(6, 5, 6, 19, 14, 12, TFT_RED);
+        tft.fillTriangle(18, 5, 18, 19, 26, 12, TFT_GREYOUT);
+        tft.fillCircle(32, 12, 3, TFT_GREYOUT);
+        tft.fillTriangle(38, 12, 46, 5, 46, 19, TFT_GREYOUT);
+        tft.fillTriangle(50, 12, 58, 5, 58, 19, TFT_GREYOUT);
         tuned = false;
       } else {
-        tft.fillTriangle(6, 8, 6, 22, 14, 14, TFT_GREYOUT);
-        tft.fillTriangle(18, 8, 18, 22, 26, 14, TFT_GREYOUT);
-        tft.fillCircle(32, 15, 3, TFT_GREYOUT);
-        tft.fillTriangle(38, 14, 46, 8, 46, 22, TFT_GREYOUT);
-        tft.fillTriangle(50, 14, 58, 8, 58, 22, TFT_GREYOUT);
+        tft.fillTriangle(6, 5, 6, 19, 14, 12, TFT_GREYOUT);
+        tft.fillTriangle(18, 5, 18, 19, 26, 12, TFT_GREYOUT);
+        tft.fillCircle(32, 12, 3, TFT_GREYOUT);
+        tft.fillTriangle(38, 12, 46, 5, 46, 19, TFT_GREYOUT);
+        tft.fillTriangle(50, 12, 58, 5, 58, 19, TFT_GREYOUT);
         tuned = false;
       }
     }
@@ -2489,9 +2484,9 @@ void ShowOffset() {
 void ShowBW() {
   if (BW != BWOld || BWreset == true) {
     tft.setTextColor(TFT_BLACK);
-    tft.drawRightString(String (BWOld, DEC), 218, 6, 4);
+    tft.drawRightString(String (BWOld, DEC), 218, 5, 2);
     if (BWset == 0) tft.setTextColor(UI_LABEL_COLOR); else tft.setTextColor(TFT_YELLOW);
-    tft.drawRightString(String (BW, DEC), 218, 6, 4);
+    tft.drawRightString(String (BW, DEC), 218, 5, 2);
     BWOld = BW;
     BWreset = false;
   }
@@ -2516,9 +2511,9 @@ void ShowModLevel() {
       if (MStatus > (segments + 1) * 10)
       {
         hold = segments;
-        tft.fillRect(20 + segments * 14, 139, 12, 8, color);
+        tft.fillRect(20 + segments * 14, 132, 12, 8, color);
       } else {
-        if (segments != peakholdold) tft.fillRect(20 + segments * 14, 139, 12, 8, TFT_GREYOUT);
+        if (segments != peakholdold) tft.fillRect(20 + segments * 14, 132, 12, 8, TFT_GREYOUT);
       }
     }
 
@@ -2541,7 +2536,7 @@ void doSquelch() {
     if (seek == false && menu == false && Squelch != Squelchold) {
       tft.setTextFont(2);
       tft.setTextColor(TFT_BLACK);
-      tft.setCursor (216, 168);
+      tft.setCursor (216, 161);
       if (Squelchold == -100) {
         tft.print("OFF");
       } else if (Squelchold == 920) {
@@ -2550,7 +2545,7 @@ void doSquelch() {
         tft.print(Squelchold / 10);
       }
       tft.setTextColor(TFT_WHITE);
-      tft.setCursor (216, 168);
+      tft.setCursor (216, 161);
       if (Squelch == -100) {
         tft.print("OFF");
       } else if (Squelch == 920) {
@@ -2584,10 +2579,10 @@ void doSquelch() {
         if (Squelch != Squelchold) {
           tft.setTextFont(2);
           tft.setTextColor(TFT_BLACK);
-          tft.setCursor (216, 168);
+          tft.setCursor (216, 161);
           if (Squelchold == -1) tft.print("ST"); else tft.print(Squelchold / 10);
           tft.setTextColor(TFT_WHITE);
-          tft.setCursor (216, 168);
+          tft.setCursor (216, 161);
           if (Squelch == -1) tft.print("ST"); else tft.print(Squelch / 10);
           Squelchold = Squelch;
         }
@@ -2618,13 +2613,13 @@ void doSquelch() {
 void ShowSquelch() {
   if (menu == false) {
     if (SQ == false) {
-      tft.drawRoundRect(3, 79, 40, 20, 5, TFT_GREYOUT);
+      tft.drawRoundRect(3, 72, 40, 18, 4, TFT_GREYOUT);
       tft.setTextColor(TFT_GREYOUT);
-      tft.drawCentreString("MUTE", 24, 81, 2);
+      tft.drawCentreString("MUTE", 24, 74, 2);
     } else {
-      tft.drawRoundRect(3, 79, 40, 20, 5, UI_LEVEL_COLOR);
+      tft.drawRoundRect(3, 72, 40, 18, 4, UI_LEVEL_COLOR);
       tft.setTextColor(UI_LEVEL_COLOR);
-      tft.drawCentreString("MUTE", 24, 81, 2);
+      tft.drawCentreString("MUTE", 24, 74, 2);
     }
   }
 }
@@ -2633,16 +2628,16 @@ void ShowSquelch() {
 void updateBW() {
   if (BWset == 0) {
     if (screenmute == false) {
-      tft.drawRoundRect(249, 35, 68, 20, 5, UI_LABEL_COLOR);
+      tft.drawRoundRect(249, 27, 68, 18, 4, UI_LABEL_COLOR);
       tft.setTextColor(UI_LABEL_COLOR);
-      tft.drawCentreString("AUTO BW", 283, 37, 2);
+      tft.drawCentreString("AUTO BW", 283, 29, 2);
     }
     radio.setFMABandw();
   } else {
     if (screenmute == false) {
-      tft.drawRoundRect(249, 35, 68, 20, 5, TFT_GREYOUT);
+      tft.drawRoundRect(249, 27, 68, 18, 4, TFT_GREYOUT);
       tft.setTextColor(TFT_GREYOUT);
-      tft.drawCentreString("AUTO BW", 283, 37, 2);
+      tft.drawCentreString("AUTO BW", 283, 29, 2);
     }
   }
 }
@@ -2651,16 +2646,16 @@ void updateiMS() {
   if (band == 0) {
     if (iMSset == 0) {
       if (screenmute == false) {
-        tft.drawRoundRect(249, 56, 30, 20, 5, UI_LABEL_COLOR);
+        tft.drawRoundRect(249, 46, 30, 18, 4, UI_LABEL_COLOR);
         tft.setTextColor(UI_LABEL_COLOR);
-        tft.drawCentreString("iMS", 265, 58, 2);
+        tft.drawCentreString("iMS", 265, 48, 2);
       }
       radio.setiMS(1);
     } else {
       if (screenmute == false) {
-        tft.drawRoundRect(249, 56, 30, 20, 5, TFT_GREYOUT);
+        tft.drawRoundRect(249, 46, 30, 18, 4, TFT_GREYOUT);
         tft.setTextColor(TFT_GREYOUT);
-        tft.drawCentreString("iMS", 265, 58, 2);
+        tft.drawCentreString("iMS", 265, 48, 2);
       }
       radio.setiMS(0);
     }
@@ -2671,16 +2666,16 @@ void updateEQ() {
   if (band == 0) {
     if (EQset == 0) {
       if (screenmute == false) {
-        tft.drawRoundRect(287, 56, 30, 20, 5, UI_LABEL_COLOR);
+        tft.drawRoundRect(287, 46, 30, 18, 4, UI_LABEL_COLOR);
         tft.setTextColor(UI_LABEL_COLOR);
-        tft.drawCentreString("EQ", 303, 58, 2);
+        tft.drawCentreString("EQ", 303, 48, 2);
       }
       radio.setEQ(1);
     } else {
       if (screenmute == false) {
-        tft.drawRoundRect(287, 56, 30, 20, 5, TFT_GREYOUT);
+        tft.drawRoundRect(287, 46, 30, 18, 4, TFT_GREYOUT);
         tft.setTextColor(TFT_GREYOUT);
-        tft.drawCentreString("EQ", 303, 58, 2);
+        tft.drawCentreString("EQ", 303, 48, 2);
       }
       radio.setEQ(0);
     }
@@ -2796,25 +2791,25 @@ void doTuneMode() {
 
 void updateTuneMode() {
   if (tunemode == true) {
-    tft.drawRoundRect(3, 57, 40, 20, 5, UI_LABEL_COLOR);
+    tft.drawRoundRect(3, 46, 40, 18, 4, UI_LABEL_COLOR);
     tft.setTextColor(UI_LABEL_COLOR);
-    tft.drawCentreString("AUTO", 24, 59, 2);
+    tft.drawCentreString("AUTO", 24, 48, 2);
 
-    tft.drawRoundRect(3, 35, 40, 20, 5, TFT_GREYOUT);
+    tft.drawRoundRect(3, 27, 40, 18, 4, TFT_GREYOUT);
     tft.setTextColor(TFT_GREYOUT);
-    tft.drawCentreString("MAN", 24, 37, 2);
+    tft.drawCentreString("MAN", 24, 29, 2);
   } else {
-    tft.drawRoundRect(3, 57, 40, 20, 5, TFT_GREYOUT);
+    tft.drawRoundRect(3, 46, 40, 18, 4, TFT_GREYOUT);
     tft.setTextColor(TFT_GREYOUT);
-    tft.drawCentreString("AUTO", 24, 59, 2);
+    tft.drawCentreString("AUTO", 24, 48, 2);
 
-    tft.drawRoundRect(3, 35, 40, 20, 5, UI_LABEL_COLOR);
+    tft.drawRoundRect(3, 27, 40, 18, 4, UI_LABEL_COLOR);
     tft.setTextColor(UI_LABEL_COLOR);
-    tft.drawCentreString("MAN", 24, 37, 2);
+    tft.drawCentreString("MAN", 24, 29, 2);
   }
 }
 void ShowUSBstatus() {
-  if (USBstatus == true) tft.drawBitmap(272, 6, USBLogo, 43, 21, TFT_SKYBLUE); else tft.drawBitmap(272, 6, USBLogo, 43, 21, TFT_GREYOUT);
+  if (USBstatus == true) tft.drawBitmap(272, 1, USBLogo, 43, 21, TFT_SKYBLUE); else tft.drawBitmap(272, 1, USBLogo, 43, 21, TFT_GREYOUT);
 }
 
 void XDRGTKRoutine() {
@@ -2843,7 +2838,7 @@ void XDRGTKRoutine() {
             if (screenmute == false) {
               tft.setTextFont(2);
               tft.setTextColor(TFT_BLACK);
-              tft.setCursor (240, 168);
+              tft.setCursor (240, 161);
               if (Squelchold == -100) tft.print("OFF"); else if (Squelchold > 920) tft.print("ST"); else tft.print(Squelchold / 10);
             }
           }
