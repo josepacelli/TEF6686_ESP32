@@ -3359,6 +3359,9 @@ void BuildMenu()
     tft.setTextColor(TFT_SKYBLUE);
     tft.drawString(">>", 277, 90, 2);
     tft.drawString(getUIString(UI_ENABLE_ALL_RDS, languageSet), 20, 110, 2);
+    tft.setTextColor(TFT_CYAN);
+    tft.drawString(">>", 277, 110, 2); 
+    tft.setTextColor(TFT_WHITE);
     tft.drawString(getUIString(UI_PAGE1_BACK, languageSet), 20, 130, 2);
   }
   else if (menuPage == 2)
