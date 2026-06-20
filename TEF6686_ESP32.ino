@@ -2689,6 +2689,8 @@ void BuildMenu() {
     tft.setTextColor(TFT_WHITE);
     tft.drawString("Todos RDS:", 15, 150, 2);
     tft.setTextColor(TFT_CYAN);
+    tft.drawString(">>", 277, 150, 2); 
+    tft.setTextColor(TFT_WHITE);
     tft.drawString("LIGAR", 110, 150, 2);
     tft.setTextColor(TFT_WHITE);
     tft.drawString("Musica:", 15, 170, 2);
