@@ -41,4 +41,5 @@ const char* const PTY_RBDS_SPANISH[] = {
   /* 36 */ "MPB",
   /* 37 */ "FUNK",
   /* 38 */ "ROCK NACIONAL",
+  /* 39 */ "AZUL Y AMARILLO",
 };

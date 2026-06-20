@@ -41,4 +41,5 @@ const char* const PTY_PORTUGUESE[] = {
   /* 36 */ "MPB",
   /* 37 */ "FUNK",
   /* 38 */ "ROCK NACIONAL",
+  /* 39 */ "AZUL AMARELO",
 };

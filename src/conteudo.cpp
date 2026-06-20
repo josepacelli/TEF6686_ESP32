@@ -1302,6 +1302,165 @@ const char* rockNacionalRT[] = {
 };
 const int ROCK_NACIONAL_RT_COUNT = sizeof(rockNacionalRT) / sizeof(rockNacionalRT[0]);
 
+// AZUL AMARELO (PTY 39) - EXTENDED
+const char* azulAmareloGenres[] = {
+  "Electronic", "Synth-Pop", "Dream Pop", "Ambient", "Indie Electronic",
+  "Electropop", "Synth Wave", "Future Funk", "Electronic Rock", "Darkwave",
+  "Synthpunk", "Chillwave", "Vaporwave", "Synthwave", "Retrowave",
+  "Outrun", "Synthwave Pop", "Future Synth", "Neon Wave", "Digital Soul"
+};
+const int AZUL_AMARELO_GENRES_COUNT = sizeof(azulAmareloGenres) / sizeof(azulAmareloGenres[0]);
+
+const char* azulAmareloArtists[] = {
+  "Daft Punk", "M83", "The Killers", "New Order", "Depeche Mode",
+  "Erasure", "Pet Shop Boys", "Air", "Chromeo", "Justice",
+  "Kavinsky", "Perturbator", "Com Truise", "College & Electric Youth", "FM-84",
+  "Mitch Murder", "Carpenter Brut", "Trevor Something", "Waveshaper", "Neon Neon",
+  "Lazerhawk", "Occams Laser", "Magic Sword", "Syn Cole", "Alan Walker",
+  "Deadmau5", "Jean-Michel Jarre", "Vangelis", "Kraftwerk", "OMD"
+};
+const int AZUL_AMARELO_ARTISTS = sizeof(azulAmareloArtists) / sizeof(azulAmareloArtists[0]);
+
+const char* azulAmareloSongs[] = {
+  "Get Lucky", "Midnight City", "Mr. Brightside", "Blue Monday", "Personal Jesus",
+  "Enjoy the Silence", "A Little Respect", "Vogue", "La Femme d'Argent", "Fancy Footwork",
+  "Nightcall", "Electric Dreams", "Turbo Killer", "Neon Dreams", "Digital Love",
+  "Take On Me", "Running Up That Hill", "Don't You Forget About Me", "Hypnotize", "Belong",
+  "Kids", "Ctrl Alt Del", "Summer of Love", "Odyssey", "Accelerated",
+  "Flash Delirium", "Time to Pretend", "Feels Like We Only Go Backwards", "Tomorrow's Modern Boxes", "Overdrive"
+};
+const int AZUL_AMARELO_SONGS = sizeof(azulAmareloSongs) / sizeof(azulAmareloSongs[0]);
+
+const char* azulAmareloYears[] = {
+  "1970", "1973", "1975", "1977", "1980", "1982", "1983", "1985", "1987", "1988",
+  "1989", "1990", "1992", "1995", "1998", "2001", "2003", "2005", "2007", "2010",
+  "2011", "2013", "2015", "2017", "2019", "2020", "2021", "2023"
+};
+const int AZUL_AMARELO_YEARS = sizeof(azulAmareloYears) / sizeof(azulAmareloYears[0]);
+
+const char* azulAmareloPS[] = {
+  "SYNTH FM", "ELECTRONIC", "DREAM FM", "NEON FM", "DIGITAL FM",
+  "ELECTRO BR", "SYNTHWAVE FM", "FUTURISTA FM", "AZUL AMARELO", "VIBE FM"
+};
+const int AZUL_AMARELO_PS_COUNT = sizeof(azulAmareloPS) / sizeof(azulAmareloPS[0]);
+
+const char* azulAmareloRT[] = {
+  "MUSICA ELETRONICA 24H", "SYNTH POP SEMPRE", "DREAM ELECTRONIC HITS",
+  "SYNTHWAVE E AMBIENT", "ELETRONICO PURO", "ELECTRONIC DANCE BEATS"
+};
+const int AZUL_AMARELO_RT_COUNT = sizeof(azulAmareloRT) / sizeof(azulAmareloRT[0]);
+
+// ESTACAO 1: AZUL DIGITAL (92.5) - FUTURISTIC DIGITAL
+const char* azulDigitalArtists[] = {
+  "Jean-Michel Jarre", "Vangelis", "Kraftwerk", "Alan Walker", "Deadmau5",
+  "Tiësto", "Above & Beyond", "Armin van Buuren", "Cosmic Gate", "Gareth Emery"
+};
+const int AZUL_DIGITAL_ARTISTS = sizeof(azulDigitalArtists) / sizeof(azulDigitalArtists[0]);
+
+// ESTACAO 2: YELLOW DREAM (98.7) - DREAM POP YELLOW
+const char* yellowDreamArtists[] = {
+  "Slowdive", "Cocteau Twins", "Beach House", "Grimes", "Purity Ring",
+  "CHVRCHES", "Metric", "St. Vincent", "Tegan and Sara", "Alvvays"
+};
+const int YELLOW_DREAM_ARTISTS = sizeof(yellowDreamArtists) / sizeof(yellowDreamArtists[0]);
+
+// ESTACAO 3: NEON AZUL (102.1) - CYBERPUNK NEON
+const char* neonAzulArtists[] = {
+  "Perturbator", "Carpenter Brut", "Magic Sword", "Gost", "Lazerhawk",
+  "Kavinsky", "Com Truise", "Trevor Something", "Waveshaper", "Occams Laser"
+};
+const int NEON_AZUL_ARTISTS = sizeof(neonAzulArtists) / sizeof(neonAzulArtists[0]);
+
+// ESTACAO 4: SYNTH WAVE (103.5) - RETRO SYNTH 80S
+const char* synthWaveArtists[] = {
+  "Duran Duran", "The Human League", "Ultravox", "Visage", "Blancmange",
+  "OMD", "Gary Numan", "Soft Kill", "Vince Clarke", "Yazoo", "Depeche Mode"
+};
+const int SYNTH_WAVE_ARTISTS = sizeof(synthWaveArtists) / sizeof(synthWaveArtists[0]);
+
+// ESTACAO 5: VIBE AMARELO (104.5) - AMBIENT ELECTRONIC YELLOW
+const char* vibeAmareloArtists[] = {
+  "Tycho", "Bonobo", "Emancipator", "Ólafur Arnalds", "Jlin",
+  "Ryoji Ikeda", "Alva Noto", "Fennesz", "Oneohtrix Point Never", "Floating Points"
+};
+const int VIBE_AMARELO_ARTISTS = sizeof(vibeAmareloArtists) / sizeof(vibeAmareloArtists[0]);
+
+// AZUL AMARELO TIME DATA CLIMATE (PTY 39)
+// HORAS (24H format)
+const char* azulAmareloHoras[] = {
+  "00", "02", "04", "06", "08", "10", "12", "14", "16", "18", "20", "22"
+};
+const int AZUL_AMARELO_HORAS = sizeof(azulAmareloHoras) / sizeof(azulAmareloHoras[0]);
+
+// MINUTOS
+const char* azulAmareloMinutos[] = {
+  "00", "15", "30", "45"
+};
+const int AZUL_AMARELO_MINUTOS = sizeof(azulAmareloMinutos) / sizeof(azulAmareloMinutos[0]);
+
+// SEGUNDOS
+const char* azulAmareloSegundos[] = {
+  "00"
+};
+const int AZUL_AMARELO_SEGUNDOS = sizeof(azulAmareloSegundos) / sizeof(azulAmareloSegundos[0]);
+
+// DATAS (DD format)
+const char* azulAmareloDias[] = {
+  "01", "05", "10", "13", "15", "20", "25", "28"
+};
+const int AZUL_AMARELO_DIAS = sizeof(azulAmareloDias) / sizeof(azulAmareloDias[0]);
+
+// MESES (MM format)
+const char* azulAmareloMeses[] = {
+  "01", "03", "05", "06", "07", "09", "11", "12"
+};
+const int AZUL_AMARELO_MESES = sizeof(azulAmareloMeses) / sizeof(azulAmareloMeses[0]);
+
+// ANOS (YYYY format)
+const char* azulAmareloAnos[] = {
+  "2024", "2025", "2026"
+};
+const int AZUL_AMARELO_ANOS = sizeof(azulAmareloAnos) / sizeof(azulAmareloAnos[0]);
+
+// CLIMA DESCRICOES (Weather descriptions)
+const char* azulAmareloClima[] = {
+  "Clear", "Sunny", "Partly Cloudy", "Cloudy", "Overcast", "Light Rain", "Rain",
+  "Rainy", "Stormy", "Foggy", "Misty", "Hazy", "Breezy", "Windy", "Hot & Humid",
+  "Warm", "Cool", "Cold", "Clear Night", "Starry"
+};
+const int AZUL_AMARELO_CLIMA_COUNT = sizeof(azulAmareloClima) / sizeof(azulAmareloClima[0]);
+
+// TEMPERATURAS (Celsius)
+const char* azulAmareloTemperaturas[] = {
+  "18°C", "20°C", "22°C", "24°C", "26°C", "28°C", "29°C", "30°C", "31°C", "32°C", "33°C", "34°C", "35°C", "36°C"
+};
+const int AZUL_AMARELO_TEMPERATURAS = sizeof(azulAmareloTemperaturas) / sizeof(azulAmareloTemperaturas[0]);
+
+// COMBINED CLIMA FULL (Weather + Temperature pairs)
+struct ClimaInfo {
+  const char* descricao;
+  const char* temperatura;
+};
+
+const ClimaInfo azulAmareloClimaCompleto[] = {
+  {"Clear", "32°C"},
+  {"Sunny", "31°C"},
+  {"Partly Cloudy", "29°C"},
+  {"Cloudy", "27°C"},
+  {"Overcast", "25°C"},
+  {"Light Rain", "24°C"},
+  {"Rainy", "22°C"},
+  {"Stormy", "20°C"},
+  {"Foggy", "18°C"},
+  {"Breezy", "26°C"},
+  {"Windy", "23°C"},
+  {"Hot & Humid", "35°C"},
+  {"Warm", "28°C"},
+  {"Cool", "21°C"},
+  {"Clear Night", "19°C"}
+};
+const int AZUL_AMARELO_CLIMA_COMPLETO = sizeof(azulAmareloClimaCompleto) / sizeof(azulAmareloClimaCompleto[0]);
+
 String generateRandomSong() {
   int artistIdx = random(0, ARTISTS_COUNT);
   int songIdx = random(0, SONGS_COUNT);
@@ -1473,6 +1632,13 @@ String getSongForPTY(uint8_t pty) {
       int y = random(0, ROCK_NACIONAL_YEARS);
       return String(rockNacionalGenres[g]) + " | " + String(rockNacionalArtists[a]) + " - " + String(rockNacionalSongs[s]) + " (" + String(rockNacionalYears[y]) + ")";
     }
+    case 39: {  // Azul Amarelo
+      int g = random(0, AZUL_AMARELO_GENRES_COUNT);
+      int a = random(0, AZUL_AMARELO_ARTISTS);
+      int s = random(0, AZUL_AMARELO_SONGS);
+      int y = random(0, AZUL_AMARELO_YEARS);
+      return String(azulAmareloGenres[g]) + " | " + String(azulAmareloArtists[a]) + " - " + String(azulAmareloSongs[s]) + " (" + String(azulAmareloYears[y]) + ")";
+    }
     default: return generateRandomSong();
   }
 }
@@ -1541,6 +1707,7 @@ String getRandomGenreByPTY(uint8_t pty_code) {
     case 36: return String(mpbGenres[random(0, MPB_GENRES_COUNT)]);
     case 37: return String(funkGenres[random(0, FUNK_GENRES_COUNT)]);
     case 38: return String(rockNacionalGenres[random(0, ROCK_NACIONAL_GENRES_COUNT)]);
+    case 39: return String(azulAmareloGenres[random(0, AZUL_AMARELO_GENRES_COUNT)]);
     default: return String(musicGenres[random(0, GENRES_COUNT)]);
   }
 }
@@ -1573,6 +1740,7 @@ String getRandomArtistByPTY(uint8_t pty_code) {
     case 36: return String(mpbArtists[random(0, MPB_ARTISTS)]);
     case 37: return String(funkArtists[random(0, FUNK_ARTISTS)]);
     case 38: return String(rockNacionalArtists[random(0, ROCK_NACIONAL_ARTISTS)]);
+    case 39: return String(azulAmareloArtists[random(0, AZUL_AMARELO_ARTISTS)]);
     default: return String(brazilianArtists[random(0, ARTISTS_COUNT)]);
   }
 }
@@ -1589,6 +1757,7 @@ String getRandomYearByPTY(uint8_t pty_code) {
     case 36: return String(mpbYears[random(0, MPB_YEARS)]);
     case 37: return String(funkYears[random(0, FUNK_YEARS)]);
     case 38: return String(rockNacionalYears[random(0, ROCK_NACIONAL_YEARS)]);
+    case 39: return String(azulAmareloYears[random(0, AZUL_AMARELO_YEARS)]);
     default: return String(brazilianYears[random(0, YEARS_COUNT)]);
   }
 }
@@ -1633,6 +1802,7 @@ String getRandomPSByPTY(uint8_t pty_code) {
     case 36: return String(mpbPS[random(0, MPB_PS_COUNT)]);
     case 37: return String(funkPS[random(0, FUNK_PS_COUNT)]);
     case 38: return String(rockNacionalPS[random(0, ROCK_NACIONAL_PS_COUNT)]);
+    case 39: return String(azulAmareloPS[random(0, AZUL_AMARELO_PS_COUNT)]);
     default: return String("RADIO FM");
   }
 }
@@ -1677,6 +1847,7 @@ String getRandomRTByPTY(uint8_t pty_code) {
     case 36: return String(mpbRT[random(0, MPB_RT_COUNT)]);
     case 37: return String(funkRT[random(0, FUNK_RT_COUNT)]);
     case 38: return String(rockNacionalRT[random(0, ROCK_NACIONAL_RT_COUNT)]);
+    case 39: return String(azulAmareloRT[random(0, AZUL_AMARELO_RT_COUNT)]);
     default: return String("MUSICA 24 HORAS");
   }
 }
@@ -1690,9 +1861,9 @@ const char* getPTYName(uint8_t pty_code) {
     "Gospel", "Travel", "Leisure", "Jazz Music", "Country Music",
     "National Music", "Oldies", "Folk Music", "Documentary", "Alarm Test",
     "Alarm", "Talk",
-    "Forro", "Axe Music", "Sertanejo", "Pagode", "MPB", "Funk", "Rock Nacional"
+    "Forro", "Axe Music", "Sertanejo", "Pagode", "MPB", "Funk", "Rock Nacional", "Azul Amarelo"
   };
-  if (pty_code >= 0 && pty_code <= 38) {
+  if (pty_code >= 0 && pty_code <= 39) {
     return pty_names[pty_code];
   }
   return "Unknown";
@@ -1738,6 +1909,7 @@ const char** listaPSporPTY(int8_t pty_code, int* count) {
     case 36: *count = MPB_PS_COUNT;               return (const char**)mpbPS;
     case 37: *count = FUNK_PS_COUNT;              return (const char**)funkPS;
     case 38: *count = ROCK_NACIONAL_PS_COUNT;     return (const char**)rockNacionalPS;
+    case 39: *count = AZUL_AMARELO_PS_COUNT;      return (const char**)azulAmareloPS;
     default: *count = TALK_PS_COUNT;              return (const char**)talkPS;
   }
 }

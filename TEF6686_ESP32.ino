@@ -206,6 +206,324 @@ const PSFontStyle PS_FONT_STYLES[] = {
 #define PS_FONT_COUNT 10
 uint8_t PS_FONT_INDEX = 0;  // Current PS font style
 
+// Font styles for PTY (Program Type)
+struct PTYFontStyle {
+  uint8_t size;      // 1-8 (TFT_eSPI font size)
+  uint16_t color;    // RGB565 color
+  const char* name;  // Style name
+};
+
+const PTYFontStyle PTY_FONT_STYLES[] = {
+  {1, 0xFFFF, "Tiny-White"},       // 0: Tiny white
+  {1, 0x07FF, "Tiny-Cyan"},        // 1: Tiny cyan
+  {2, 0xFFE0, "Small-Yellow"},     // 2: Small yellow
+  {2, 0xF800, "Small-Red"},        // 3: Small red
+  {3, 0x07E0, "Medium-Green"},     // 4: Medium green
+  {3, 0xFDA0, "Medium-Gold"},      // 5: Medium gold
+  {4, 0x07FF, "Large-Cyan"},       // 6: Large cyan
+  {4, 0xF81F, "Large-Magenta"},    // 7: Large magenta
+  {5, 0xFFFF, "XL-White"},         // 8: Extra large white
+  {6, 0xFFE0, "Bold-Yellow"}       // 9: Bold yellow
+};
+#define PTY_FONT_COUNT 10
+uint8_t PTY_FONT_INDEX = 0;  // Current PTY font style
+
+// Font styles for RT (Radio Text)
+struct RTFontStyle {
+  uint8_t size;      // 1-8 (TFT_eSPI font size)
+  uint16_t color;    // RGB565 color
+  const char* name;  // Style name
+};
+
+const RTFontStyle RT_FONT_STYLES[] = {
+  {1, 0xFFFF, "Compact-White"},    // 0: Compact white
+  {1, 0xFFE0, "Compact-Yellow"},   // 1: Compact yellow
+  {2, 0x07E0, "Small-Green"},      // 2: Small green
+  {2, 0x07FF, "Small-Cyan"},       // 3: Small cyan
+  {2, 0xFDA0, "Small-Gold"},       // 4: Small gold
+  {3, 0xFFFF, "Medium-White"},     // 5: Medium white
+  {3, 0xF800, "Medium-Red"},       // 6: Medium red
+  {3, 0xF81F, "Medium-Magenta"},   // 7: Medium magenta
+  {4, 0x07FF, "Large-Cyan"},       // 8: Large cyan
+  {4, 0xFFE0, "Large-Yellow"}      // 9: Large yellow
+};
+#define RT_FONT_COUNT 10
+uint8_t RT_FONT_INDEX = 0;  // Current RT font style
+
+// Font styles for PI (Program Identification)
+struct PIFontStyle {
+  uint8_t size;      // 1-8 (TFT_eSPI font size)
+  uint16_t color;    // RGB565 color
+  const char* name;  // Style name
+};
+
+const PIFontStyle PI_FONT_STYLES[] = {
+  {1, 0xFFFF, "Micro-White"},      // 0: Micro white
+  {1, 0xFFE0, "Micro-Yellow"},     // 1: Micro yellow
+  {2, 0x07E0, "Tiny-Green"},       // 2: Tiny green
+  {2, 0x07FF, "Tiny-Cyan"},        // 3: Tiny cyan
+  {2, 0xFDA0, "Tiny-Gold"},        // 4: Tiny gold
+  {3, 0xF800, "Small-Red"},        // 5: Small red
+  {3, 0xFFFF, "Small-White"},      // 6: Small white
+  {3, 0xF81F, "Small-Magenta"},    // 7: Small magenta
+  {4, 0x07FF, "Medium-Cyan"},      // 8: Medium cyan
+  {4, 0xFFE0, "Medium-Yellow"}     // 9: Medium yellow
+};
+#define PI_FONT_COUNT 10
+uint8_t PI_FONT_INDEX = 0;  // Current PI font style
+
+// Font styles for RDS (Radio Data System indicator)
+struct RDSFontStyle {
+  uint8_t size;      // 1-8 (TFT_eSPI font size)
+  uint16_t color;    // RGB565 color
+  const char* name;  // Style name
+};
+
+const RDSFontStyle RDS_FONT_STYLES[] = {
+  {1, 0xFFFF, "Badge-White"},      // 0: Badge white
+  {1, 0x07FF, "Badge-Cyan"},       // 1: Badge cyan
+  {1, 0x07E0, "Badge-Green"},      // 2: Badge green
+  {2, 0xFFE0, "Label-Yellow"},     // 3: Label yellow
+  {2, 0xF800, "Label-Red"},        // 4: Label red
+  {2, 0x07FF, "Label-Cyan"},       // 5: Label cyan
+  {2, 0xFDA0, "Label-Gold"},       // 6: Label gold
+  {3, 0xFFFF, "Bold-White"},       // 7: Bold white
+  {3, 0xF81F, "Bold-Magenta"},     // 8: Bold magenta
+  {3, 0x07E0, "Bold-Green"}        // 9: Bold green
+};
+#define RDS_FONT_COUNT 10
+uint8_t RDS_FONT_INDEX = 0;  // Current RDS font style
+
+// Font styles for Frequency
+struct FreqFontStyle {
+  uint8_t size;
+  uint16_t color;
+  const char* name;
+};
+
+const FreqFontStyle FREQ_FONT_STYLES[] = {
+  {4, 0x07E0, "Large-Green"},      {4, 0x07FF, "Large-Cyan"},       {5, 0xFFE0, "XL-Yellow"},
+  {5, 0x07FF, "XL-Cyan"},          {6, 0xFFFF, "Bold-White"},       {6, 0xF800, "Bold-Red"},
+  {7, 0x07E0, "Huge-Green"},       {7, 0xFFE0, "Huge-Yellow"},      {8, 0x07FF, "Max-Cyan"},
+  {8, 0xFFFF, "Max-White"}
+};
+#define FREQ_FONT_COUNT 10
+uint8_t FREQ_FONT_INDEX = 0;
+
+// Font styles for Music/Artist
+struct MusicFontStyle {
+  uint8_t size;
+  uint16_t color;
+  const char* name;
+};
+
+const MusicFontStyle MUSIC_FONT_STYLES[] = {
+  {1, 0xFFFF, "Tiny-White"},       {1, 0xFFE0, "Tiny-Yellow"},      {2, 0x07E0, "Small-Green"},
+  {2, 0x07FF, "Small-Cyan"},       {2, 0xFDA0, "Small-Gold"},       {3, 0xFFE0, "Medium-Yellow"},
+  {3, 0xF800, "Medium-Red"},       {3, 0x07FF, "Medium-Cyan"},      {4, 0xFFFF, "Large-White"},
+  {4, 0xF81F, "Large-Magenta"}
+};
+#define MUSIC_FONT_COUNT 10
+uint8_t MUSIC_FONT_INDEX = 0;
+
+// Font styles for Time/Date/Weather
+struct TimeFontStyle {
+  uint8_t size;
+  uint16_t color;
+  const char* name;
+};
+
+const TimeFontStyle TIME_FONT_STYLES[] = {
+  {1, 0xFFFF, "Micro-White"},      {1, 0x07FF, "Micro-Cyan"},       {2, 0xFFE0, "Small-Yellow"},
+  {2, 0x07E0, "Small-Green"},      {2, 0xFDA0, "Small-Gold"},       {3, 0xFFFF, "Medium-White"},
+  {3, 0xF800, "Medium-Red"},       {3, 0x07FF, "Medium-Cyan"},      {4, 0xFFE0, "Large-Yellow"},
+  {4, 0xF81F, "Large-Magenta"}
+};
+#define TIME_FONT_COUNT 10
+uint8_t TIME_FONT_INDEX = 0;
+
+// Font styles for Song Title
+struct SongFontStyle {
+  uint8_t size;
+  uint16_t color;
+  const char* name;
+};
+
+const SongFontStyle SONG_FONT_STYLES[] = {
+  {1, 0xFFFF, "Compact-White"},    {1, 0xFFE0, "Compact-Yellow"},   {2, 0x07E0, "Small-Green"},
+  {2, 0x07FF, "Small-Cyan"},       {2, 0xFDA0, "Small-Gold"},       {3, 0xFFE0, "Medium-Yellow"},
+  {3, 0xF800, "Medium-Red"},       {3, 0x07FF, "Medium-Cyan"},      {4, 0xFFFF, "Large-White"},
+  {4, 0xF81F, "Large-Magenta"}
+};
+#define SONG_FONT_COUNT 10
+uint8_t SONG_FONT_INDEX = 0;
+
+// Font styles for Artist Name
+struct ArtistFontStyle {
+  uint8_t size;
+  uint16_t color;
+  const char* name;
+};
+
+const ArtistFontStyle ARTIST_FONT_STYLES[] = {
+  {1, 0x07E0, "Tiny-Green"},       {1, 0x07FF, "Tiny-Cyan"},        {2, 0xFFE0, "Small-Yellow"},
+  {2, 0xF800, "Small-Red"},        {2, 0xFDA0, "Small-Gold"},       {3, 0xFFFF, "Medium-White"},
+  {3, 0xF81F, "Medium-Magenta"},   {3, 0x07E0, "Medium-Green"},     {4, 0x07FF, "Large-Cyan"},
+  {4, 0xFFE0, "Large-Yellow"}
+};
+#define ARTIST_FONT_COUNT 10
+uint8_t ARTIST_FONT_INDEX = 0;
+
+// Font styles for Time (HH:MM:SS)
+struct HourFontStyle {
+  uint8_t size;
+  uint16_t color;
+  const char* name;
+};
+
+const HourFontStyle HOUR_FONT_STYLES[] = {
+  {1, 0xFFFF, "Micro-White"},      {1, 0xFFE0, "Micro-Yellow"},     {2, 0x07E0, "Small-Green"},
+  {2, 0x07FF, "Small-Cyan"},       {2, 0xFDA0, "Small-Gold"},       {3, 0xFFE0, "Medium-Yellow"},
+  {3, 0xF800, "Medium-Red"},       {3, 0x07FF, "Medium-Cyan"},      {4, 0xFFFF, "Large-White"},
+  {4, 0xF81F, "Large-Magenta"}
+};
+#define HOUR_FONT_COUNT 10
+uint8_t HOUR_FONT_INDEX = 0;
+
+// Font styles for Date (DD/MM/YYYY)
+struct DateFontStyle {
+  uint8_t size;
+  uint16_t color;
+  const char* name;
+};
+
+const DateFontStyle DATE_FONT_STYLES[] = {
+  {1, 0x07E0, "Tiny-Green"},       {1, 0x07FF, "Tiny-Cyan"},        {2, 0xFFE0, "Small-Yellow"},
+  {2, 0xF800, "Small-Red"},        {2, 0xFDA0, "Small-Gold"},       {3, 0xFFFF, "Medium-White"},
+  {3, 0xF81F, "Medium-Magenta"},   {3, 0x07E0, "Medium-Green"},     {4, 0x07FF, "Large-Cyan"},
+  {4, 0xFFE0, "Large-Yellow"}
+};
+#define DATE_FONT_COUNT 10
+uint8_t DATE_FONT_INDEX = 0;
+
+// Font styles for Weather
+struct WeatherFontStyle {
+  uint8_t size;
+  uint16_t color;
+  const char* name;
+};
+
+const WeatherFontStyle WEATHER_FONT_STYLES[] = {
+  {1, 0xFFFF, "Badge-White"},      {1, 0x07FF, "Badge-Cyan"},       {1, 0x07E0, "Badge-Green"},
+  {2, 0xFFE0, "Label-Yellow"},     {2, 0xF800, "Label-Red"},        {2, 0x07FF, "Label-Cyan"},
+  {2, 0xFDA0, "Label-Gold"},       {3, 0xFFFF, "Bold-White"},       {3, 0xF81F, "Bold-Magenta"},
+  {3, 0x07E0, "Bold-Green"}
+};
+#define WEATHER_FONT_COUNT 10
+uint8_t WEATHER_FONT_INDEX = 0;
+
+// Font styles for Station Editor
+struct EditorFontStyle {
+  uint8_t size;
+  uint16_t color;
+  const char* name;
+};
+
+const EditorFontStyle EDITOR_FONT_STYLES[] = {
+  {2, 0xFFFF, "Label-White"},      {2, 0xFFE0, "Label-Yellow"},     {2, 0x07E0, "Label-Green"},
+  {2, 0x07FF, "Label-Cyan"},       {3, 0xFFFF, "Field-White"},      {3, 0xFDA0, "Field-Gold"},
+  {3, 0xF800, "Field-Red"},        {3, 0x07FF, "Field-Cyan"},       {4, 0xFFE0, "Edit-Yellow"},
+  {4, 0xF81F, "Edit-Magenta"}
+};
+#define EDITOR_FONT_COUNT 10
+uint8_t EDITOR_FONT_INDEX = 0;
+
+// Font styles for Editor Labels
+struct EditorLabelFontStyle {
+  uint8_t size;
+  uint16_t color;
+  const char* name;
+};
+
+const EditorLabelFontStyle EDITOR_LABEL_FONT_STYLES[] = {
+  {1, 0xFFFF, "Badge-White"},      {1, 0x07FF, "Badge-Cyan"},       {2, 0xFFE0, "Small-Yellow"},
+  {2, 0x07E0, "Small-Green"},      {2, 0xFDA0, "Small-Gold"},       {2, 0xF800, "Small-Red"},
+  {3, 0xFFFF, "Medium-White"},     {3, 0xF81F, "Medium-Magenta"},   {3, 0x07FF, "Medium-Cyan"},
+  {4, 0xFFE0, "Large-Yellow"}
+};
+#define EDITOR_LABEL_FONT_COUNT 10
+uint8_t EDITOR_LABEL_FONT_INDEX = 0;
+
+// Font styles for Editor Values
+struct EditorValueFontStyle {
+  uint8_t size;
+  uint16_t color;
+  const char* name;
+};
+
+const EditorValueFontStyle EDITOR_VALUE_FONT_STYLES[] = {
+  {2, 0x07E0, "Highlight-Green"},  {2, 0x07FF, "Highlight-Cyan"},  {2, 0xFFE0, "Highlight-Yellow"},
+  {3, 0xFFFF, "Input-White"},      {3, 0xFDA0, "Input-Gold"},       {3, 0xF800, "Input-Red"},
+  {4, 0x07E0, "Active-Green"},     {4, 0x07FF, "Active-Cyan"},      {4, 0xFFE0, "Active-Yellow"},
+  {4, 0xF81F, "Active-Magenta"}
+};
+#define EDITOR_VALUE_FONT_COUNT 10
+uint8_t EDITOR_VALUE_FONT_INDEX = 0;
+
+// Font styles for Enable/Disable Toggle
+struct ToggleFontStyle {
+  uint8_t size;
+  uint16_t color_enabled;
+  uint16_t color_disabled;
+  const char* name;
+};
+
+const ToggleFontStyle TOGGLE_FONT_STYLES[] = {
+  {1, 0x07E0, 0x7BEF, "Badge"},     {2, 0x07FF, 0x8410, "Small"},     {2, 0x07E0, 0x4A49, "Medium"},
+  {3, 0xFFFF, 0xBDF7, "Large"},     {3, 0x07FF, 0x39E7, "Bold"},      {3, 0xFFE0, 0x7BEF, "Yellow"},
+  {2, 0xF800, 0x7BEF, "Red-Gray"},  {2, 0x07E0, 0x8410, "Green-Gray"}, {3, 0xFFE0, 0x4A49, "Amber-Gray"},
+  {3, 0xF81F, 0x8410, "Magenta-Gray"}
+};
+#define TOGGLE_FONT_COUNT 10
+uint8_t TOGGLE_FONT_INDEX = 0;
+
+// Master RDS font control
+struct RDSFontControl {
+  uint8_t ps_style;
+  uint8_t pty_style;
+  uint8_t rt_style;
+  uint8_t pi_style;
+  uint8_t rds_style;
+  uint8_t freq_style;
+  uint8_t song_style;
+  uint8_t artist_style;
+  uint8_t hour_style;
+  uint8_t date_style;
+  uint8_t weather_style;
+  uint8_t editor_style;
+  uint8_t editor_label_style;
+  uint8_t editor_value_style;
+};
+
+RDSFontControl rds_fonts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+// Toggle states for RDS elements
+struct RDSToggle {
+  bool ps_enabled;
+  bool pty_enabled;
+  bool rt_enabled;
+  bool pi_enabled;
+  bool rds_enabled;
+  bool freq_enabled;
+  bool song_enabled;
+  bool artist_enabled;
+  bool time_enabled;
+  bool date_enabled;
+  bool weather_enabled;
+};
+
+RDSToggle rds_toggles = {true, true, true, true, true, true, true, true, true, true, true};
+
 // Runtime theme palette — set by applyTheme()
 uint16_t UI_HEADER_BG    = 0x0820;
 uint16_t UI_FREQ_COLOR   = 0x07E0;
@@ -457,7 +775,7 @@ void setup() {
   languageSet = EEPROM.readByte(56);
   if (languageSet < 1 || languageSet > 9) languageSet = 1;
   themeSet = EEPROM.readUShort(241);
-  if (themeSet > 2599) themeSet = 0;
+  if (themeSet > 2600) themeSet = 0;
   applyTheme(themeSet);
   EEPROM.commit();
   setPTYLanguage(languageSet);
@@ -1772,7 +2090,7 @@ void KeyUp() {
         case 250:
           tft.setTextColor(TFT_BLACK);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
-          themeSet = (themeSet + 1) % 2600;
+          themeSet = (themeSet + 1) % 2601;
           applyTheme(themeSet);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
@@ -2060,7 +2378,7 @@ void KeyDown() {
         case 250:
           tft.setTextColor(TFT_BLACK);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
-          themeSet = (themeSet + 2599) % 2600;
+          themeSet = (themeSet + 2600) % 2601;
           applyTheme(themeSet);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
@@ -3280,12 +3598,13 @@ const char* getThemeName(uint16_t t) {
     case 2580: case 2581: case 2582: case 2583: case 2584: case 2585: case 2586: case 2587: case 2588: case 2589:
     case 2590: case 2591: case 2592: case 2593: case 2594: case 2595: case 2596: case 2597: case 2598: case 2599:
       return "Mammal";
+    case 2600: return "AzulAmarelo";
     default: return "Original";
   }
 }
 
 void applyTheme(uint16_t theme) {
-  themeSet = theme % 2600;
+  themeSet = theme % 2601;
   switch (themeSet) {
     default:
     case 0: // Original — dark navy / cyan
@@ -6713,6 +7032,8 @@ void applyTheme(uint16_t theme) {
     case 2580: case 2581: case 2582: case 2583: case 2584: case 2585: case 2586: case 2587: case 2588: case 2589:
     case 2590: case 2591: case 2592: case 2593: case 2594: case 2595: case 2596: case 2597: case 2598: case 2599:
       UI_HEADER_BG=0x2120; UI_FREQ_COLOR=0xFFE0; UI_LEVEL_COLOR=0xF800; UI_LABEL_COLOR=0xEF7D; UI_DIM_COLOR=0x4208; UI_BORDER_COLOR=0x8400; break;
+    case 2600: // AzulAmarelo — deep blue / yellow / gold / light blue
+      UI_HEADER_BG=0x0008; UI_FREQ_COLOR=0xFFE0; UI_LEVEL_COLOR=0xFD20; UI_LABEL_COLOR=0xADD5; UI_DIM_COLOR=0x0004; UI_BORDER_COLOR=0xED40; break;
   }
 }
 

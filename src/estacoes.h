@@ -32,5 +32,9 @@ String buscarGenero(uint32_t freq_khz);
 size_t totalEstacoes();
 Estacao& getEstacao(size_t i);
 void   setAllRDS(bool ativo);
+void   setAzulAmareloRDS(bool ativo);
+bool   areAllAzulAmareloRDSActive();
+int    countAzulAmareloRDSActive();
+int    countAzulAmareloTotal();
 
 #endif // ESTACOES_H

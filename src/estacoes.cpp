@@ -98,6 +98,35 @@ void setAllRDS(bool ativo) {
   for (auto& e : estacoes) e.rds_ativo = ativo;
 }
 
+void setAzulAmareloRDS(bool ativo) {
+  for (auto& e : estacoes) {
+    if (e.pty_code == 39) e.rds_ativo = ativo;  // PTY 39 = Azul Amarelo
+  }
+}
+
+bool areAllAzulAmareloRDSActive() {
+  for (auto& e : estacoes) {
+    if (e.pty_code == 39 && !e.rds_ativo) return false;
+  }
+  return true;
+}
+
+int countAzulAmareloRDSActive() {
+  int count = 0;
+  for (auto& e : estacoes) {
+    if (e.pty_code == 39 && e.rds_ativo) count++;
+  }
+  return count;
+}
+
+int countAzulAmareloTotal() {
+  int count = 0;
+  for (auto& e : estacoes) {
+    if (e.pty_code == 39) count++;
+  }
+  return count;
+}
+
 void carregarEstacoes() {
   log_info("Carregando estacoes...");
   estacoes.clear();
@@ -105,6 +134,14 @@ void carregarEstacoes() {
   e.rds_ativo = true;
 
   // === FORTALEZA FM STATIONS - SORTED BY FREQUENCY ===
+  // AZUL AMARELO THEME STATIONS (6 total, PTY 39):
+  // 1. SYNTH AZUL FM (105.3 MHz) - PI 0xAAFF
+  // 2. AZUL DIGITAL FM (92.5 MHz) - PI 0xAA01
+  // 3. YELLOW DREAM FM (98.7 MHz) - PI 0xAA02
+  // 4. NEON AZUL FM (102.1 MHz) - PI 0xAA03
+  // 5. SYNTH WAVE FM (103.5 MHz) - PI 0xAA04
+  // 6. VIBE AMARELO FM (104.5 MHz) - PI 0xAA05
+  // All RDS enabled by default. Use setAzulAmareloRDS(false) to disable.
 
   e.freq_khz = 79700;
   e.pty_code = 10;
@@ -1160,6 +1197,90 @@ void carregarEstacoes() {
   e.hora = "10"; e.minuto = "20"; e.segundo = "00";
   e.dia = "13"; e.mes = "06"; e.ano = "2026";
   e.tempo = "Cloudy"; e.temperatura = "27°C";
+  estacoes.push_back(e);
+
+  // === AZUL AMARELO ELETRONICA (105.3 FM - PTY 39)
+  e.freq_khz = 105300;
+  e.pty_code = 39;
+  e.ps = getPSByLanguage(96, currentPTYLanguage);
+  e.rt = getRTByLanguage(96, currentPTYLanguage);
+  e.musica = "Electronic | Daft Punk - Get Lucky";
+  e.anoMusica = "2013";
+  e.hora = "15"; e.minuto = "45"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Clear"; e.temperatura = "32°C";
+  e.pi_code = 0xAAFF;
+  e.rds_ativo = true;
+  estacoes.push_back(e);
+
+  // === AZUL DIGITAL (92.5 FM - PTY 39)
+  e.freq_khz = 92500;
+  e.pty_code = 39;
+  e.ps = getPSByLanguage(97, currentPTYLanguage);
+  e.rt = getRTByLanguage(98, currentPTYLanguage);
+  e.musica = "Electronic | M83 - Midnight City";
+  e.anoMusica = "2011";
+  e.hora = "16"; e.minuto = "00"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Sunny"; e.temperatura = "31°C";
+  e.pi_code = 0xAA01;
+  e.rds_ativo = true;
+  estacoes.push_back(e);
+
+  // === YELLOW DREAM (98.7 FM - PTY 39)
+  e.freq_khz = 98700;
+  e.pty_code = 39;
+  e.ps = getPSByLanguage(98, currentPTYLanguage);
+  e.rt = getRTByLanguage(99, currentPTYLanguage);
+  e.musica = "Electronic | The Killers - Mr. Brightside";
+  e.anoMusica = "2003";
+  e.hora = "16"; e.minuto = "30"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Cloudy"; e.temperatura = "30°C";
+  e.pi_code = 0xAA02;
+  e.rds_ativo = true;
+  estacoes.push_back(e);
+
+  // === NEON AZUL (102.1 FM - PTY 39)
+  e.freq_khz = 102100;
+  e.pty_code = 39;
+  e.ps = getPSByLanguage(99, currentPTYLanguage);
+  e.rt = getRTByLanguage(100, currentPTYLanguage);
+  e.musica = "Electronic | New Order - Blue Monday";
+  e.anoMusica = "1983";
+  e.hora = "17"; e.minuto = "00"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Partly Cloudy"; e.temperatura = "29°C";
+  e.pi_code = 0xAA03;
+  e.rds_ativo = true;
+  estacoes.push_back(e);
+
+  // === SYNTH WAVE (103.5 FM - PTY 39)
+  e.freq_khz = 103500;
+  e.pty_code = 39;
+  e.ps = getPSByLanguage(100, currentPTYLanguage);
+  e.rt = getRTByLanguage(101, currentPTYLanguage);
+  e.musica = "Electronic | Depeche Mode - Personal Jesus";
+  e.anoMusica = "1989";
+  e.hora = "17"; e.minuto = "30"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Clear"; e.temperatura = "28°C";
+  e.pi_code = 0xAA04;
+  e.rds_ativo = true;
+  estacoes.push_back(e);
+
+  // === VIBE AMARELO (104.5 FM - PTY 39)
+  e.freq_khz = 104500;
+  e.pty_code = 39;
+  e.ps = getPSByLanguage(101, currentPTYLanguage);
+  e.rt = getRTByLanguage(102, currentPTYLanguage);
+  e.musica = "Electronic | Erasure - A Little Respect";
+  e.anoMusica = "1988";
+  e.hora = "18"; e.minuto = "00"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Sunny"; e.temperatura = "30°C";
+  e.pi_code = 0xAA05;
+  e.rds_ativo = true;
   estacoes.push_back(e);
 
   for (auto& s : estacoes)

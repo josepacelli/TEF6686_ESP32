@@ -41,4 +41,5 @@ const char* const PTY_ENGLISH[] = {
   "MPB",
   "FUNK",
   "ROCK NACIONAL",
+  "BLUE & YELLOW",
 };
