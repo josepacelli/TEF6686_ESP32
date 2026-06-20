@@ -435,7 +435,7 @@ void setup() {
   languageSet = EEPROM.readByte(56);
   if (languageSet < 1 || languageSet > 9) languageSet = 1;
   themeSet = EEPROM.readUShort(241);
-  if (themeSet > 999) themeSet = 0;
+  if (themeSet > 2099) themeSet = 0;
   applyTheme(themeSet);
   EEPROM.commit();
   setPTYLanguage(languageSet);
@@ -1750,7 +1750,7 @@ void KeyUp() {
         case 250:
           tft.setTextColor(TFT_BLACK);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
-          themeSet = (themeSet + 1) % 1000;
+          themeSet = (themeSet + 1) % 2100;
           applyTheme(themeSet);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
@@ -2038,7 +2038,7 @@ void KeyDown() {
         case 250:
           tft.setTextColor(TFT_BLACK);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
-          themeSet = (themeSet + 999) % 1000;
+          themeSet = (themeSet + 2099) % 2100;
           applyTheme(themeSet);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
@@ -3028,12 +3028,182 @@ const char* getThemeName(uint16_t t) {
     case 992: return "Mênades"; case 993: return "Amazonas2"; case 994: return "Valquírias";
     case 995: return "Jötnar"; case 996: return "Aesir"; case 997: return "Vanir";
     case 998: return "Yggdrasil"; case 999: return "Ragnarok";
+    // ── Japanese Cuisine 1000-1009 ────────────────────────────
+    case 1000: return "Sushi"; case 1001: return "Ramen"; case 1002: return "Tempura";
+    case 1003: return "Miso"; case 1004: return "Tofu"; case 1005: return "Sakura";
+    case 1006: return "Wasabi"; case 1007: return "Nori"; case 1008: return "Edamame";
+    case 1009: return "Umami";
+    // ── Wine 1010-1019 ────────────────────────────────────────
+    case 1010: return "Tinto"; case 1011: return "Branco"; case 1012: return "Rose";
+    case 1013: return "Espumante"; case 1014: return "Reserva"; case 1015: return "Harvest";
+    case 1016: return "Bordeaux"; case 1017: return "Burgundy"; case 1018: return "Champagne";
+    case 1019: return "Malbec";
+    // ── Coffee & Tea 1020-1029 ────────────────────────────────
+    case 1020: return "Espresso"; case 1021: return "Cappuccino"; case 1022: return "Matcha";
+    case 1023: return "Sencha"; case 1024: return "Oolong"; case 1025: return "Chai";
+    case 1026: return "Latte"; case 1027: return "Mocaccino"; case 1028: return "Affogato";
+    case 1029: return "Pu-Erh";
+    // ── Rare Flowers 1030-1039 ────────────────────────────────
+    case 1030: return "Rafflesia"; case 1031: return "Corpse-Flower"; case 1032: return "Ghost-Orchid";
+    case 1033: return "Monkey-Orchid"; case 1034: return "Bee-Orchid"; case 1035: return "Naked-Man";
+    case 1036: return "Flying-Duck"; case 1037: return "Camel-Face"; case 1038: return "Hooker-Lips";
+    case 1039: return "Swaddled-Babies";
+    // ── Clouds & Sky 1040-1049 ────────────────────────────────
+    case 1040: return "Cumulus"; case 1041: return "Stratus"; case 1042: return "Cirrus";
+    case 1043: return "Altocumulus"; case 1044: return "Stratocumulus"; case 1045: return "Lenticular";
+    case 1046: return "Noctilucent"; case 1047: return "Mammatus"; case 1048: return "Cumulonimbus";
+    case 1049: return "Contrails";
+    // ── Precious Metals 1050-1059 ──────────────────────────────
+    case 1050: return "Ouro"; case 1051: return "Prata"; case 1052: return "Platinum";
+    case 1053: return "Palladium"; case 1054: return "Iridium"; case 1055: return "Rodio";
+    case 1056: return "Rutenio"; case 1057: return "Osmio"; case 1058: return "Rhenio";
+    case 1059: return "Torio";
+    // ── Glass & Crystal 1060-1069 ──────────────────────────────
+    case 1060: return "Cristal-Bohemio"; case 1061: return "Cristal-Swarovski"; case 1062: return "Cristal-Waterford";
+    case 1063: return "Vidro-Murano"; case 1064: return "Vidro-Venetian"; case 1065: return "Vidro-Bohemian";
+    case 1066: return "Prisma"; case 1067: return "Espelho"; case 1068: return "Obsidian";
+    case 1069: return "Vidro-Puro";
+    // ── Perfumes 1070-1079 ─────────────────────────────────────
+    case 1070: return "Chanel-5"; case 1071: return "Joy"; case 1072: return "Opium";
+    case 1073: return "Poison"; case 1074: return "Eternity"; case 1075: return "Obsession";
+    case 1076: return "Diorissimo"; case 1077: return "Coco"; case 1078: return "Arpege";
+    case 1079: return "Mitsouko";
+    // ── Japanese Silks 1080-1089 ───────────────────────────────
+    case 1080: return "Kimono"; case 1081: return "Yuzen"; case 1082: return "Shibori";
+    case 1083: return "Kasuri"; case 1084: return "Ikat"; case 1085: return "Damask";
+    case 1086: return "Brocade"; case 1087: return "Jacquard"; case 1088: return "Taffeta";
+    case 1089: return "Charmeuse";
+    // ── Jewelry & Piercing 1090-1099 ────────────────────────────
+    case 1090: return "Diamante"; case 1091: return "Ouro-Rose"; case 1092: return "Titanio";
+    case 1093: return "Platina"; case 1094: return "Prata-Sterlin"; case 1095: return "Opal";
+    case 1096: return "Jade"; case 1097: return "Turquesa"; case 1098: return "Amatista";
+    case 1099: return "Obsidiana-Negra";
+    // ── Constellations 1100-1199 ──────────────────────────────
+    case 1100: case 1101: case 1102: case 1103: case 1104: case 1105: case 1106: case 1107: case 1108: case 1109:
+    case 1110: case 1111: case 1112: case 1113: case 1114: case 1115: case 1116: case 1117: case 1118: case 1119:
+    case 1120: case 1121: case 1122: case 1123: case 1124: case 1125: case 1126: case 1127: case 1128: case 1129:
+    case 1130: case 1131: case 1132: case 1133: case 1134: case 1135: case 1136: case 1137: case 1138: case 1139:
+    case 1140: case 1141: case 1142: case 1143: case 1144: case 1145: case 1146: case 1147: case 1148: case 1149:
+    case 1150: case 1151: case 1152: case 1153: case 1154: case 1155: case 1156: case 1157: case 1158: case 1159:
+    case 1160: case 1161: case 1162: case 1163: case 1164: case 1165: case 1166: case 1167: case 1168: case 1169:
+    case 1170: case 1171: case 1172: case 1173: case 1174: case 1175: case 1176: case 1177: case 1178: case 1179:
+    case 1180: case 1181: case 1182: case 1183: case 1184: case 1185: case 1186: case 1187: case 1188: case 1189:
+    case 1190: case 1191: case 1192: case 1193: case 1194: case 1195: case 1196: case 1197: case 1198: case 1199:
+      return "Constellation";
+    // ── Philosophers 1200-1299 ────────────────────────────────
+    case 1200: case 1201: case 1202: case 1203: case 1204: case 1205: case 1206: case 1207: case 1208: case 1209:
+    case 1210: case 1211: case 1212: case 1213: case 1214: case 1215: case 1216: case 1217: case 1218: case 1219:
+    case 1220: case 1221: case 1222: case 1223: case 1224: case 1225: case 1226: case 1227: case 1228: case 1229:
+    case 1230: case 1231: case 1232: case 1233: case 1234: case 1235: case 1236: case 1237: case 1238: case 1239:
+    case 1240: case 1241: case 1242: case 1243: case 1244: case 1245: case 1246: case 1247: case 1248: case 1249:
+    case 1250: case 1251: case 1252: case 1253: case 1254: case 1255: case 1256: case 1257: case 1258: case 1259:
+    case 1260: case 1261: case 1262: case 1263: case 1264: case 1265: case 1266: case 1267: case 1268: case 1269:
+    case 1270: case 1271: case 1272: case 1273: case 1274: case 1275: case 1276: case 1277: case 1278: case 1279:
+    case 1280: case 1281: case 1282: case 1283: case 1284: case 1285: case 1286: case 1287: case 1288: case 1289:
+    case 1290: case 1291: case 1292: case 1293: case 1294: case 1295: case 1296: case 1297: case 1298: case 1299:
+      return "Philosopher";
+    // ── Composers 1300-1399 ───────────────────────────────────
+    case 1300: case 1301: case 1302: case 1303: case 1304: case 1305: case 1306: case 1307: case 1308: case 1309:
+    case 1310: case 1311: case 1312: case 1313: case 1314: case 1315: case 1316: case 1317: case 1318: case 1319:
+    case 1320: case 1321: case 1322: case 1323: case 1324: case 1325: case 1326: case 1327: case 1328: case 1329:
+    case 1330: case 1331: case 1332: case 1333: case 1334: case 1335: case 1336: case 1337: case 1338: case 1339:
+    case 1340: case 1341: case 1342: case 1343: case 1344: case 1345: case 1346: case 1347: case 1348: case 1349:
+    case 1350: case 1351: case 1352: case 1353: case 1354: case 1355: case 1356: case 1357: case 1358: case 1359:
+    case 1360: case 1361: case 1362: case 1363: case 1364: case 1365: case 1366: case 1367: case 1368: case 1369:
+    case 1370: case 1371: case 1372: case 1373: case 1374: case 1375: case 1376: case 1377: case 1378: case 1379:
+    case 1380: case 1381: case 1382: case 1383: case 1384: case 1385: case 1386: case 1387: case 1388: case 1389:
+    case 1390: case 1391: case 1392: case 1393: case 1394: case 1395: case 1396: case 1397: case 1398: case 1399:
+      return "Composer";
+    // ── Painters 1400-1499 ────────────────────────────────────
+    case 1400: case 1401: case 1402: case 1403: case 1404: case 1405: case 1406: case 1407: case 1408: case 1409:
+    case 1410: case 1411: case 1412: case 1413: case 1414: case 1415: case 1416: case 1417: case 1418: case 1419:
+    case 1420: case 1421: case 1422: case 1423: case 1424: case 1425: case 1426: case 1427: case 1428: case 1429:
+    case 1430: case 1431: case 1432: case 1433: case 1434: case 1435: case 1436: case 1437: case 1438: case 1439:
+    case 1440: case 1441: case 1442: case 1443: case 1444: case 1445: case 1446: case 1447: case 1448: case 1449:
+    case 1450: case 1451: case 1452: case 1453: case 1454: case 1455: case 1456: case 1457: case 1458: case 1459:
+    case 1460: case 1461: case 1462: case 1463: case 1464: case 1465: case 1466: case 1467: case 1468: case 1469:
+    case 1470: case 1471: case 1472: case 1473: case 1474: case 1475: case 1476: case 1477: case 1478: case 1479:
+    case 1480: case 1481: case 1482: case 1483: case 1484: case 1485: case 1486: case 1487: case 1488: case 1489:
+    case 1490: case 1491: case 1492: case 1493: case 1494: case 1495: case 1496: case 1497: case 1498: case 1499:
+      return "Painter";
+    // ── Historic Cities 1500-1599 ──────────────────────────────
+    case 1500: case 1501: case 1502: case 1503: case 1504: case 1505: case 1506: case 1507: case 1508: case 1509:
+    case 1510: case 1511: case 1512: case 1513: case 1514: case 1515: case 1516: case 1517: case 1518: case 1519:
+    case 1520: case 1521: case 1522: case 1523: case 1524: case 1525: case 1526: case 1527: case 1528: case 1529:
+    case 1530: case 1531: case 1532: case 1533: case 1534: case 1535: case 1536: case 1537: case 1538: case 1539:
+    case 1540: case 1541: case 1542: case 1543: case 1544: case 1545: case 1546: case 1547: case 1548: case 1549:
+    case 1550: case 1551: case 1552: case 1553: case 1554: case 1555: case 1556: case 1557: case 1558: case 1559:
+    case 1560: case 1561: case 1562: case 1563: case 1564: case 1565: case 1566: case 1567: case 1568: case 1569:
+    case 1570: case 1571: case 1572: case 1573: case 1574: case 1575: case 1576: case 1577: case 1578: case 1579:
+    case 1580: case 1581: case 1582: case 1583: case 1584: case 1585: case 1586: case 1587: case 1588: case 1589:
+    case 1590: case 1591: case 1592: case 1593: case 1594: case 1595: case 1596: case 1597: case 1598: case 1599:
+      return "Historic-City";
+    // ── Volcanoes 1600-1699 ───────────────────────────────────
+    case 1600: case 1601: case 1602: case 1603: case 1604: case 1605: case 1606: case 1607: case 1608: case 1609:
+    case 1610: case 1611: case 1612: case 1613: case 1614: case 1615: case 1616: case 1617: case 1618: case 1619:
+    case 1620: case 1621: case 1622: case 1623: case 1624: case 1625: case 1626: case 1627: case 1628: case 1629:
+    case 1630: case 1631: case 1632: case 1633: case 1634: case 1635: case 1636: case 1637: case 1638: case 1639:
+    case 1640: case 1641: case 1642: case 1643: case 1644: case 1645: case 1646: case 1647: case 1648: case 1649:
+    case 1650: case 1651: case 1652: case 1653: case 1654: case 1655: case 1656: case 1657: case 1658: case 1659:
+    case 1660: case 1661: case 1662: case 1663: case 1664: case 1665: case 1666: case 1667: case 1668: case 1669:
+    case 1670: case 1671: case 1672: case 1673: case 1674: case 1675: case 1676: case 1677: case 1678: case 1679:
+    case 1680: case 1681: case 1682: case 1683: case 1684: case 1685: case 1686: case 1687: case 1688: case 1689:
+    case 1690: case 1691: case 1692: case 1693: case 1694: case 1695: case 1696: case 1697: case 1698: case 1699:
+      return "Volcano";
+    // ── Deserts 1700-1799 ─────────────────────────────────────
+    case 1700: case 1701: case 1702: case 1703: case 1704: case 1705: case 1706: case 1707: case 1708: case 1709:
+    case 1710: case 1711: case 1712: case 1713: case 1714: case 1715: case 1716: case 1717: case 1718: case 1719:
+    case 1720: case 1721: case 1722: case 1723: case 1724: case 1725: case 1726: case 1727: case 1728: case 1729:
+    case 1730: case 1731: case 1732: case 1733: case 1734: case 1735: case 1736: case 1737: case 1738: case 1739:
+    case 1740: case 1741: case 1742: case 1743: case 1744: case 1745: case 1746: case 1747: case 1748: case 1749:
+    case 1750: case 1751: case 1752: case 1753: case 1754: case 1755: case 1756: case 1757: case 1758: case 1759:
+    case 1760: case 1761: case 1762: case 1763: case 1764: case 1765: case 1766: case 1767: case 1768: case 1769:
+    case 1770: case 1771: case 1772: case 1773: case 1774: case 1775: case 1776: case 1777: case 1778: case 1779:
+    case 1780: case 1781: case 1782: case 1783: case 1784: case 1785: case 1786: case 1787: case 1788: case 1789:
+    case 1790: case 1791: case 1792: case 1793: case 1794: case 1795: case 1796: case 1797: case 1798: case 1799:
+      return "Desert";
+    // ── Waterfalls 1800-1899 ──────────────────────────────────
+    case 1800: case 1801: case 1802: case 1803: case 1804: case 1805: case 1806: case 1807: case 1808: case 1809:
+    case 1810: case 1811: case 1812: case 1813: case 1814: case 1815: case 1816: case 1817: case 1818: case 1819:
+    case 1820: case 1821: case 1822: case 1823: case 1824: case 1825: case 1826: case 1827: case 1828: case 1829:
+    case 1830: case 1831: case 1832: case 1833: case 1834: case 1835: case 1836: case 1837: case 1838: case 1839:
+    case 1840: case 1841: case 1842: case 1843: case 1844: case 1845: case 1846: case 1847: case 1848: case 1849:
+    case 1850: case 1851: case 1852: case 1853: case 1854: case 1855: case 1856: case 1857: case 1858: case 1859:
+    case 1860: case 1861: case 1862: case 1863: case 1864: case 1865: case 1866: case 1867: case 1868: case 1869:
+    case 1870: case 1871: case 1872: case 1873: case 1874: case 1875: case 1876: case 1877: case 1878: case 1879:
+    case 1880: case 1881: case 1882: case 1883: case 1884: case 1885: case 1886: case 1887: case 1888: case 1889:
+    case 1890: case 1891: case 1892: case 1893: case 1894: case 1895: case 1896: case 1897: case 1898: case 1899:
+      return "Waterfall";
+    // ── Caves 1900-1999 ───────────────────────────────────────
+    case 1900: case 1901: case 1902: case 1903: case 1904: case 1905: case 1906: case 1907: case 1908: case 1909:
+    case 1910: case 1911: case 1912: case 1913: case 1914: case 1915: case 1916: case 1917: case 1918: case 1919:
+    case 1920: case 1921: case 1922: case 1923: case 1924: case 1925: case 1926: case 1927: case 1928: case 1929:
+    case 1930: case 1931: case 1932: case 1933: case 1934: case 1935: case 1936: case 1937: case 1938: case 1939:
+    case 1940: case 1941: case 1942: case 1943: case 1944: case 1945: case 1946: case 1947: case 1948: case 1949:
+    case 1950: case 1951: case 1952: case 1953: case 1954: case 1955: case 1956: case 1957: case 1958: case 1959:
+    case 1960: case 1961: case 1962: case 1963: case 1964: case 1965: case 1966: case 1967: case 1968: case 1969:
+    case 1970: case 1971: case 1972: case 1973: case 1974: case 1975: case 1976: case 1977: case 1978: case 1979:
+    case 1980: case 1981: case 1982: case 1983: case 1984: case 1985: case 1986: case 1987: case 1988: case 1989:
+    case 1990: case 1991: case 1992: case 1993: case 1994: case 1995: case 1996: case 1997: case 1998: case 1999:
+      return "Cave";
+    // ── Mountains 2000-2099 ───────────────────────────────────
+    case 2000: case 2001: case 2002: case 2003: case 2004: case 2005: case 2006: case 2007: case 2008: case 2009:
+    case 2010: case 2011: case 2012: case 2013: case 2014: case 2015: case 2016: case 2017: case 2018: case 2019:
+    case 2020: case 2021: case 2022: case 2023: case 2024: case 2025: case 2026: case 2027: case 2028: case 2029:
+    case 2030: case 2031: case 2032: case 2033: case 2034: case 2035: case 2036: case 2037: case 2038: case 2039:
+    case 2040: case 2041: case 2042: case 2043: case 2044: case 2045: case 2046: case 2047: case 2048: case 2049:
+    case 2050: case 2051: case 2052: case 2053: case 2054: case 2055: case 2056: case 2057: case 2058: case 2059:
+    case 2060: case 2061: case 2062: case 2063: case 2064: case 2065: case 2066: case 2067: case 2068: case 2069:
+    case 2070: case 2071: case 2072: case 2073: case 2074: case 2075: case 2076: case 2077: case 2078: case 2079:
+    case 2080: case 2081: case 2082: case 2083: case 2084: case 2085: case 2086: case 2087: case 2088: case 2089:
+    case 2090: case 2091: case 2092: case 2093: case 2094: case 2095: case 2096: case 2097: case 2098: case 2099:
+      return "Mountain";
     default: return "Original";
   }
 }
 
 void applyTheme(uint16_t theme) {
-  themeSet = theme % 1000;
+  themeSet = theme % 2100;
   switch (themeSet) {
     default:
     case 0: // Original — dark navy / cyan
@@ -6251,6 +6421,156 @@ void applyTheme(uint16_t theme) {
     case 980: case 981: case 982: case 983: case 984: case 985: case 986: case 987: case 988: case 989:
     case 990: case 991: case 992: case 993: case 994: case 995: case 996: case 997: case 998: case 999:
       UI_HEADER_BG=0x2006; UI_FREQ_COLOR=0xE0DF; UI_LEVEL_COLOR=0xC31F; UI_LABEL_COLOR=0xB3DE; UI_DIM_COLOR=0x0020; UI_BORDER_COLOR=0x1E56; break;
+    // ── Japanese Cuisine 1000-1009: sushi/food palette
+    case 1000: case 1001: case 1002: case 1003: case 1004: case 1005: case 1006: case 1007: case 1008: case 1009:
+      UI_HEADER_BG=0x0180; UI_FREQ_COLOR=0xFFE0; UI_LEVEL_COLOR=0x07E0; UI_LABEL_COLOR=0xFDA0; UI_DIM_COLOR=0x00C0; UI_BORDER_COLOR=0xED40; break;
+    // ── Wine 1010-1019: wine palette
+    case 1010: case 1011: case 1012: case 1013: case 1014: case 1015: case 1016: case 1017: case 1018: case 1019:
+      UI_HEADER_BG=0x3800; UI_FREQ_COLOR=0xFD40; UI_LEVEL_COLOR=0xF800; UI_LABEL_COLOR=0xFFBA; UI_DIM_COLOR=0x2800; UI_BORDER_COLOR=0xC560; break;
+    // ── Coffee & Tea 1020-1029: warm palette
+    case 1020: case 1021: case 1022: case 1023: case 1024: case 1025: case 1026: case 1027: case 1028: case 1029:
+      UI_HEADER_BG=0x2820; UI_FREQ_COLOR=0xFFBA; UI_LEVEL_COLOR=0xC560; UI_LABEL_COLOR=0xFEB2; UI_DIM_COLOR=0x1000; UI_BORDER_COLOR=0x9560; break;
+    // ── Rare Flowers 1030-1039: exotic palette
+    case 1030: case 1031: case 1032: case 1033: case 1034: case 1035: case 1036: case 1037: case 1038: case 1039:
+      UI_HEADER_BG=0x2006; UI_FREQ_COLOR=0xFC19; UI_LEVEL_COLOR=0x45C8; UI_LABEL_COLOR=0xFC19; UI_DIM_COLOR=0x500D; UI_BORDER_COLOR=0x45C8; break;
+    // ── Clouds & Sky 1040-1049: sky palette
+    case 1040: case 1041: case 1042: case 1043: case 1044: case 1045: case 1046: case 1047: case 1048: case 1049:
+      UI_HEADER_BG=0x0043; UI_FREQ_COLOR=0xFFFF; UI_LEVEL_COLOR=0x6FFF; UI_LABEL_COLOR=0xBFFF; UI_DIM_COLOR=0x0021; UI_BORDER_COLOR=0x07BF; break;
+    // ── Precious Metals 1050-1059: luxury palette
+    case 1050: case 1051: case 1052: case 1053: case 1054: case 1055: case 1056: case 1057: case 1058: case 1059:
+      UI_HEADER_BG=0x0000; UI_FREQ_COLOR=0xFDA0; UI_LEVEL_COLOR=0xC618; UI_LABEL_COLOR=0xEF7D; UI_DIM_COLOR=0x2104; UI_BORDER_COLOR=0xB800; break;
+    // ── Glass & Crystal 1060-1069: bright palette
+    case 1060: case 1061: case 1062: case 1063: case 1064: case 1065: case 1066: case 1067: case 1068: case 1069:
+      UI_HEADER_BG=0x0008; UI_FREQ_COLOR=0xFFFF; UI_LEVEL_COLOR=0x6FFF; UI_LABEL_COLOR=0xBDF7; UI_DIM_COLOR=0x0004; UI_BORDER_COLOR=0x87FF; break;
+    // ── Perfumes 1070-1079: floral palette
+    case 1070: case 1071: case 1072: case 1073: case 1074: case 1075: case 1076: case 1077: case 1078: case 1079:
+      UI_HEADER_BG=0x3806; UI_FREQ_COLOR=0xFC19; UI_LEVEL_COLOR=0xF81F; UI_LABEL_COLOR=0xFBB5; UI_DIM_COLOR=0x500D; UI_BORDER_COLOR=0xF81A; break;
+    // ── Japanese Silks 1080-1089: silk palette
+    case 1080: case 1081: case 1082: case 1083: case 1084: case 1085: case 1086: case 1087: case 1088: case 1089:
+      UI_HEADER_BG=0x2945; UI_FREQ_COLOR=0xBEDF; UI_LEVEL_COLOR=0x867D; UI_LABEL_COLOR=0xF7BE; UI_DIM_COLOR=0x18C5; UI_BORDER_COLOR=0x9D5F; break;
+    // ── Jewelry & Piercing 1090-1099: precious palette
+    case 1090: case 1091: case 1092: case 1093: case 1094: case 1095: case 1096: case 1097: case 1098: case 1099:
+      UI_HEADER_BG=0x0841; UI_FREQ_COLOR=0xFFFF; UI_LEVEL_COLOR=0xAEBF; UI_LABEL_COLOR=0xFFFF; UI_DIM_COLOR=0x2ACF; UI_BORDER_COLOR=0x87FF; break;
+    // ── Constellations 1100-1199: night sky palette
+    case 1100: case 1101: case 1102: case 1103: case 1104: case 1105: case 1106: case 1107: case 1108: case 1109:
+    case 1110: case 1111: case 1112: case 1113: case 1114: case 1115: case 1116: case 1117: case 1118: case 1119:
+    case 1120: case 1121: case 1122: case 1123: case 1124: case 1125: case 1126: case 1127: case 1128: case 1129:
+    case 1130: case 1131: case 1132: case 1133: case 1134: case 1135: case 1136: case 1137: case 1138: case 1139:
+    case 1140: case 1141: case 1142: case 1143: case 1144: case 1145: case 1146: case 1147: case 1148: case 1149:
+    case 1150: case 1151: case 1152: case 1153: case 1154: case 1155: case 1156: case 1157: case 1158: case 1159:
+    case 1160: case 1161: case 1162: case 1163: case 1164: case 1165: case 1166: case 1167: case 1168: case 1169:
+    case 1170: case 1171: case 1172: case 1173: case 1174: case 1175: case 1176: case 1177: case 1178: case 1179:
+    case 1180: case 1181: case 1182: case 1183: case 1184: case 1185: case 1186: case 1187: case 1188: case 1189:
+    case 1190: case 1191: case 1192: case 1193: case 1194: case 1195: case 1196: case 1197: case 1198: case 1199:
+      UI_HEADER_BG=0x0004; UI_FREQ_COLOR=0xFFFF; UI_LEVEL_COLOR=0x6FFF; UI_LABEL_COLOR=0x7FFF; UI_DIM_COLOR=0x0000; UI_BORDER_COLOR=0x05BF; break;
+    // ── Philosophers 1200-1299: refined palette
+    case 1200: case 1201: case 1202: case 1203: case 1204: case 1205: case 1206: case 1207: case 1208: case 1209:
+    case 1210: case 1211: case 1212: case 1213: case 1214: case 1215: case 1216: case 1217: case 1218: case 1219:
+    case 1220: case 1221: case 1222: case 1223: case 1224: case 1225: case 1226: case 1227: case 1228: case 1229:
+    case 1230: case 1231: case 1232: case 1233: case 1234: case 1235: case 1236: case 1237: case 1238: case 1239:
+    case 1240: case 1241: case 1242: case 1243: case 1244: case 1245: case 1246: case 1247: case 1248: case 1249:
+    case 1250: case 1251: case 1252: case 1253: case 1254: case 1255: case 1256: case 1257: case 1258: case 1259:
+    case 1260: case 1261: case 1262: case 1263: case 1264: case 1265: case 1266: case 1267: case 1268: case 1269:
+    case 1270: case 1271: case 1272: case 1273: case 1274: case 1275: case 1276: case 1277: case 1278: case 1279:
+    case 1280: case 1281: case 1282: case 1283: case 1284: case 1285: case 1286: case 1287: case 1288: case 1289:
+    case 1290: case 1291: case 1292: case 1293: case 1294: case 1295: case 1296: case 1297: case 1298: case 1299:
+      UI_HEADER_BG=0x2945; UI_FREQ_COLOR=0xFFD6; UI_LEVEL_COLOR=0xCD40; UI_LABEL_COLOR=0xFEB2; UI_DIM_COLOR=0x18C0; UI_BORDER_COLOR=0xBD00; break;
+    // ── Composers 1300-1399: musical palette
+    case 1300: case 1301: case 1302: case 1303: case 1304: case 1305: case 1306: case 1307: case 1308: case 1309:
+    case 1310: case 1311: case 1312: case 1313: case 1314: case 1315: case 1316: case 1317: case 1318: case 1319:
+    case 1320: case 1321: case 1322: case 1323: case 1324: case 1325: case 1326: case 1327: case 1328: case 1329:
+    case 1330: case 1331: case 1332: case 1333: case 1334: case 1335: case 1336: case 1337: case 1338: case 1339:
+    case 1340: case 1341: case 1342: case 1343: case 1344: case 1345: case 1346: case 1347: case 1348: case 1349:
+    case 1350: case 1351: case 1352: case 1353: case 1354: case 1355: case 1356: case 1357: case 1358: case 1359:
+    case 1360: case 1361: case 1362: case 1363: case 1364: case 1365: case 1366: case 1367: case 1368: case 1369:
+    case 1370: case 1371: case 1372: case 1373: case 1374: case 1375: case 1376: case 1377: case 1378: case 1379:
+    case 1380: case 1381: case 1382: case 1383: case 1384: case 1385: case 1386: case 1387: case 1388: case 1389:
+    case 1390: case 1391: case 1392: case 1393: case 1394: case 1395: case 1396: case 1397: case 1398: case 1399:
+      UI_HEADER_BG=0x1082; UI_FREQ_COLOR=0xEF7D; UI_LEVEL_COLOR=0xBDF7; UI_LABEL_COLOR=0xEF7D; UI_DIM_COLOR=0x39E7; UI_BORDER_COLOR=0xCE59; break;
+    // ── Painters 1400-1499: artistic palette
+    case 1400: case 1401: case 1402: case 1403: case 1404: case 1405: case 1406: case 1407: case 1408: case 1409:
+    case 1410: case 1411: case 1412: case 1413: case 1414: case 1415: case 1416: case 1417: case 1418: case 1419:
+    case 1420: case 1421: case 1422: case 1423: case 1424: case 1425: case 1426: case 1427: case 1428: case 1429:
+    case 1430: case 1431: case 1432: case 1433: case 1434: case 1435: case 1436: case 1437: case 1438: case 1439:
+    case 1440: case 1441: case 1442: case 1443: case 1444: case 1445: case 1446: case 1447: case 1448: case 1449:
+    case 1450: case 1451: case 1452: case 1453: case 1454: case 1455: case 1456: case 1457: case 1458: case 1459:
+    case 1460: case 1461: case 1462: case 1463: case 1464: case 1465: case 1466: case 1467: case 1468: case 1469:
+    case 1470: case 1471: case 1472: case 1473: case 1474: case 1475: case 1476: case 1477: case 1478: case 1479:
+    case 1480: case 1481: case 1482: case 1483: case 1484: case 1485: case 1486: case 1487: case 1488: case 1489:
+    case 1490: case 1491: case 1492: case 1493: case 1494: case 1495: case 1496: case 1497: case 1498: case 1499:
+      UI_HEADER_BG=0x39E7; UI_FREQ_COLOR=0xFFFF; UI_LEVEL_COLOR=0xBDF7; UI_LABEL_COLOR=0xEF7D; UI_DIM_COLOR=0x4A49; UI_BORDER_COLOR=0xCE59; break;
+    // ── Historic Cities 1500-1599: heritage palette
+    case 1500: case 1501: case 1502: case 1503: case 1504: case 1505: case 1506: case 1507: case 1508: case 1509:
+    case 1510: case 1511: case 1512: case 1513: case 1514: case 1515: case 1516: case 1517: case 1518: case 1519:
+    case 1520: case 1521: case 1522: case 1523: case 1524: case 1525: case 1526: case 1527: case 1528: case 1529:
+    case 1530: case 1531: case 1532: case 1533: case 1534: case 1535: case 1536: case 1537: case 1538: case 1539:
+    case 1540: case 1541: case 1542: case 1543: case 1544: case 1545: case 1546: case 1547: case 1548: case 1549:
+    case 1550: case 1551: case 1552: case 1553: case 1554: case 1555: case 1556: case 1557: case 1558: case 1559:
+    case 1560: case 1561: case 1562: case 1563: case 1564: case 1565: case 1566: case 1567: case 1568: case 1569:
+    case 1570: case 1571: case 1572: case 1573: case 1574: case 1575: case 1576: case 1577: case 1578: case 1579:
+    case 1580: case 1581: case 1582: case 1583: case 1584: case 1585: case 1586: case 1587: case 1588: case 1589:
+    case 1590: case 1591: case 1592: case 1593: case 1594: case 1595: case 1596: case 1597: case 1598: case 1599:
+      UI_HEADER_BG=0x2820; UI_FREQ_COLOR=0xC560; UI_LEVEL_COLOR=0x8400; UI_LABEL_COLOR=0xFDA0; UI_DIM_COLOR=0x2000; UI_BORDER_COLOR=0x8420; break;
+    // ── Volcanoes 1600-1699: fire palette
+    case 1600: case 1601: case 1602: case 1603: case 1604: case 1605: case 1606: case 1607: case 1608: case 1609:
+    case 1610: case 1611: case 1612: case 1613: case 1614: case 1615: case 1616: case 1617: case 1618: case 1619:
+    case 1620: case 1621: case 1622: case 1623: case 1624: case 1625: case 1626: case 1627: case 1628: case 1629:
+    case 1630: case 1631: case 1632: case 1633: case 1634: case 1635: case 1636: case 1637: case 1638: case 1639:
+    case 1640: case 1641: case 1642: case 1643: case 1644: case 1645: case 1646: case 1647: case 1648: case 1649:
+    case 1650: case 1651: case 1652: case 1653: case 1654: case 1655: case 1656: case 1657: case 1658: case 1659:
+    case 1660: case 1661: case 1662: case 1663: case 1664: case 1665: case 1666: case 1667: case 1668: case 1669:
+    case 1670: case 1671: case 1672: case 1673: case 1674: case 1675: case 1676: case 1677: case 1678: case 1679:
+    case 1680: case 1681: case 1682: case 1683: case 1684: case 1685: case 1686: case 1687: case 1688: case 1689:
+    case 1690: case 1691: case 1692: case 1693: case 1694: case 1695: case 1696: case 1697: case 1698: case 1699:
+      UI_HEADER_BG=0x4800; UI_FREQ_COLOR=0xFF20; UI_LEVEL_COLOR=0xF800; UI_LABEL_COLOR=0xFCA0; UI_DIM_COLOR=0x3000; UI_BORDER_COLOR=0xFC00; break;
+    // ── Deserts 1700-1799: sand palette
+    case 1700: case 1701: case 1702: case 1703: case 1704: case 1705: case 1706: case 1707: case 1708: case 1709:
+    case 1710: case 1711: case 1712: case 1713: case 1714: case 1715: case 1716: case 1717: case 1718: case 1719:
+    case 1720: case 1721: case 1722: case 1723: case 1724: case 1725: case 1726: case 1727: case 1728: case 1729:
+    case 1730: case 1731: case 1732: case 1733: case 1734: case 1735: case 1736: case 1737: case 1738: case 1739:
+    case 1740: case 1741: case 1742: case 1743: case 1744: case 1745: case 1746: case 1747: case 1748: case 1749:
+    case 1750: case 1751: case 1752: case 1753: case 1754: case 1755: case 1756: case 1757: case 1758: case 1759:
+    case 1760: case 1761: case 1762: case 1763: case 1764: case 1765: case 1766: case 1767: case 1768: case 1769:
+    case 1770: case 1771: case 1772: case 1773: case 1774: case 1775: case 1776: case 1777: case 1778: case 1779:
+    case 1780: case 1781: case 1782: case 1783: case 1784: case 1785: case 1786: case 1787: case 1788: case 1789:
+    case 1790: case 1791: case 1792: case 1793: case 1794: case 1795: case 1796: case 1797: case 1798: case 1799:
+      UI_HEADER_BG=0x4940; UI_FREQ_COLOR=0xFFCA; UI_LEVEL_COLOR=0xFD40; UI_LABEL_COLOR=0xF6D3; UI_DIM_COLOR=0x6900; UI_BORDER_COLOR=0xBD40; break;
+    // ── Waterfalls 1800-1899: water palette
+    case 1800: case 1801: case 1802: case 1803: case 1804: case 1805: case 1806: case 1807: case 1808: case 1809:
+    case 1810: case 1811: case 1812: case 1813: case 1814: case 1815: case 1816: case 1817: case 1818: case 1819:
+    case 1820: case 1821: case 1822: case 1823: case 1824: case 1825: case 1826: case 1827: case 1828: case 1829:
+    case 1830: case 1831: case 1832: case 1833: case 1834: case 1835: case 1836: case 1837: case 1838: case 1839:
+    case 1840: case 1841: case 1842: case 1843: case 1844: case 1845: case 1846: case 1847: case 1848: case 1849:
+    case 1850: case 1851: case 1852: case 1853: case 1854: case 1855: case 1856: case 1857: case 1858: case 1859:
+    case 1860: case 1861: case 1862: case 1863: case 1864: case 1865: case 1866: case 1867: case 1868: case 1869:
+    case 1870: case 1871: case 1872: case 1873: case 1874: case 1875: case 1876: case 1877: case 1878: case 1879:
+    case 1880: case 1881: case 1882: case 1883: case 1884: case 1885: case 1886: case 1887: case 1888: case 1889:
+    case 1890: case 1891: case 1892: case 1893: case 1894: case 1895: case 1896: case 1897: case 1898: case 1899:
+      UI_HEADER_BG=0x0010; UI_FREQ_COLOR=0x07FE; UI_LEVEL_COLOR=0xFFFF; UI_LABEL_COLOR=0x7FFF; UI_DIM_COLOR=0x0006; UI_BORDER_COLOR=0x07C0; break;
+    // ── Caves 1900-1999: dark palette
+    case 1900: case 1901: case 1902: case 1903: case 1904: case 1905: case 1906: case 1907: case 1908: case 1909:
+    case 1910: case 1911: case 1912: case 1913: case 1914: case 1915: case 1916: case 1917: case 1918: case 1919:
+    case 1920: case 1921: case 1922: case 1923: case 1924: case 1925: case 1926: case 1927: case 1928: case 1929:
+    case 1930: case 1931: case 1932: case 1933: case 1934: case 1935: case 1936: case 1937: case 1938: case 1939:
+    case 1940: case 1941: case 1942: case 1943: case 1944: case 1945: case 1946: case 1947: case 1948: case 1949:
+    case 1950: case 1951: case 1952: case 1953: case 1954: case 1955: case 1956: case 1957: case 1958: case 1959:
+    case 1960: case 1961: case 1962: case 1963: case 1964: case 1965: case 1966: case 1967: case 1968: case 1969:
+    case 1970: case 1971: case 1972: case 1973: case 1974: case 1975: case 1976: case 1977: case 1978: case 1979:
+    case 1980: case 1981: case 1982: case 1983: case 1984: case 1985: case 1986: case 1987: case 1988: case 1989:
+    case 1990: case 1991: case 1992: case 1993: case 1994: case 1995: case 1996: case 1997: case 1998: case 1999:
+      UI_HEADER_BG=0x0000; UI_FREQ_COLOR=0xC618; UI_LEVEL_COLOR=0x867D; UI_LABEL_COLOR=0x867D; UI_DIM_COLOR=0x2104; UI_BORDER_COLOR=0x4208; break;
+    // ── Mountains 2000-2099: peak palette
+    case 2000: case 2001: case 2002: case 2003: case 2004: case 2005: case 2006: case 2007: case 2008: case 2009:
+    case 2010: case 2011: case 2012: case 2013: case 2014: case 2015: case 2016: case 2017: case 2018: case 2019:
+    case 2020: case 2021: case 2022: case 2023: case 2024: case 2025: case 2026: case 2027: case 2028: case 2029:
+    case 2030: case 2031: case 2032: case 2033: case 2034: case 2035: case 2036: case 2037: case 2038: case 2039:
+    case 2040: case 2041: case 2042: case 2043: case 2044: case 2045: case 2046: case 2047: case 2048: case 2049:
+    case 2050: case 2051: case 2052: case 2053: case 2054: case 2055: case 2056: case 2057: case 2058: case 2059:
+    case 2060: case 2061: case 2062: case 2063: case 2064: case 2065: case 2066: case 2067: case 2068: case 2069:
+    case 2070: case 2071: case 2072: case 2073: case 2074: case 2075: case 2076: case 2077: case 2078: case 2079:
+    case 2080: case 2081: case 2082: case 2083: case 2084: case 2085: case 2086: case 2087: case 2088: case 2089:
+    case 2090: case 2091: case 2092: case 2093: case 2094: case 2095: case 2096: case 2097: case 2098: case 2099:
+      UI_HEADER_BG=0x1043; UI_FREQ_COLOR=0xBDF7; UI_LEVEL_COLOR=0xEF7D; UI_LABEL_COLOR=0xBDF7; UI_DIM_COLOR=0x39E7; UI_BORDER_COLOR=0xAD75; break;
   }
 }
 
