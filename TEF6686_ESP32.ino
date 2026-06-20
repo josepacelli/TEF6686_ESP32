@@ -359,6 +359,13 @@ int tempoEditIdx = 0;
 int tempNumEdit = 25;
 int rdsStationIndex = 0;
 int rdsScrollTop = 0;
+
+// Weather conditions
+const char* const TEMPO_LIST[] = {
+  "Sunny", "Partly Cloudy", "Cloudy", "Rainy", "Stormy", "Windy", "Foggy"
+};
+const int TEMPO_COUNT = 7;
+
 unsigned int change;
 unsigned int freq_scan;
 unsigned int frequency;
@@ -2207,11 +2214,6 @@ void showCT() {
     rds_clockold = rds_clock;
   }
 }
-
-static const char* const TEMPO_LIST[] = {
-  "Sunny", "Partly Cloudy", "Cloudy", "Rainy", "Stormy", "Windy", "Foggy"
-};
-static const int TEMPO_COUNT = 7;
 
 void BuildMenu() {
   tft.fillScreen(TFT_BLACK);
@@ -6249,14 +6251,6 @@ void applyTheme(uint16_t theme) {
     case 980: case 981: case 982: case 983: case 984: case 985: case 986: case 987: case 988: case 989:
     case 990: case 991: case 992: case 993: case 994: case 995: case 996: case 997: case 998: case 999:
       UI_HEADER_BG=0x2006; UI_FREQ_COLOR=0xE0DF; UI_LEVEL_COLOR=0xC31F; UI_LABEL_COLOR=0xB3DE; UI_DIM_COLOR=0x0020; UI_BORDER_COLOR=0x1E56; break;
-    default:
-      UI_HEADER_BG    = 0x0820;
-      UI_FREQ_COLOR   = 0x07E0;
-      UI_LEVEL_COLOR  = 0xFD20;
-      UI_LABEL_COLOR  = 0x07FF;
-      UI_DIM_COLOR    = 0x7BEF;
-      UI_BORDER_COLOR = 0x07FF;
-      break;
   }
 }
 
