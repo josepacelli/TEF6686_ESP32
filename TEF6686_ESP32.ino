@@ -184,6 +184,28 @@
 
 #define TFT_GREYOUT     0x38E7
 
+// Font styles for PS (Program Service)
+struct PSFontStyle {
+  uint8_t size;      // 1-8 (TFT_eSPI font size)
+  uint16_t color;    // RGB565 color
+  const char* name;  // Style name
+};
+
+const PSFontStyle PS_FONT_STYLES[] = {
+  {2, 0xFFFF, "Small-White"},      // 0: Compact white
+  {2, 0xFFE0, "Small-Yellow"},     // 1: Compact yellow
+  {3, 0x07E0, "Medium-Green"},     // 2: Medium green
+  {3, 0x07FF, "Medium-Cyan"},      // 3: Medium cyan
+  {4, 0xF800, "Large-Red"},        // 4: Large red
+  {4, 0xFDA0, "Large-Gold"},       // 5: Large gold
+  {6, 0xFFFF, "XL-White"},         // 6: Extra large white
+  {6, 0xF81F, "XL-Magenta"},       // 7: Extra large magenta
+  {7, 0xFFE0, "Bold-Yellow"},      // 8: Bold yellow
+  {8, 0x07FF, "Bold-Cyan"}         // 9: Bold cyan
+};
+#define PS_FONT_COUNT 10
+uint8_t PS_FONT_INDEX = 0;  // Current PS font style
+
 // Runtime theme palette — set by applyTheme()
 uint16_t UI_HEADER_BG    = 0x0820;
 uint16_t UI_FREQ_COLOR   = 0x07E0;
@@ -435,7 +457,7 @@ void setup() {
   languageSet = EEPROM.readByte(56);
   if (languageSet < 1 || languageSet > 9) languageSet = 1;
   themeSet = EEPROM.readUShort(241);
-  if (themeSet > 2099) themeSet = 0;
+  if (themeSet > 2599) themeSet = 0;
   applyTheme(themeSet);
   EEPROM.commit();
   setPTYLanguage(languageSet);
@@ -1750,7 +1772,7 @@ void KeyUp() {
         case 250:
           tft.setTextColor(TFT_BLACK);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
-          themeSet = (themeSet + 1) % 2100;
+          themeSet = (themeSet + 1) % 2600;
           applyTheme(themeSet);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
@@ -2038,7 +2060,7 @@ void KeyDown() {
         case 250:
           tft.setTextColor(TFT_BLACK);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
-          themeSet = (themeSet + 2099) % 2100;
+          themeSet = (themeSet + 2599) % 2600;
           applyTheme(themeSet);
           tft.setTextColor(TFT_YELLOW);
           tft.drawRightString(getThemeName(themeSet), 165, 110, 4);
@@ -3198,12 +3220,72 @@ const char* getThemeName(uint16_t t) {
     case 2080: case 2081: case 2082: case 2083: case 2084: case 2085: case 2086: case 2087: case 2088: case 2089:
     case 2090: case 2091: case 2092: case 2093: case 2094: case 2095: case 2096: case 2097: case 2098: case 2099:
       return "Mountain";
+    // ── Dinosaurs 2100-2199 ───────────────────────────────────
+    case 2100: case 2101: case 2102: case 2103: case 2104: case 2105: case 2106: case 2107: case 2108: case 2109:
+    case 2110: case 2111: case 2112: case 2113: case 2114: case 2115: case 2116: case 2117: case 2118: case 2119:
+    case 2120: case 2121: case 2122: case 2123: case 2124: case 2125: case 2126: case 2127: case 2128: case 2129:
+    case 2130: case 2131: case 2132: case 2133: case 2134: case 2135: case 2136: case 2137: case 2138: case 2139:
+    case 2140: case 2141: case 2142: case 2143: case 2144: case 2145: case 2146: case 2147: case 2148: case 2149:
+    case 2150: case 2151: case 2152: case 2153: case 2154: case 2155: case 2156: case 2157: case 2158: case 2159:
+    case 2160: case 2161: case 2162: case 2163: case 2164: case 2165: case 2166: case 2167: case 2168: case 2169:
+    case 2170: case 2171: case 2172: case 2173: case 2174: case 2175: case 2176: case 2177: case 2178: case 2179:
+    case 2180: case 2181: case 2182: case 2183: case 2184: case 2185: case 2186: case 2187: case 2188: case 2189:
+    case 2190: case 2191: case 2192: case 2193: case 2194: case 2195: case 2196: case 2197: case 2198: case 2199:
+      return "Dinosaur";
+    // ── Insects 2200-2299 ────────────────────────────────────
+    case 2200: case 2201: case 2202: case 2203: case 2204: case 2205: case 2206: case 2207: case 2208: case 2209:
+    case 2210: case 2211: case 2212: case 2213: case 2214: case 2215: case 2216: case 2217: case 2218: case 2219:
+    case 2220: case 2221: case 2222: case 2223: case 2224: case 2225: case 2226: case 2227: case 2228: case 2229:
+    case 2230: case 2231: case 2232: case 2233: case 2234: case 2235: case 2236: case 2237: case 2238: case 2239:
+    case 2240: case 2241: case 2242: case 2243: case 2244: case 2245: case 2246: case 2247: case 2248: case 2249:
+    case 2250: case 2251: case 2252: case 2253: case 2254: case 2255: case 2256: case 2257: case 2258: case 2259:
+    case 2260: case 2261: case 2262: case 2263: case 2264: case 2265: case 2266: case 2267: case 2268: case 2269:
+    case 2270: case 2271: case 2272: case 2273: case 2274: case 2275: case 2276: case 2277: case 2278: case 2279:
+    case 2280: case 2281: case 2282: case 2283: case 2284: case 2285: case 2286: case 2287: case 2288: case 2289:
+    case 2290: case 2291: case 2292: case 2293: case 2294: case 2295: case 2296: case 2297: case 2298: case 2299:
+      return "Insect";
+    // ── Birds 2300-2399 ───────────────────────────────────────
+    case 2300: case 2301: case 2302: case 2303: case 2304: case 2305: case 2306: case 2307: case 2308: case 2309:
+    case 2310: case 2311: case 2312: case 2313: case 2314: case 2315: case 2316: case 2317: case 2318: case 2319:
+    case 2320: case 2321: case 2322: case 2323: case 2324: case 2325: case 2326: case 2327: case 2328: case 2329:
+    case 2330: case 2331: case 2332: case 2333: case 2334: case 2335: case 2336: case 2337: case 2338: case 2339:
+    case 2340: case 2341: case 2342: case 2343: case 2344: case 2345: case 2346: case 2347: case 2348: case 2349:
+    case 2350: case 2351: case 2352: case 2353: case 2354: case 2355: case 2356: case 2357: case 2358: case 2359:
+    case 2360: case 2361: case 2362: case 2363: case 2364: case 2365: case 2366: case 2367: case 2368: case 2369:
+    case 2370: case 2371: case 2372: case 2373: case 2374: case 2375: case 2376: case 2377: case 2378: case 2379:
+    case 2380: case 2381: case 2382: case 2383: case 2384: case 2385: case 2386: case 2387: case 2388: case 2389:
+    case 2390: case 2391: case 2392: case 2393: case 2394: case 2395: case 2396: case 2397: case 2398: case 2399:
+      return "Bird";
+    // ── Fish 2400-2499 ────────────────────────────────────────
+    case 2400: case 2401: case 2402: case 2403: case 2404: case 2405: case 2406: case 2407: case 2408: case 2409:
+    case 2410: case 2411: case 2412: case 2413: case 2414: case 2415: case 2416: case 2417: case 2418: case 2419:
+    case 2420: case 2421: case 2422: case 2423: case 2424: case 2425: case 2426: case 2427: case 2428: case 2429:
+    case 2430: case 2431: case 2432: case 2433: case 2434: case 2435: case 2436: case 2437: case 2438: case 2439:
+    case 2440: case 2441: case 2442: case 2443: case 2444: case 2445: case 2446: case 2447: case 2448: case 2449:
+    case 2450: case 2451: case 2452: case 2453: case 2454: case 2455: case 2456: case 2457: case 2458: case 2459:
+    case 2460: case 2461: case 2462: case 2463: case 2464: case 2465: case 2466: case 2467: case 2468: case 2469:
+    case 2470: case 2471: case 2472: case 2473: case 2474: case 2475: case 2476: case 2477: case 2478: case 2479:
+    case 2480: case 2481: case 2482: case 2483: case 2484: case 2485: case 2486: case 2487: case 2488: case 2489:
+    case 2490: case 2491: case 2492: case 2493: case 2494: case 2495: case 2496: case 2497: case 2498: case 2499:
+      return "Fish";
+    // ── Mammals 2500-2599 ────────────────────────────────────
+    case 2500: case 2501: case 2502: case 2503: case 2504: case 2505: case 2506: case 2507: case 2508: case 2509:
+    case 2510: case 2511: case 2512: case 2513: case 2514: case 2515: case 2516: case 2517: case 2518: case 2519:
+    case 2520: case 2521: case 2522: case 2523: case 2524: case 2525: case 2526: case 2527: case 2528: case 2529:
+    case 2530: case 2531: case 2532: case 2533: case 2534: case 2535: case 2536: case 2537: case 2538: case 2539:
+    case 2540: case 2541: case 2542: case 2543: case 2544: case 2545: case 2546: case 2547: case 2548: case 2549:
+    case 2550: case 2551: case 2552: case 2553: case 2554: case 2555: case 2556: case 2557: case 2558: case 2559:
+    case 2560: case 2561: case 2562: case 2563: case 2564: case 2565: case 2566: case 2567: case 2568: case 2569:
+    case 2570: case 2571: case 2572: case 2573: case 2574: case 2575: case 2576: case 2577: case 2578: case 2579:
+    case 2580: case 2581: case 2582: case 2583: case 2584: case 2585: case 2586: case 2587: case 2588: case 2589:
+    case 2590: case 2591: case 2592: case 2593: case 2594: case 2595: case 2596: case 2597: case 2598: case 2599:
+      return "Mammal";
     default: return "Original";
   }
 }
 
 void applyTheme(uint16_t theme) {
-  themeSet = theme % 2100;
+  themeSet = theme % 2600;
   switch (themeSet) {
     default:
     case 0: // Original — dark navy / cyan
@@ -6571,6 +6653,66 @@ void applyTheme(uint16_t theme) {
     case 2080: case 2081: case 2082: case 2083: case 2084: case 2085: case 2086: case 2087: case 2088: case 2089:
     case 2090: case 2091: case 2092: case 2093: case 2094: case 2095: case 2096: case 2097: case 2098: case 2099:
       UI_HEADER_BG=0x1043; UI_FREQ_COLOR=0xBDF7; UI_LEVEL_COLOR=0xEF7D; UI_LABEL_COLOR=0xBDF7; UI_DIM_COLOR=0x39E7; UI_BORDER_COLOR=0xAD75; break;
+    // ── Dinosaurs 2100-2199: prehistoric palette
+    case 2100: case 2101: case 2102: case 2103: case 2104: case 2105: case 2106: case 2107: case 2108: case 2109:
+    case 2110: case 2111: case 2112: case 2113: case 2114: case 2115: case 2116: case 2117: case 2118: case 2119:
+    case 2120: case 2121: case 2122: case 2123: case 2124: case 2125: case 2126: case 2127: case 2128: case 2129:
+    case 2130: case 2131: case 2132: case 2133: case 2134: case 2135: case 2136: case 2137: case 2138: case 2139:
+    case 2140: case 2141: case 2142: case 2143: case 2144: case 2145: case 2146: case 2147: case 2148: case 2149:
+    case 2150: case 2151: case 2152: case 2153: case 2154: case 2155: case 2156: case 2157: case 2158: case 2159:
+    case 2160: case 2161: case 2162: case 2163: case 2164: case 2165: case 2166: case 2167: case 2168: case 2169:
+    case 2170: case 2171: case 2172: case 2173: case 2174: case 2175: case 2176: case 2177: case 2178: case 2179:
+    case 2180: case 2181: case 2182: case 2183: case 2184: case 2185: case 2186: case 2187: case 2188: case 2189:
+    case 2190: case 2191: case 2192: case 2193: case 2194: case 2195: case 2196: case 2197: case 2198: case 2199:
+      UI_HEADER_BG=0x3940; UI_FREQ_COLOR=0xFFE0; UI_LEVEL_COLOR=0xF800; UI_LABEL_COLOR=0xFCA0; UI_DIM_COLOR=0x4A00; UI_BORDER_COLOR=0xB800; break;
+    // ── Insects 2200-2299: nature palette
+    case 2200: case 2201: case 2202: case 2203: case 2204: case 2205: case 2206: case 2207: case 2208: case 2209:
+    case 2210: case 2211: case 2212: case 2213: case 2214: case 2215: case 2216: case 2217: case 2218: case 2219:
+    case 2220: case 2221: case 2222: case 2223: case 2224: case 2225: case 2226: case 2227: case 2228: case 2229:
+    case 2230: case 2231: case 2232: case 2233: case 2234: case 2235: case 2236: case 2237: case 2238: case 2239:
+    case 2240: case 2241: case 2242: case 2243: case 2244: case 2245: case 2246: case 2247: case 2248: case 2249:
+    case 2250: case 2251: case 2252: case 2253: case 2254: case 2255: case 2256: case 2257: case 2258: case 2259:
+    case 2260: case 2261: case 2262: case 2263: case 2264: case 2265: case 2266: case 2267: case 2268: case 2269:
+    case 2270: case 2271: case 2272: case 2273: case 2274: case 2275: case 2276: case 2277: case 2278: case 2279:
+    case 2280: case 2281: case 2282: case 2283: case 2284: case 2285: case 2286: case 2287: case 2288: case 2289:
+    case 2290: case 2291: case 2292: case 2293: case 2294: case 2295: case 2296: case 2297: case 2298: case 2299:
+      UI_HEADER_BG=0x0180; UI_FREQ_COLOR=0x07E0; UI_LEVEL_COLOR=0xFFE0; UI_LABEL_COLOR=0xFDA0; UI_DIM_COLOR=0x00C0; UI_BORDER_COLOR=0xED40; break;
+    // ── Birds 2300-2399: sky palette
+    case 2300: case 2301: case 2302: case 2303: case 2304: case 2305: case 2306: case 2307: case 2308: case 2309:
+    case 2310: case 2311: case 2312: case 2313: case 2314: case 2315: case 2316: case 2317: case 2318: case 2319:
+    case 2320: case 2321: case 2322: case 2323: case 2324: case 2325: case 2326: case 2327: case 2328: case 2329:
+    case 2330: case 2331: case 2332: case 2333: case 2334: case 2335: case 2336: case 2337: case 2338: case 2339:
+    case 2340: case 2341: case 2342: case 2343: case 2344: case 2345: case 2346: case 2347: case 2348: case 2349:
+    case 2350: case 2351: case 2352: case 2353: case 2354: case 2355: case 2356: case 2357: case 2358: case 2359:
+    case 2360: case 2361: case 2362: case 2363: case 2364: case 2365: case 2366: case 2367: case 2368: case 2369:
+    case 2370: case 2371: case 2372: case 2373: case 2374: case 2375: case 2376: case 2377: case 2378: case 2379:
+    case 2380: case 2381: case 2382: case 2383: case 2384: case 2385: case 2386: case 2387: case 2388: case 2389:
+    case 2390: case 2391: case 2392: case 2393: case 2394: case 2395: case 2396: case 2397: case 2398: case 2399:
+      UI_HEADER_BG=0x0043; UI_FREQ_COLOR=0x07FE; UI_LEVEL_COLOR=0xFFFF; UI_LABEL_COLOR=0x7FFF; UI_DIM_COLOR=0x0021; UI_BORDER_COLOR=0x07C0; break;
+    // ── Fish 2400-2499: water palette
+    case 2400: case 2401: case 2402: case 2403: case 2404: case 2405: case 2406: case 2407: case 2408: case 2409:
+    case 2410: case 2411: case 2412: case 2413: case 2414: case 2415: case 2416: case 2417: case 2418: case 2419:
+    case 2420: case 2421: case 2422: case 2423: case 2424: case 2425: case 2426: case 2427: case 2428: case 2429:
+    case 2430: case 2431: case 2432: case 2433: case 2434: case 2435: case 2436: case 2437: case 2438: case 2439:
+    case 2440: case 2441: case 2442: case 2443: case 2444: case 2445: case 2446: case 2447: case 2448: case 2449:
+    case 2450: case 2451: case 2452: case 2453: case 2454: case 2455: case 2456: case 2457: case 2458: case 2459:
+    case 2460: case 2461: case 2462: case 2463: case 2464: case 2465: case 2466: case 2467: case 2468: case 2469:
+    case 2470: case 2471: case 2472: case 2473: case 2474: case 2475: case 2476: case 2477: case 2478: case 2479:
+    case 2480: case 2481: case 2482: case 2483: case 2484: case 2485: case 2486: case 2487: case 2488: case 2489:
+    case 2490: case 2491: case 2492: case 2493: case 2494: case 2495: case 2496: case 2497: case 2498: case 2499:
+      UI_HEADER_BG=0x0008; UI_FREQ_COLOR=0x07FF; UI_LEVEL_COLOR=0xFFFF; UI_LABEL_COLOR=0x6FFF; UI_DIM_COLOR=0x0004; UI_BORDER_COLOR=0x05FF; break;
+    // ── Mammals 2500-2599: wildlife palette
+    case 2500: case 2501: case 2502: case 2503: case 2504: case 2505: case 2506: case 2507: case 2508: case 2509:
+    case 2510: case 2511: case 2512: case 2513: case 2514: case 2515: case 2516: case 2517: case 2518: case 2519:
+    case 2520: case 2521: case 2522: case 2523: case 2524: case 2525: case 2526: case 2527: case 2528: case 2529:
+    case 2530: case 2531: case 2532: case 2533: case 2534: case 2535: case 2536: case 2537: case 2538: case 2539:
+    case 2540: case 2541: case 2542: case 2543: case 2544: case 2545: case 2546: case 2547: case 2548: case 2549:
+    case 2550: case 2551: case 2552: case 2553: case 2554: case 2555: case 2556: case 2557: case 2558: case 2559:
+    case 2560: case 2561: case 2562: case 2563: case 2564: case 2565: case 2566: case 2567: case 2568: case 2569:
+    case 2570: case 2571: case 2572: case 2573: case 2574: case 2575: case 2576: case 2577: case 2578: case 2579:
+    case 2580: case 2581: case 2582: case 2583: case 2584: case 2585: case 2586: case 2587: case 2588: case 2589:
+    case 2590: case 2591: case 2592: case 2593: case 2594: case 2595: case 2596: case 2597: case 2598: case 2599:
+      UI_HEADER_BG=0x2120; UI_FREQ_COLOR=0xFFE0; UI_LEVEL_COLOR=0xF800; UI_LABEL_COLOR=0xEF7D; UI_DIM_COLOR=0x4208; UI_BORDER_COLOR=0x8400; break;
   }
 }
 
