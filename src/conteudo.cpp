@@ -1108,6 +1108,200 @@ const char* alarmRT[] = {
 };
 const int ALARM_RT_COUNT = sizeof(alarmRT) / sizeof(alarmRT[0]);
 
+// AXE MUSIC (PTY 33)
+const char* axeGenres[] = {
+  "Axe", "Axe Music", "Pagode Baiano", "Samba-Reggae", "Forro Eletrico", "Lambada", "Carnaval"
+};
+const int AXE_GENRES_COUNT = sizeof(axeGenres) / sizeof(axeGenres[0]);
+
+const char* axeArtists[] = {
+  "Ivete Sangalo", "Claudinha Leitte", "Durval Lelys", "Asa de Aguia",
+  "Chiclete com Banana", "Banda Eva", "Olodum", "Margareth Menezes",
+  "Bell Marques", "Timbalada", "Ara Ketu", "Terra Samba"
+};
+const int AXE_ARTISTS = sizeof(axeArtists) / sizeof(axeArtists[0]);
+
+const char* axeSongs[] = {
+  "Sorte Grande", "Largadinho", "Caranguejo", "Festa", "Lua de Algodao",
+  "Je TAime", "Axe Baba", "Cade Voce", "Pra Frente", "Bela",
+  "Berimbau", "Se Eu Quiser Falar com Deus"
+};
+const int AXE_SONGS = sizeof(axeSongs) / sizeof(axeSongs[0]);
+
+const char* axeYears[] = {
+  "1993", "1996", "1999", "2001", "2003", "2005", "2007", "2009",
+  "2011", "2013", "2015", "2017", "2019", "2021", "2023"
+};
+const int AXE_YEARS = sizeof(axeYears) / sizeof(axeYears[0]);
+
+const char* axePS[] = {
+  "AXE FM", "BAHIA FM", "CARNAVAL FM", "FESTA FM", "ALEGRIA FM",
+  "BLOCO FM", "TRIO FM", "FOLIA FM", "AXEIRA FM", "SALVADOR FM"
+};
+const int AXE_PS_COUNT = sizeof(axePS) / sizeof(axePS[0]);
+
+const char* axeRT[] = {
+  "AXE MUSIC PURO BAHIA", "CARNAVAL O ANO TODO", "FESTA NA BAHIA",
+  "ALEGRIA E BALANCO", "TRIO ELETRICO NO AR", "FOLIA BAIANA SEMPRE"
+};
+const int AXE_RT_COUNT = sizeof(axeRT) / sizeof(axeRT[0]);
+
+// PAGODE / SAMBA (PTY 35)
+const char* pagodeGenres[] = {
+  "Pagode", "Samba", "Pagode Carioca", "Samba de Roda", "Samba Canção", "Boteco", "Batuque"
+};
+const int PAGODE_GENRES_COUNT = sizeof(pagodeGenres) / sizeof(pagodeGenres[0]);
+
+const char* pagodeArtists[] = {
+  "Zeca Pagodinho", "Thiaguinho", "Ferrugem", "Seu Jorge", "Ludmilla",
+  "Dilsinho", "Grupo Revelacao", "Exaltasamba", "Belo", "Raca Negra",
+  "Fundo de Quintal", "Sorriso Maroto"
+};
+const int PAGODE_ARTISTS = sizeof(pagodeArtists) / sizeof(pagodeArtists[0]);
+
+const char* pagodeSongs[] = {
+  "Camarao que Dorme", "Tardinha no Boteco", "Beijo Meu", "Cheia de Manias",
+  "Acelerou", "Sorrir", "Amor Demais", "Dona", "Meu Jeito de Amar",
+  "Ogum", "Faz um Milagre Pra Mim", "Verdade"
+};
+const int PAGODE_SONGS = sizeof(pagodeSongs) / sizeof(pagodeSongs[0]);
+
+const char* pagodeYears[] = {
+  "1985", "1990", "1995", "1998", "2000", "2003", "2005", "2008",
+  "2010", "2012", "2015", "2018", "2020", "2022", "2024"
+};
+const int PAGODE_YEARS = sizeof(pagodeYears) / sizeof(pagodeYears[0]);
+
+const char* pagodePS[] = {
+  "PAGODE FM", "SAMBA FM", "BOTECO FM", "RODA FM", "SAMBA SHOW",
+  "PAGODE BR", "CARIOCA FM", "BATUCADA FM", "RODINHA FM", "REBOLO FM"
+};
+const int PAGODE_PS_COUNT = sizeof(pagodePS) / sizeof(pagodePS[0]);
+
+const char* pagodeRT[] = {
+  "PAGODE E SAMBA 24H", "MELHOR DO PAGODE", "BOTECO EM CASA",
+  "SAMBA NACIONAL PURO", "RODA DE SAMBA VIVO", "PAGODE GOSTOSO SEMPRE"
+};
+const int PAGODE_RT_COUNT = sizeof(pagodeRT) / sizeof(pagodeRT[0]);
+
+// MPB (PTY 36)
+const char* mpbGenres[] = {
+  "MPB", "Musica Popular Brasileira", "Bossa Nova", "Samba-Jazz",
+  "MPB Contemporanea", "MPB Classica", "Tropicalia"
+};
+const int MPB_GENRES_COUNT = sizeof(mpbGenres) / sizeof(mpbGenres[0]);
+
+const char* mpbArtists[] = {
+  "Tom Jobim", "Caetano Veloso", "Gilberto Gil", "Chico Buarque",
+  "Maria Bethania", "Djavan", "Milton Nascimento", "Gal Costa",
+  "Elis Regina", "Ivan Lins", "Zeca Baleiro", "Maria Gadu"
+};
+const int MPB_ARTISTS = sizeof(mpbArtists) / sizeof(mpbArtists[0]);
+
+const char* mpbSongs[] = {
+  "Garota de Ipanema", "Aquele Abraco", "Construcao", "Se",
+  "Clube da Esquina", "Forca Estranha", "Maria Maria", "Como Nossos Pais",
+  "Aguas de Marco", "Por Onde Andar", "Shimbalaiê", "Preciso Aprender"
+};
+const int MPB_SONGS = sizeof(mpbSongs) / sizeof(mpbSongs[0]);
+
+const char* mpbYears[] = {
+  "1958", "1962", "1967", "1970", "1972", "1978", "1980", "1984",
+  "1987", "1990", "1995", "2000", "2005", "2009", "2015"
+};
+const int MPB_YEARS = sizeof(mpbYears) / sizeof(mpbYears[0]);
+
+const char* mpbPS[] = {
+  "MPB FM", "BOSSA FM", "POPULAR FM", "BRASIL FM", "MELODIA FM",
+  "ACUSTICO FM", "ARTE FM", "MUSICA BR", "CLASSICO FM", "NACIONAL MPB"
+};
+const int MPB_PS_COUNT = sizeof(mpbPS) / sizeof(mpbPS[0]);
+
+const char* mpbRT[] = {
+  "MPB CLASSICA BRASILEIRA", "BOSSA NOVA E MPB", "MUSICA POPULAR DO BRASIL",
+  "ARTE E MUSICA BRASILEIRA", "MPB CONTEMPORANEA", "CLASSICOS MPB SEMPRE"
+};
+const int MPB_RT_COUNT = sizeof(mpbRT) / sizeof(mpbRT[0]);
+
+// FUNK (PTY 37)
+const char* funkGenres[] = {
+  "Funk", "Funk Carioca", "Funk Ostentacao", "Funk Melodico", "Baile Funk",
+  "Funk Gospel", "Funk Pop"
+};
+const int FUNK_GENRES_COUNT = sizeof(funkGenres) / sizeof(funkGenres[0]);
+
+const char* funkArtists[] = {
+  "MC Kevinho", "Kevin O Chris", "MC Livinho", "Mc Fioti",
+  "MC G15", "Felipe Original", "MC Pedrinho", "MC Hariel",
+  "Ludmilla", "Anitta", "Xamã", "Mc Ryan SP"
+};
+const int FUNK_ARTISTS = sizeof(funkArtists) / sizeof(funkArtists[0]);
+
+const char* funkSongs[] = {
+  "Olha a Explosao", "Coisa de Ex", "Ela Quer que Eu Chore", "Bum Bum Tam Tam",
+  "Partiu Pro Baile", "Lembra de Mim", "Sosseguei", "Vai Malandra",
+  "Que Tiro Foi Esse", "Sequencia do Maloka", "Casca de Bala", "Eu Sei"
+};
+const int FUNK_SONGS = sizeof(funkSongs) / sizeof(funkSongs[0]);
+
+const char* funkYears[] = {
+  "2010", "2012", "2014", "2015", "2016", "2017",
+  "2018", "2019", "2020", "2021", "2022", "2023", "2024"
+};
+const int FUNK_YEARS = sizeof(funkYears) / sizeof(funkYears[0]);
+
+const char* funkPS[] = {
+  "FUNK FM", "BAILE FM", "FUNK BR", "CARIOCA FM", "BATIDAO FM",
+  "FUNK SHOW", "FAVELA FM", "FUNK ATIVO", "BEAT FM", "OSTENTACAO FM"
+};
+const int FUNK_PS_COUNT = sizeof(funkPS) / sizeof(funkPS[0]);
+
+const char* funkRT[] = {
+  "FUNK CARIOCA PESADO", "BAILE FUNK 24H", "FUNK DO CERTO",
+  "BATIDAO FUNK PURO", "FUNK NACIONAL PURO", "FUNK MELODY SEMPRE"
+};
+const int FUNK_RT_COUNT = sizeof(funkRT) / sizeof(funkRT[0]);
+
+// ROCK NACIONAL (PTY 38)
+const char* rockNacionalGenres[] = {
+  "Rock Nacional", "Rock Alternativo Brasileiro", "Rock Anos 80", "Rock Anos 90",
+  "Hard Rock Nacional", "Pop Rock Nacional", "Indie Nacional"
+};
+const int ROCK_NACIONAL_GENRES_COUNT = sizeof(rockNacionalGenres) / sizeof(rockNacionalGenres[0]);
+
+const char* rockNacionalArtists[] = {
+  "Legiao Urbana", "Titas", "Skank", "Paralamas do Sucesso", "Los Hermanos",
+  "CPM 22", "Capital Inicial", "Sepultura", "Nacao Zumbi", "O Rappa",
+  "Raimundos", "Engenheiros do Hawaii"
+};
+const int ROCK_NACIONAL_ARTISTS = sizeof(rockNacionalArtists) / sizeof(rockNacionalArtists[0]);
+
+const char* rockNacionalSongs[] = {
+  "Tempo Perdido", "Comeco do Fim do Mundo", "Garota Nacional", "Anna Julia",
+  "Todo Camburão tem um Pouco de Navio", "Eu Sei", "Que País e Este",
+  "Não vou me Adaptar", "Epitafio", "Ela Partiu",
+  "A Tempestade", "Punk da Periferia"
+};
+const int ROCK_NACIONAL_SONGS = sizeof(rockNacionalSongs) / sizeof(rockNacionalSongs[0]);
+
+const char* rockNacionalYears[] = {
+  "1982", "1985", "1987", "1989", "1991", "1993",
+  "1995", "1997", "1999", "2001", "2004", "2007", "2010", "2014", "2018"
+};
+const int ROCK_NACIONAL_YEARS = sizeof(rockNacionalYears) / sizeof(rockNacionalYears[0]);
+
+const char* rockNacionalPS[] = {
+  "ROCK NAC FM", "LEGIAO FM", "TITAS FM", "SKANK FM", "ROCK BR FM",
+  "VOLTAGEM FM", "NACAO ROCK", "ALTERNATIVO FM", "RIFF BR FM", "PEDAL FM"
+};
+const int ROCK_NACIONAL_PS_COUNT = sizeof(rockNacionalPS) / sizeof(rockNacionalPS[0]);
+
+const char* rockNacionalRT[] = {
+  "ROCK NACIONAL O DIA TODO", "LEGIAO E TITAS NO AR", "ROCK BRASILEIRO PURO",
+  "ALTERNATIVO NACIONAL SEMPRE", "ROCK DOS ANOS 80 E 90", "GUITARRA BRASILEIRA NO AR"
+};
+const int ROCK_NACIONAL_RT_COUNT = sizeof(rockNacionalRT) / sizeof(rockNacionalRT[0]);
+
 String generateRandomSong() {
   int artistIdx = random(0, ARTISTS_COUNT);
   int songIdx = random(0, SONGS_COUNT);
@@ -1232,6 +1426,53 @@ String getSongForPTY(uint8_t pty) {
       int y = random(0, CHILDREN_YEARS);
       return String(childrenGenres[g]) + " | " + String(childrenArtists[a]) + " - " + String(childrenSongs[s]) + " (" + String(childrenYears[y]) + ")";
     }
+    case 32: {  // Forro
+      int g = random(0, COUNTRY_GENRES_COUNT);
+      int a = random(0, COUNTRY_ARTISTS);
+      int s = random(0, COUNTRY_SONGS);
+      return String(countryGenres[g]) + " | " + String(countryArtists[a]) + " - " + String(countrySongs[s]);
+    }
+    case 33: {  // Axe Music
+      int g = random(0, AXE_GENRES_COUNT);
+      int a = random(0, AXE_ARTISTS);
+      int s = random(0, AXE_SONGS);
+      int y = random(0, AXE_YEARS);
+      return String(axeGenres[g]) + " | " + String(axeArtists[a]) + " - " + String(axeSongs[s]) + " (" + String(axeYears[y]) + ")";
+    }
+    case 34: {  // Sertanejo
+      int g = random(0, SERTANEJO_GENRES_COUNT);
+      int a = random(0, NATIONAL_ARTISTS);
+      int s = random(0, NATIONAL_SONGS);
+      return String(sertanejoGenres[g]) + " | " + String(nationalArtists[a]) + " - " + String(nationalSongs[s]);
+    }
+    case 35: {  // Pagode / Samba
+      int g = random(0, PAGODE_GENRES_COUNT);
+      int a = random(0, PAGODE_ARTISTS);
+      int s = random(0, PAGODE_SONGS);
+      int y = random(0, PAGODE_YEARS);
+      return String(pagodeGenres[g]) + " | " + String(pagodeArtists[a]) + " - " + String(pagodeSongs[s]) + " (" + String(pagodeYears[y]) + ")";
+    }
+    case 36: {  // MPB
+      int g = random(0, MPB_GENRES_COUNT);
+      int a = random(0, MPB_ARTISTS);
+      int s = random(0, MPB_SONGS);
+      int y = random(0, MPB_YEARS);
+      return String(mpbGenres[g]) + " | " + String(mpbArtists[a]) + " - " + String(mpbSongs[s]) + " (" + String(mpbYears[y]) + ")";
+    }
+    case 37: {  // Funk
+      int g = random(0, FUNK_GENRES_COUNT);
+      int a = random(0, FUNK_ARTISTS);
+      int s = random(0, FUNK_SONGS);
+      int y = random(0, FUNK_YEARS);
+      return String(funkGenres[g]) + " | " + String(funkArtists[a]) + " - " + String(funkSongs[s]) + " (" + String(funkYears[y]) + ")";
+    }
+    case 38: {  // Rock Nacional
+      int g = random(0, ROCK_NACIONAL_GENRES_COUNT);
+      int a = random(0, ROCK_NACIONAL_ARTISTS);
+      int s = random(0, ROCK_NACIONAL_SONGS);
+      int y = random(0, ROCK_NACIONAL_YEARS);
+      return String(rockNacionalGenres[g]) + " | " + String(rockNacionalArtists[a]) + " - " + String(rockNacionalSongs[s]) + " (" + String(rockNacionalYears[y]) + ")";
+    }
     default: return generateRandomSong();
   }
 }
@@ -1293,6 +1534,13 @@ String getRandomGenreByPTY(uint8_t pty_code) {
     case 28: return String(folkGenres[random(0, FOLK_GENRES_COUNT)]);
     case 30: return String(alarmTestGenres[random(0, ALARM_TEST_GENRES_COUNT)]);
     case 31: return String(alarmGenres[random(0, ALARM_GENRES_COUNT)]);
+    case 32: return String(countryGenres[random(0, COUNTRY_GENRES_COUNT)]);
+    case 33: return String(axeGenres[random(0, AXE_GENRES_COUNT)]);
+    case 34: return String(sertanejoGenres[random(0, SERTANEJO_GENRES_COUNT)]);
+    case 35: return String(pagodeGenres[random(0, PAGODE_GENRES_COUNT)]);
+    case 36: return String(mpbGenres[random(0, MPB_GENRES_COUNT)]);
+    case 37: return String(funkGenres[random(0, FUNK_GENRES_COUNT)]);
+    case 38: return String(rockNacionalGenres[random(0, ROCK_NACIONAL_GENRES_COUNT)]);
     default: return String(musicGenres[random(0, GENRES_COUNT)]);
   }
 }
@@ -1318,6 +1566,13 @@ String getRandomArtistByPTY(uint8_t pty_code) {
     case 27: return String(oldiesArtists[random(0, OLDIES_ARTISTS)]);
     case 28: return String(folkArtists[random(0, FOLK_ARTISTS)]);
     case 15: return String(variedSpeechArtists[random(0, VARIED_SPEECH_ARTISTS)]);
+    case 32: return String(countryArtists[random(0, COUNTRY_ARTISTS)]);
+    case 33: return String(axeArtists[random(0, AXE_ARTISTS)]);
+    case 34: return String(nationalArtists[random(0, NATIONAL_ARTISTS)]);
+    case 35: return String(pagodeArtists[random(0, PAGODE_ARTISTS)]);
+    case 36: return String(mpbArtists[random(0, MPB_ARTISTS)]);
+    case 37: return String(funkArtists[random(0, FUNK_ARTISTS)]);
+    case 38: return String(rockNacionalArtists[random(0, ROCK_NACIONAL_ARTISTS)]);
     default: return String(brazilianArtists[random(0, ARTISTS_COUNT)]);
   }
 }
@@ -1329,6 +1584,11 @@ String getRandomYearByPTY(uint8_t pty_code) {
     case 15: return String(variedSpeechYears[random(0, VARIED_SPEECH_YEARS)]);
     case 18: return String(childrenYears[random(0, CHILDREN_YEARS)]);
     case 20: return String(gospelYears[random(0, GOSPEL_YEARS)]);
+    case 33: return String(axeYears[random(0, AXE_YEARS)]);
+    case 35: return String(pagodeYears[random(0, PAGODE_YEARS)]);
+    case 36: return String(mpbYears[random(0, MPB_YEARS)]);
+    case 37: return String(funkYears[random(0, FUNK_YEARS)]);
+    case 38: return String(rockNacionalYears[random(0, ROCK_NACIONAL_YEARS)]);
     default: return String(brazilianYears[random(0, YEARS_COUNT)]);
   }
 }
@@ -1366,6 +1626,13 @@ String getRandomPSByPTY(uint8_t pty_code) {
     case 28: return String(folkPS[random(0, FOLK_PS_COUNT)]);
     case 30: return String(alarmTestPS[random(0, ALARM_TEST_PS_COUNT)]);
     case 31: return String(alarmPS[random(0, ALARM_PS_COUNT)]);
+    case 32: return String(countryPS[random(0, COUNTRY_PS_COUNT)]);
+    case 33: return String(axePS[random(0, AXE_PS_COUNT)]);
+    case 34: return String(sertanejoPS[random(0, SERTANEJO_PS_COUNT)]);
+    case 35: return String(pagodePS[random(0, PAGODE_PS_COUNT)]);
+    case 36: return String(mpbPS[random(0, MPB_PS_COUNT)]);
+    case 37: return String(funkPS[random(0, FUNK_PS_COUNT)]);
+    case 38: return String(rockNacionalPS[random(0, ROCK_NACIONAL_PS_COUNT)]);
     default: return String("RADIO FM");
   }
 }
@@ -1403,6 +1670,13 @@ String getRandomRTByPTY(uint8_t pty_code) {
     case 28: return String(folkRT[random(0, FOLK_RT_COUNT)]);
     case 30: return String(alarmTestRT[random(0, ALARM_TEST_RT_COUNT)]);
     case 31: return String(alarmRT[random(0, ALARM_RT_COUNT)]);
+    case 32: return String(countryRT[random(0, COUNTRY_RT_COUNT)]);
+    case 33: return String(axeRT[random(0, AXE_RT_COUNT)]);
+    case 34: return String(sertanejoRT[random(0, SERTANEJO_RT_COUNT)]);
+    case 35: return String(pagodeRT[random(0, PAGODE_RT_COUNT)]);
+    case 36: return String(mpbRT[random(0, MPB_RT_COUNT)]);
+    case 37: return String(funkRT[random(0, FUNK_RT_COUNT)]);
+    case 38: return String(rockNacionalRT[random(0, ROCK_NACIONAL_RT_COUNT)]);
     default: return String("MUSICA 24 HORAS");
   }
 }
@@ -1415,9 +1689,10 @@ const char* getPTYName(uint8_t pty_code) {
     "Weather", "Finance", "Children's", "Social Affairs", "Religion",
     "Gospel", "Travel", "Leisure", "Jazz Music", "Country Music",
     "National Music", "Oldies", "Folk Music", "Documentary", "Alarm Test",
-    "Alarm", "Talk"
+    "Alarm", "Talk",
+    "Forro", "Axe Music", "Sertanejo", "Pagode", "MPB", "Funk", "Rock Nacional"
   };
-  if (pty_code >= 0 && pty_code <= 31) {
+  if (pty_code >= 0 && pty_code <= 38) {
     return pty_names[pty_code];
   }
   return "Unknown";
@@ -1456,6 +1731,13 @@ const char** listaPSporPTY(int8_t pty_code, int* count) {
     case 29: *count = DOCUMENTARY_PS_COUNT;       return (const char**)documentaryPS;
     case 30: *count = ALARM_TEST_PS_COUNT;        return (const char**)alarmTestPS;
     case 31: *count = ALARM_PS_COUNT;             return (const char**)alarmPS;
+    case 32: *count = COUNTRY_PS_COUNT;           return (const char**)countryPS;
+    case 33: *count = AXE_PS_COUNT;               return (const char**)axePS;
+    case 34: *count = SERTANEJO_PS_COUNT;         return (const char**)sertanejoPS;
+    case 35: *count = PAGODE_PS_COUNT;            return (const char**)pagodePS;
+    case 36: *count = MPB_PS_COUNT;               return (const char**)mpbPS;
+    case 37: *count = FUNK_PS_COUNT;              return (const char**)funkPS;
+    case 38: *count = ROCK_NACIONAL_PS_COUNT;     return (const char**)rockNacionalPS;
     default: *count = TALK_PS_COUNT;              return (const char**)talkPS;
   }
 }

@@ -49,6 +49,7 @@ enum UIStringID {
   UI_SET_PI,
   UI_ENABLE_ALL_RDS,
   UI_SET_THEME,
+  UI_SET_MUSICA,
   UI_STRING_COUNT
 };
 

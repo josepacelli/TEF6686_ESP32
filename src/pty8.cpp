@@ -34,5 +34,11 @@ const char* const PTY_BR_PORTUGUESE[] = {
   /* 29 */ "SOCIAL",
   /* 30 */ "TESTE DE ALERTA",
   /* 31 */ "ALERTA",
-  /* 32 */ "                "
+  /* 32 */ "FORRO PE-DE-SERRA",
+  /* 33 */ "AXE MUSIC",
+  /* 34 */ "SERTANEJO UNIVERSITARIO",
+  /* 35 */ "PAGODE / SAMBA",
+  /* 36 */ "MPB",
+  /* 37 */ "FUNK CARIOCA",
+  /* 38 */ "ROCK NACIONAL",
 };

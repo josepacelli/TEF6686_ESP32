@@ -12,7 +12,7 @@ void setPTYLanguage(uint8_t language) {
 
 // Get PTY text by language
 const char* getPTYTextByLanguage(uint8_t ptyCode, uint8_t language) {
-  if (ptyCode >= 0 && ptyCode < 32) {
+  if (ptyCode >= 0 && ptyCode < 39) {
     switch(language) {
       case PTY_LANG_PORTUGUESE:
         return PTY_PORTUGUESE[ptyCode];

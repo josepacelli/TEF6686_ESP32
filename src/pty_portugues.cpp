@@ -34,5 +34,11 @@ const char* const PTY_PORTUGUESE[] = {
   /* 29 */ "DOCUMENTARIO",
   /* 30 */ "TESTE DE ALERTA",
   /* 31 */ "ALERTA DE EMERGENCIA",
-  /* 32 */ "                "
+  /* 32 */ "FORRO",
+  /* 33 */ "AXE MUSIC",
+  /* 34 */ "SERTANEJO",
+  /* 35 */ "PAGODE / SAMBA",
+  /* 36 */ "MPB",
+  /* 37 */ "FUNK",
+  /* 38 */ "ROCK NACIONAL",
 };

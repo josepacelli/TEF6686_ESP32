@@ -1008,6 +1008,163 @@ void carregarEstacoes() {
   e.tempo = "Partly Cloudy"; e.temperatura = "31°C";
   estacoes.push_back(e);
 
+  e.freq_khz = 94500;
+  e.pty_code = 26;
+  e.ps = getPSByLanguage(82, currentPTYLanguage);
+  e.rt = getRTByLanguage(82, currentPTYLanguage);
+  e.musica = "Sertanejo | Gusttavo Lima - Cem Mil";
+  e.anoMusica = "2020";
+  e.hora = "11"; e.minuto = "10"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Sunny"; e.temperatura = "34°C";
+  estacoes.push_back(e);
+
+  e.freq_khz = 95700;
+  e.pty_code = 25;
+  e.ps = getPSByLanguage(83, currentPTYLanguage);
+  e.rt = getRTByLanguage(83, currentPTYLanguage);
+  e.musica = "Forro | Falamansa - Xote dos Milagres";
+  e.anoMusica = "2001";
+  e.hora = "11"; e.minuto = "35"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Partly Cloudy"; e.temperatura = "33°C";
+  estacoes.push_back(e);
+
+  e.freq_khz = 100300;
+  e.pty_code = 1;
+  e.ps = getPSByLanguage(84, currentPTYLanguage);
+  e.rt = getRTByLanguage(84, currentPTYLanguage);
+  e.musica = "Noticias | Nacao FM - Edicao da Tarde";
+  e.anoMusica = "2026";
+  e.hora = "13"; e.minuto = "48"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Sunny"; e.temperatura = "36°C";
+  estacoes.push_back(e);
+
+  e.freq_khz = 101500;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(85, currentPTYLanguage);
+  e.rt = getRTByLanguage(85, currentPTYLanguage);
+  e.musica = "Gospel | Eyshila - Jesus e Tudo";
+  e.anoMusica = "2023";
+  e.hora = "14"; e.minuto = "08"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Sunny"; e.temperatura = "35°C";
+  estacoes.push_back(e);
+
+  e.freq_khz = 101900;
+  e.pty_code = 4;
+  e.ps = getPSByLanguage(86, currentPTYLanguage);
+  e.rt = getRTByLanguage(86, currentPTYLanguage);
+  e.musica = "Educativo | UFC FM - Ciencia e Cultura";
+  e.anoMusica = "2026";
+  e.hora = "14"; e.minuto = "25"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Sunny"; e.temperatura = "35°C";
+  estacoes.push_back(e);
+
+  e.freq_khz = 103700;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(87, currentPTYLanguage);
+  e.rt = getRTByLanguage(87, currentPTYLanguage);
+  e.musica = "Pop | Alok - Hear Me Now";
+  e.anoMusica = "2016";
+  e.hora = "15"; e.minuto = "25"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Clear"; e.temperatura = "34°C";
+  estacoes.push_back(e);
+
+  e.freq_khz = 104100;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(88, currentPTYLanguage);
+  e.rt = getRTByLanguage(88, currentPTYLanguage);
+  e.musica = "Pop | Anitta - Funk Rave";
+  e.anoMusica = "2023";
+  e.hora = "15"; e.minuto = "38"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Hot & Humid"; e.temperatura = "35°C";
+  estacoes.push_back(e);
+
+  e.freq_khz = 104900;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(89, currentPTYLanguage);
+  e.rt = getRTByLanguage(89, currentPTYLanguage);
+  e.musica = "Dance | Kevin O Chris - Coisa de Ex";
+  e.anoMusica = "2020";
+  e.hora = "16"; e.minuto = "08"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Breezy"; e.temperatura = "33°C";
+  estacoes.push_back(e);
+
+  e.freq_khz = 106300;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(90, currentPTYLanguage);
+  e.rt = getRTByLanguage(90, currentPTYLanguage);
+  e.musica = "Pop | Claudia Leitte - Caranguejo";
+  e.anoMusica = "2012";
+  e.hora = "16"; e.minuto = "38"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Clear"; e.temperatura = "33°C";
+  estacoes.push_back(e);
+
+  e.freq_khz = 107700;
+  e.pty_code = 20;
+  e.ps = getPSByLanguage(91, currentPTYLanguage);
+  e.rt = getRTByLanguage(91, currentPTYLanguage);
+  e.musica = "Gospel | Fernandinho - Tu Me Envolves";
+  e.anoMusica = "2015";
+  e.hora = "17"; e.minuto = "15"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Partly Cloudy"; e.temperatura = "31°C";
+  estacoes.push_back(e);
+
+  e.freq_khz = 88700;
+  e.pty_code = 25;
+  e.ps = getPSByLanguage(92, currentPTYLanguage);
+  e.rt = getRTByLanguage(92, currentPTYLanguage);
+  e.musica = "Forro | Luiz Gonzaga - Forró de Mané Vito";
+  e.anoMusica = "1989";
+  e.hora = "08"; e.minuto = "35"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Sunny"; e.temperatura = "29°C";
+  estacoes.push_back(e);
+
+  e.freq_khz = 90900;
+  e.pty_code = 12;
+  e.ps = getPSByLanguage(93, currentPTYLanguage);
+  e.rt = getRTByLanguage(93, currentPTYLanguage);
+  e.musica = "MPB | Zeca Baleiro - Por Onde Andar";
+  e.anoMusica = "1997";
+  e.hora = "09"; e.minuto = "15"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Sunny"; e.temperatura = "30°C";
+  estacoes.push_back(e);
+
+  e.freq_khz = 89300;
+  e.pty_code = 10;
+  e.ps = getPSByLanguage(94, currentPTYLanguage);
+  e.rt = getRTByLanguage(94, currentPTYLanguage);
+  e.musica = "Axe | Ivete Sangalo - Sorte Grande";
+  e.anoMusica = "2013";
+  e.hora = "08"; e.minuto = "40"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Sunny"; e.temperatura = "29°C";
+  estacoes.push_back(e);
+
+  e.freq_khz = 89700;
+  e.pty_code = 38;
+  e.ps = getPSByLanguage(95, currentPTYLanguage);
+  e.rt = getRTByLanguage(95, currentPTYLanguage);
+  e.musica = "Rock Nacional | Legiao Urbana - Tempo Perdido";
+  e.anoMusica = "1987";
+  e.hora = "10"; e.minuto = "20"; e.segundo = "00";
+  e.dia = "13"; e.mes = "06"; e.ano = "2026";
+  e.tempo = "Cloudy"; e.temperatura = "27°C";
+  estacoes.push_back(e);
+
+  for (auto& s : estacoes)
+    s.pi_code = (uint16_t)(0x4000 + (s.freq_khz / 100 - 797));
+
   std::sort(estacoes.begin(), estacoes.end(), [](const Estacao& a, const Estacao& b) {
     return a.freq_khz < b.freq_khz;
   });

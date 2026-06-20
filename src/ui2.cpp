@@ -44,5 +44,6 @@ const char* const UI_PORTUGUESE[] = {
   /* 38 UI_FM_AM_RECEIVER        */ "Receptor FM/AM",
   /* 39 UI_SET_PI               */ "Ajustar Codigo PI:",
   /* 40 UI_ENABLE_ALL_RDS       */ "Habilitar Todos RDS",
-  /* 41 UI_SET_THEME            */ "Ajustar Tema do Display",
+  /* 41 UI_SET_THEME            */ "Tema",
+  /* 42 UI_SET_MUSICA           */ "Ajustar Musica/Artista:",
 };

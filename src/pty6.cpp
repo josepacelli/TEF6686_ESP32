@@ -34,5 +34,11 @@ const char* const PTY_RBDS_SPANISH[] = {
   /* 29 */ "CLIMA",
   /* 30 */ "PRUEBA DE EMERGENCIA",
   /* 31 */ "EMERGENCIA",
-  /* 32 */ "                "
+  /* 32 */ "FORRO",
+  /* 33 */ "MUSICA AXE",
+  /* 34 */ "SERTANEJO",
+  /* 35 */ "PAGODE / SAMBA",
+  /* 36 */ "MPB",
+  /* 37 */ "FUNK",
+  /* 38 */ "ROCK NACIONAL",
 };

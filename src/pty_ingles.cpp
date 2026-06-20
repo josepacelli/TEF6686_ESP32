@@ -34,5 +34,11 @@ const char* const PTY_ENGLISH[] = {
   "DOCUMENTARY",
   "ALARM TEST",
   "ALARM",
-  "                "
+  "FORRO",
+  "AXE MUSIC",
+  "SERTANEJO",
+  "PAGODE / SAMBA",
+  "MPB",
+  "FUNK",
+  "ROCK NACIONAL",
 };
