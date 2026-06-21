@@ -1922,8 +1922,6 @@ void showRDSStatusRotation() {
         String rdsStatus = e.rds_ativo ? "RDS ON" : "RDS OFF";
         uint32_t statusColor = e.rds_ativo ? TFT_GREEN : TFT_RED;
 
-        tft.setTextColor(TFT_BLACK);
-        tft.drawString(rdsStatusIndex > 0 ? "RDS OFF" : "RDS ON", 250, 70, 1);
         tft.setTextColor(statusColor);
         tft.drawString(rdsStatus, 250, 70, 1);
       }
@@ -1999,8 +1997,8 @@ void showPS() {
 
       psSprite.fillSprite(TFT_BLACK);
       psSprite.setTextColor(TFT_CYAN);
-      psSprite.drawString(psToShow, psXPos, 2, 4);
-      psSprite.pushSprite(38, 192);
+      psSprite.drawString(psToShow, psXPos, 0, 4);
+      psSprite.pushSprite(30, 190);
 
       psXPos -= psCharWidth;
       if (psTextWidth > 170) {
