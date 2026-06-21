@@ -1,7 +1,7 @@
 #include "musicas.h"
 
 const char* brazilianArtists[] = {
-  // Brasileiros
+  // Brasileiros Classicos
   "Caetano Veloso", "Gilberto Gil", "Tom Jobim", "Joao Gilberto",
   "Gal Costa", "Ivete Sangalo", "Jorge Aragao", "Beth Carvalho",
   "Alcione", "Cartola", "Elza Soares", "Marisa Monte",
@@ -15,6 +15,11 @@ const char* brazilianArtists[] = {
   "Capital Inicial", "Sepultura", "Rita Lee", "Paralamas do Sucesso",
   "Os Mutantes", "Sorriso Maroto", "Dilsinho", "Ferrugem",
   "Dona Ivone Lara", "Nando Reis",
+  // Brasileiros Contemporaneos
+  "Luisa Sonza", "Selena Gomez feat. Tiesto", "Alok", "Tropkillaz",
+  "MC Zaac", "Maejor", "DJ Snake", "Kevin O", "Kevinho",
+  "Ludmilla", "Pocah", "Tony Tornado", "Projota", "Rael", "BK",
+  "Tarcisio Meira", "Pedro Scooby", "Biel", "Leo Santana", "Filipe Ret",
   // Internacionais
   "Taylor Swift", "Ariana Grande", "Billie Eilish", "Dua Lipa",
   "The Weeknd", "Ed Sheeran", "Bruno Mars", "Justin Bieber",
@@ -49,7 +54,7 @@ const char* brazilianYears[] = {
 const int YEARS_COUNT = sizeof(brazilianYears) / sizeof(brazilianYears[0]);
 
 const char* brazilianSongs[] = {
-  // Brasileiras
+  // Brasileiras Classicas
   "Garota de Ipanema", "Aguas de Marco", "Aquele Abraco", "Toda Menina Baiana",
   "Tropicalia", "Asa Branca", "Saudade", "Noite de Samba",
   "Amor Infinito", "Alegria Infinita", "Carnaval Brasileiro", "Praia Brasileira",
@@ -63,6 +68,13 @@ const char* brazilianSongs[] = {
   "Samba Rock Carioca", "Forró Cearense", "Baiao do Sertao", "Coco de Raiz",
   "Xote Autentico", "Nordeste Musical", "Carioca Paixao", "Noite Brasileira",
   "Amor Sagrado", "Ritmo Perfeito",
+  // Brasileiras Contemporaneas
+  "Envolver", "Vai Malandra", "Show das Poderosas", "Corpo Perfeito",
+  "Noticia Boa", "Danca da Paixao", "Levada Brasileira", "Melody",
+  "Solte o Frevo", "Coreografias", "De Janeiro a Janeiro", "Danca Comigo",
+  "Meu Carnaval", "Ritmo Cearense", "Fortaleza e Coracoes", "Praia Vermelha",
+  "Saudade Tropical", "Brisa do Mar", "Luz da Madrugada", "Noites de Luar",
+  "Musica Cearense", "Sertanejo Puro", "Alma Nordestina", "Grito Tropical",
   // Internacionais
   "Stairway to Heaven", "Bohemian Rhapsody", "Hotel California", "Smells Like Teen Spirit",
   "Yesterday", "Let It Be", "Hey Jude", "Imagine",

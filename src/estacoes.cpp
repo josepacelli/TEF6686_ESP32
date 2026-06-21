@@ -90,6 +90,25 @@ String buscarGenero(uint32_t freq_khz) {
   return e ? getRandomGenreByPTY(e->pty_code) : String("");
 }
 
+void rotateStationMusic(uint32_t freq_khz) {
+  Estacao* e = findEstacao(freq_khz);
+  if (e) {
+    e->musica = getSongForPTY(e->pty_code);
+    e->anoMusica = getRandomYearByPTY(e->pty_code);
+    e->posScroll = 0;
+  }
+}
+
+void rotateStationWeather(uint32_t freq_khz) {
+  Estacao* e = findEstacao(freq_khz);
+  if (e) {
+    generateRandomTime(e->hora, e->minuto, e->segundo);
+    generateRandomDate(e->dia, e->mes, e->ano);
+    e->tempo = generateRandomWeather();
+    e->temperatura = generateRandomTemperature();
+  }
+}
+
 size_t totalEstacoes() { return estacoes.size(); }
 
 Estacao& getEstacao(size_t i) { return estacoes[i]; }
@@ -110,33 +129,36 @@ void carregarEstacoes() {
   e.pty_code = 10;
   e.ps = getPSByLanguage(0, currentPTYLanguage);
   e.rt = getRTByLanguage(0, currentPTYLanguage);
-  e.musica = "Pop | Anitta - Envolver";
-  e.anoMusica = "2021";
-  e.hora = "08"; e.minuto = "00"; e.segundo = "00";
-  e.dia = "13"; e.mes = "06"; e.ano = "2026";
-  e.tempo = "Sunny"; e.temperatura = "28°C";
+  e.musica = getSongForPTY(10);
+  e.anoMusica = getRandomYearByPTY(10);
+  generateRandomTime(e.hora, e.minuto, e.segundo);
+  generateRandomDate(e.dia, e.mes, e.ano);
+  e.tempo = generateRandomWeather();
+  e.temperatura = generateRandomTemperature();
   estacoes.push_back(e);
 
   e.freq_khz = 86700;
   e.pty_code = 4;
   e.ps = getPSByLanguage(1, currentPTYLanguage);
   e.rt = getRTByLanguage(1, currentPTYLanguage);
-  e.musica = "Educativo | Programa de Radio - Cultura e Informacao";
-  e.anoMusica = "2026";
-  e.hora = "08"; e.minuto = "15"; e.segundo = "00";
-  e.dia = "13"; e.mes = "06"; e.ano = "2026";
-  e.tempo = "Sunny"; e.temperatura = "28°C";
+  e.musica = getSongForPTY(4);
+  e.anoMusica = getRandomYearByPTY(4);
+  generateRandomTime(e.hora, e.minuto, e.segundo);
+  generateRandomDate(e.dia, e.mes, e.ano);
+  e.tempo = generateRandomWeather();
+  e.temperatura = generateRandomTemperature();
   estacoes.push_back(e);
 
   e.freq_khz = 87100;
   e.pty_code = 10;
   e.ps = getPSByLanguage(2, currentPTYLanguage);
   e.rt = getRTByLanguage(2, currentPTYLanguage);
-  e.musica = "Pop | Fortaleza FM - O Som do Ceara";
-  e.anoMusica = "2024";
-  e.hora = "09"; e.minuto = "05"; e.segundo = "00";
-  e.dia = "13"; e.mes = "06"; e.ano = "2026";
-  e.tempo = "Sunny"; e.temperatura = "29°C";
+  e.musica = getSongForPTY(10);
+  e.anoMusica = getRandomYearByPTY(10);
+  generateRandomTime(e.hora, e.minuto, e.segundo);
+  generateRandomDate(e.dia, e.mes, e.ano);
+  e.tempo = generateRandomWeather();
+  e.temperatura = generateRandomTemperature();
   estacoes.push_back(e);
 
   e.freq_khz = 87300;

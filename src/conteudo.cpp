@@ -1252,6 +1252,40 @@ String formatSongWithYear(const String& song, const String& year) {
   return song + " (" + year + ")";
 }
 
+String generateRandomWeather() {
+  const char* weatherConditions[] = {
+    "Sunny", "Partly Cloudy", "Cloudy", "Rainy",
+    "Clear", "Light Rain", "Hot & Humid", "Tropical"
+  };
+  int count = sizeof(weatherConditions) / sizeof(weatherConditions[0]);
+  return String(weatherConditions[random(0, count)]);
+}
+
+String generateRandomTemperature() {
+  int temp = random(25, 35);
+  return String(temp) + "°C";
+}
+
+void generateRandomTime(String& hora, String& minuto, String& segundo) {
+  int h = random(0, 24);
+  int m = random(0, 60);
+  int s = random(0, 60);
+
+  hora = (h < 10) ? "0" + String(h) : String(h);
+  minuto = (m < 10) ? "0" + String(m) : String(m);
+  segundo = (s < 10) ? "0" + String(s) : String(s);
+}
+
+void generateRandomDate(String& dia, String& mes, String& ano) {
+  int d = random(1, 29);
+  int m = random(1, 13);
+  int y = 2026;
+
+  dia = (d < 10) ? "0" + String(d) : String(d);
+  mes = (m < 10) ? "0" + String(m) : String(m);
+  ano = String(y);
+}
+
 String getRandomGospelPS() {
   return String(gospelPS[random(0, GOSPEL_PS_COUNT)]);
 }

@@ -29,6 +29,8 @@ String   buscarPI(uint32_t freq_khz);
 void   avancarScroll(uint32_t freq_khz);
 String buscarMusica(uint32_t freq_khz);
 String buscarGenero(uint32_t freq_khz);
+void   rotateStationMusic(uint32_t freq_khz);
+void   rotateStationWeather(uint32_t freq_khz);
 size_t totalEstacoes();
 Estacao& getEstacao(size_t i);
 void   setAllRDS(bool ativo);

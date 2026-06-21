@@ -29,7 +29,7 @@ const char* const PTY_PORTUGUESE[] = {
   /* 24 */ "MUSICA JAZZ",
   /* 25 */ "MUSICA COUNTRY",
   /* 26 */ "MUSICA NACIONAL",
-  /* 27 */ "MUSICA RETRO",
+  /* 27 */ "MUSICA OLDIES",
   /* 28 */ "MUSICA FOLK",
   /* 29 */ "DOCUMENTARIO",
   /* 30 */ "TESTE DE ALERTA",

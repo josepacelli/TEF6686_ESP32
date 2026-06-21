@@ -292,6 +292,8 @@ int xPos = 6;
 int yPos = 2;
 int psXPos = 38;
 int psYPos = 192;
+int piXPos = 244;
+unsigned long piTicker;
 int16_t OStatus;
 int16_t SAvg;
 int16_t SAvg2;
@@ -320,6 +322,14 @@ uint16_t USN;
 uint16_t WAM;
 uint8_t buff_pos = 0;
 uint8_t RDSstatus;
+unsigned long rdsLogoTicker;
+bool rdsLogoPulse = false;
+unsigned long rdsDataTicker;
+uint32_t lastRdsRefreshFreq = 0;
+unsigned long musicRotationTicker;
+unsigned long weatherRotationTicker;
+unsigned long rdsStatusTicker;
+int rdsStatusIndex = 0;
 String customPS = "";
 String customRT = "";
 String customPTY = "";
@@ -578,6 +588,14 @@ void setup() {
   setupmode = false;
   sprite.createSprite(313, 18);
   psSprite.createSprite(170, 40);
+  psTicker = millis();
+  rtticker = millis();
+  piTicker = millis();
+  rdsLogoTicker = millis();
+  rdsDataTicker = millis();
+  musicRotationTicker = millis();
+  weatherRotationTicker = millis();
+  rdsStatusTicker = millis();
 }
 
 void loop() {
@@ -643,9 +661,9 @@ void loop() {
       if (millis() >= lowsignaltimer + 300) {
         lowsignaltimer = millis();
         if (band == 0) radio.getStatus(SStatus, USN, WAM, OStatus, BW, MStatus); else radio.getStatus_AM(SStatus, USN, WAM, OStatus, BW, MStatus);
-        if (screenmute == true) readRds();
         if (menu == false) doSquelch();
       }
+      if (menu == false) readRds();
 
     } else {
       if (band == 0) radio.getStatus(SStatus, USN, WAM, OStatus, BW, MStatus); else radio.getStatus_AM(SStatus, USN, WAM, OStatus, BW, MStatus);
@@ -675,6 +693,9 @@ void loop() {
       }
     }
 
+    rotateMusicSongs();
+    rotateWeatherAndTime();
+    showRDSStatusRotation();
     XDRGTKRoutine();
 
     if (menu == true && menuopen == true && menuoption == 110)
@@ -839,7 +860,30 @@ void loadCustomPICodes() {
 
 void habilitarTodasRDS() {
   size_t count = totalEstacoes();
-  for (size_t i = 0; i < count; i++) getEstacao(i).rds_ativo = true;
+
+  if (screenmute == false) {
+    tft.fillScreen(TFT_BLACK);
+    tft.setTextColor(TFT_YELLOW);
+    tft.drawString("Enabling All RDS...", 40, 100, 2);
+  }
+
+  for (size_t i = 0; i < count; i++) {
+    getEstacao(i).rds_ativo = true;
+
+    if (screenmute == false && i % 10 == 0) {
+      int progress = (i * 100) / count;
+      tft.setTextColor(TFT_CYAN);
+      tft.drawString(String(progress) + "%", 120, 130, 2);
+      delay(10);
+    }
+  }
+
+  if (screenmute == false) {
+    tft.setTextColor(TFT_GREEN);
+    tft.drawString("Done!", 120, 160, 2);
+    delay(500);
+  }
+
   saveCustomRDSEnabled();
   lastCustomFreq = 0;
 }
@@ -1787,8 +1831,12 @@ void readRds() {
 
     // Buscar dados customizados da frequência atual
     uint32_t currentFreqKhz = (uint32_t)radio.getFrequency() * 10; // FM freq em 10kHz, converter para kHz
+
+    // Atualizar dados RDS ao mudar frequência
     if (currentFreqKhz != lastCustomFreq) {
       lastCustomFreq = currentFreqKhz;
+      lastRdsRefreshFreq = currentFreqKhz;
+      rdsDataTicker = millis();
       if (isRDSAtivo(currentFreqKhz)) {
         customPS = buscarPS(currentFreqKhz);
         customRT = buscarRT(currentFreqKhz);
@@ -1800,6 +1848,16 @@ void readRds() {
         customRT = "";
         customPTY = "";
         customPI = "";
+      }
+    } else if (millis() - rdsDataTicker >= 5000) {
+      // Atualizar dados RDS periodicamente (a cada 5 segundos) para rotação
+      rdsDataTicker = millis();
+      if (isRDSAtivo(currentFreqKhz)) {
+        customPS = buscarPS(currentFreqKhz);
+        customRT = buscarRT(currentFreqKhz);
+        int8_t ptyCode = buscarPTY(currentFreqKhz);
+        customPTY = (ptyCode >= 0) ? radio.getPTYText(ptyCode) : "";
+        customPI = buscarPI(currentFreqKhz);
       }
     }
 
@@ -1845,15 +1903,73 @@ void readRds() {
   }
 }
 
+void rotateMusicSongs() {
+  if (menu == false && band == 0) {
+    if (millis() - musicRotationTicker >= 15000) {
+      musicRotationTicker = millis();
+      rotateStationMusic((uint32_t)radio.getFrequency() * 10);
+    }
+  }
+}
+
+void rotateWeatherAndTime() {
+  if (menu == false && band == 0) {
+    if (millis() - weatherRotationTicker >= 30000) {
+      weatherRotationTicker = millis();
+      rotateStationWeather((uint32_t)radio.getFrequency() * 10);
+    }
+  }
+}
+
+void showRDSStatusRotation() {
+  if (menu == false && screenmute == false) {
+    if (millis() - rdsStatusTicker >= 5000) {
+      rdsStatusTicker = millis();
+      size_t count = totalEstacoes();
+      if (count > 0) {
+        rdsStatusIndex = (rdsStatusIndex + 1) % count;
+        Estacao& e = getEstacao(rdsStatusIndex);
+        uint32_t f = e.freq_khz;
+        String freqStr = String(f / 1000) + "." + String((f % 1000) / 100);
+        String rdsStatus = e.rds_ativo ? "RDS ON" : "RDS OFF";
+        uint32_t statusColor = e.rds_ativo ? TFT_GREEN : TFT_RED;
+
+        tft.setTextColor(TFT_BLACK);
+        tft.drawString(rdsStatusIndex > 0 ? "RDS OFF" : "RDS ON", 250, 70, 1);
+        tft.setTextColor(statusColor);
+        tft.drawString(rdsStatus, 250, 70, 1);
+      }
+    }
+  }
+}
+
 void showPI() {
   String piToShow = (customPI.length() > 0) ? customPI : String(radio.rds.picode);
+
   if (piToShow != PIold) {
-    tft.setTextColor(TFT_BLACK);
-    tft.drawString(PIold, 244, 192, 4);
-    tft.setTextColor(TFT_YELLOW);
-    tft.drawString(piToShow, 244, 192, 4);
+    piXPos = 244;
     PIold = piToShow;
     piToShow.toCharArray(radioIdPrevious, sizeof(radioIdPrevious));
+    piTicker = millis();
+  }
+
+  if (piToShow.length() > 0) {
+    if (millis() - piTicker >= 200) {
+      int piCharWidth = tft.textWidth("A");
+      int piTextWidth = tft.textWidth(piToShow);
+
+      tft.setTextColor(TFT_BLACK);
+      tft.drawString(piToShow, piXPos, 192, 4);
+      tft.setTextColor(TFT_YELLOW);
+      tft.drawString(piToShow, piXPos, 192, 4);
+
+      if (piTextWidth > 75) {
+        piXPos -= piCharWidth;
+        if (piXPos < -piTextWidth) piXPos = 244;
+      }
+
+      piTicker = millis();
+    }
   }
 }
 
@@ -1870,19 +1986,26 @@ void showPTY() {
 }
 
 void showPS() {
+  unsigned int freq = radio.getFrequency();
+  uint32_t currentFreqKhz = (uint32_t)freq * 10;
+
+  // Avançar scroll da música a cada ciclo
+  avancarScroll(currentFreqKhz);
+
   String psToShow = (customPS.length() > 0) ? customPS : String(radio.rds.stationName);
   String rtToShow = (customRT.length() > 0) ? customRT : String(radio.rds.stationText);
-  unsigned int freq = radio.getFrequency();
   String freqStr = String(freq / 100) + "." + (freq % 100 < 10 ? "0" : "") + String(freq % 100);
   psToShow = freqStr + " | " + psToShow + " | " + rtToShow;
+
   if (psToShow != PSold) {
     psXPos = 0;
     PSold = psToShow;
     psToShow.toCharArray(programServicePrevious, sizeof(programServicePrevious));
+    psTicker = millis();
   }
 
   if (psToShow.length() > 0) {
-    if (millis() - psTicker >= 350) {
+    if (millis() - psTicker >= 200) {
       int psCharWidth = tft.textWidth("A");
       int psTextWidth = tft.textWidth(psToShow);
 
@@ -1892,7 +2015,11 @@ void showPS() {
       psSprite.pushSprite(38, 192);
 
       psXPos -= psCharWidth;
-      if (psXPos < -psTextWidth + (psCharWidth * 12)) psXPos = 0;
+      if (psTextWidth > 170) {
+        if (psXPos < -psTextWidth) psXPos = 170;
+      } else {
+        psXPos = 0;
+      }
 
       psTicker = millis();
     }
@@ -1900,17 +2027,32 @@ void showPS() {
 }
 
 void showRadioText() {
+  unsigned int freq = radio.getFrequency();
+  uint32_t currentFreqKhz = (uint32_t)freq * 10;
+
+  // Avançar scroll da música a cada ciclo
+  avancarScroll(currentFreqKhz);
+
   String rtToShow = (customRT.length() > 0) ? customRT : String(radio.rds.stationText);
   if (rtToShow != RTold) {
     xPos = 6;
     RTold = rtToShow;
     rtToShow.toCharArray(radioTextPrevious, sizeof(radioTextPrevious));
+    rtticker = millis();
   }
 
   if (rtToShow.length() > 0) {
-    if (millis() - rtticker >= 350) {
+    if (millis() - rtticker >= 200) {
+      charWidth = tft.textWidth("A");
+      int rtTextWidth = tft.textWidth(rtToShow);
+
       xPos -= charWidth;
-      if (xPos < -tft.textWidth(rtToShow) + (charWidth * 42)) xPos = 6;
+      if (rtTextWidth > 313) {
+        if (xPos < -rtTextWidth) xPos = 313;
+      } else {
+        xPos = 6;
+      }
+
       sprite.fillSprite(TFT_BLACK);
       sprite.setTextColor(TFT_CYAN);
       sprite.drawString(rtToShow, xPos, yPos, 2);
@@ -2329,10 +2471,20 @@ void ShowSignalLevel() {
 
 void ShowRDSLogo(bool RDSstatus) {
   if (screenmute == false) {
-    if (RDSstatus != RDSstatusold)
-    {
-      if (RDSstatus == true) tft.drawBitmap(110, 5, RDSLogo, 67, 22, TFT_YELLOW); else tft.drawBitmap(110, 5, RDSLogo, 67, 22, TFT_GREYOUT);
+    if (RDSstatus != RDSstatusold) {
       RDSstatusold = RDSstatus;
+      rdsLogoTicker = millis();
+    }
+
+    if (RDSstatus == true) {
+      if (millis() - rdsLogoTicker >= 500) {
+        rdsLogoPulse = !rdsLogoPulse;
+        rdsLogoTicker = millis();
+      }
+      uint32_t logoColor = rdsLogoPulse ? TFT_YELLOW : TFT_ORANGE;
+      tft.drawBitmap(110, 5, RDSLogo, 67, 22, logoColor);
+    } else {
+      tft.drawBitmap(110, 5, RDSLogo, 67, 22, TFT_GREYOUT);
     }
   }
 }
