@@ -1167,9 +1167,8 @@ void ButtonPress() {
           uint32_t fp = getEstacao(ptyStationIndex).freq_khz;
           tft.drawCentreString(String(fp/1000)+"."+String((fp%1000)/100)+" MHz", 150, 55, 2);
           tft.drawCentreString(getUIString(UI_SET_PS, languageSet), 150, 75, 4);
-          tft.setTextColor(TFT_YELLOW);
           if (psEditCount > 0)
-            tft.drawCentreString(getEstacao(psEditIndex).ps, 150, 115, 2);
+            drawWrappedText(getEstacao(psEditIndex).ps, 150, 110, 2, TFT_YELLOW, 200, 3);
         } else if (menuoption == 70) {
           menuopen = true;
           rtEditCount = (int)totalEstacoes();
@@ -1184,11 +1183,8 @@ void ButtonPress() {
           uint32_t fr = getEstacao(ptyStationIndex).freq_khz;
           tft.drawCentreString(String(fr/1000)+"."+String((fr%1000)/100)+" MHz", 150, 55, 2);
           tft.drawCentreString(getUIString(UI_SET_RT, languageSet), 150, 75, 4);
-          tft.setTextColor(TFT_YELLOW);
           if (rtEditCount > 0) {
-            String rtOpt = getEstacao(rtEditIndex).rt;
-            if (rtOpt.length() > 22) rtOpt = rtOpt.substring(0, 22);
-            tft.drawCentreString(rtOpt, 150, 115, 2);
+            drawWrappedText(getEstacao(rtEditIndex).rt, 150, 110, 2, TFT_YELLOW, 200, 3);
           }
         }
       } else {
@@ -1399,19 +1395,15 @@ void KeyUp() {
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 140, 2);
         } else if (menuoption == 50) {
           if (psEditCount > 0) {
-            tft.fillRect(33, 100, 234, 50, TFT_BLACK);
+            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
             psEditIndex = (psEditIndex + 1) % psEditCount;
-            tft.setTextColor(TFT_YELLOW);
-            tft.drawCentreString(getEstacao(psEditIndex).ps, 150, 115, 2);
+            drawWrappedText(getEstacao(psEditIndex).ps, 150, 110, 2, TFT_YELLOW, 200, 3);
           }
         } else if (menuoption == 70) {
           if (rtEditCount > 0) {
-            tft.fillRect(33, 100, 234, 50, TFT_BLACK);
+            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
             rtEditIndex = (rtEditIndex + 1) % rtEditCount;
-            tft.setTextColor(TFT_YELLOW);
-            String rtOpt = getEstacao(rtEditIndex).rt;
-            if (rtOpt.length() > 22) rtOpt = rtOpt.substring(0, 22);
-            tft.drawCentreString(rtOpt, 150, 115, 2);
+            drawWrappedText(getEstacao(rtEditIndex).rt, 150, 110, 2, TFT_YELLOW, 200, 3);
           }
         } else if (menuoption == 90) {
           tft.fillRect(33, 100, 234, 50, TFT_BLACK);
@@ -1630,19 +1622,15 @@ void KeyDown() {
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 140, 2);
         } else if (menuoption == 50) {
           if (psEditCount > 0) {
-            tft.fillRect(33, 100, 234, 50, TFT_BLACK);
+            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
             psEditIndex = (psEditIndex + psEditCount - 1) % psEditCount;
-            tft.setTextColor(TFT_YELLOW);
-            tft.drawCentreString(getEstacao(psEditIndex).ps, 150, 115, 2);
+            drawWrappedText(getEstacao(psEditIndex).ps, 150, 110, 2, TFT_YELLOW, 200, 3);
           }
         } else if (menuoption == 70) {
           if (rtEditCount > 0) {
-            tft.fillRect(33, 100, 234, 50, TFT_BLACK);
+            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
             rtEditIndex = (rtEditIndex + rtEditCount - 1) % rtEditCount;
-            tft.setTextColor(TFT_YELLOW);
-            String rtOpt = getEstacao(rtEditIndex).rt;
-            if (rtOpt.length() > 22) rtOpt = rtOpt.substring(0, 22);
-            tft.drawCentreString(rtOpt, 150, 115, 2);
+            drawWrappedText(getEstacao(rtEditIndex).rt, 150, 110, 2, TFT_YELLOW, 200, 3);
           }
         } else if (menuoption == 90) {
           tft.fillRect(33, 100, 234, 50, TFT_BLACK);
@@ -2084,6 +2072,37 @@ void showCT() {
     tft.setTextColor(TFT_YELLOW);
     tft.drawRightString(rds_clock, 205, 168, 2);
     rds_clockold = rds_clock;
+  }
+}
+
+void drawWrappedText(String text, int centerX, int startY, int font, uint32_t color, int maxWidth, int maxLines) {
+  tft.setTextColor(color);
+  int charWidth = tft.textWidth("A") * font / 2;
+  int charsPerLine = maxWidth / charWidth;
+  int lineHeight = font * 8 + 4;
+
+  int lineCount = 0;
+  int startIdx = 0;
+
+  while (startIdx < (int)text.length() && lineCount < maxLines) {
+    int endIdx = startIdx + charsPerLine;
+    if (endIdx >= (int)text.length()) {
+      endIdx = text.length();
+    } else {
+      int lastSpace = text.lastIndexOf(' ', endIdx);
+      if (lastSpace > startIdx) {
+        endIdx = lastSpace;
+      }
+    }
+
+    String line = text.substring(startIdx, endIdx);
+    line.trim();
+    if (line.length() > 0) {
+      tft.drawCentreString(line, centerX, startY + (lineCount * lineHeight), font);
+      lineCount++;
+    }
+
+    startIdx = endIdx + 1;
   }
 }
 
