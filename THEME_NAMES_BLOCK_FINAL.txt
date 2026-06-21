@@ -1,0 +1,5212 @@
+const char *getThemeName(uint16_t t)
+{
+  switch (t)
+  {
+  case 0:
+    return "Original";
+  case 1:
+    return "Vermelho";
+  case 2:
+    return "Brasil";
+  case 3:
+    return "Noturno";
+  case 4:
+    return "Amber";
+  case 5:
+    return "Verde";
+  case 6:
+    return "Roxo";
+  case 7:
+    return "Azul";
+  case 8:
+    return "PE5PVB";
+  case 9:
+    return "Ciano";
+  case 10:
+    return "Vulcao";
+  case 11:
+    return "Sakura";
+  case 12:
+    return "Oceano";
+  case 13:
+    return "Tangerina";
+  case 14:
+    return "Carmesim";
+  case 15:
+    return "Dendro";
+  case 16:
+    return "Monocromo";
+  case 17:
+    return "Indigo";
+  case 18:
+    return "Queer";
+  case 19:
+    return "GoldBrite";
+  case 20:
+    return "Bubblegum";
+  case 21:
+    return "Larico";
+  case 22:
+    return "Esmeralda";
+  case 23:
+    return "Artico";
+  case 24:
+    return "Crepusculo";
+  case 25:
+    return "Turquesa";
+  case 26:
+    return "Ametista";
+  case 27:
+    return "Ferrugem";
+  case 28:
+    return "Neon";
+  case 29:
+    return "Prata";
+  case 30:
+    return "Aurora";
+  case 31:
+    return "Lavanda";
+  case 32:
+    return "Caramelo";
+  case 33:
+    return "Menta";
+  case 34:
+    return "Tomate";
+  case 35:
+    return "Safira";
+  case 36:
+    return "Amarelo";
+  case 37:
+    return "Marinho";
+  case 38:
+    return "Carmim";
+  case 39:
+    return "Celeste";
+  case 40:
+    return "Abacate";
+  case 41:
+    return "Magenta";
+  case 42:
+    return "Brasa";
+  case 43:
+    return "Ardosia";
+  case 44:
+    return "Cereja";
+  case 45:
+    return "Petroleo";
+  case 46:
+    return "Cobalto";
+  case 47:
+    return "Mel";
+  case 48:
+    return "Vinho";
+  case 49:
+    return "Acqua";
+  case 50:
+    return "Cobre";
+  case 51:
+    return "Algodao";
+  case 52:
+    return "Musgo";
+  case 53:
+    return "Oxido";
+  case 54:
+    return "Manga";
+  case 55:
+    return "Uva";
+  case 56:
+    return "Maracuja";
+  case 57:
+    return "Grafite";
+  case 58:
+    return "Champanhe";
+  case 59:
+    return "Coral";
+  case 60:
+    return "Fantasma";
+  case 61:
+    return "Sertao";
+  case 62:
+    return "Essence";
+  case 63:
+    return "Cyan";
+  case 64:
+    return "Crimson";
+  case 65:
+    return "Monochrome";
+  case 66:
+    return "Volcano";
+  case 67:
+    return "Dendro";
+  case 68:
+    return "Sakura";
+  case 69:
+    return "Whiteout";
+  case 70:
+    return "Tangerine";
+  case 71:
+    return "Ocean";
+  case 72:
+    return "Indigo";
+  case 73:
+    return "Queer";
+  case 74:
+    return "GoldBrite";
+  case 75:
+    return "Bubblegum";
+  case 76:
+    return "Essence II";
+  case 77:
+    return "777";
+  case 78:
+    return "Vinil";
+  case 79:
+    return "Ouro";
+  case 80:
+    return "Anos 80";
+  case 81:
+    return "Plasma";
+  case 82:
+    return "Nebulosa";
+  case 83:
+    return "Fumaca";
+  case 84:
+    return "Arco-Iris";
+  case 85:
+    return "Petala";
+  case 86:
+    return "Relampago";
+  case 87:
+    return "Vermelho Muito Escuro 1";
+  case 88:
+    return "Vermelho Muito Escuro 2";
+  case 89:
+    return "Vermelho Muito Escuro 3";
+  case 90:
+    return "Vermelho Muito Escuro 4";
+  case 91:
+    return "Vermelho Muito Escuro 5";
+  case 92:
+    return "Vermelho Muito Escuro 6";
+  case 93:
+    return "Vermelho Muito Escuro 7";
+  case 94:
+    return "Vermelho Muito Escuro 8";
+  case 95:
+    return "Vermelho Muito Escuro 9";
+  case 96:
+    return "Vermelho Muito Escuro 10";
+  case 97:
+    return "Vermelho Muito Escuro 11";
+  case 98:
+    return "Vermelho Muito Escuro 12";
+  case 99:
+    return "Vermelho Muito Escuro 13";
+  case 100:
+    return "Vermelho Muito Escuro 14";
+  case 101:
+    return "Vermelho Muito Escuro 15";
+  case 102:
+    return "Vermelho Escuro 1";
+  case 103:
+    return "Vermelho Escuro 2";
+  case 104:
+    return "Vermelho Escuro 3";
+  case 105:
+    return "Vermelho Escuro 4";
+  case 106:
+    return "Vermelho Escuro 5";
+  case 107:
+    return "Vermelho Escuro 6";
+  case 108:
+    return "Vermelho Escuro 7";
+  case 109:
+    return "Vermelho Escuro 8";
+  case 110:
+    return "Vermelho Escuro 9";
+  case 111:
+    return "Vermelho Escuro 10";
+  case 112:
+    return "Vermelho Escuro 11";
+  case 113:
+    return "Vermelho Escuro 12";
+  case 114:
+    return "Vermelho Escuro 13";
+  case 115:
+    return "Vermelho Escuro 14";
+  case 116:
+    return "Vermelho Escuro 15";
+  case 117:
+    return "Vermelho Médio 1";
+  case 118:
+    return "Vermelho Médio 2";
+  case 119:
+    return "Vermelho Médio 3";
+  case 120:
+    return "Vermelho Médio 4";
+  case 121:
+    return "Vermelho Médio 5";
+  case 122:
+    return "Vermelho Médio 6";
+  case 123:
+    return "Vermelho Médio 7";
+  case 124:
+    return "Vermelho Médio 8";
+  case 125:
+    return "Vermelho Médio 9";
+  case 126:
+    return "Vermelho Médio 10";
+  case 127:
+    return "Vermelho Médio 11";
+  case 128:
+    return "Vermelho Médio 12";
+  case 129:
+    return "Vermelho Médio 13";
+  case 130:
+    return "Vermelho Médio 14";
+  case 131:
+    return "Vermelho Médio 15";
+  case 132:
+    return "Vermelho Brilhante 1";
+  case 133:
+    return "Vermelho Brilhante 2";
+  case 134:
+    return "Vermelho Brilhante 3";
+  case 135:
+    return "Vermelho Brilhante 4";
+  case 136:
+    return "Vermelho Brilhante 5";
+  case 137:
+    return "Vermelho Brilhante 6";
+  case 138:
+    return "Vermelho Brilhante 7";
+  case 139:
+    return "Vermelho Brilhante 8";
+  case 140:
+    return "Vermelho Brilhante 9";
+  case 141:
+    return "Vermelho Brilhante 10";
+  case 142:
+    return "Vermelho Brilhante 11";
+  case 143:
+    return "Vermelho Brilhante 12";
+  case 144:
+    return "Vermelho Brilhante 13";
+  case 145:
+    return "Vermelho Brilhante 14";
+  case 146:
+    return "Vermelho Brilhante 15";
+  case 147:
+    return "Vermelho Muito Brilhante 1";
+  case 148:
+    return "Vermelho Muito Brilhante 2";
+  case 149:
+    return "Vermelho Muito Brilhante 3";
+  case 150:
+    return "Vermelho Muito Brilhante 4";
+  case 151:
+    return "Vermelho Muito Brilhante 5";
+  case 152:
+    return "Vermelho Muito Brilhante 6";
+  case 153:
+    return "Vermelho Muito Brilhante 7";
+  case 154:
+    return "Vermelho Muito Brilhante 8";
+  case 155:
+    return "Vermelho Muito Brilhante 9";
+  case 156:
+    return "Vermelho Muito Brilhante 10";
+  case 157:
+    return "Vermelho Muito Brilhante 11";
+  case 158:
+    return "Vermelho Muito Brilhante 12";
+  case 159:
+    return "Laranja Muito Escuro 13";
+  case 160:
+    return "Laranja Muito Escuro 14";
+  case 161:
+    return "Laranja Muito Escuro 15";
+  case 162:
+    return "Laranja Muito Escuro 1";
+  case 163:
+    return "Laranja Muito Escuro 2";
+  case 164:
+    return "Laranja Muito Escuro 3";
+  case 165:
+    return "Laranja Muito Escuro 4";
+  case 166:
+    return "Laranja Muito Escuro 5";
+  case 167:
+    return "Laranja Muito Escuro 6";
+  case 168:
+    return "Laranja Muito Escuro 7";
+  case 169:
+    return "Laranja Muito Escuro 8";
+  case 170:
+    return "Laranja Muito Escuro 9";
+  case 171:
+    return "Laranja Muito Escuro 10";
+  case 172:
+    return "Laranja Muito Escuro 11";
+  case 173:
+    return "Laranja Muito Escuro 12";
+  case 174:
+    return "Laranja Escuro 13";
+  case 175:
+    return "Laranja Escuro 14";
+  case 176:
+    return "Laranja Escuro 15";
+  case 177:
+    return "Laranja Escuro 1";
+  case 178:
+    return "Laranja Escuro 2";
+  case 179:
+    return "Laranja Escuro 3";
+  case 180:
+    return "Laranja Escuro 4";
+  case 181:
+    return "Laranja Escuro 5";
+  case 182:
+    return "Laranja Escuro 6";
+  case 183:
+    return "Laranja Escuro 7";
+  case 184:
+    return "Laranja Escuro 8";
+  case 185:
+    return "Laranja Escuro 9";
+  case 186:
+    return "Laranja Escuro 10";
+  case 187:
+    return "Laranja Escuro 11";
+  case 188:
+    return "Laranja Escuro 12";
+  case 189:
+    return "Laranja Médio 13";
+  case 190:
+    return "Laranja Médio 14";
+  case 191:
+    return "Laranja Médio 15";
+  case 192:
+    return "Laranja Médio 1";
+  case 193:
+    return "Laranja Médio 2";
+  case 194:
+    return "Laranja Médio 3";
+  case 195:
+    return "Laranja Médio 4";
+  case 196:
+    return "Laranja Médio 5";
+  case 197:
+    return "Laranja Médio 6";
+  case 198:
+    return "Laranja Médio 7";
+  case 199:
+    return "Laranja Médio 8";
+  case 200:
+    return "Laranja Médio 9";
+  case 201:
+    return "Laranja Médio 10";
+  case 202:
+    return "Laranja Médio 11";
+  case 203:
+    return "Laranja Médio 12";
+  case 204:
+    return "Laranja Brilhante 13";
+  case 205:
+    return "Laranja Brilhante 14";
+  case 206:
+    return "Laranja Brilhante 15";
+  case 207:
+    return "Laranja Brilhante 1";
+  case 208:
+    return "Laranja Brilhante 2";
+  case 209:
+    return "Laranja Brilhante 3";
+  case 210:
+    return "Laranja Brilhante 4";
+  case 211:
+    return "Laranja Brilhante 5";
+  case 212:
+    return "Laranja Brilhante 6";
+  case 213:
+    return "Laranja Brilhante 7";
+  case 214:
+    return "Laranja Brilhante 8";
+  case 215:
+    return "Laranja Brilhante 9";
+  case 216:
+    return "Laranja Brilhante 10";
+  case 217:
+    return "Laranja Brilhante 11";
+  case 218:
+    return "Laranja Brilhante 12";
+  case 219:
+    return "Laranja Muito Brilhante 13";
+  case 220:
+    return "Laranja Muito Brilhante 14";
+  case 221:
+    return "Laranja Muito Brilhante 15";
+  case 222:
+    return "Laranja Muito Brilhante 1";
+  case 223:
+    return "Laranja Muito Brilhante 2";
+  case 224:
+    return "Laranja Muito Brilhante 3";
+  case 225:
+    return "Laranja Muito Brilhante 4";
+  case 226:
+    return "Laranja Muito Brilhante 5";
+  case 227:
+    return "Laranja Muito Brilhante 6";
+  case 228:
+    return "Laranja Muito Brilhante 7";
+  case 229:
+    return "Laranja Muito Brilhante 8";
+  case 230:
+    return "Laranja Muito Brilhante 9";
+  case 231:
+    return "Amarelo Muito Escuro 10";
+  case 232:
+    return "Amarelo Muito Escuro 11";
+  case 233:
+    return "Amarelo Muito Escuro 12";
+  case 234:
+    return "Amarelo Muito Escuro 13";
+  case 235:
+    return "Amarelo Muito Escuro 14";
+  case 236:
+    return "Amarelo Muito Escuro 15";
+  case 237:
+    return "Amarelo Muito Escuro 1";
+  case 238:
+    return "Amarelo Muito Escuro 2";
+  case 239:
+    return "Amarelo Muito Escuro 3";
+  case 240:
+    return "Amarelo Muito Escuro 4";
+  case 241:
+    return "Amarelo Muito Escuro 5";
+  case 242:
+    return "Amarelo Muito Escuro 6";
+  case 243:
+    return "Amarelo Muito Escuro 7";
+  case 244:
+    return "Amarelo Muito Escuro 8";
+  case 245:
+    return "Amarelo Muito Escuro 9";
+  case 246:
+    return "Amarelo Escuro 10";
+  case 247:
+    return "Amarelo Escuro 11";
+  case 248:
+    return "Amarelo Escuro 12";
+  case 249:
+    return "Amarelo Escuro 13";
+  case 250:
+    return "Amarelo Escuro 14";
+  case 251:
+    return "Amarelo Escuro 15";
+  case 252:
+    return "Amarelo Escuro 1";
+  case 253:
+    return "Amarelo Escuro 2";
+  case 254:
+    return "Amarelo Escuro 3";
+  case 255:
+    return "Amarelo Escuro 4";
+  case 256:
+    return "Amarelo Escuro 5";
+  case 257:
+    return "Amarelo Escuro 6";
+  case 258:
+    return "Amarelo Escuro 7";
+  case 259:
+    return "Amarelo Escuro 8";
+  case 260:
+    return "Amarelo Escuro 9";
+  case 261:
+    return "Amarelo Médio 10";
+  case 262:
+    return "Amarelo Médio 11";
+  case 263:
+    return "Amarelo Médio 12";
+  case 264:
+    return "Amarelo Médio 13";
+  case 265:
+    return "Amarelo Médio 14";
+  case 266:
+    return "Amarelo Médio 15";
+  case 267:
+    return "Amarelo Médio 1";
+  case 268:
+    return "Amarelo Médio 2";
+  case 269:
+    return "Amarelo Médio 3";
+  case 270:
+    return "Amarelo Médio 4";
+  case 271:
+    return "Amarelo Médio 5";
+  case 272:
+    return "Amarelo Médio 6";
+  case 273:
+    return "Amarelo Médio 7";
+  case 274:
+    return "Amarelo Médio 8";
+  case 275:
+    return "Amarelo Médio 9";
+  case 276:
+    return "Amarelo Brilhante 10";
+  case 277:
+    return "Amarelo Brilhante 11";
+  case 278:
+    return "Amarelo Brilhante 12";
+  case 279:
+    return "Amarelo Brilhante 13";
+  case 280:
+    return "Amarelo Brilhante 14";
+  case 281:
+    return "Amarelo Brilhante 15";
+  case 282:
+    return "Amarelo Brilhante 1";
+  case 283:
+    return "Amarelo Brilhante 2";
+  case 284:
+    return "Amarelo Brilhante 3";
+  case 285:
+    return "Amarelo Brilhante 4";
+  case 286:
+    return "Amarelo Brilhante 5";
+  case 287:
+    return "Amarelo Brilhante 6";
+  case 288:
+    return "Amarelo Brilhante 7";
+  case 289:
+    return "Amarelo Brilhante 8";
+  case 290:
+    return "Amarelo Brilhante 9";
+  case 291:
+    return "Amarelo Muito Brilhante 10";
+  case 292:
+    return "Amarelo Muito Brilhante 11";
+  case 293:
+    return "Amarelo Muito Brilhante 12";
+  case 294:
+    return "Amarelo Muito Brilhante 13";
+  case 295:
+    return "Amarelo Muito Brilhante 14";
+  case 296:
+    return "Amarelo Muito Brilhante 15";
+  case 297:
+    return "Amarelo Muito Brilhante 1";
+  case 298:
+    return "Amarelo Muito Brilhante 2";
+  case 299:
+    return "Amarelo Muito Brilhante 3";
+  case 300:
+    return "Amarelo Muito Brilhante 4";
+  case 301:
+    return "Amarelo Muito Brilhante 5";
+  case 302:
+    return "Amarelo Muito Brilhante 6";
+  case 303:
+    return "Verde Amarelo Muito Escuro 7";
+  case 304:
+    return "Verde Amarelo Muito Escuro 8";
+  case 305:
+    return "Verde Amarelo Muito Escuro 9";
+  case 306:
+    return "Verde Amarelo Muito Escuro 10";
+  case 307:
+    return "Verde Amarelo Muito Escuro 11";
+  case 308:
+    return "Verde Amarelo Muito Escuro 12";
+  case 309:
+    return "Verde Amarelo Muito Escuro 13";
+  case 310:
+    return "Verde Amarelo Muito Escuro 14";
+  case 311:
+    return "Verde Amarelo Muito Escuro 15";
+  case 312:
+    return "Verde Amarelo Muito Escuro 1";
+  case 313:
+    return "Verde Amarelo Muito Escuro 2";
+  case 314:
+    return "Verde Amarelo Muito Escuro 3";
+  case 315:
+    return "Verde Amarelo Muito Escuro 4";
+  case 316:
+    return "Verde Amarelo Muito Escuro 5";
+  case 317:
+    return "Verde Amarelo Muito Escuro 6";
+  case 318:
+    return "Verde Amarelo Escuro 7";
+  case 319:
+    return "Verde Amarelo Escuro 8";
+  case 320:
+    return "Verde Amarelo Escuro 9";
+  case 321:
+    return "Verde Amarelo Escuro 10";
+  case 322:
+    return "Verde Amarelo Escuro 11";
+  case 323:
+    return "Verde Amarelo Escuro 12";
+  case 324:
+    return "Verde Amarelo Escuro 13";
+  case 325:
+    return "Verde Amarelo Escuro 14";
+  case 326:
+    return "Verde Amarelo Escuro 15";
+  case 327:
+    return "Verde Amarelo Escuro 1";
+  case 328:
+    return "Verde Amarelo Escuro 2";
+  case 329:
+    return "Verde Amarelo Escuro 3";
+  case 330:
+    return "Verde Amarelo Escuro 4";
+  case 331:
+    return "Verde Amarelo Escuro 5";
+  case 332:
+    return "Verde Amarelo Escuro 6";
+  case 333:
+    return "Verde Amarelo Médio 7";
+  case 334:
+    return "Verde Amarelo Médio 8";
+  case 335:
+    return "Verde Amarelo Médio 9";
+  case 336:
+    return "Verde Amarelo Médio 10";
+  case 337:
+    return "Verde Amarelo Médio 11";
+  case 338:
+    return "Verde Amarelo Médio 12";
+  case 339:
+    return "Verde Amarelo Médio 13";
+  case 340:
+    return "Verde Amarelo Médio 14";
+  case 341:
+    return "Verde Amarelo Médio 15";
+  case 342:
+    return "Verde Amarelo Médio 1";
+  case 343:
+    return "Verde Amarelo Médio 2";
+  case 344:
+    return "Verde Amarelo Médio 3";
+  case 345:
+    return "Verde Amarelo Médio 4";
+  case 346:
+    return "Verde Amarelo Médio 5";
+  case 347:
+    return "Verde Amarelo Médio 6";
+  case 348:
+    return "Verde Amarelo Brilhante 7";
+  case 349:
+    return "Verde Amarelo Brilhante 8";
+  case 350:
+    return "Verde Amarelo Brilhante 9";
+  case 351:
+    return "Verde Amarelo Brilhante 10";
+  case 352:
+    return "Verde Amarelo Brilhante 11";
+  case 353:
+    return "Verde Amarelo Brilhante 12";
+  case 354:
+    return "Verde Amarelo Brilhante 13";
+  case 355:
+    return "Verde Amarelo Brilhante 14";
+  case 356:
+    return "Verde Amarelo Brilhante 15";
+  case 357:
+    return "Verde Amarelo Brilhante 1";
+  case 358:
+    return "Verde Amarelo Brilhante 2";
+  case 359:
+    return "Verde Amarelo Brilhante 3";
+  case 360:
+    return "Verde Amarelo Brilhante 4";
+  case 361:
+    return "Verde Amarelo Brilhante 5";
+  case 362:
+    return "Verde Amarelo Brilhante 6";
+  case 363:
+    return "Verde Amarelo Muito Brilhante 7";
+  case 364:
+    return "Verde Amarelo Muito Brilhante 8";
+  case 365:
+    return "Verde Amarelo Muito Brilhante 9";
+  case 366:
+    return "Verde Amarelo Muito Brilhante 10";
+  case 367:
+    return "Verde Amarelo Muito Brilhante 11";
+  case 368:
+    return "Verde Amarelo Muito Brilhante 12";
+  case 369:
+    return "Verde Amarelo Muito Brilhante 13";
+  case 370:
+    return "Verde Amarelo Muito Brilhante 14";
+  case 371:
+    return "Verde Amarelo Muito Brilhante 15";
+  case 372:
+    return "Verde Amarelo Muito Brilhante 1";
+  case 373:
+    return "Verde Amarelo Muito Brilhante 2";
+  case 374:
+    return "Verde Amarelo Muito Brilhante 3";
+  case 375:
+    return "Verde Muito Escuro 4";
+  case 376:
+    return "Verde Muito Escuro 5";
+  case 377:
+    return "Verde Muito Escuro 6";
+  case 378:
+    return "Verde Muito Escuro 7";
+  case 379:
+    return "Verde Muito Escuro 8";
+  case 380:
+    return "Verde Muito Escuro 9";
+  case 381:
+    return "Verde Muito Escuro 10";
+  case 382:
+    return "Verde Muito Escuro 11";
+  case 383:
+    return "Verde Muito Escuro 12";
+  case 384:
+    return "Verde Muito Escuro 13";
+  case 385:
+    return "Verde Muito Escuro 14";
+  case 386:
+    return "Verde Muito Escuro 15";
+  case 387:
+    return "Verde Muito Escuro 1";
+  case 388:
+    return "Verde Muito Escuro 2";
+  case 389:
+    return "Verde Muito Escuro 3";
+  case 390:
+    return "Verde Escuro 4";
+  case 391:
+    return "Verde Escuro 5";
+  case 392:
+    return "Verde Escuro 6";
+  case 393:
+    return "Verde Escuro 7";
+  case 394:
+    return "Verde Escuro 8";
+  case 395:
+    return "Verde Escuro 9";
+  case 396:
+    return "Verde Escuro 10";
+  case 397:
+    return "Verde Escuro 11";
+  case 398:
+    return "Verde Escuro 12";
+  case 399:
+    return "Verde Escuro 13";
+  case 400:
+    return "Verde Escuro 14";
+  case 401:
+    return "Verde Escuro 15";
+  case 402:
+    return "Verde Escuro 1";
+  case 403:
+    return "Verde Escuro 2";
+  case 404:
+    return "Verde Escuro 3";
+  case 405:
+    return "Verde Médio 4";
+  case 406:
+    return "Verde Médio 5";
+  case 407:
+    return "Verde Médio 6";
+  case 408:
+    return "Verde Médio 7";
+  case 409:
+    return "Verde Médio 8";
+  case 410:
+    return "Verde Médio 9";
+  case 411:
+    return "Verde Médio 10";
+  case 412:
+    return "Verde Médio 11";
+  case 413:
+    return "Verde Médio 12";
+  case 414:
+    return "Verde Médio 13";
+  case 415:
+    return "Verde Médio 14";
+  case 416:
+    return "Verde Médio 15";
+  case 417:
+    return "Verde Médio 1";
+  case 418:
+    return "Verde Médio 2";
+  case 419:
+    return "Verde Médio 3";
+  case 420:
+    return "Verde Brilhante 4";
+  case 421:
+    return "Verde Brilhante 5";
+  case 422:
+    return "Verde Brilhante 6";
+  case 423:
+    return "Verde Brilhante 7";
+  case 424:
+    return "Verde Brilhante 8";
+  case 425:
+    return "Verde Brilhante 9";
+  case 426:
+    return "Verde Brilhante 10";
+  case 427:
+    return "Verde Brilhante 11";
+  case 428:
+    return "Verde Brilhante 12";
+  case 429:
+    return "Verde Brilhante 13";
+  case 430:
+    return "Verde Brilhante 14";
+  case 431:
+    return "Verde Brilhante 15";
+  case 432:
+    return "Verde Brilhante 1";
+  case 433:
+    return "Verde Brilhante 2";
+  case 434:
+    return "Verde Brilhante 3";
+  case 435:
+    return "Verde Muito Brilhante 4";
+  case 436:
+    return "Verde Muito Brilhante 5";
+  case 437:
+    return "Verde Muito Brilhante 6";
+  case 438:
+    return "Verde Muito Brilhante 7";
+  case 439:
+    return "Verde Muito Brilhante 8";
+  case 440:
+    return "Verde Muito Brilhante 9";
+  case 441:
+    return "Verde Muito Brilhante 10";
+  case 442:
+    return "Verde Muito Brilhante 11";
+  case 443:
+    return "Verde Muito Brilhante 12";
+  case 444:
+    return "Verde Muito Brilhante 13";
+  case 445:
+    return "Verde Muito Brilhante 14";
+  case 446:
+    return "Verde Muito Brilhante 15";
+  case 447:
+    return "Ciano Muito Escuro 1";
+  case 448:
+    return "Ciano Muito Escuro 2";
+  case 449:
+    return "Ciano Muito Escuro 3";
+  case 450:
+    return "Ciano Muito Escuro 4";
+  case 451:
+    return "Ciano Muito Escuro 5";
+  case 452:
+    return "Ciano Muito Escuro 6";
+  case 453:
+    return "Ciano Muito Escuro 7";
+  case 454:
+    return "Ciano Muito Escuro 8";
+  case 455:
+    return "Ciano Muito Escuro 9";
+  case 456:
+    return "Ciano Muito Escuro 10";
+  case 457:
+    return "Ciano Muito Escuro 11";
+  case 458:
+    return "Ciano Muito Escuro 12";
+  case 459:
+    return "Ciano Muito Escuro 13";
+  case 460:
+    return "Ciano Muito Escuro 14";
+  case 461:
+    return "Ciano Muito Escuro 15";
+  case 462:
+    return "Ciano Escuro 1";
+  case 463:
+    return "Ciano Escuro 2";
+  case 464:
+    return "Ciano Escuro 3";
+  case 465:
+    return "Ciano Escuro 4";
+  case 466:
+    return "Ciano Escuro 5";
+  case 467:
+    return "Ciano Escuro 6";
+  case 468:
+    return "Ciano Escuro 7";
+  case 469:
+    return "Ciano Escuro 8";
+  case 470:
+    return "Ciano Escuro 9";
+  case 471:
+    return "Ciano Escuro 10";
+  case 472:
+    return "Ciano Escuro 11";
+  case 473:
+    return "Ciano Escuro 12";
+  case 474:
+    return "Ciano Escuro 13";
+  case 475:
+    return "Ciano Escuro 14";
+  case 476:
+    return "Ciano Escuro 15";
+  case 477:
+    return "Ciano Médio 1";
+  case 478:
+    return "Ciano Médio 2";
+  case 479:
+    return "Ciano Médio 3";
+  case 480:
+    return "Ciano Médio 4";
+  case 481:
+    return "Ciano Médio 5";
+  case 482:
+    return "Ciano Médio 6";
+  case 483:
+    return "Ciano Médio 7";
+  case 484:
+    return "Ciano Médio 8";
+  case 485:
+    return "Ciano Médio 9";
+  case 486:
+    return "Ciano Médio 10";
+  case 487:
+    return "Ciano Médio 11";
+  case 488:
+    return "Ciano Médio 12";
+  case 489:
+    return "Ciano Médio 13";
+  case 490:
+    return "Ciano Médio 14";
+  case 491:
+    return "Ciano Médio 15";
+  case 492:
+    return "Ciano Brilhante 1";
+  case 493:
+    return "Ciano Brilhante 2";
+  case 494:
+    return "Ciano Brilhante 3";
+  case 495:
+    return "Ciano Brilhante 4";
+  case 496:
+    return "Ciano Brilhante 5";
+  case 497:
+    return "Ciano Brilhante 6";
+  case 498:
+    return "Ciano Brilhante 7";
+  case 499:
+    return "Ciano Brilhante 8";
+  case 500:
+    return "Ciano Brilhante 9";
+  case 501:
+    return "Ciano Brilhante 10";
+  case 502:
+    return "Ciano Brilhante 11";
+  case 503:
+    return "Ciano Brilhante 12";
+  case 504:
+    return "Ciano Brilhante 13";
+  case 505:
+    return "Ciano Brilhante 14";
+  case 506:
+    return "Ciano Brilhante 15";
+  case 507:
+    return "Ciano Muito Brilhante 1";
+  case 508:
+    return "Ciano Muito Brilhante 2";
+  case 509:
+    return "Ciano Muito Brilhante 3";
+  case 510:
+    return "Ciano Muito Brilhante 4";
+  case 511:
+    return "Ciano Muito Brilhante 5";
+  case 512:
+    return "Ciano Muito Brilhante 6";
+  case 513:
+    return "Ciano Muito Brilhante 7";
+  case 514:
+    return "Ciano Muito Brilhante 8";
+  case 515:
+    return "Ciano Muito Brilhante 9";
+  case 516:
+    return "Ciano Muito Brilhante 10";
+  case 517:
+    return "Ciano Muito Brilhante 11";
+  case 518:
+    return "Ciano Muito Brilhante 12";
+  case 519:
+    return "Azul Muito Escuro 13";
+  case 520:
+    return "Azul Muito Escuro 14";
+  case 521:
+    return "Azul Muito Escuro 15";
+  case 522:
+    return "Azul Muito Escuro 1";
+  case 523:
+    return "Azul Muito Escuro 2";
+  case 524:
+    return "Azul Muito Escuro 3";
+  case 525:
+    return "Azul Muito Escuro 4";
+  case 526:
+    return "Azul Muito Escuro 5";
+  case 527:
+    return "Azul Muito Escuro 6";
+  case 528:
+    return "Azul Muito Escuro 7";
+  case 529:
+    return "Azul Muito Escuro 8";
+  case 530:
+    return "Azul Muito Escuro 9";
+  case 531:
+    return "Azul Muito Escuro 10";
+  case 532:
+    return "Azul Muito Escuro 11";
+  case 533:
+    return "Azul Muito Escuro 12";
+  case 534:
+    return "Azul Escuro 13";
+  case 535:
+    return "Azul Escuro 14";
+  case 536:
+    return "Azul Escuro 15";
+  case 537:
+    return "Azul Escuro 1";
+  case 538:
+    return "Azul Escuro 2";
+  case 539:
+    return "Azul Escuro 3";
+  case 540:
+    return "Azul Escuro 4";
+  case 541:
+    return "Azul Escuro 5";
+  case 542:
+    return "Azul Escuro 6";
+  case 543:
+    return "Azul Escuro 7";
+  case 544:
+    return "Azul Escuro 8";
+  case 545:
+    return "Azul Escuro 9";
+  case 546:
+    return "Azul Escuro 10";
+  case 547:
+    return "Azul Escuro 11";
+  case 548:
+    return "Azul Escuro 12";
+  case 549:
+    return "Azul Médio 13";
+  case 550:
+    return "Azul Médio 14";
+  case 551:
+    return "Azul Médio 15";
+  case 552:
+    return "Azul Médio 1";
+  case 553:
+    return "Azul Médio 2";
+  case 554:
+    return "Azul Médio 3";
+  case 555:
+    return "Azul Médio 4";
+  case 556:
+    return "Azul Médio 5";
+  case 557:
+    return "Azul Médio 6";
+  case 558:
+    return "Azul Médio 7";
+  case 559:
+    return "Azul Médio 8";
+  case 560:
+    return "Azul Médio 9";
+  case 561:
+    return "Azul Médio 10";
+  case 562:
+    return "Azul Médio 11";
+  case 563:
+    return "Azul Médio 12";
+  case 564:
+    return "Azul Brilhante 13";
+  case 565:
+    return "Azul Brilhante 14";
+  case 566:
+    return "Azul Brilhante 15";
+  case 567:
+    return "Azul Brilhante 1";
+  case 568:
+    return "Azul Brilhante 2";
+  case 569:
+    return "Azul Brilhante 3";
+  case 570:
+    return "Azul Brilhante 4";
+  case 571:
+    return "Azul Brilhante 5";
+  case 572:
+    return "Azul Brilhante 6";
+  case 573:
+    return "Azul Brilhante 7";
+  case 574:
+    return "Azul Brilhante 8";
+  case 575:
+    return "Azul Brilhante 9";
+  case 576:
+    return "Azul Brilhante 10";
+  case 577:
+    return "Azul Brilhante 11";
+  case 578:
+    return "Azul Brilhante 12";
+  case 579:
+    return "Azul Muito Brilhante 13";
+  case 580:
+    return "Azul Muito Brilhante 14";
+  case 581:
+    return "Azul Muito Brilhante 15";
+  case 582:
+    return "Azul Muito Brilhante 1";
+  case 583:
+    return "Azul Muito Brilhante 2";
+  case 584:
+    return "Azul Muito Brilhante 3";
+  case 585:
+    return "Azul Muito Brilhante 4";
+  case 586:
+    return "Azul Muito Brilhante 5";
+  case 587:
+    return "Azul Muito Brilhante 6";
+  case 588:
+    return "Azul Muito Brilhante 7";
+  case 589:
+    return "Azul Muito Brilhante 8";
+  case 590:
+    return "Azul Muito Brilhante 9";
+  case 591:
+    return "Azul Profundo Muito Escuro 10";
+  case 592:
+    return "Azul Profundo Muito Escuro 11";
+  case 593:
+    return "Azul Profundo Muito Escuro 12";
+  case 594:
+    return "Azul Profundo Muito Escuro 13";
+  case 595:
+    return "Azul Profundo Muito Escuro 14";
+  case 596:
+    return "Azul Profundo Muito Escuro 15";
+  case 597:
+    return "Azul Profundo Muito Escuro 1";
+  case 598:
+    return "Azul Profundo Muito Escuro 2";
+  case 599:
+    return "Azul Profundo Muito Escuro 3";
+  case 600:
+    return "Azul Profundo Muito Escuro 4";
+  case 601:
+    return "Azul Profundo Muito Escuro 5";
+  case 602:
+    return "Azul Profundo Muito Escuro 6";
+  case 603:
+    return "Azul Profundo Muito Escuro 7";
+  case 604:
+    return "Azul Profundo Muito Escuro 8";
+  case 605:
+    return "Azul Profundo Muito Escuro 9";
+  case 606:
+    return "Azul Profundo Escuro 10";
+  case 607:
+    return "Azul Profundo Escuro 11";
+  case 608:
+    return "Azul Profundo Escuro 12";
+  case 609:
+    return "Azul Profundo Escuro 13";
+  case 610:
+    return "Azul Profundo Escuro 14";
+  case 611:
+    return "Azul Profundo Escuro 15";
+  case 612:
+    return "Azul Profundo Escuro 1";
+  case 613:
+    return "Azul Profundo Escuro 2";
+  case 614:
+    return "Azul Profundo Escuro 3";
+  case 615:
+    return "Azul Profundo Escuro 4";
+  case 616:
+    return "Azul Profundo Escuro 5";
+  case 617:
+    return "Azul Profundo Escuro 6";
+  case 618:
+    return "Azul Profundo Escuro 7";
+  case 619:
+    return "Azul Profundo Escuro 8";
+  case 620:
+    return "Azul Profundo Escuro 9";
+  case 621:
+    return "Azul Profundo Médio 10";
+  case 622:
+    return "Azul Profundo Médio 11";
+  case 623:
+    return "Azul Profundo Médio 12";
+  case 624:
+    return "Azul Profundo Médio 13";
+  case 625:
+    return "Azul Profundo Médio 14";
+  case 626:
+    return "Azul Profundo Médio 15";
+  case 627:
+    return "Azul Profundo Médio 1";
+  case 628:
+    return "Azul Profundo Médio 2";
+  case 629:
+    return "Azul Profundo Médio 3";
+  case 630:
+    return "Azul Profundo Médio 4";
+  case 631:
+    return "Azul Profundo Médio 5";
+  case 632:
+    return "Azul Profundo Médio 6";
+  case 633:
+    return "Azul Profundo Médio 7";
+  case 634:
+    return "Azul Profundo Médio 8";
+  case 635:
+    return "Azul Profundo Médio 9";
+  case 636:
+    return "Azul Profundo Brilhante 10";
+  case 637:
+    return "Azul Profundo Brilhante 11";
+  case 638:
+    return "Azul Profundo Brilhante 12";
+  case 639:
+    return "Azul Profundo Brilhante 13";
+  case 640:
+    return "Azul Profundo Brilhante 14";
+  case 641:
+    return "Azul Profundo Brilhante 15";
+  case 642:
+    return "Azul Profundo Brilhante 1";
+  case 643:
+    return "Azul Profundo Brilhante 2";
+  case 644:
+    return "Azul Profundo Brilhante 3";
+  case 645:
+    return "Azul Profundo Brilhante 4";
+  case 646:
+    return "Azul Profundo Brilhante 5";
+  case 647:
+    return "Azul Profundo Brilhante 6";
+  case 648:
+    return "Azul Profundo Brilhante 7";
+  case 649:
+    return "Azul Profundo Brilhante 8";
+  case 650:
+    return "Azul Profundo Brilhante 9";
+  case 651:
+    return "Azul Profundo Muito Brilhante 10";
+  case 652:
+    return "Azul Profundo Muito Brilhante 11";
+  case 653:
+    return "Azul Profundo Muito Brilhante 12";
+  case 654:
+    return "Azul Profundo Muito Brilhante 13";
+  case 655:
+    return "Azul Profundo Muito Brilhante 14";
+  case 656:
+    return "Azul Profundo Muito Brilhante 15";
+  case 657:
+    return "Azul Profundo Muito Brilhante 1";
+  case 658:
+    return "Azul Profundo Muito Brilhante 2";
+  case 659:
+    return "Azul Profundo Muito Brilhante 3";
+  case 660:
+    return "Azul Profundo Muito Brilhante 4";
+  case 661:
+    return "Azul Profundo Muito Brilhante 5";
+  case 662:
+    return "Azul Profundo Muito Brilhante 6";
+  case 663:
+    return "Índigo Muito Escuro 7";
+  case 664:
+    return "Índigo Muito Escuro 8";
+  case 665:
+    return "Índigo Muito Escuro 9";
+  case 666:
+    return "Índigo Muito Escuro 10";
+  case 667:
+    return "Índigo Muito Escuro 11";
+  case 668:
+    return "Índigo Muito Escuro 12";
+  case 669:
+    return "Índigo Muito Escuro 13";
+  case 670:
+    return "Índigo Muito Escuro 14";
+  case 671:
+    return "Índigo Muito Escuro 15";
+  case 672:
+    return "Índigo Muito Escuro 1";
+  case 673:
+    return "Índigo Muito Escuro 2";
+  case 674:
+    return "Índigo Muito Escuro 3";
+  case 675:
+    return "Índigo Muito Escuro 4";
+  case 676:
+    return "Índigo Muito Escuro 5";
+  case 677:
+    return "Índigo Muito Escuro 6";
+  case 678:
+    return "Índigo Escuro 7";
+  case 679:
+    return "Índigo Escuro 8";
+  case 680:
+    return "Índigo Escuro 9";
+  case 681:
+    return "Índigo Escuro 10";
+  case 682:
+    return "Índigo Escuro 11";
+  case 683:
+    return "Índigo Escuro 12";
+  case 684:
+    return "Índigo Escuro 13";
+  case 685:
+    return "Índigo Escuro 14";
+  case 686:
+    return "Índigo Escuro 15";
+  case 687:
+    return "Índigo Escuro 1";
+  case 688:
+    return "Índigo Escuro 2";
+  case 689:
+    return "Índigo Escuro 3";
+  case 690:
+    return "Índigo Escuro 4";
+  case 691:
+    return "Índigo Escuro 5";
+  case 692:
+    return "Índigo Escuro 6";
+  case 693:
+    return "Índigo Médio 7";
+  case 694:
+    return "Índigo Médio 8";
+  case 695:
+    return "Índigo Médio 9";
+  case 696:
+    return "Índigo Médio 10";
+  case 697:
+    return "Índigo Médio 11";
+  case 698:
+    return "Índigo Médio 12";
+  case 699:
+    return "Índigo Médio 13";
+  case 700:
+    return "Índigo Médio 14";
+  case 701:
+    return "Índigo Médio 15";
+  case 702:
+    return "Índigo Médio 1";
+  case 703:
+    return "Índigo Médio 2";
+  case 704:
+    return "Índigo Médio 3";
+  case 705:
+    return "Índigo Médio 4";
+  case 706:
+    return "Índigo Médio 5";
+  case 707:
+    return "Índigo Médio 6";
+  case 708:
+    return "Índigo Brilhante 7";
+  case 709:
+    return "Índigo Brilhante 8";
+  case 710:
+    return "Índigo Brilhante 9";
+  case 711:
+    return "Índigo Brilhante 10";
+  case 712:
+    return "Índigo Brilhante 11";
+  case 713:
+    return "Índigo Brilhante 12";
+  case 714:
+    return "Índigo Brilhante 13";
+  case 715:
+    return "Índigo Brilhante 14";
+  case 716:
+    return "Índigo Brilhante 15";
+  case 717:
+    return "Índigo Brilhante 1";
+  case 718:
+    return "Índigo Brilhante 2";
+  case 719:
+    return "Índigo Brilhante 3";
+  case 720:
+    return "Índigo Brilhante 4";
+  case 721:
+    return "Índigo Brilhante 5";
+  case 722:
+    return "Índigo Brilhante 6";
+  case 723:
+    return "Índigo Muito Brilhante 7";
+  case 724:
+    return "Índigo Muito Brilhante 8";
+  case 725:
+    return "Índigo Muito Brilhante 9";
+  case 726:
+    return "Índigo Muito Brilhante 10";
+  case 727:
+    return "Índigo Muito Brilhante 11";
+  case 728:
+    return "Índigo Muito Brilhante 12";
+  case 729:
+    return "Índigo Muito Brilhante 13";
+  case 730:
+    return "Índigo Muito Brilhante 14";
+  case 731:
+    return "Índigo Muito Brilhante 15";
+  case 732:
+    return "Índigo Muito Brilhante 1";
+  case 733:
+    return "Índigo Muito Brilhante 2";
+  case 734:
+    return "Índigo Muito Brilhante 3";
+  case 735:
+    return "Roxo Muito Escuro 4";
+  case 736:
+    return "Roxo Muito Escuro 5";
+  case 737:
+    return "Roxo Muito Escuro 6";
+  case 738:
+    return "Roxo Muito Escuro 7";
+  case 739:
+    return "Roxo Muito Escuro 8";
+  case 740:
+    return "Roxo Muito Escuro 9";
+  case 741:
+    return "Roxo Muito Escuro 10";
+  case 742:
+    return "Roxo Muito Escuro 11";
+  case 743:
+    return "Roxo Muito Escuro 12";
+  case 744:
+    return "Roxo Muito Escuro 13";
+  case 745:
+    return "Roxo Muito Escuro 14";
+  case 746:
+    return "Roxo Muito Escuro 15";
+  case 747:
+    return "Roxo Muito Escuro 1";
+  case 748:
+    return "Roxo Muito Escuro 2";
+  case 749:
+    return "Roxo Muito Escuro 3";
+  case 750:
+    return "Roxo Escuro 4";
+  case 751:
+    return "Roxo Escuro 5";
+  case 752:
+    return "Roxo Escuro 6";
+  case 753:
+    return "Roxo Escuro 7";
+  case 754:
+    return "Roxo Escuro 8";
+  case 755:
+    return "Roxo Escuro 9";
+  case 756:
+    return "Roxo Escuro 10";
+  case 757:
+    return "Roxo Escuro 11";
+  case 758:
+    return "Roxo Escuro 12";
+  case 759:
+    return "Roxo Escuro 13";
+  case 760:
+    return "Roxo Escuro 14";
+  case 761:
+    return "Roxo Escuro 15";
+  case 762:
+    return "Roxo Escuro 1";
+  case 763:
+    return "Roxo Escuro 2";
+  case 764:
+    return "Roxo Escuro 3";
+  case 765:
+    return "Roxo Médio 4";
+  case 766:
+    return "Roxo Médio 5";
+  case 767:
+    return "Roxo Médio 6";
+  case 768:
+    return "Roxo Médio 7";
+  case 769:
+    return "Roxo Médio 8";
+  case 770:
+    return "Roxo Médio 9";
+  case 771:
+    return "Roxo Médio 10";
+  case 772:
+    return "Roxo Médio 11";
+  case 773:
+    return "Roxo Médio 12";
+  case 774:
+    return "Roxo Médio 13";
+  case 775:
+    return "Roxo Médio 14";
+  case 776:
+    return "Roxo Médio 15";
+  case 777:
+    return "Roxo Médio 1";
+  case 778:
+    return "Roxo Médio 2";
+  case 779:
+    return "Roxo Médio 3";
+  case 780:
+    return "Roxo Brilhante 4";
+  case 781:
+    return "Roxo Brilhante 5";
+  case 782:
+    return "Roxo Brilhante 6";
+  case 783:
+    return "Roxo Brilhante 7";
+  case 784:
+    return "Roxo Brilhante 8";
+  case 785:
+    return "Roxo Brilhante 9";
+  case 786:
+    return "Roxo Brilhante 10";
+  case 787:
+    return "Roxo Brilhante 11";
+  case 788:
+    return "Roxo Brilhante 12";
+  case 789:
+    return "Roxo Brilhante 13";
+  case 790:
+    return "Roxo Brilhante 14";
+  case 791:
+    return "Roxo Brilhante 15";
+  case 792:
+    return "Roxo Brilhante 1";
+  case 793:
+    return "Roxo Brilhante 2";
+  case 794:
+    return "Roxo Brilhante 3";
+  case 795:
+    return "Roxo Muito Brilhante 4";
+  case 796:
+    return "Roxo Muito Brilhante 5";
+  case 797:
+    return "Roxo Muito Brilhante 6";
+  case 798:
+    return "Roxo Muito Brilhante 7";
+  case 799:
+    return "Roxo Muito Brilhante 8";
+  case 800:
+    return "Roxo Muito Brilhante 9";
+  case 801:
+    return "Roxo Muito Brilhante 10";
+  case 802:
+    return "Roxo Muito Brilhante 11";
+  case 803:
+    return "Roxo Muito Brilhante 12";
+  case 804:
+    return "Roxo Muito Brilhante 13";
+  case 805:
+    return "Roxo Muito Brilhante 14";
+  case 806:
+    return "Roxo Muito Brilhante 15";
+  case 807:
+    return "Magenta Muito Escuro 1";
+  case 808:
+    return "Magenta Muito Escuro 2";
+  case 809:
+    return "Magenta Muito Escuro 3";
+  case 810:
+    return "Magenta Muito Escuro 4";
+  case 811:
+    return "Magenta Muito Escuro 5";
+  case 812:
+    return "Magenta Muito Escuro 6";
+  case 813:
+    return "Magenta Muito Escuro 7";
+  case 814:
+    return "Magenta Muito Escuro 8";
+  case 815:
+    return "Magenta Muito Escuro 9";
+  case 816:
+    return "Magenta Muito Escuro 10";
+  case 817:
+    return "Magenta Muito Escuro 11";
+  case 818:
+    return "Magenta Muito Escuro 12";
+  case 819:
+    return "Magenta Muito Escuro 13";
+  case 820:
+    return "Magenta Muito Escuro 14";
+  case 821:
+    return "Magenta Muito Escuro 15";
+  case 822:
+    return "Magenta Escuro 1";
+  case 823:
+    return "Magenta Escuro 2";
+  case 824:
+    return "Magenta Escuro 3";
+  case 825:
+    return "Magenta Escuro 4";
+  case 826:
+    return "Magenta Escuro 5";
+  case 827:
+    return "Magenta Escuro 6";
+  case 828:
+    return "Magenta Escuro 7";
+  case 829:
+    return "Magenta Escuro 8";
+  case 830:
+    return "Magenta Escuro 9";
+  case 831:
+    return "Magenta Escuro 10";
+  case 832:
+    return "Magenta Escuro 11";
+  case 833:
+    return "Magenta Escuro 12";
+  case 834:
+    return "Magenta Escuro 13";
+  case 835:
+    return "Magenta Escuro 14";
+  case 836:
+    return "Magenta Escuro 15";
+  case 837:
+    return "Magenta Médio 1";
+  case 838:
+    return "Magenta Médio 2";
+  case 839:
+    return "Magenta Médio 3";
+  case 840:
+    return "Magenta Médio 4";
+  case 841:
+    return "Magenta Médio 5";
+  case 842:
+    return "Magenta Médio 6";
+  case 843:
+    return "Magenta Médio 7";
+  case 844:
+    return "Magenta Médio 8";
+  case 845:
+    return "Magenta Médio 9";
+  case 846:
+    return "Magenta Médio 10";
+  case 847:
+    return "Magenta Médio 11";
+  case 848:
+    return "Magenta Médio 12";
+  case 849:
+    return "Magenta Médio 13";
+  case 850:
+    return "Magenta Médio 14";
+  case 851:
+    return "Magenta Médio 15";
+  case 852:
+    return "Magenta Brilhante 1";
+  case 853:
+    return "Magenta Brilhante 2";
+  case 854:
+    return "Magenta Brilhante 3";
+  case 855:
+    return "Magenta Brilhante 4";
+  case 856:
+    return "Magenta Brilhante 5";
+  case 857:
+    return "Magenta Brilhante 6";
+  case 858:
+    return "Magenta Brilhante 7";
+  case 859:
+    return "Magenta Brilhante 8";
+  case 860:
+    return "Magenta Brilhante 9";
+  case 861:
+    return "Magenta Brilhante 10";
+  case 862:
+    return "Magenta Brilhante 11";
+  case 863:
+    return "Magenta Brilhante 12";
+  case 864:
+    return "Magenta Brilhante 13";
+  case 865:
+    return "Magenta Brilhante 14";
+  case 866:
+    return "Magenta Brilhante 15";
+  case 867:
+    return "Magenta Muito Brilhante 1";
+  case 868:
+    return "Magenta Muito Brilhante 2";
+  case 869:
+    return "Magenta Muito Brilhante 3";
+  case 870:
+    return "Magenta Muito Brilhante 4";
+  case 871:
+    return "Magenta Muito Brilhante 5";
+  case 872:
+    return "Magenta Muito Brilhante 6";
+  case 873:
+    return "Magenta Muito Brilhante 7";
+  case 874:
+    return "Magenta Muito Brilhante 8";
+  case 875:
+    return "Magenta Muito Brilhante 9";
+  case 876:
+    return "Magenta Muito Brilhante 10";
+  case 877:
+    return "Magenta Muito Brilhante 11";
+  case 878:
+    return "Magenta Muito Brilhante 12";
+  case 879:
+    return "Carmesim Muito Escuro 13";
+  case 880:
+    return "Carmesim Muito Escuro 14";
+  case 881:
+    return "Carmesim Muito Escuro 15";
+  case 882:
+    return "Carmesim Muito Escuro 1";
+  case 883:
+    return "Carmesim Muito Escuro 2";
+  case 884:
+    return "Carmesim Muito Escuro 3";
+  case 885:
+    return "Carmesim Muito Escuro 4";
+  case 886:
+    return "Carmesim Muito Escuro 5";
+  case 887:
+    return "Carmesim Muito Escuro 6";
+  case 888:
+    return "Carmesim Muito Escuro 7";
+  case 889:
+    return "Carmesim Muito Escuro 8";
+  case 890:
+    return "Carmesim Muito Escuro 9";
+  case 891:
+    return "Carmesim Muito Escuro 10";
+  case 892:
+    return "Carmesim Muito Escuro 11";
+  case 893:
+    return "Carmesim Muito Escuro 12";
+  case 894:
+    return "Carmesim Escuro 13";
+  case 895:
+    return "Carmesim Escuro 14";
+  case 896:
+    return "Carmesim Escuro 15";
+  case 897:
+    return "Carmesim Escuro 1";
+  case 898:
+    return "Carmesim Escuro 2";
+  case 899:
+    return "Carmesim Escuro 3";
+  case 900:
+    return "Carmesim Escuro 4";
+  case 901:
+    return "Carmesim Escuro 5";
+  case 902:
+    return "Carmesim Escuro 6";
+  case 903:
+    return "Carmesim Escuro 7";
+  case 904:
+    return "Carmesim Escuro 8";
+  case 905:
+    return "Carmesim Escuro 9";
+  case 906:
+    return "Carmesim Escuro 10";
+  case 907:
+    return "Carmesim Escuro 11";
+  case 908:
+    return "Carmesim Escuro 12";
+  case 909:
+    return "Carmesim Médio 13";
+  case 910:
+    return "Carmesim Médio 14";
+  case 911:
+    return "Carmesim Médio 15";
+  case 912:
+    return "Carmesim Médio 1";
+  case 913:
+    return "Carmesim Médio 2";
+  case 914:
+    return "Carmesim Médio 3";
+  case 915:
+    return "Carmesim Médio 4";
+  case 916:
+    return "Carmesim Médio 5";
+  case 917:
+    return "Carmesim Médio 6";
+  case 918:
+    return "Carmesim Médio 7";
+  case 919:
+    return "Carmesim Médio 8";
+  case 920:
+    return "Carmesim Médio 9";
+  case 921:
+    return "Carmesim Médio 10";
+  case 922:
+    return "Carmesim Médio 11";
+  case 923:
+    return "Carmesim Médio 12";
+  case 924:
+    return "Carmesim Brilhante 13";
+  case 925:
+    return "Carmesim Brilhante 14";
+  case 926:
+    return "Carmesim Brilhante 15";
+  case 927:
+    return "Carmesim Brilhante 1";
+  case 928:
+    return "Carmesim Brilhante 2";
+  case 929:
+    return "Carmesim Brilhante 3";
+  case 930:
+    return "Carmesim Brilhante 4";
+  case 931:
+    return "Carmesim Brilhante 5";
+  case 932:
+    return "Carmesim Brilhante 6";
+  case 933:
+    return "Carmesim Brilhante 7";
+  case 934:
+    return "Carmesim Brilhante 8";
+  case 935:
+    return "Carmesim Brilhante 9";
+  case 936:
+    return "Carmesim Brilhante 10";
+  case 937:
+    return "Carmesim Brilhante 11";
+  case 938:
+    return "Carmesim Brilhante 12";
+  case 939:
+    return "Carmesim Muito Brilhante 13";
+  case 940:
+    return "Carmesim Muito Brilhante 14";
+  case 941:
+    return "Carmesim Muito Brilhante 15";
+  case 942:
+    return "Carmesim Muito Brilhante 1";
+  case 943:
+    return "Carmesim Muito Brilhante 2";
+  case 944:
+    return "Carmesim Muito Brilhante 3";
+  case 945:
+    return "Carmesim Muito Brilhante 4";
+  case 946:
+    return "Carmesim Muito Brilhante 5";
+  case 947:
+    return "Carmesim Muito Brilhante 6";
+  case 948:
+    return "Carmesim Muito Brilhante 7";
+  case 949:
+    return "Carmesim Muito Brilhante 8";
+  case 950:
+    return "Carmesim Muito Brilhante 9";
+  case 951:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 952:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 953:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 954:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 955:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 956:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 957:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 958:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 959:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 960:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 961:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 962:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 963:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 964:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 965:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 966:
+    return "Vermelho Escuro Escuro 10";
+  case 967:
+    return "Vermelho Escuro Escuro 11";
+  case 968:
+    return "Vermelho Escuro Escuro 12";
+  case 969:
+    return "Vermelho Escuro Escuro 13";
+  case 970:
+    return "Vermelho Escuro Escuro 14";
+  case 971:
+    return "Vermelho Escuro Escuro 15";
+  case 972:
+    return "Vermelho Escuro Escuro 1";
+  case 973:
+    return "Vermelho Escuro Escuro 2";
+  case 974:
+    return "Vermelho Escuro Escuro 3";
+  case 975:
+    return "Vermelho Escuro Escuro 4";
+  case 976:
+    return "Vermelho Escuro Escuro 5";
+  case 977:
+    return "Vermelho Escuro Escuro 6";
+  case 978:
+    return "Vermelho Escuro Escuro 7";
+  case 979:
+    return "Vermelho Escuro Escuro 8";
+  case 980:
+    return "Vermelho Escuro Escuro 9";
+  case 981:
+    return "Vermelho Escuro Médio 10";
+  case 982:
+    return "Vermelho Escuro Médio 11";
+  case 983:
+    return "Vermelho Escuro Médio 12";
+  case 984:
+    return "Vermelho Escuro Médio 13";
+  case 985:
+    return "Vermelho Escuro Médio 14";
+  case 986:
+    return "Vermelho Escuro Médio 15";
+  case 987:
+    return "Vermelho Escuro Médio 1";
+  case 988:
+    return "Vermelho Escuro Médio 2";
+  case 989:
+    return "Vermelho Escuro Médio 3";
+  case 990:
+    return "Vermelho Escuro Médio 4";
+  case 991:
+    return "Vermelho Escuro Médio 5";
+  case 992:
+    return "Vermelho Escuro Médio 6";
+  case 993:
+    return "Vermelho Escuro Médio 7";
+  case 994:
+    return "Vermelho Escuro Médio 8";
+  case 995:
+    return "Vermelho Escuro Médio 9";
+  case 996:
+    return "Vermelho Escuro Brilhante 10";
+  case 997:
+    return "Vermelho Escuro Brilhante 11";
+  case 998:
+    return "Vermelho Escuro Brilhante 12";
+  case 999:
+    return "Vermelho Escuro Brilhante 13";
+  case 1000:
+    return "Vermelho Escuro Brilhante 14";
+  case 1001:
+    return "Vermelho Escuro Brilhante 15";
+  case 1002:
+    return "Vermelho Escuro Brilhante 1";
+  case 1003:
+    return "Vermelho Escuro Brilhante 2";
+  case 1004:
+    return "Vermelho Escuro Brilhante 3";
+  case 1005:
+    return "Vermelho Escuro Brilhante 4";
+  case 1006:
+    return "Vermelho Escuro Brilhante 5";
+  case 1007:
+    return "Vermelho Escuro Brilhante 6";
+  case 1008:
+    return "Vermelho Escuro Brilhante 7";
+  case 1009:
+    return "Vermelho Escuro Brilhante 8";
+  case 1010:
+    return "Vermelho Escuro Brilhante 9";
+  case 1011:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 1012:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 1013:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 1014:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 1015:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 1016:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 1017:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 1018:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 1019:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 1020:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 1021:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 1022:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 1023:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1024:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1025:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1026:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1027:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1028:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1029:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1030:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1031:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1032:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1033:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1034:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1035:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1036:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1037:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1038:
+    return "Vermelho Escuro Escuro 7";
+  case 1039:
+    return "Vermelho Escuro Escuro 8";
+  case 1040:
+    return "Vermelho Escuro Escuro 9";
+  case 1041:
+    return "Vermelho Escuro Escuro 10";
+  case 1042:
+    return "Vermelho Escuro Escuro 11";
+  case 1043:
+    return "Vermelho Escuro Escuro 12";
+  case 1044:
+    return "Vermelho Escuro Escuro 13";
+  case 1045:
+    return "Vermelho Escuro Escuro 14";
+  case 1046:
+    return "Vermelho Escuro Escuro 15";
+  case 1047:
+    return "Vermelho Escuro Escuro 1";
+  case 1048:
+    return "Vermelho Escuro Escuro 2";
+  case 1049:
+    return "Vermelho Escuro Escuro 3";
+  case 1050:
+    return "Vermelho Escuro Escuro 4";
+  case 1051:
+    return "Vermelho Escuro Escuro 5";
+  case 1052:
+    return "Vermelho Escuro Escuro 6";
+  case 1053:
+    return "Vermelho Escuro Médio 7";
+  case 1054:
+    return "Vermelho Escuro Médio 8";
+  case 1055:
+    return "Vermelho Escuro Médio 9";
+  case 1056:
+    return "Vermelho Escuro Médio 10";
+  case 1057:
+    return "Vermelho Escuro Médio 11";
+  case 1058:
+    return "Vermelho Escuro Médio 12";
+  case 1059:
+    return "Vermelho Escuro Médio 13";
+  case 1060:
+    return "Vermelho Escuro Médio 14";
+  case 1061:
+    return "Vermelho Escuro Médio 15";
+  case 1062:
+    return "Vermelho Escuro Médio 1";
+  case 1063:
+    return "Vermelho Escuro Médio 2";
+  case 1064:
+    return "Vermelho Escuro Médio 3";
+  case 1065:
+    return "Vermelho Escuro Médio 4";
+  case 1066:
+    return "Vermelho Escuro Médio 5";
+  case 1067:
+    return "Vermelho Escuro Médio 6";
+  case 1068:
+    return "Vermelho Escuro Brilhante 7";
+  case 1069:
+    return "Vermelho Escuro Brilhante 8";
+  case 1070:
+    return "Vermelho Escuro Brilhante 9";
+  case 1071:
+    return "Vermelho Escuro Brilhante 10";
+  case 1072:
+    return "Vermelho Escuro Brilhante 11";
+  case 1073:
+    return "Vermelho Escuro Brilhante 12";
+  case 1074:
+    return "Vermelho Escuro Brilhante 13";
+  case 1075:
+    return "Vermelho Escuro Brilhante 14";
+  case 1076:
+    return "Vermelho Escuro Brilhante 15";
+  case 1077:
+    return "Vermelho Escuro Brilhante 1";
+  case 1078:
+    return "Vermelho Escuro Brilhante 2";
+  case 1079:
+    return "Vermelho Escuro Brilhante 3";
+  case 1080:
+    return "Vermelho Escuro Brilhante 4";
+  case 1081:
+    return "Vermelho Escuro Brilhante 5";
+  case 1082:
+    return "Vermelho Escuro Brilhante 6";
+  case 1083:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 1084:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 1085:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 1086:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 1087:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 1088:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 1089:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 1090:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 1091:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 1092:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 1093:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 1094:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 1095:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1096:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1097:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1098:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1099:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1100:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1101:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1102:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1103:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1104:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1105:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1106:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1107:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1108:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1109:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1110:
+    return "Vermelho Escuro Escuro 4";
+  case 1111:
+    return "Vermelho Escuro Escuro 5";
+  case 1112:
+    return "Vermelho Escuro Escuro 6";
+  case 1113:
+    return "Vermelho Escuro Escuro 7";
+  case 1114:
+    return "Vermelho Escuro Escuro 8";
+  case 1115:
+    return "Vermelho Escuro Escuro 9";
+  case 1116:
+    return "Vermelho Escuro Escuro 10";
+  case 1117:
+    return "Vermelho Escuro Escuro 11";
+  case 1118:
+    return "Vermelho Escuro Escuro 12";
+  case 1119:
+    return "Vermelho Escuro Escuro 13";
+  case 1120:
+    return "Vermelho Escuro Escuro 14";
+  case 1121:
+    return "Vermelho Escuro Escuro 15";
+  case 1122:
+    return "Vermelho Escuro Escuro 1";
+  case 1123:
+    return "Vermelho Escuro Escuro 2";
+  case 1124:
+    return "Vermelho Escuro Escuro 3";
+  case 1125:
+    return "Vermelho Escuro Médio 4";
+  case 1126:
+    return "Vermelho Escuro Médio 5";
+  case 1127:
+    return "Vermelho Escuro Médio 6";
+  case 1128:
+    return "Vermelho Escuro Médio 7";
+  case 1129:
+    return "Vermelho Escuro Médio 8";
+  case 1130:
+    return "Vermelho Escuro Médio 9";
+  case 1131:
+    return "Vermelho Escuro Médio 10";
+  case 1132:
+    return "Vermelho Escuro Médio 11";
+  case 1133:
+    return "Vermelho Escuro Médio 12";
+  case 1134:
+    return "Vermelho Escuro Médio 13";
+  case 1135:
+    return "Vermelho Escuro Médio 14";
+  case 1136:
+    return "Vermelho Escuro Médio 15";
+  case 1137:
+    return "Vermelho Escuro Médio 1";
+  case 1138:
+    return "Vermelho Escuro Médio 2";
+  case 1139:
+    return "Vermelho Escuro Médio 3";
+  case 1140:
+    return "Vermelho Escuro Brilhante 4";
+  case 1141:
+    return "Vermelho Escuro Brilhante 5";
+  case 1142:
+    return "Vermelho Escuro Brilhante 6";
+  case 1143:
+    return "Vermelho Escuro Brilhante 7";
+  case 1144:
+    return "Vermelho Escuro Brilhante 8";
+  case 1145:
+    return "Vermelho Escuro Brilhante 9";
+  case 1146:
+    return "Vermelho Escuro Brilhante 10";
+  case 1147:
+    return "Vermelho Escuro Brilhante 11";
+  case 1148:
+    return "Vermelho Escuro Brilhante 12";
+  case 1149:
+    return "Vermelho Escuro Brilhante 13";
+  case 1150:
+    return "Vermelho Escuro Brilhante 14";
+  case 1151:
+    return "Vermelho Escuro Brilhante 15";
+  case 1152:
+    return "Vermelho Escuro Brilhante 1";
+  case 1153:
+    return "Vermelho Escuro Brilhante 2";
+  case 1154:
+    return "Vermelho Escuro Brilhante 3";
+  case 1155:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 1156:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 1157:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 1158:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 1159:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 1160:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 1161:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 1162:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 1163:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 1164:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 1165:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 1166:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 1167:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1168:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1169:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1170:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1171:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1172:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1173:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1174:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1175:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1176:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1177:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1178:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1179:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1180:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1181:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1182:
+    return "Vermelho Escuro Escuro 1";
+  case 1183:
+    return "Vermelho Escuro Escuro 2";
+  case 1184:
+    return "Vermelho Escuro Escuro 3";
+  case 1185:
+    return "Vermelho Escuro Escuro 4";
+  case 1186:
+    return "Vermelho Escuro Escuro 5";
+  case 1187:
+    return "Vermelho Escuro Escuro 6";
+  case 1188:
+    return "Vermelho Escuro Escuro 7";
+  case 1189:
+    return "Vermelho Escuro Escuro 8";
+  case 1190:
+    return "Vermelho Escuro Escuro 9";
+  case 1191:
+    return "Vermelho Escuro Escuro 10";
+  case 1192:
+    return "Vermelho Escuro Escuro 11";
+  case 1193:
+    return "Vermelho Escuro Escuro 12";
+  case 1194:
+    return "Vermelho Escuro Escuro 13";
+  case 1195:
+    return "Vermelho Escuro Escuro 14";
+  case 1196:
+    return "Vermelho Escuro Escuro 15";
+  case 1197:
+    return "Vermelho Escuro Médio 1";
+  case 1198:
+    return "Vermelho Escuro Médio 2";
+  case 1199:
+    return "Vermelho Escuro Médio 3";
+  case 1200:
+    return "Vermelho Escuro Médio 4";
+  case 1201:
+    return "Vermelho Escuro Médio 5";
+  case 1202:
+    return "Vermelho Escuro Médio 6";
+  case 1203:
+    return "Vermelho Escuro Médio 7";
+  case 1204:
+    return "Vermelho Escuro Médio 8";
+  case 1205:
+    return "Vermelho Escuro Médio 9";
+  case 1206:
+    return "Vermelho Escuro Médio 10";
+  case 1207:
+    return "Vermelho Escuro Médio 11";
+  case 1208:
+    return "Vermelho Escuro Médio 12";
+  case 1209:
+    return "Vermelho Escuro Médio 13";
+  case 1210:
+    return "Vermelho Escuro Médio 14";
+  case 1211:
+    return "Vermelho Escuro Médio 15";
+  case 1212:
+    return "Vermelho Escuro Brilhante 1";
+  case 1213:
+    return "Vermelho Escuro Brilhante 2";
+  case 1214:
+    return "Vermelho Escuro Brilhante 3";
+  case 1215:
+    return "Vermelho Escuro Brilhante 4";
+  case 1216:
+    return "Vermelho Escuro Brilhante 5";
+  case 1217:
+    return "Vermelho Escuro Brilhante 6";
+  case 1218:
+    return "Vermelho Escuro Brilhante 7";
+  case 1219:
+    return "Vermelho Escuro Brilhante 8";
+  case 1220:
+    return "Vermelho Escuro Brilhante 9";
+  case 1221:
+    return "Vermelho Escuro Brilhante 10";
+  case 1222:
+    return "Vermelho Escuro Brilhante 11";
+  case 1223:
+    return "Vermelho Escuro Brilhante 12";
+  case 1224:
+    return "Vermelho Escuro Brilhante 13";
+  case 1225:
+    return "Vermelho Escuro Brilhante 14";
+  case 1226:
+    return "Vermelho Escuro Brilhante 15";
+  case 1227:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 1228:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 1229:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 1230:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 1231:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 1232:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 1233:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 1234:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 1235:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 1236:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 1237:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 1238:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 1239:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1240:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1241:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1242:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1243:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1244:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1245:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1246:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1247:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1248:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1249:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1250:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1251:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1252:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1253:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1254:
+    return "Vermelho Escuro Escuro 13";
+  case 1255:
+    return "Vermelho Escuro Escuro 14";
+  case 1256:
+    return "Vermelho Escuro Escuro 15";
+  case 1257:
+    return "Vermelho Escuro Escuro 1";
+  case 1258:
+    return "Vermelho Escuro Escuro 2";
+  case 1259:
+    return "Vermelho Escuro Escuro 3";
+  case 1260:
+    return "Vermelho Escuro Escuro 4";
+  case 1261:
+    return "Vermelho Escuro Escuro 5";
+  case 1262:
+    return "Vermelho Escuro Escuro 6";
+  case 1263:
+    return "Vermelho Escuro Escuro 7";
+  case 1264:
+    return "Vermelho Escuro Escuro 8";
+  case 1265:
+    return "Vermelho Escuro Escuro 9";
+  case 1266:
+    return "Vermelho Escuro Escuro 10";
+  case 1267:
+    return "Vermelho Escuro Escuro 11";
+  case 1268:
+    return "Vermelho Escuro Escuro 12";
+  case 1269:
+    return "Vermelho Escuro Médio 13";
+  case 1270:
+    return "Vermelho Escuro Médio 14";
+  case 1271:
+    return "Vermelho Escuro Médio 15";
+  case 1272:
+    return "Vermelho Escuro Médio 1";
+  case 1273:
+    return "Vermelho Escuro Médio 2";
+  case 1274:
+    return "Vermelho Escuro Médio 3";
+  case 1275:
+    return "Vermelho Escuro Médio 4";
+  case 1276:
+    return "Vermelho Escuro Médio 5";
+  case 1277:
+    return "Vermelho Escuro Médio 6";
+  case 1278:
+    return "Vermelho Escuro Médio 7";
+  case 1279:
+    return "Vermelho Escuro Médio 8";
+  case 1280:
+    return "Vermelho Escuro Médio 9";
+  case 1281:
+    return "Vermelho Escuro Médio 10";
+  case 1282:
+    return "Vermelho Escuro Médio 11";
+  case 1283:
+    return "Vermelho Escuro Médio 12";
+  case 1284:
+    return "Vermelho Escuro Brilhante 13";
+  case 1285:
+    return "Vermelho Escuro Brilhante 14";
+  case 1286:
+    return "Vermelho Escuro Brilhante 15";
+  case 1287:
+    return "Vermelho Escuro Brilhante 1";
+  case 1288:
+    return "Vermelho Escuro Brilhante 2";
+  case 1289:
+    return "Vermelho Escuro Brilhante 3";
+  case 1290:
+    return "Vermelho Escuro Brilhante 4";
+  case 1291:
+    return "Vermelho Escuro Brilhante 5";
+  case 1292:
+    return "Vermelho Escuro Brilhante 6";
+  case 1293:
+    return "Vermelho Escuro Brilhante 7";
+  case 1294:
+    return "Vermelho Escuro Brilhante 8";
+  case 1295:
+    return "Vermelho Escuro Brilhante 9";
+  case 1296:
+    return "Vermelho Escuro Brilhante 10";
+  case 1297:
+    return "Vermelho Escuro Brilhante 11";
+  case 1298:
+    return "Vermelho Escuro Brilhante 12";
+  case 1299:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 1300:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 1301:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 1302:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 1303:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 1304:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 1305:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 1306:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 1307:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 1308:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 1309:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 1310:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 1311:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1312:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1313:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1314:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1315:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1316:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1317:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1318:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1319:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1320:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1321:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1322:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1323:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1324:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1325:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1326:
+    return "Vermelho Escuro Escuro 10";
+  case 1327:
+    return "Vermelho Escuro Escuro 11";
+  case 1328:
+    return "Vermelho Escuro Escuro 12";
+  case 1329:
+    return "Vermelho Escuro Escuro 13";
+  case 1330:
+    return "Vermelho Escuro Escuro 14";
+  case 1331:
+    return "Vermelho Escuro Escuro 15";
+  case 1332:
+    return "Vermelho Escuro Escuro 1";
+  case 1333:
+    return "Vermelho Escuro Escuro 2";
+  case 1334:
+    return "Vermelho Escuro Escuro 3";
+  case 1335:
+    return "Vermelho Escuro Escuro 4";
+  case 1336:
+    return "Vermelho Escuro Escuro 5";
+  case 1337:
+    return "Vermelho Escuro Escuro 6";
+  case 1338:
+    return "Vermelho Escuro Escuro 7";
+  case 1339:
+    return "Vermelho Escuro Escuro 8";
+  case 1340:
+    return "Vermelho Escuro Escuro 9";
+  case 1341:
+    return "Vermelho Escuro Médio 10";
+  case 1342:
+    return "Vermelho Escuro Médio 11";
+  case 1343:
+    return "Vermelho Escuro Médio 12";
+  case 1344:
+    return "Vermelho Escuro Médio 13";
+  case 1345:
+    return "Vermelho Escuro Médio 14";
+  case 1346:
+    return "Vermelho Escuro Médio 15";
+  case 1347:
+    return "Vermelho Escuro Médio 1";
+  case 1348:
+    return "Vermelho Escuro Médio 2";
+  case 1349:
+    return "Vermelho Escuro Médio 3";
+  case 1350:
+    return "Vermelho Escuro Médio 4";
+  case 1351:
+    return "Vermelho Escuro Médio 5";
+  case 1352:
+    return "Vermelho Escuro Médio 6";
+  case 1353:
+    return "Vermelho Escuro Médio 7";
+  case 1354:
+    return "Vermelho Escuro Médio 8";
+  case 1355:
+    return "Vermelho Escuro Médio 9";
+  case 1356:
+    return "Vermelho Escuro Brilhante 10";
+  case 1357:
+    return "Vermelho Escuro Brilhante 11";
+  case 1358:
+    return "Vermelho Escuro Brilhante 12";
+  case 1359:
+    return "Vermelho Escuro Brilhante 13";
+  case 1360:
+    return "Vermelho Escuro Brilhante 14";
+  case 1361:
+    return "Vermelho Escuro Brilhante 15";
+  case 1362:
+    return "Vermelho Escuro Brilhante 1";
+  case 1363:
+    return "Vermelho Escuro Brilhante 2";
+  case 1364:
+    return "Vermelho Escuro Brilhante 3";
+  case 1365:
+    return "Vermelho Escuro Brilhante 4";
+  case 1366:
+    return "Vermelho Escuro Brilhante 5";
+  case 1367:
+    return "Vermelho Escuro Brilhante 6";
+  case 1368:
+    return "Vermelho Escuro Brilhante 7";
+  case 1369:
+    return "Vermelho Escuro Brilhante 8";
+  case 1370:
+    return "Vermelho Escuro Brilhante 9";
+  case 1371:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 1372:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 1373:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 1374:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 1375:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 1376:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 1377:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 1378:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 1379:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 1380:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 1381:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 1382:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 1383:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1384:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1385:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1386:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1387:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1388:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1389:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1390:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1391:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1392:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1393:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1394:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1395:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1396:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1397:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1398:
+    return "Vermelho Escuro Escuro 7";
+  case 1399:
+    return "Vermelho Escuro Escuro 8";
+  case 1400:
+    return "Vermelho Escuro Escuro 9";
+  case 1401:
+    return "Vermelho Escuro Escuro 10";
+  case 1402:
+    return "Vermelho Escuro Escuro 11";
+  case 1403:
+    return "Vermelho Escuro Escuro 12";
+  case 1404:
+    return "Vermelho Escuro Escuro 13";
+  case 1405:
+    return "Vermelho Escuro Escuro 14";
+  case 1406:
+    return "Vermelho Escuro Escuro 15";
+  case 1407:
+    return "Vermelho Escuro Escuro 1";
+  case 1408:
+    return "Vermelho Escuro Escuro 2";
+  case 1409:
+    return "Vermelho Escuro Escuro 3";
+  case 1410:
+    return "Vermelho Escuro Escuro 4";
+  case 1411:
+    return "Vermelho Escuro Escuro 5";
+  case 1412:
+    return "Vermelho Escuro Escuro 6";
+  case 1413:
+    return "Vermelho Escuro Médio 7";
+  case 1414:
+    return "Vermelho Escuro Médio 8";
+  case 1415:
+    return "Vermelho Escuro Médio 9";
+  case 1416:
+    return "Vermelho Escuro Médio 10";
+  case 1417:
+    return "Vermelho Escuro Médio 11";
+  case 1418:
+    return "Vermelho Escuro Médio 12";
+  case 1419:
+    return "Vermelho Escuro Médio 13";
+  case 1420:
+    return "Vermelho Escuro Médio 14";
+  case 1421:
+    return "Vermelho Escuro Médio 15";
+  case 1422:
+    return "Vermelho Escuro Médio 1";
+  case 1423:
+    return "Vermelho Escuro Médio 2";
+  case 1424:
+    return "Vermelho Escuro Médio 3";
+  case 1425:
+    return "Vermelho Escuro Médio 4";
+  case 1426:
+    return "Vermelho Escuro Médio 5";
+  case 1427:
+    return "Vermelho Escuro Médio 6";
+  case 1428:
+    return "Vermelho Escuro Brilhante 7";
+  case 1429:
+    return "Vermelho Escuro Brilhante 8";
+  case 1430:
+    return "Vermelho Escuro Brilhante 9";
+  case 1431:
+    return "Vermelho Escuro Brilhante 10";
+  case 1432:
+    return "Vermelho Escuro Brilhante 11";
+  case 1433:
+    return "Vermelho Escuro Brilhante 12";
+  case 1434:
+    return "Vermelho Escuro Brilhante 13";
+  case 1435:
+    return "Vermelho Escuro Brilhante 14";
+  case 1436:
+    return "Vermelho Escuro Brilhante 15";
+  case 1437:
+    return "Vermelho Escuro Brilhante 1";
+  case 1438:
+    return "Vermelho Escuro Brilhante 2";
+  case 1439:
+    return "Vermelho Escuro Brilhante 3";
+  case 1440:
+    return "Vermelho Escuro Brilhante 4";
+  case 1441:
+    return "Vermelho Escuro Brilhante 5";
+  case 1442:
+    return "Vermelho Escuro Brilhante 6";
+  case 1443:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 1444:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 1445:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 1446:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 1447:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 1448:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 1449:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 1450:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 1451:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 1452:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 1453:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 1454:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 1455:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1456:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1457:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1458:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1459:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1460:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1461:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1462:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1463:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1464:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1465:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1466:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1467:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1468:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1469:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1470:
+    return "Vermelho Escuro Escuro 4";
+  case 1471:
+    return "Vermelho Escuro Escuro 5";
+  case 1472:
+    return "Vermelho Escuro Escuro 6";
+  case 1473:
+    return "Vermelho Escuro Escuro 7";
+  case 1474:
+    return "Vermelho Escuro Escuro 8";
+  case 1475:
+    return "Vermelho Escuro Escuro 9";
+  case 1476:
+    return "Vermelho Escuro Escuro 10";
+  case 1477:
+    return "Vermelho Escuro Escuro 11";
+  case 1478:
+    return "Vermelho Escuro Escuro 12";
+  case 1479:
+    return "Vermelho Escuro Escuro 13";
+  case 1480:
+    return "Vermelho Escuro Escuro 14";
+  case 1481:
+    return "Vermelho Escuro Escuro 15";
+  case 1482:
+    return "Vermelho Escuro Escuro 1";
+  case 1483:
+    return "Vermelho Escuro Escuro 2";
+  case 1484:
+    return "Vermelho Escuro Escuro 3";
+  case 1485:
+    return "Vermelho Escuro Médio 4";
+  case 1486:
+    return "Vermelho Escuro Médio 5";
+  case 1487:
+    return "Vermelho Escuro Médio 6";
+  case 1488:
+    return "Vermelho Escuro Médio 7";
+  case 1489:
+    return "Vermelho Escuro Médio 8";
+  case 1490:
+    return "Vermelho Escuro Médio 9";
+  case 1491:
+    return "Vermelho Escuro Médio 10";
+  case 1492:
+    return "Vermelho Escuro Médio 11";
+  case 1493:
+    return "Vermelho Escuro Médio 12";
+  case 1494:
+    return "Vermelho Escuro Médio 13";
+  case 1495:
+    return "Vermelho Escuro Médio 14";
+  case 1496:
+    return "Vermelho Escuro Médio 15";
+  case 1497:
+    return "Vermelho Escuro Médio 1";
+  case 1498:
+    return "Vermelho Escuro Médio 2";
+  case 1499:
+    return "Vermelho Escuro Médio 3";
+  case 1500:
+    return "Vermelho Escuro Brilhante 4";
+  case 1501:
+    return "Vermelho Escuro Brilhante 5";
+  case 1502:
+    return "Vermelho Escuro Brilhante 6";
+  case 1503:
+    return "Vermelho Escuro Brilhante 7";
+  case 1504:
+    return "Vermelho Escuro Brilhante 8";
+  case 1505:
+    return "Vermelho Escuro Brilhante 9";
+  case 1506:
+    return "Vermelho Escuro Brilhante 10";
+  case 1507:
+    return "Vermelho Escuro Brilhante 11";
+  case 1508:
+    return "Vermelho Escuro Brilhante 12";
+  case 1509:
+    return "Vermelho Escuro Brilhante 13";
+  case 1510:
+    return "Vermelho Escuro Brilhante 14";
+  case 1511:
+    return "Vermelho Escuro Brilhante 15";
+  case 1512:
+    return "Vermelho Escuro Brilhante 1";
+  case 1513:
+    return "Vermelho Escuro Brilhante 2";
+  case 1514:
+    return "Vermelho Escuro Brilhante 3";
+  case 1515:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 1516:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 1517:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 1518:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 1519:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 1520:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 1521:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 1522:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 1523:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 1524:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 1525:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 1526:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 1527:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1528:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1529:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1530:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1531:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1532:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1533:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1534:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1535:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1536:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1537:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1538:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1539:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1540:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1541:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1542:
+    return "Vermelho Escuro Escuro 1";
+  case 1543:
+    return "Vermelho Escuro Escuro 2";
+  case 1544:
+    return "Vermelho Escuro Escuro 3";
+  case 1545:
+    return "Vermelho Escuro Escuro 4";
+  case 1546:
+    return "Vermelho Escuro Escuro 5";
+  case 1547:
+    return "Vermelho Escuro Escuro 6";
+  case 1548:
+    return "Vermelho Escuro Escuro 7";
+  case 1549:
+    return "Vermelho Escuro Escuro 8";
+  case 1550:
+    return "Vermelho Escuro Escuro 9";
+  case 1551:
+    return "Vermelho Escuro Escuro 10";
+  case 1552:
+    return "Vermelho Escuro Escuro 11";
+  case 1553:
+    return "Vermelho Escuro Escuro 12";
+  case 1554:
+    return "Vermelho Escuro Escuro 13";
+  case 1555:
+    return "Vermelho Escuro Escuro 14";
+  case 1556:
+    return "Vermelho Escuro Escuro 15";
+  case 1557:
+    return "Vermelho Escuro Médio 1";
+  case 1558:
+    return "Vermelho Escuro Médio 2";
+  case 1559:
+    return "Vermelho Escuro Médio 3";
+  case 1560:
+    return "Vermelho Escuro Médio 4";
+  case 1561:
+    return "Vermelho Escuro Médio 5";
+  case 1562:
+    return "Vermelho Escuro Médio 6";
+  case 1563:
+    return "Vermelho Escuro Médio 7";
+  case 1564:
+    return "Vermelho Escuro Médio 8";
+  case 1565:
+    return "Vermelho Escuro Médio 9";
+  case 1566:
+    return "Vermelho Escuro Médio 10";
+  case 1567:
+    return "Vermelho Escuro Médio 11";
+  case 1568:
+    return "Vermelho Escuro Médio 12";
+  case 1569:
+    return "Vermelho Escuro Médio 13";
+  case 1570:
+    return "Vermelho Escuro Médio 14";
+  case 1571:
+    return "Vermelho Escuro Médio 15";
+  case 1572:
+    return "Vermelho Escuro Brilhante 1";
+  case 1573:
+    return "Vermelho Escuro Brilhante 2";
+  case 1574:
+    return "Vermelho Escuro Brilhante 3";
+  case 1575:
+    return "Vermelho Escuro Brilhante 4";
+  case 1576:
+    return "Vermelho Escuro Brilhante 5";
+  case 1577:
+    return "Vermelho Escuro Brilhante 6";
+  case 1578:
+    return "Vermelho Escuro Brilhante 7";
+  case 1579:
+    return "Vermelho Escuro Brilhante 8";
+  case 1580:
+    return "Vermelho Escuro Brilhante 9";
+  case 1581:
+    return "Vermelho Escuro Brilhante 10";
+  case 1582:
+    return "Vermelho Escuro Brilhante 11";
+  case 1583:
+    return "Vermelho Escuro Brilhante 12";
+  case 1584:
+    return "Vermelho Escuro Brilhante 13";
+  case 1585:
+    return "Vermelho Escuro Brilhante 14";
+  case 1586:
+    return "Vermelho Escuro Brilhante 15";
+  case 1587:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 1588:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 1589:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 1590:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 1591:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 1592:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 1593:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 1594:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 1595:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 1596:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 1597:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 1598:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 1599:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1600:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1601:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1602:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1603:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1604:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1605:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1606:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1607:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1608:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1609:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1610:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1611:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1612:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1613:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1614:
+    return "Vermelho Escuro Escuro 13";
+  case 1615:
+    return "Vermelho Escuro Escuro 14";
+  case 1616:
+    return "Vermelho Escuro Escuro 15";
+  case 1617:
+    return "Vermelho Escuro Escuro 1";
+  case 1618:
+    return "Vermelho Escuro Escuro 2";
+  case 1619:
+    return "Vermelho Escuro Escuro 3";
+  case 1620:
+    return "Vermelho Escuro Escuro 4";
+  case 1621:
+    return "Vermelho Escuro Escuro 5";
+  case 1622:
+    return "Vermelho Escuro Escuro 6";
+  case 1623:
+    return "Vermelho Escuro Escuro 7";
+  case 1624:
+    return "Vermelho Escuro Escuro 8";
+  case 1625:
+    return "Vermelho Escuro Escuro 9";
+  case 1626:
+    return "Vermelho Escuro Escuro 10";
+  case 1627:
+    return "Vermelho Escuro Escuro 11";
+  case 1628:
+    return "Vermelho Escuro Escuro 12";
+  case 1629:
+    return "Vermelho Escuro Médio 13";
+  case 1630:
+    return "Vermelho Escuro Médio 14";
+  case 1631:
+    return "Vermelho Escuro Médio 15";
+  case 1632:
+    return "Vermelho Escuro Médio 1";
+  case 1633:
+    return "Vermelho Escuro Médio 2";
+  case 1634:
+    return "Vermelho Escuro Médio 3";
+  case 1635:
+    return "Vermelho Escuro Médio 4";
+  case 1636:
+    return "Vermelho Escuro Médio 5";
+  case 1637:
+    return "Vermelho Escuro Médio 6";
+  case 1638:
+    return "Vermelho Escuro Médio 7";
+  case 1639:
+    return "Vermelho Escuro Médio 8";
+  case 1640:
+    return "Vermelho Escuro Médio 9";
+  case 1641:
+    return "Vermelho Escuro Médio 10";
+  case 1642:
+    return "Vermelho Escuro Médio 11";
+  case 1643:
+    return "Vermelho Escuro Médio 12";
+  case 1644:
+    return "Vermelho Escuro Brilhante 13";
+  case 1645:
+    return "Vermelho Escuro Brilhante 14";
+  case 1646:
+    return "Vermelho Escuro Brilhante 15";
+  case 1647:
+    return "Vermelho Escuro Brilhante 1";
+  case 1648:
+    return "Vermelho Escuro Brilhante 2";
+  case 1649:
+    return "Vermelho Escuro Brilhante 3";
+  case 1650:
+    return "Vermelho Escuro Brilhante 4";
+  case 1651:
+    return "Vermelho Escuro Brilhante 5";
+  case 1652:
+    return "Vermelho Escuro Brilhante 6";
+  case 1653:
+    return "Vermelho Escuro Brilhante 7";
+  case 1654:
+    return "Vermelho Escuro Brilhante 8";
+  case 1655:
+    return "Vermelho Escuro Brilhante 9";
+  case 1656:
+    return "Vermelho Escuro Brilhante 10";
+  case 1657:
+    return "Vermelho Escuro Brilhante 11";
+  case 1658:
+    return "Vermelho Escuro Brilhante 12";
+  case 1659:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 1660:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 1661:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 1662:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 1663:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 1664:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 1665:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 1666:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 1667:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 1668:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 1669:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 1670:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 1671:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1672:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1673:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1674:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1675:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1676:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1677:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1678:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1679:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1680:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1681:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1682:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1683:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1684:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1685:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1686:
+    return "Vermelho Escuro Escuro 10";
+  case 1687:
+    return "Vermelho Escuro Escuro 11";
+  case 1688:
+    return "Vermelho Escuro Escuro 12";
+  case 1689:
+    return "Vermelho Escuro Escuro 13";
+  case 1690:
+    return "Vermelho Escuro Escuro 14";
+  case 1691:
+    return "Vermelho Escuro Escuro 15";
+  case 1692:
+    return "Vermelho Escuro Escuro 1";
+  case 1693:
+    return "Vermelho Escuro Escuro 2";
+  case 1694:
+    return "Vermelho Escuro Escuro 3";
+  case 1695:
+    return "Vermelho Escuro Escuro 4";
+  case 1696:
+    return "Vermelho Escuro Escuro 5";
+  case 1697:
+    return "Vermelho Escuro Escuro 6";
+  case 1698:
+    return "Vermelho Escuro Escuro 7";
+  case 1699:
+    return "Vermelho Escuro Escuro 8";
+  case 1700:
+    return "Vermelho Escuro Escuro 9";
+  case 1701:
+    return "Vermelho Escuro Médio 10";
+  case 1702:
+    return "Vermelho Escuro Médio 11";
+  case 1703:
+    return "Vermelho Escuro Médio 12";
+  case 1704:
+    return "Vermelho Escuro Médio 13";
+  case 1705:
+    return "Vermelho Escuro Médio 14";
+  case 1706:
+    return "Vermelho Escuro Médio 15";
+  case 1707:
+    return "Vermelho Escuro Médio 1";
+  case 1708:
+    return "Vermelho Escuro Médio 2";
+  case 1709:
+    return "Vermelho Escuro Médio 3";
+  case 1710:
+    return "Vermelho Escuro Médio 4";
+  case 1711:
+    return "Vermelho Escuro Médio 5";
+  case 1712:
+    return "Vermelho Escuro Médio 6";
+  case 1713:
+    return "Vermelho Escuro Médio 7";
+  case 1714:
+    return "Vermelho Escuro Médio 8";
+  case 1715:
+    return "Vermelho Escuro Médio 9";
+  case 1716:
+    return "Vermelho Escuro Brilhante 10";
+  case 1717:
+    return "Vermelho Escuro Brilhante 11";
+  case 1718:
+    return "Vermelho Escuro Brilhante 12";
+  case 1719:
+    return "Vermelho Escuro Brilhante 13";
+  case 1720:
+    return "Vermelho Escuro Brilhante 14";
+  case 1721:
+    return "Vermelho Escuro Brilhante 15";
+  case 1722:
+    return "Vermelho Escuro Brilhante 1";
+  case 1723:
+    return "Vermelho Escuro Brilhante 2";
+  case 1724:
+    return "Vermelho Escuro Brilhante 3";
+  case 1725:
+    return "Vermelho Escuro Brilhante 4";
+  case 1726:
+    return "Vermelho Escuro Brilhante 5";
+  case 1727:
+    return "Vermelho Escuro Brilhante 6";
+  case 1728:
+    return "Vermelho Escuro Brilhante 7";
+  case 1729:
+    return "Vermelho Escuro Brilhante 8";
+  case 1730:
+    return "Vermelho Escuro Brilhante 9";
+  case 1731:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 1732:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 1733:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 1734:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 1735:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 1736:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 1737:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 1738:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 1739:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 1740:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 1741:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 1742:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 1743:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1744:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1745:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1746:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1747:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1748:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1749:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1750:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1751:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1752:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1753:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1754:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1755:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1756:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1757:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1758:
+    return "Vermelho Escuro Escuro 7";
+  case 1759:
+    return "Vermelho Escuro Escuro 8";
+  case 1760:
+    return "Vermelho Escuro Escuro 9";
+  case 1761:
+    return "Vermelho Escuro Escuro 10";
+  case 1762:
+    return "Vermelho Escuro Escuro 11";
+  case 1763:
+    return "Vermelho Escuro Escuro 12";
+  case 1764:
+    return "Vermelho Escuro Escuro 13";
+  case 1765:
+    return "Vermelho Escuro Escuro 14";
+  case 1766:
+    return "Vermelho Escuro Escuro 15";
+  case 1767:
+    return "Vermelho Escuro Escuro 1";
+  case 1768:
+    return "Vermelho Escuro Escuro 2";
+  case 1769:
+    return "Vermelho Escuro Escuro 3";
+  case 1770:
+    return "Vermelho Escuro Escuro 4";
+  case 1771:
+    return "Vermelho Escuro Escuro 5";
+  case 1772:
+    return "Vermelho Escuro Escuro 6";
+  case 1773:
+    return "Vermelho Escuro Médio 7";
+  case 1774:
+    return "Vermelho Escuro Médio 8";
+  case 1775:
+    return "Vermelho Escuro Médio 9";
+  case 1776:
+    return "Vermelho Escuro Médio 10";
+  case 1777:
+    return "Vermelho Escuro Médio 11";
+  case 1778:
+    return "Vermelho Escuro Médio 12";
+  case 1779:
+    return "Vermelho Escuro Médio 13";
+  case 1780:
+    return "Vermelho Escuro Médio 14";
+  case 1781:
+    return "Vermelho Escuro Médio 15";
+  case 1782:
+    return "Vermelho Escuro Médio 1";
+  case 1783:
+    return "Vermelho Escuro Médio 2";
+  case 1784:
+    return "Vermelho Escuro Médio 3";
+  case 1785:
+    return "Vermelho Escuro Médio 4";
+  case 1786:
+    return "Vermelho Escuro Médio 5";
+  case 1787:
+    return "Vermelho Escuro Médio 6";
+  case 1788:
+    return "Vermelho Escuro Brilhante 7";
+  case 1789:
+    return "Vermelho Escuro Brilhante 8";
+  case 1790:
+    return "Vermelho Escuro Brilhante 9";
+  case 1791:
+    return "Vermelho Escuro Brilhante 10";
+  case 1792:
+    return "Vermelho Escuro Brilhante 11";
+  case 1793:
+    return "Vermelho Escuro Brilhante 12";
+  case 1794:
+    return "Vermelho Escuro Brilhante 13";
+  case 1795:
+    return "Vermelho Escuro Brilhante 14";
+  case 1796:
+    return "Vermelho Escuro Brilhante 15";
+  case 1797:
+    return "Vermelho Escuro Brilhante 1";
+  case 1798:
+    return "Vermelho Escuro Brilhante 2";
+  case 1799:
+    return "Vermelho Escuro Brilhante 3";
+  case 1800:
+    return "Vermelho Escuro Brilhante 4";
+  case 1801:
+    return "Vermelho Escuro Brilhante 5";
+  case 1802:
+    return "Vermelho Escuro Brilhante 6";
+  case 1803:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 1804:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 1805:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 1806:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 1807:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 1808:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 1809:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 1810:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 1811:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 1812:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 1813:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 1814:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 1815:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1816:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1817:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1818:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1819:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1820:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1821:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1822:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1823:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1824:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1825:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1826:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1827:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1828:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1829:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1830:
+    return "Vermelho Escuro Escuro 4";
+  case 1831:
+    return "Vermelho Escuro Escuro 5";
+  case 1832:
+    return "Vermelho Escuro Escuro 6";
+  case 1833:
+    return "Vermelho Escuro Escuro 7";
+  case 1834:
+    return "Vermelho Escuro Escuro 8";
+  case 1835:
+    return "Vermelho Escuro Escuro 9";
+  case 1836:
+    return "Vermelho Escuro Escuro 10";
+  case 1837:
+    return "Vermelho Escuro Escuro 11";
+  case 1838:
+    return "Vermelho Escuro Escuro 12";
+  case 1839:
+    return "Vermelho Escuro Escuro 13";
+  case 1840:
+    return "Vermelho Escuro Escuro 14";
+  case 1841:
+    return "Vermelho Escuro Escuro 15";
+  case 1842:
+    return "Vermelho Escuro Escuro 1";
+  case 1843:
+    return "Vermelho Escuro Escuro 2";
+  case 1844:
+    return "Vermelho Escuro Escuro 3";
+  case 1845:
+    return "Vermelho Escuro Médio 4";
+  case 1846:
+    return "Vermelho Escuro Médio 5";
+  case 1847:
+    return "Vermelho Escuro Médio 6";
+  case 1848:
+    return "Vermelho Escuro Médio 7";
+  case 1849:
+    return "Vermelho Escuro Médio 8";
+  case 1850:
+    return "Vermelho Escuro Médio 9";
+  case 1851:
+    return "Vermelho Escuro Médio 10";
+  case 1852:
+    return "Vermelho Escuro Médio 11";
+  case 1853:
+    return "Vermelho Escuro Médio 12";
+  case 1854:
+    return "Vermelho Escuro Médio 13";
+  case 1855:
+    return "Vermelho Escuro Médio 14";
+  case 1856:
+    return "Vermelho Escuro Médio 15";
+  case 1857:
+    return "Vermelho Escuro Médio 1";
+  case 1858:
+    return "Vermelho Escuro Médio 2";
+  case 1859:
+    return "Vermelho Escuro Médio 3";
+  case 1860:
+    return "Vermelho Escuro Brilhante 4";
+  case 1861:
+    return "Vermelho Escuro Brilhante 5";
+  case 1862:
+    return "Vermelho Escuro Brilhante 6";
+  case 1863:
+    return "Vermelho Escuro Brilhante 7";
+  case 1864:
+    return "Vermelho Escuro Brilhante 8";
+  case 1865:
+    return "Vermelho Escuro Brilhante 9";
+  case 1866:
+    return "Vermelho Escuro Brilhante 10";
+  case 1867:
+    return "Vermelho Escuro Brilhante 11";
+  case 1868:
+    return "Vermelho Escuro Brilhante 12";
+  case 1869:
+    return "Vermelho Escuro Brilhante 13";
+  case 1870:
+    return "Vermelho Escuro Brilhante 14";
+  case 1871:
+    return "Vermelho Escuro Brilhante 15";
+  case 1872:
+    return "Vermelho Escuro Brilhante 1";
+  case 1873:
+    return "Vermelho Escuro Brilhante 2";
+  case 1874:
+    return "Vermelho Escuro Brilhante 3";
+  case 1875:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 1876:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 1877:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 1878:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 1879:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 1880:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 1881:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 1882:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 1883:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 1884:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 1885:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 1886:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 1887:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1888:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1889:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1890:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1891:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1892:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1893:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1894:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1895:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1896:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1897:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1898:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1899:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1900:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1901:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1902:
+    return "Vermelho Escuro Escuro 1";
+  case 1903:
+    return "Vermelho Escuro Escuro 2";
+  case 1904:
+    return "Vermelho Escuro Escuro 3";
+  case 1905:
+    return "Vermelho Escuro Escuro 4";
+  case 1906:
+    return "Vermelho Escuro Escuro 5";
+  case 1907:
+    return "Vermelho Escuro Escuro 6";
+  case 1908:
+    return "Vermelho Escuro Escuro 7";
+  case 1909:
+    return "Vermelho Escuro Escuro 8";
+  case 1910:
+    return "Vermelho Escuro Escuro 9";
+  case 1911:
+    return "Vermelho Escuro Escuro 10";
+  case 1912:
+    return "Vermelho Escuro Escuro 11";
+  case 1913:
+    return "Vermelho Escuro Escuro 12";
+  case 1914:
+    return "Vermelho Escuro Escuro 13";
+  case 1915:
+    return "Vermelho Escuro Escuro 14";
+  case 1916:
+    return "Vermelho Escuro Escuro 15";
+  case 1917:
+    return "Vermelho Escuro Médio 1";
+  case 1918:
+    return "Vermelho Escuro Médio 2";
+  case 1919:
+    return "Vermelho Escuro Médio 3";
+  case 1920:
+    return "Vermelho Escuro Médio 4";
+  case 1921:
+    return "Vermelho Escuro Médio 5";
+  case 1922:
+    return "Vermelho Escuro Médio 6";
+  case 1923:
+    return "Vermelho Escuro Médio 7";
+  case 1924:
+    return "Vermelho Escuro Médio 8";
+  case 1925:
+    return "Vermelho Escuro Médio 9";
+  case 1926:
+    return "Vermelho Escuro Médio 10";
+  case 1927:
+    return "Vermelho Escuro Médio 11";
+  case 1928:
+    return "Vermelho Escuro Médio 12";
+  case 1929:
+    return "Vermelho Escuro Médio 13";
+  case 1930:
+    return "Vermelho Escuro Médio 14";
+  case 1931:
+    return "Vermelho Escuro Médio 15";
+  case 1932:
+    return "Vermelho Escuro Brilhante 1";
+  case 1933:
+    return "Vermelho Escuro Brilhante 2";
+  case 1934:
+    return "Vermelho Escuro Brilhante 3";
+  case 1935:
+    return "Vermelho Escuro Brilhante 4";
+  case 1936:
+    return "Vermelho Escuro Brilhante 5";
+  case 1937:
+    return "Vermelho Escuro Brilhante 6";
+  case 1938:
+    return "Vermelho Escuro Brilhante 7";
+  case 1939:
+    return "Vermelho Escuro Brilhante 8";
+  case 1940:
+    return "Vermelho Escuro Brilhante 9";
+  case 1941:
+    return "Vermelho Escuro Brilhante 10";
+  case 1942:
+    return "Vermelho Escuro Brilhante 11";
+  case 1943:
+    return "Vermelho Escuro Brilhante 12";
+  case 1944:
+    return "Vermelho Escuro Brilhante 13";
+  case 1945:
+    return "Vermelho Escuro Brilhante 14";
+  case 1946:
+    return "Vermelho Escuro Brilhante 15";
+  case 1947:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 1948:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 1949:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 1950:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 1951:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 1952:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 1953:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 1954:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 1955:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 1956:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 1957:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 1958:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 1959:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 1960:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 1961:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 1962:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 1963:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 1964:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 1965:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 1966:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 1967:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 1968:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 1969:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 1970:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 1971:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 1972:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 1973:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 1974:
+    return "Vermelho Escuro Escuro 13";
+  case 1975:
+    return "Vermelho Escuro Escuro 14";
+  case 1976:
+    return "Vermelho Escuro Escuro 15";
+  case 1977:
+    return "Vermelho Escuro Escuro 1";
+  case 1978:
+    return "Vermelho Escuro Escuro 2";
+  case 1979:
+    return "Vermelho Escuro Escuro 3";
+  case 1980:
+    return "Vermelho Escuro Escuro 4";
+  case 1981:
+    return "Vermelho Escuro Escuro 5";
+  case 1982:
+    return "Vermelho Escuro Escuro 6";
+  case 1983:
+    return "Vermelho Escuro Escuro 7";
+  case 1984:
+    return "Vermelho Escuro Escuro 8";
+  case 1985:
+    return "Vermelho Escuro Escuro 9";
+  case 1986:
+    return "Vermelho Escuro Escuro 10";
+  case 1987:
+    return "Vermelho Escuro Escuro 11";
+  case 1988:
+    return "Vermelho Escuro Escuro 12";
+  case 1989:
+    return "Vermelho Escuro Médio 13";
+  case 1990:
+    return "Vermelho Escuro Médio 14";
+  case 1991:
+    return "Vermelho Escuro Médio 15";
+  case 1992:
+    return "Vermelho Escuro Médio 1";
+  case 1993:
+    return "Vermelho Escuro Médio 2";
+  case 1994:
+    return "Vermelho Escuro Médio 3";
+  case 1995:
+    return "Vermelho Escuro Médio 4";
+  case 1996:
+    return "Vermelho Escuro Médio 5";
+  case 1997:
+    return "Vermelho Escuro Médio 6";
+  case 1998:
+    return "Vermelho Escuro Médio 7";
+  case 1999:
+    return "Vermelho Escuro Médio 8";
+  case 2000:
+    return "Vermelho Escuro Médio 9";
+  case 2001:
+    return "Vermelho Escuro Médio 10";
+  case 2002:
+    return "Vermelho Escuro Médio 11";
+  case 2003:
+    return "Vermelho Escuro Médio 12";
+  case 2004:
+    return "Vermelho Escuro Brilhante 13";
+  case 2005:
+    return "Vermelho Escuro Brilhante 14";
+  case 2006:
+    return "Vermelho Escuro Brilhante 15";
+  case 2007:
+    return "Vermelho Escuro Brilhante 1";
+  case 2008:
+    return "Vermelho Escuro Brilhante 2";
+  case 2009:
+    return "Vermelho Escuro Brilhante 3";
+  case 2010:
+    return "Vermelho Escuro Brilhante 4";
+  case 2011:
+    return "Vermelho Escuro Brilhante 5";
+  case 2012:
+    return "Vermelho Escuro Brilhante 6";
+  case 2013:
+    return "Vermelho Escuro Brilhante 7";
+  case 2014:
+    return "Vermelho Escuro Brilhante 8";
+  case 2015:
+    return "Vermelho Escuro Brilhante 9";
+  case 2016:
+    return "Vermelho Escuro Brilhante 10";
+  case 2017:
+    return "Vermelho Escuro Brilhante 11";
+  case 2018:
+    return "Vermelho Escuro Brilhante 12";
+  case 2019:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 2020:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 2021:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 2022:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 2023:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 2024:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 2025:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 2026:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 2027:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 2028:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 2029:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 2030:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 2031:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 2032:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 2033:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 2034:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 2035:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 2036:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 2037:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 2038:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 2039:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 2040:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 2041:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 2042:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 2043:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 2044:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 2045:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 2046:
+    return "Vermelho Escuro Escuro 10";
+  case 2047:
+    return "Vermelho Escuro Escuro 11";
+  case 2048:
+    return "Vermelho Escuro Escuro 12";
+  case 2049:
+    return "Vermelho Escuro Escuro 13";
+  case 2050:
+    return "Vermelho Escuro Escuro 14";
+  case 2051:
+    return "Vermelho Escuro Escuro 15";
+  case 2052:
+    return "Vermelho Escuro Escuro 1";
+  case 2053:
+    return "Vermelho Escuro Escuro 2";
+  case 2054:
+    return "Vermelho Escuro Escuro 3";
+  case 2055:
+    return "Vermelho Escuro Escuro 4";
+  case 2056:
+    return "Vermelho Escuro Escuro 5";
+  case 2057:
+    return "Vermelho Escuro Escuro 6";
+  case 2058:
+    return "Vermelho Escuro Escuro 7";
+  case 2059:
+    return "Vermelho Escuro Escuro 8";
+  case 2060:
+    return "Vermelho Escuro Escuro 9";
+  case 2061:
+    return "Vermelho Escuro Médio 10";
+  case 2062:
+    return "Vermelho Escuro Médio 11";
+  case 2063:
+    return "Vermelho Escuro Médio 12";
+  case 2064:
+    return "Vermelho Escuro Médio 13";
+  case 2065:
+    return "Vermelho Escuro Médio 14";
+  case 2066:
+    return "Vermelho Escuro Médio 15";
+  case 2067:
+    return "Vermelho Escuro Médio 1";
+  case 2068:
+    return "Vermelho Escuro Médio 2";
+  case 2069:
+    return "Vermelho Escuro Médio 3";
+  case 2070:
+    return "Vermelho Escuro Médio 4";
+  case 2071:
+    return "Vermelho Escuro Médio 5";
+  case 2072:
+    return "Vermelho Escuro Médio 6";
+  case 2073:
+    return "Vermelho Escuro Médio 7";
+  case 2074:
+    return "Vermelho Escuro Médio 8";
+  case 2075:
+    return "Vermelho Escuro Médio 9";
+  case 2076:
+    return "Vermelho Escuro Brilhante 10";
+  case 2077:
+    return "Vermelho Escuro Brilhante 11";
+  case 2078:
+    return "Vermelho Escuro Brilhante 12";
+  case 2079:
+    return "Vermelho Escuro Brilhante 13";
+  case 2080:
+    return "Vermelho Escuro Brilhante 14";
+  case 2081:
+    return "Vermelho Escuro Brilhante 15";
+  case 2082:
+    return "Vermelho Escuro Brilhante 1";
+  case 2083:
+    return "Vermelho Escuro Brilhante 2";
+  case 2084:
+    return "Vermelho Escuro Brilhante 3";
+  case 2085:
+    return "Vermelho Escuro Brilhante 4";
+  case 2086:
+    return "Vermelho Escuro Brilhante 5";
+  case 2087:
+    return "Vermelho Escuro Brilhante 6";
+  case 2088:
+    return "Vermelho Escuro Brilhante 7";
+  case 2089:
+    return "Vermelho Escuro Brilhante 8";
+  case 2090:
+    return "Vermelho Escuro Brilhante 9";
+  case 2091:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 2092:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 2093:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 2094:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 2095:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 2096:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 2097:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 2098:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 2099:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 2100:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 2101:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 2102:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 2103:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 2104:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 2105:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 2106:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 2107:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 2108:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 2109:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 2110:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 2111:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 2112:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 2113:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 2114:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 2115:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 2116:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 2117:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 2118:
+    return "Vermelho Escuro Escuro 7";
+  case 2119:
+    return "Vermelho Escuro Escuro 8";
+  case 2120:
+    return "Vermelho Escuro Escuro 9";
+  case 2121:
+    return "Vermelho Escuro Escuro 10";
+  case 2122:
+    return "Vermelho Escuro Escuro 11";
+  case 2123:
+    return "Vermelho Escuro Escuro 12";
+  case 2124:
+    return "Vermelho Escuro Escuro 13";
+  case 2125:
+    return "Vermelho Escuro Escuro 14";
+  case 2126:
+    return "Vermelho Escuro Escuro 15";
+  case 2127:
+    return "Vermelho Escuro Escuro 1";
+  case 2128:
+    return "Vermelho Escuro Escuro 2";
+  case 2129:
+    return "Vermelho Escuro Escuro 3";
+  case 2130:
+    return "Vermelho Escuro Escuro 4";
+  case 2131:
+    return "Vermelho Escuro Escuro 5";
+  case 2132:
+    return "Vermelho Escuro Escuro 6";
+  case 2133:
+    return "Vermelho Escuro Médio 7";
+  case 2134:
+    return "Vermelho Escuro Médio 8";
+  case 2135:
+    return "Vermelho Escuro Médio 9";
+  case 2136:
+    return "Vermelho Escuro Médio 10";
+  case 2137:
+    return "Vermelho Escuro Médio 11";
+  case 2138:
+    return "Vermelho Escuro Médio 12";
+  case 2139:
+    return "Vermelho Escuro Médio 13";
+  case 2140:
+    return "Vermelho Escuro Médio 14";
+  case 2141:
+    return "Vermelho Escuro Médio 15";
+  case 2142:
+    return "Vermelho Escuro Médio 1";
+  case 2143:
+    return "Vermelho Escuro Médio 2";
+  case 2144:
+    return "Vermelho Escuro Médio 3";
+  case 2145:
+    return "Vermelho Escuro Médio 4";
+  case 2146:
+    return "Vermelho Escuro Médio 5";
+  case 2147:
+    return "Vermelho Escuro Médio 6";
+  case 2148:
+    return "Vermelho Escuro Brilhante 7";
+  case 2149:
+    return "Vermelho Escuro Brilhante 8";
+  case 2150:
+    return "Vermelho Escuro Brilhante 9";
+  case 2151:
+    return "Vermelho Escuro Brilhante 10";
+  case 2152:
+    return "Vermelho Escuro Brilhante 11";
+  case 2153:
+    return "Vermelho Escuro Brilhante 12";
+  case 2154:
+    return "Vermelho Escuro Brilhante 13";
+  case 2155:
+    return "Vermelho Escuro Brilhante 14";
+  case 2156:
+    return "Vermelho Escuro Brilhante 15";
+  case 2157:
+    return "Vermelho Escuro Brilhante 1";
+  case 2158:
+    return "Vermelho Escuro Brilhante 2";
+  case 2159:
+    return "Vermelho Escuro Brilhante 3";
+  case 2160:
+    return "Vermelho Escuro Brilhante 4";
+  case 2161:
+    return "Vermelho Escuro Brilhante 5";
+  case 2162:
+    return "Vermelho Escuro Brilhante 6";
+  case 2163:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 2164:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 2165:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 2166:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 2167:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 2168:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 2169:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 2170:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 2171:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 2172:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 2173:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 2174:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 2175:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 2176:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 2177:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 2178:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 2179:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 2180:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 2181:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 2182:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 2183:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 2184:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 2185:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 2186:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 2187:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 2188:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 2189:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 2190:
+    return "Vermelho Escuro Escuro 4";
+  case 2191:
+    return "Vermelho Escuro Escuro 5";
+  case 2192:
+    return "Vermelho Escuro Escuro 6";
+  case 2193:
+    return "Vermelho Escuro Escuro 7";
+  case 2194:
+    return "Vermelho Escuro Escuro 8";
+  case 2195:
+    return "Vermelho Escuro Escuro 9";
+  case 2196:
+    return "Vermelho Escuro Escuro 10";
+  case 2197:
+    return "Vermelho Escuro Escuro 11";
+  case 2198:
+    return "Vermelho Escuro Escuro 12";
+  case 2199:
+    return "Vermelho Escuro Escuro 13";
+  case 2200:
+    return "Vermelho Escuro Escuro 14";
+  case 2201:
+    return "Vermelho Escuro Escuro 15";
+  case 2202:
+    return "Vermelho Escuro Escuro 1";
+  case 2203:
+    return "Vermelho Escuro Escuro 2";
+  case 2204:
+    return "Vermelho Escuro Escuro 3";
+  case 2205:
+    return "Vermelho Escuro Médio 4";
+  case 2206:
+    return "Vermelho Escuro Médio 5";
+  case 2207:
+    return "Vermelho Escuro Médio 6";
+  case 2208:
+    return "Vermelho Escuro Médio 7";
+  case 2209:
+    return "Vermelho Escuro Médio 8";
+  case 2210:
+    return "Vermelho Escuro Médio 9";
+  case 2211:
+    return "Vermelho Escuro Médio 10";
+  case 2212:
+    return "Vermelho Escuro Médio 11";
+  case 2213:
+    return "Vermelho Escuro Médio 12";
+  case 2214:
+    return "Vermelho Escuro Médio 13";
+  case 2215:
+    return "Vermelho Escuro Médio 14";
+  case 2216:
+    return "Vermelho Escuro Médio 15";
+  case 2217:
+    return "Vermelho Escuro Médio 1";
+  case 2218:
+    return "Vermelho Escuro Médio 2";
+  case 2219:
+    return "Vermelho Escuro Médio 3";
+  case 2220:
+    return "Vermelho Escuro Brilhante 4";
+  case 2221:
+    return "Vermelho Escuro Brilhante 5";
+  case 2222:
+    return "Vermelho Escuro Brilhante 6";
+  case 2223:
+    return "Vermelho Escuro Brilhante 7";
+  case 2224:
+    return "Vermelho Escuro Brilhante 8";
+  case 2225:
+    return "Vermelho Escuro Brilhante 9";
+  case 2226:
+    return "Vermelho Escuro Brilhante 10";
+  case 2227:
+    return "Vermelho Escuro Brilhante 11";
+  case 2228:
+    return "Vermelho Escuro Brilhante 12";
+  case 2229:
+    return "Vermelho Escuro Brilhante 13";
+  case 2230:
+    return "Vermelho Escuro Brilhante 14";
+  case 2231:
+    return "Vermelho Escuro Brilhante 15";
+  case 2232:
+    return "Vermelho Escuro Brilhante 1";
+  case 2233:
+    return "Vermelho Escuro Brilhante 2";
+  case 2234:
+    return "Vermelho Escuro Brilhante 3";
+  case 2235:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 2236:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 2237:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 2238:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 2239:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 2240:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 2241:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 2242:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 2243:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 2244:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 2245:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 2246:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 2247:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 2248:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 2249:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 2250:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 2251:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 2252:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 2253:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 2254:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 2255:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 2256:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 2257:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 2258:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 2259:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 2260:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 2261:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 2262:
+    return "Vermelho Escuro Escuro 1";
+  case 2263:
+    return "Vermelho Escuro Escuro 2";
+  case 2264:
+    return "Vermelho Escuro Escuro 3";
+  case 2265:
+    return "Vermelho Escuro Escuro 4";
+  case 2266:
+    return "Vermelho Escuro Escuro 5";
+  case 2267:
+    return "Vermelho Escuro Escuro 6";
+  case 2268:
+    return "Vermelho Escuro Escuro 7";
+  case 2269:
+    return "Vermelho Escuro Escuro 8";
+  case 2270:
+    return "Vermelho Escuro Escuro 9";
+  case 2271:
+    return "Vermelho Escuro Escuro 10";
+  case 2272:
+    return "Vermelho Escuro Escuro 11";
+  case 2273:
+    return "Vermelho Escuro Escuro 12";
+  case 2274:
+    return "Vermelho Escuro Escuro 13";
+  case 2275:
+    return "Vermelho Escuro Escuro 14";
+  case 2276:
+    return "Vermelho Escuro Escuro 15";
+  case 2277:
+    return "Vermelho Escuro Médio 1";
+  case 2278:
+    return "Vermelho Escuro Médio 2";
+  case 2279:
+    return "Vermelho Escuro Médio 3";
+  case 2280:
+    return "Vermelho Escuro Médio 4";
+  case 2281:
+    return "Vermelho Escuro Médio 5";
+  case 2282:
+    return "Vermelho Escuro Médio 6";
+  case 2283:
+    return "Vermelho Escuro Médio 7";
+  case 2284:
+    return "Vermelho Escuro Médio 8";
+  case 2285:
+    return "Vermelho Escuro Médio 9";
+  case 2286:
+    return "Vermelho Escuro Médio 10";
+  case 2287:
+    return "Vermelho Escuro Médio 11";
+  case 2288:
+    return "Vermelho Escuro Médio 12";
+  case 2289:
+    return "Vermelho Escuro Médio 13";
+  case 2290:
+    return "Vermelho Escuro Médio 14";
+  case 2291:
+    return "Vermelho Escuro Médio 15";
+  case 2292:
+    return "Vermelho Escuro Brilhante 1";
+  case 2293:
+    return "Vermelho Escuro Brilhante 2";
+  case 2294:
+    return "Vermelho Escuro Brilhante 3";
+  case 2295:
+    return "Vermelho Escuro Brilhante 4";
+  case 2296:
+    return "Vermelho Escuro Brilhante 5";
+  case 2297:
+    return "Vermelho Escuro Brilhante 6";
+  case 2298:
+    return "Vermelho Escuro Brilhante 7";
+  case 2299:
+    return "Vermelho Escuro Brilhante 8";
+  case 2300:
+    return "Vermelho Escuro Brilhante 9";
+  case 2301:
+    return "Vermelho Escuro Brilhante 10";
+  case 2302:
+    return "Vermelho Escuro Brilhante 11";
+  case 2303:
+    return "Vermelho Escuro Brilhante 12";
+  case 2304:
+    return "Vermelho Escuro Brilhante 13";
+  case 2305:
+    return "Vermelho Escuro Brilhante 14";
+  case 2306:
+    return "Vermelho Escuro Brilhante 15";
+  case 2307:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 2308:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 2309:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 2310:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 2311:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 2312:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 2313:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 2314:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 2315:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 2316:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 2317:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 2318:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 2319:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 2320:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 2321:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 2322:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 2323:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 2324:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 2325:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 2326:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 2327:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 2328:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 2329:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 2330:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 2331:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 2332:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 2333:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 2334:
+    return "Vermelho Escuro Escuro 13";
+  case 2335:
+    return "Vermelho Escuro Escuro 14";
+  case 2336:
+    return "Vermelho Escuro Escuro 15";
+  case 2337:
+    return "Vermelho Escuro Escuro 1";
+  case 2338:
+    return "Vermelho Escuro Escuro 2";
+  case 2339:
+    return "Vermelho Escuro Escuro 3";
+  case 2340:
+    return "Vermelho Escuro Escuro 4";
+  case 2341:
+    return "Vermelho Escuro Escuro 5";
+  case 2342:
+    return "Vermelho Escuro Escuro 6";
+  case 2343:
+    return "Vermelho Escuro Escuro 7";
+  case 2344:
+    return "Vermelho Escuro Escuro 8";
+  case 2345:
+    return "Vermelho Escuro Escuro 9";
+  case 2346:
+    return "Vermelho Escuro Escuro 10";
+  case 2347:
+    return "Vermelho Escuro Escuro 11";
+  case 2348:
+    return "Vermelho Escuro Escuro 12";
+  case 2349:
+    return "Vermelho Escuro Médio 13";
+  case 2350:
+    return "Vermelho Escuro Médio 14";
+  case 2351:
+    return "Vermelho Escuro Médio 15";
+  case 2352:
+    return "Vermelho Escuro Médio 1";
+  case 2353:
+    return "Vermelho Escuro Médio 2";
+  case 2354:
+    return "Vermelho Escuro Médio 3";
+  case 2355:
+    return "Vermelho Escuro Médio 4";
+  case 2356:
+    return "Vermelho Escuro Médio 5";
+  case 2357:
+    return "Vermelho Escuro Médio 6";
+  case 2358:
+    return "Vermelho Escuro Médio 7";
+  case 2359:
+    return "Vermelho Escuro Médio 8";
+  case 2360:
+    return "Vermelho Escuro Médio 9";
+  case 2361:
+    return "Vermelho Escuro Médio 10";
+  case 2362:
+    return "Vermelho Escuro Médio 11";
+  case 2363:
+    return "Vermelho Escuro Médio 12";
+  case 2364:
+    return "Vermelho Escuro Brilhante 13";
+  case 2365:
+    return "Vermelho Escuro Brilhante 14";
+  case 2366:
+    return "Vermelho Escuro Brilhante 15";
+  case 2367:
+    return "Vermelho Escuro Brilhante 1";
+  case 2368:
+    return "Vermelho Escuro Brilhante 2";
+  case 2369:
+    return "Vermelho Escuro Brilhante 3";
+  case 2370:
+    return "Vermelho Escuro Brilhante 4";
+  case 2371:
+    return "Vermelho Escuro Brilhante 5";
+  case 2372:
+    return "Vermelho Escuro Brilhante 6";
+  case 2373:
+    return "Vermelho Escuro Brilhante 7";
+  case 2374:
+    return "Vermelho Escuro Brilhante 8";
+  case 2375:
+    return "Vermelho Escuro Brilhante 9";
+  case 2376:
+    return "Vermelho Escuro Brilhante 10";
+  case 2377:
+    return "Vermelho Escuro Brilhante 11";
+  case 2378:
+    return "Vermelho Escuro Brilhante 12";
+  case 2379:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 2380:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 2381:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 2382:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 2383:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 2384:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 2385:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 2386:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 2387:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 2388:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 2389:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 2390:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 2391:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 2392:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 2393:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 2394:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 2395:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 2396:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 2397:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 2398:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 2399:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 2400:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 2401:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 2402:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 2403:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 2404:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 2405:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 2406:
+    return "Vermelho Escuro Escuro 10";
+  case 2407:
+    return "Vermelho Escuro Escuro 11";
+  case 2408:
+    return "Vermelho Escuro Escuro 12";
+  case 2409:
+    return "Vermelho Escuro Escuro 13";
+  case 2410:
+    return "Vermelho Escuro Escuro 14";
+  case 2411:
+    return "Vermelho Escuro Escuro 15";
+  case 2412:
+    return "Vermelho Escuro Escuro 1";
+  case 2413:
+    return "Vermelho Escuro Escuro 2";
+  case 2414:
+    return "Vermelho Escuro Escuro 3";
+  case 2415:
+    return "Vermelho Escuro Escuro 4";
+  case 2416:
+    return "Vermelho Escuro Escuro 5";
+  case 2417:
+    return "Vermelho Escuro Escuro 6";
+  case 2418:
+    return "Vermelho Escuro Escuro 7";
+  case 2419:
+    return "Vermelho Escuro Escuro 8";
+  case 2420:
+    return "Vermelho Escuro Escuro 9";
+  case 2421:
+    return "Vermelho Escuro Médio 10";
+  case 2422:
+    return "Vermelho Escuro Médio 11";
+  case 2423:
+    return "Vermelho Escuro Médio 12";
+  case 2424:
+    return "Vermelho Escuro Médio 13";
+  case 2425:
+    return "Vermelho Escuro Médio 14";
+  case 2426:
+    return "Vermelho Escuro Médio 15";
+  case 2427:
+    return "Vermelho Escuro Médio 1";
+  case 2428:
+    return "Vermelho Escuro Médio 2";
+  case 2429:
+    return "Vermelho Escuro Médio 3";
+  case 2430:
+    return "Vermelho Escuro Médio 4";
+  case 2431:
+    return "Vermelho Escuro Médio 5";
+  case 2432:
+    return "Vermelho Escuro Médio 6";
+  case 2433:
+    return "Vermelho Escuro Médio 7";
+  case 2434:
+    return "Vermelho Escuro Médio 8";
+  case 2435:
+    return "Vermelho Escuro Médio 9";
+  case 2436:
+    return "Vermelho Escuro Brilhante 10";
+  case 2437:
+    return "Vermelho Escuro Brilhante 11";
+  case 2438:
+    return "Vermelho Escuro Brilhante 12";
+  case 2439:
+    return "Vermelho Escuro Brilhante 13";
+  case 2440:
+    return "Vermelho Escuro Brilhante 14";
+  case 2441:
+    return "Vermelho Escuro Brilhante 15";
+  case 2442:
+    return "Vermelho Escuro Brilhante 1";
+  case 2443:
+    return "Vermelho Escuro Brilhante 2";
+  case 2444:
+    return "Vermelho Escuro Brilhante 3";
+  case 2445:
+    return "Vermelho Escuro Brilhante 4";
+  case 2446:
+    return "Vermelho Escuro Brilhante 5";
+  case 2447:
+    return "Vermelho Escuro Brilhante 6";
+  case 2448:
+    return "Vermelho Escuro Brilhante 7";
+  case 2449:
+    return "Vermelho Escuro Brilhante 8";
+  case 2450:
+    return "Vermelho Escuro Brilhante 9";
+  case 2451:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 2452:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 2453:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 2454:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 2455:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 2456:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 2457:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 2458:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 2459:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 2460:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 2461:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 2462:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 2463:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 2464:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 2465:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 2466:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 2467:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 2468:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 2469:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 2470:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 2471:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 2472:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 2473:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 2474:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 2475:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 2476:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 2477:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 2478:
+    return "Vermelho Escuro Escuro 7";
+  case 2479:
+    return "Vermelho Escuro Escuro 8";
+  case 2480:
+    return "Vermelho Escuro Escuro 9";
+  case 2481:
+    return "Vermelho Escuro Escuro 10";
+  case 2482:
+    return "Vermelho Escuro Escuro 11";
+  case 2483:
+    return "Vermelho Escuro Escuro 12";
+  case 2484:
+    return "Vermelho Escuro Escuro 13";
+  case 2485:
+    return "Vermelho Escuro Escuro 14";
+  case 2486:
+    return "Vermelho Escuro Escuro 15";
+  case 2487:
+    return "Vermelho Escuro Escuro 1";
+  case 2488:
+    return "Vermelho Escuro Escuro 2";
+  case 2489:
+    return "Vermelho Escuro Escuro 3";
+  case 2490:
+    return "Vermelho Escuro Escuro 4";
+  case 2491:
+    return "Vermelho Escuro Escuro 5";
+  case 2492:
+    return "Vermelho Escuro Escuro 6";
+  case 2493:
+    return "Vermelho Escuro Médio 7";
+  case 2494:
+    return "Vermelho Escuro Médio 8";
+  case 2495:
+    return "Vermelho Escuro Médio 9";
+  case 2496:
+    return "Vermelho Escuro Médio 10";
+  case 2497:
+    return "Vermelho Escuro Médio 11";
+  case 2498:
+    return "Vermelho Escuro Médio 12";
+  case 2499:
+    return "Vermelho Escuro Médio 13";
+  case 2500:
+    return "Vermelho Escuro Médio 14";
+  case 2501:
+    return "Vermelho Escuro Médio 15";
+  case 2502:
+    return "Vermelho Escuro Médio 1";
+  case 2503:
+    return "Vermelho Escuro Médio 2";
+  case 2504:
+    return "Vermelho Escuro Médio 3";
+  case 2505:
+    return "Vermelho Escuro Médio 4";
+  case 2506:
+    return "Vermelho Escuro Médio 5";
+  case 2507:
+    return "Vermelho Escuro Médio 6";
+  case 2508:
+    return "Vermelho Escuro Brilhante 7";
+  case 2509:
+    return "Vermelho Escuro Brilhante 8";
+  case 2510:
+    return "Vermelho Escuro Brilhante 9";
+  case 2511:
+    return "Vermelho Escuro Brilhante 10";
+  case 2512:
+    return "Vermelho Escuro Brilhante 11";
+  case 2513:
+    return "Vermelho Escuro Brilhante 12";
+  case 2514:
+    return "Vermelho Escuro Brilhante 13";
+  case 2515:
+    return "Vermelho Escuro Brilhante 14";
+  case 2516:
+    return "Vermelho Escuro Brilhante 15";
+  case 2517:
+    return "Vermelho Escuro Brilhante 1";
+  case 2518:
+    return "Vermelho Escuro Brilhante 2";
+  case 2519:
+    return "Vermelho Escuro Brilhante 3";
+  case 2520:
+    return "Vermelho Escuro Brilhante 4";
+  case 2521:
+    return "Vermelho Escuro Brilhante 5";
+  case 2522:
+    return "Vermelho Escuro Brilhante 6";
+  case 2523:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 2524:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 2525:
+    return "Vermelho Escuro Muito Brilhante 9";
+  case 2526:
+    return "Vermelho Escuro Muito Brilhante 10";
+  case 2527:
+    return "Vermelho Escuro Muito Brilhante 11";
+  case 2528:
+    return "Vermelho Escuro Muito Brilhante 12";
+  case 2529:
+    return "Vermelho Escuro Muito Brilhante 13";
+  case 2530:
+    return "Vermelho Escuro Muito Brilhante 14";
+  case 2531:
+    return "Vermelho Escuro Muito Brilhante 15";
+  case 2532:
+    return "Vermelho Escuro Muito Brilhante 1";
+  case 2533:
+    return "Vermelho Escuro Muito Brilhante 2";
+  case 2534:
+    return "Vermelho Escuro Muito Brilhante 3";
+  case 2535:
+    return "Vermelho Escuro Muito Escuro 4";
+  case 2536:
+    return "Vermelho Escuro Muito Escuro 5";
+  case 2537:
+    return "Vermelho Escuro Muito Escuro 6";
+  case 2538:
+    return "Vermelho Escuro Muito Escuro 7";
+  case 2539:
+    return "Vermelho Escuro Muito Escuro 8";
+  case 2540:
+    return "Vermelho Escuro Muito Escuro 9";
+  case 2541:
+    return "Vermelho Escuro Muito Escuro 10";
+  case 2542:
+    return "Vermelho Escuro Muito Escuro 11";
+  case 2543:
+    return "Vermelho Escuro Muito Escuro 12";
+  case 2544:
+    return "Vermelho Escuro Muito Escuro 13";
+  case 2545:
+    return "Vermelho Escuro Muito Escuro 14";
+  case 2546:
+    return "Vermelho Escuro Muito Escuro 15";
+  case 2547:
+    return "Vermelho Escuro Muito Escuro 1";
+  case 2548:
+    return "Vermelho Escuro Muito Escuro 2";
+  case 2549:
+    return "Vermelho Escuro Muito Escuro 3";
+  case 2550:
+    return "Vermelho Escuro Escuro 4";
+  case 2551:
+    return "Vermelho Escuro Escuro 5";
+  case 2552:
+    return "Vermelho Escuro Escuro 6";
+  case 2553:
+    return "Vermelho Escuro Escuro 7";
+  case 2554:
+    return "Vermelho Escuro Escuro 8";
+  case 2555:
+    return "Vermelho Escuro Escuro 9";
+  case 2556:
+    return "Vermelho Escuro Escuro 10";
+  case 2557:
+    return "Vermelho Escuro Escuro 11";
+  case 2558:
+    return "Vermelho Escuro Escuro 12";
+  case 2559:
+    return "Vermelho Escuro Escuro 13";
+  case 2560:
+    return "Vermelho Escuro Escuro 14";
+  case 2561:
+    return "Vermelho Escuro Escuro 15";
+  case 2562:
+    return "Vermelho Escuro Escuro 1";
+  case 2563:
+    return "Vermelho Escuro Escuro 2";
+  case 2564:
+    return "Vermelho Escuro Escuro 3";
+  case 2565:
+    return "Vermelho Escuro Médio 4";
+  case 2566:
+    return "Vermelho Escuro Médio 5";
+  case 2567:
+    return "Vermelho Escuro Médio 6";
+  case 2568:
+    return "Vermelho Escuro Médio 7";
+  case 2569:
+    return "Vermelho Escuro Médio 8";
+  case 2570:
+    return "Vermelho Escuro Médio 9";
+  case 2571:
+    return "Vermelho Escuro Médio 10";
+  case 2572:
+    return "Vermelho Escuro Médio 11";
+  case 2573:
+    return "Vermelho Escuro Médio 12";
+  case 2574:
+    return "Vermelho Escuro Médio 13";
+  case 2575:
+    return "Vermelho Escuro Médio 14";
+  case 2576:
+    return "Vermelho Escuro Médio 15";
+  case 2577:
+    return "Vermelho Escuro Médio 1";
+  case 2578:
+    return "Vermelho Escuro Médio 2";
+  case 2579:
+    return "Vermelho Escuro Médio 3";
+  case 2580:
+    return "Vermelho Escuro Brilhante 4";
+  case 2581:
+    return "Vermelho Escuro Brilhante 5";
+  case 2582:
+    return "Vermelho Escuro Brilhante 6";
+  case 2583:
+    return "Vermelho Escuro Brilhante 7";
+  case 2584:
+    return "Vermelho Escuro Brilhante 8";
+  case 2585:
+    return "Vermelho Escuro Brilhante 9";
+  case 2586:
+    return "Vermelho Escuro Brilhante 10";
+  case 2587:
+    return "Vermelho Escuro Brilhante 11";
+  case 2588:
+    return "Vermelho Escuro Brilhante 12";
+  case 2589:
+    return "Vermelho Escuro Brilhante 13";
+  case 2590:
+    return "Vermelho Escuro Brilhante 14";
+  case 2591:
+    return "Vermelho Escuro Brilhante 15";
+  case 2592:
+    return "Vermelho Escuro Brilhante 1";
+  case 2593:
+    return "Vermelho Escuro Brilhante 2";
+  case 2594:
+    return "Vermelho Escuro Brilhante 3";
+  case 2595:
+    return "Vermelho Escuro Muito Brilhante 4";
+  case 2596:
+    return "Vermelho Escuro Muito Brilhante 5";
+  case 2597:
+    return "Vermelho Escuro Muito Brilhante 6";
+  case 2598:
+    return "Vermelho Escuro Muito Brilhante 7";
+  case 2599:
+    return "Vermelho Escuro Muito Brilhante 8";
+  case 2600:
+    return "Vermelho Escuro Muito Brilhante 9";
+  default:
+    return "Original";
+  }
+}
+
+
