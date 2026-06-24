@@ -1978,15 +1978,14 @@ void showPS() {
   // Avançar scroll da música a cada ciclo
   avancarScroll(currentFreqKhz);
 
-  String psToShow = (customPS.length() > 0) ? customPS : String(radio.rds.stationName);
-  String rtToShow = (customRT.length() > 0) ? customRT : String(radio.rds.stationText);
+  String psToShow = (radio.rds.stationName[0] != '\0') ? String(radio.rds.stationName) : customPS;
+  String rtToShow = (radio.rds.stationText[0] != '\0') ? String(radio.rds.stationText) : customRT;
   String freqStr = String(freq / 100) + "." + (freq % 100 < 10 ? "0" : "") + String(freq % 100);
   psToShow = freqStr + " | " + psToShow + " | " + rtToShow;
 
   if (psToShow != PSold) {
     psXPos = 0;
     PSold = psToShow;
-    psToShow.toCharArray(programServicePrevious, sizeof(programServicePrevious));
     psTicker = millis();
   }
 
@@ -2019,11 +2018,10 @@ void showRadioText() {
   // Avançar scroll da música a cada ciclo
   avancarScroll(currentFreqKhz);
 
-  String rtToShow = (customRT.length() > 0) ? customRT : String(radio.rds.stationText);
+  String rtToShow = (radio.rds.stationText[0] != '\0') ? String(radio.rds.stationText) : customRT;
   if (rtToShow != RTold) {
     xPos = 6;
     RTold = rtToShow;
-    rtToShow.toCharArray(radioTextPrevious, sizeof(radioTextPrevious));
     rtticker = millis();
   }
 
