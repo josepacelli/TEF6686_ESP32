@@ -1145,14 +1145,13 @@ void ButtonPress() {
           if (ptyEditCode < 0 || ptyEditCode > 31) ptyEditCode = 0;
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
+          tft.setTextColor(TFT_SKYBLUE);
+          tft.drawCentreString(String(ptyEditCode), 150, 55, 2);
           tft.setTextColor(TFT_WHITE);
-          String psLbl = getEstacao(ptyStationIndex).ps;
-          if (psLbl.length() > 14) psLbl = psLbl.substring(0, 14);
-          tft.drawCentreString(psLbl, 150, 55, 2);
-          tft.drawCentreString(getUIString(UI_SET_PTY, languageSet), 150, 75, 4);
+          tft.drawCentreString(getUIString(UI_SET_PTY, languageSet), 150, 80, 4);
           tft.setTextColor(TFT_YELLOW);
-          tft.drawCentreString(String(ptyEditCode), 150, 105, 4);
-          tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 140, 2);
+          tft.drawCentreString(String(ptyEditCode), 150, 110, 4);
+          tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 145, 2);
         } else if (menuoption == 50) {
           menuopen = true;
           psEditCount = (int)totalEstacoes();
@@ -1163,10 +1162,10 @@ void ButtonPress() {
           }
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
+          tft.setTextColor(TFT_SKYBLUE);
+          tft.drawCentreString("Index: " + String(psEditIndex), 150, 55, 2);
           tft.setTextColor(TFT_WHITE);
-          uint32_t fp = getEstacao(ptyStationIndex).freq_khz;
-          tft.drawCentreString(String(fp/1000)+"."+String((fp%1000)/100)+" MHz", 150, 55, 2);
-          tft.drawCentreString(getUIString(UI_SET_PS, languageSet), 150, 75, 4);
+          tft.drawCentreString(getUIString(UI_SET_PS, languageSet), 150, 80, 4);
           if (psEditCount > 0)
             drawWrappedText(getEstacao(psEditIndex).ps, 150, 110, 2, TFT_YELLOW, 200, 3);
         } else if (menuoption == 70) {
@@ -1179,10 +1178,10 @@ void ButtonPress() {
           }
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
+          tft.setTextColor(TFT_SKYBLUE);
+          tft.drawCentreString("Index: " + String(rtEditIndex), 150, 55, 2);
           tft.setTextColor(TFT_WHITE);
-          uint32_t fr = getEstacao(ptyStationIndex).freq_khz;
-          tft.drawCentreString(String(fr/1000)+"."+String((fr%1000)/100)+" MHz", 150, 55, 2);
-          tft.drawCentreString(getUIString(UI_SET_RT, languageSet), 150, 75, 4);
+          tft.drawCentreString(getUIString(UI_SET_RT, languageSet), 150, 80, 4);
           if (rtEditCount > 0) {
             drawWrappedText(getEstacao(rtEditIndex).rt, 150, 110, 2, TFT_YELLOW, 200, 3);
           }
