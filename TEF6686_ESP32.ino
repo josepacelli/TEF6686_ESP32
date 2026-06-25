@@ -889,20 +889,17 @@ String editStringOnDevice(String current, int maxLen) {
 
   int cursorPos = 0;
   int editMode = 0;
-  int lastRotary = 0;
-  bool needRedraw = true;
 
   while (true) {
     // Check rotary input
     if (rotary != 0) {
-      lastRotary = rotary;
+      int rot = rotary;
       rotary = 0;
 
-      if (lastRotary == 1) {
+      if (rot == 1) {
         if (editMode == 0) {
           cursorPos = (cursorPos + 1) % edited.length();
         } else {
-          // Find current char in charset
           int charIdx = -1;
           for (int i = 0; i < charsetLen; i++) {
             if (charset[i] == edited[cursorPos]) { charIdx = i; break; }
@@ -911,7 +908,7 @@ String editStringOnDevice(String current, int maxLen) {
           charIdx = (charIdx + 1) % charsetLen;
           edited[cursorPos] = charset[charIdx];
         }
-      } else if (lastRotary == -1) {
+      } else if (rot == -1) {
         if (editMode == 0) {
           cursorPos = (cursorPos - 1 + edited.length()) % edited.length();
         } else {
@@ -924,7 +921,6 @@ String editStringOnDevice(String current, int maxLen) {
           edited[cursorPos] = charset[charIdx];
         }
       }
-      needRedraw = true;
     }
 
     // Check buttons
@@ -932,7 +928,6 @@ String editStringOnDevice(String current, int maxLen) {
       while (digitalRead(ROTARY_BUTTON) == LOW) delay(50);
       delay(150);
       editMode = 1 - editMode;
-      needRedraw = true;
     }
 
     if (digitalRead(MODEBUTTON) == LOW) {
@@ -941,40 +936,38 @@ String editStringOnDevice(String current, int maxLen) {
       break;
     }
 
-    // Redraw only when needed
-    if (needRedraw) {
-      tft.fillRect(10, 30, 300, 180, TFT_BLACK);
-      tft.drawRoundRect(10, 30, 300, 180, 5, TFT_WHITE);
-      tft.fillRoundRect(12, 32, 296, 176, 5, TFT_BLACK);
+    // Always redraw
+    tft.fillRect(10, 30, 300, 180, TFT_BLACK);
+    tft.drawRoundRect(10, 30, 300, 180, 5, TFT_WHITE);
+    tft.fillRoundRect(12, 32, 296, 176, 5, TFT_BLACK);
 
-      // Mode indicator
-      tft.setTextColor(editMode ? TFT_RED : TFT_CYAN);
-      tft.drawString(editMode ? "MODO: EDITAR CHAR" : "MODO: NAVEGAR", 20, 40, 2);
+    // Mode indicator
+    tft.setTextColor(editMode ? TFT_RED : TFT_CYAN);
+    tft.drawString(editMode ? "MODO: EDITAR CHAR" : "MODO: NAVEGAR", 20, 40, 2);
 
-      // Show text (truncate to 30 chars per line)
-      tft.setTextColor(TFT_YELLOW);
-      String line1 = edited.substring(0, 30);
-      tft.drawString(line1, 20, 65, 1);
+    // Show text
+    tft.setTextColor(TFT_YELLOW);
+    tft.drawString(edited, 20, 65, 1);
 
-      // Draw cursor
-      tft.setTextColor(TFT_RED);
-      int curX = 20 + cursorPos * 6;
-      int curY = editMode ? 82 : 75;
-      tft.drawString("v", curX, curY, 1);
+    // Draw cursor under current char
+    tft.setTextColor(TFT_RED);
+    int curX = 20 + cursorPos * 6;
+    tft.drawString("^", curX, 78, 1);
 
-      // Instructions
-      tft.setTextColor(TFT_WHITE);
-      tft.drawString("ROTARY: " + String(editMode ? "char" : "pos"), 20, 100, 1);
-      tft.drawString("CLICK: modo   MODE: exit", 20, 113, 1);
+    // Show current char being edited
+    tft.setTextColor(TFT_LIGHTGREY);
+    tft.drawString("Char: [" + String(edited[cursorPos]) + "]", 20, 95, 1);
 
-      // Show charset
-      tft.setTextColor(TFT_LIGHTGREY);
-      tft.drawString(String(charset), 20, 130, 1);
+    // Instructions
+    tft.setTextColor(TFT_WHITE);
+    tft.drawString("ROTARY: " + String(editMode ? "muda char" : "navega"), 20, 110, 1);
+    tft.drawString("CLICK: alterna   MODE: sair", 20, 122, 1);
 
-      needRedraw = false;
-    }
+    // Show charset reference
+    tft.setTextColor(TFT_DARKGREY);
+    tft.drawString(charset, 20, 140, 1);
 
-    delay(100);
+    delay(150);
   }
 
   return edited.substring(0, maxLen);
