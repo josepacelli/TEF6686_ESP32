@@ -368,7 +368,7 @@ TFT_eSprite psSprite = TFT_eSprite(&tft);
 
 void setup() {
   setupmode = true;
-  EEPROM.begin(300);
+  EEPROM.begin(500);
   if (EEPROM.readByte(41) != 15) {
     EEPROM.writeByte(2, 0);
     EEPROM.writeByte(3, 0);
@@ -460,6 +460,7 @@ void setup() {
   carregarEstacoes();
   loadCustomRDSEnabled();
   loadCustomPICodes();
+  loadCustomPSRT();
   uint16_t device;
   uint16_t hw;
   uint16_t sw;
@@ -858,6 +859,127 @@ void loadCustomPICodes() {
   }
 }
 
+void saveCustomPSRT() {
+  size_t count = totalEstacoes();
+  for (size_t i = 0; i < count; i++) {
+    EEPROM.writeByte(237 + i, getEstacao(i).ps_index);
+    EEPROM.writeByte(319 + i, getEstacao(i).rt_index);
+  }
+  EEPROM.commit();
+}
+
+void loadCustomPSRT() {
+  size_t count = totalEstacoes();
+  for (size_t i = 0; i < count; i++) {
+    uint8_t ps_idx = EEPROM.readByte(237 + i);
+    uint8_t rt_idx = EEPROM.readByte(319 + i);
+    if (ps_idx != 0xFF) getEstacao(i).ps_index = ps_idx;
+    if (rt_idx != 0xFF) getEstacao(i).rt_index = rt_idx;
+  }
+}
+
+String editStringOnDevice(String current, int maxLen) {
+  const char charset[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .-,;";
+  int charsetLen = strlen(charset);
+
+  String edited = current;
+  if (edited.length() == 0) edited = " ";
+  edited = edited.substring(0, maxLen);
+  while (edited.length() < maxLen) edited += " ";
+
+  int cursorPos = 0;
+  int editMode = 0;
+  int lastRotary = 0;
+  bool needRedraw = true;
+
+  while (true) {
+    // Check rotary input
+    if (rotary != 0) {
+      lastRotary = rotary;
+      rotary = 0;
+
+      if (lastRotary == 1) {
+        if (editMode == 0) {
+          cursorPos = (cursorPos + 1) % edited.length();
+        } else {
+          // Find current char in charset
+          int charIdx = -1;
+          for (int i = 0; i < charsetLen; i++) {
+            if (charset[i] == edited[cursorPos]) { charIdx = i; break; }
+          }
+          if (charIdx < 0) charIdx = 0;
+          charIdx = (charIdx + 1) % charsetLen;
+          edited[cursorPos] = charset[charIdx];
+        }
+      } else if (lastRotary == -1) {
+        if (editMode == 0) {
+          cursorPos = (cursorPos - 1 + edited.length()) % edited.length();
+        } else {
+          int charIdx = -1;
+          for (int i = 0; i < charsetLen; i++) {
+            if (charset[i] == edited[cursorPos]) { charIdx = i; break; }
+          }
+          if (charIdx < 0) charIdx = 0;
+          charIdx = (charIdx - 1 + charsetLen) % charsetLen;
+          edited[cursorPos] = charset[charIdx];
+        }
+      }
+      needRedraw = true;
+    }
+
+    // Check buttons
+    if (digitalRead(ROTARY_BUTTON) == LOW) {
+      while (digitalRead(ROTARY_BUTTON) == LOW) delay(50);
+      delay(150);
+      editMode = 1 - editMode;
+      needRedraw = true;
+    }
+
+    if (digitalRead(MODEBUTTON) == LOW) {
+      while (digitalRead(MODEBUTTON) == LOW) delay(50);
+      delay(150);
+      break;
+    }
+
+    // Redraw only when needed
+    if (needRedraw) {
+      tft.fillRect(10, 30, 300, 180, TFT_BLACK);
+      tft.drawRoundRect(10, 30, 300, 180, 5, TFT_WHITE);
+      tft.fillRoundRect(12, 32, 296, 176, 5, TFT_BLACK);
+
+      // Mode indicator
+      tft.setTextColor(editMode ? TFT_RED : TFT_CYAN);
+      tft.drawString(editMode ? "MODO: EDITAR CHAR" : "MODO: NAVEGAR", 20, 40, 2);
+
+      // Show text (truncate to 30 chars per line)
+      tft.setTextColor(TFT_YELLOW);
+      String line1 = edited.substring(0, 30);
+      tft.drawString(line1, 20, 65, 1);
+
+      // Draw cursor
+      tft.setTextColor(TFT_RED);
+      int curX = 20 + cursorPos * 6;
+      int curY = editMode ? 82 : 75;
+      tft.drawString("v", curX, curY, 1);
+
+      // Instructions
+      tft.setTextColor(TFT_WHITE);
+      tft.drawString("ROTARY: " + String(editMode ? "char" : "pos"), 20, 100, 1);
+      tft.drawString("CLICK: modo   MODE: exit", 20, 113, 1);
+
+      // Show charset
+      tft.setTextColor(TFT_LIGHTGREY);
+      tft.drawString(String(charset), 20, 130, 1);
+
+      needRedraw = false;
+    }
+
+    delay(100);
+  }
+
+  return edited.substring(0, maxLen);
+}
+
 void habilitarTodasRDS() {
   size_t count = totalEstacoes();
 
@@ -1153,46 +1275,23 @@ void ButtonPress() {
           tft.drawCentreString(String(ptyEditCode), 150, 110, 4);
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 145, 2);
         } else if (menuoption == 50) {
-          menuopen = true;
-          psEditCount = (int)totalEstacoes();
-          psEditIndex = 0;
-          String curPS = getEstacao(ptyStationIndex).ps;
-          for (int i = 0; i < psEditCount; i++) {
-            if (curPS == getEstacao(i).ps) { psEditIndex = i; break; }
-          }
-          tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
-          tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
-          tft.setTextColor(TFT_SKYBLUE);
-          tft.drawCentreString("Index: " + String(psEditIndex), 150, 55, 2);
-          tft.setTextColor(TFT_WHITE);
-          tft.drawCentreString(getUIString(UI_SET_PS, languageSet), 150, 80, 4);
-          if (psEditCount > 0)
-            drawWrappedText(getEstacao(psEditIndex).ps, 150, 110, 2, TFT_YELLOW, 200, 3);
+          String newPS = editStringOnDevice(getEstacao(ptyStationIndex).ps, 32);
+          getEstacao(ptyStationIndex).ps_index = 255;
+          getEstacao(ptyStationIndex).ps = newPS;
+          menuopen = false;
+          saveCustomPSRT();
+          BuildMenu();
         } else if (menuoption == 70) {
-          menuopen = true;
-          rtEditCount = (int)totalEstacoes();
-          rtEditIndex = 0;
-          String curRT = getEstacao(ptyStationIndex).rt;
-          for (int i = 0; i < rtEditCount; i++) {
-            if (curRT == getEstacao(i).rt) { rtEditIndex = i; break; }
-          }
-          tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
-          tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
-          tft.setTextColor(TFT_SKYBLUE);
-          tft.drawCentreString("Index: " + String(rtEditIndex), 150, 55, 2);
-          tft.setTextColor(TFT_WHITE);
-          tft.drawCentreString(getUIString(UI_SET_RT, languageSet), 150, 80, 4);
-          if (rtEditCount > 0) {
-            drawWrappedText(getEstacao(rtEditIndex).rt, 150, 110, 2, TFT_YELLOW, 200, 3);
-          }
+          String newRT = editStringOnDevice(getEstacao(ptyStationIndex).rt, 64);
+          getEstacao(ptyStationIndex).rt_index = 255;
+          getEstacao(ptyStationIndex).rt = newRT;
+          menuopen = false;
+          saveCustomPSRT();
+          BuildMenu();
         }
       } else {
         if (menuoption == 30) {
           getEstacao(ptyStationIndex).pty_code = (int8_t)ptyEditCode;
-        } else if (menuoption == 50) {
-          if (psEditCount > 0) getEstacao(ptyStationIndex).ps = getEstacao(psEditIndex).ps;
-        } else if (menuoption == 70) {
-          if (rtEditCount > 0) getEstacao(ptyStationIndex).rt = getEstacao(rtEditIndex).rt;
         } else if (menuoption == 90) {
           getEstacao(ptyStationIndex).pi_code = (uint16_t)piEditCode;
           saveCustomPICodes();
@@ -1392,18 +1491,6 @@ void KeyUp() {
           tft.setTextColor(TFT_YELLOW);
           tft.drawCentreString(String(ptyEditCode), 150, 105, 4);
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 140, 2);
-        } else if (menuoption == 50) {
-          if (psEditCount > 0) {
-            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
-            psEditIndex = (psEditIndex + 1) % psEditCount;
-            drawWrappedText(getEstacao(psEditIndex).ps, 150, 110, 2, TFT_YELLOW, 200, 3);
-          }
-        } else if (menuoption == 70) {
-          if (rtEditCount > 0) {
-            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
-            rtEditIndex = (rtEditIndex + 1) % rtEditCount;
-            drawWrappedText(getEstacao(rtEditIndex).rt, 150, 110, 2, TFT_YELLOW, 200, 3);
-          }
         } else if (menuoption == 90) {
           tft.fillRect(33, 100, 234, 50, TFT_BLACK);
           piEditCode = (piEditCode + 1) & 0xFFFF;
@@ -1571,6 +1658,7 @@ void KeyUp() {
           carregarEstacoes();
           loadCustomRDSEnabled();
           loadCustomPICodes();
+          loadCustomPSRT();
           lastCustomFreq = 0;
           EEPROM.writeByte(56, languageSet);
           EEPROM.commit();
@@ -1619,18 +1707,6 @@ void KeyDown() {
           tft.setTextColor(TFT_YELLOW);
           tft.drawCentreString(String(ptyEditCode), 150, 105, 4);
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 140, 2);
-        } else if (menuoption == 50) {
-          if (psEditCount > 0) {
-            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
-            psEditIndex = (psEditIndex + psEditCount - 1) % psEditCount;
-            drawWrappedText(getEstacao(psEditIndex).ps, 150, 110, 2, TFT_YELLOW, 200, 3);
-          }
-        } else if (menuoption == 70) {
-          if (rtEditCount > 0) {
-            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
-            rtEditIndex = (rtEditIndex + rtEditCount - 1) % rtEditCount;
-            drawWrappedText(getEstacao(rtEditIndex).rt, 150, 110, 2, TFT_YELLOW, 200, 3);
-          }
         } else if (menuoption == 90) {
           tft.fillRect(33, 100, 234, 50, TFT_BLACK);
           piEditCode = (piEditCode + 0xFFFF) & 0xFFFF;
@@ -1800,6 +1876,7 @@ void KeyDown() {
           carregarEstacoes();
           loadCustomRDSEnabled();
           loadCustomPICodes();
+          loadCustomPSRT();
           lastCustomFreq = 0;
           EEPROM.writeByte(56, languageSet);
           EEPROM.commit();

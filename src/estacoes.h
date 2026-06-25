@@ -8,6 +8,8 @@
 struct Estacao {
   uint32_t freq_khz;
   uint16_t pi_code = 0;
+  uint8_t ps_index = 0;
+  uint8_t rt_index = 0;
   String ps;
   String rt;
   int8_t pty_code;
