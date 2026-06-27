@@ -48,274 +48,274 @@ void loadIsaacPTYs() {
   // Exemplo: Pop Music = 10, Religion = 20 (de acordo com PTY_EU)
   e.freq_khz = 79700;
   e.pty_code = 20;
-  e.ps = "RADIO METROPOLITANA FM 79.7MHZ - RADIO A RADIO DA COMUNIDADE";
-  e.rt = "RADIO METROPOLITANA FM 79.7MHZ - RADIO A RADIO DA COMUNIDADE";
+  e.ps = "RADIO METROPOLITANA FM 79.7MHZ";
+  e.rt = "A RADIO DA COMUNIDADE";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 86700;
   e.pty_code = 10;
-  e.ps = "RADIO EDUCATIVA FM 86.7 - RADIO IFCE FM 86.7 - RADIO EDUCACAO E CULTURA NO AR";
-  e.rt = "RADIO EDUCATIVA FM 86.7 - RADIO IFCE FM 86.7 - RADIO EDUCACAO E CULTURA NO AR";
+  e.ps = "RADIO EDUCATIVA FM 86.7";
+  e.rt = "EDUCACAO E MUSICA POP NO AR";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 87100;
   e.pty_code = 10;
-  e.ps = "RADIO CEARA FM 87.1MHZ - RADIO O SOM DO CEARA";
-  e.rt = "RADIO CEARA FM 87.1MHZ - RADIO O SOM DO CEARA";
+  e.ps = "RADIO CEARA FM 87.1MHZ";
+  e.rt = "O SOM DO CEARA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 88300;
   e.pty_code = 20;
-  e.ps = "RADIO JERUSALEM FM 88.3 - RADIO A VOZ DE DEUS NO AR";
-  e.rt = "RADIO JERUSALEM FM 88.3 - RADIO A VOZ DE DEUS NO AR";
+  e.ps = "RADIO JERUSALEM FM 88.3";
+  e.rt = "A VOZ DE DEUS NO AR";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 88900;
   e.pty_code = 10;
-  e.ps = "RADIO JANGADEIRO FM 88.9 - RADIO A RADIO QUE TODO MUNDO AMA";
-  e.rt = "RADIO JANGADEIRO FM 88.9 - RADIO A RADIO QUE TODO MUNDO AMA";
+  e.ps = "RADIO JANGADEIRO FM 88.9";
+  e.rt = "A RADIO QUE TODO MUNDO AMA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 89900;
   e.pty_code = 10;
-  e.ps = "RADIO 89 FM 89.9 FM - RADIO A MAIS TOCADA DE FORTALEZA";
-  e.rt = "RADIO 89 FM 89.9 FM - RADIO A MAIS TOCADA DE FORTALEZA";
+  e.ps = "RADIO 89 FM 89.9 FM";
+  e.rt = "A MAIS TOCADA DE FORTALEZA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 90700;
   e.pty_code = 10;
-  e.ps = "RADIO FORTALEZA FM 90.7 - RADIO A RADIO DE FORTALEZA";
-  e.rt = "RADIO FORTALEZA FM 90.7 - RADIO A RADIO DE FORTALEZA";
+  e.ps = "RADIO FORTALEZA FM 90.7";
+  e.rt = "A RADIO DE FORTALEZA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 90300;
   e.pty_code = 20;
-  e.ps = "RADIO UIRAPURU FM 90.3 - RADIO REDE ALELUIA FM 90.3 - RADIO REDE ALELUIA FM 90.3 - GLORIA A DEUS";
-  e.rt = "RADIO UIRAPURU FM 90.3 - RADIO REDE ALELUIA FM 90.3 - RADIO REDE ALELUIA FM 90.3 - GLORIA A DEUS";
+  e.ps = "RADIO UIRAPURU FM 90.3";
+  e.rt = "GLORIA A DEUS";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 91700;
   e.pty_code = 20;
-  e.ps = "RADIO SHALOM FM 91.7MHZ - RADIO COMUNIDADE SHALOM NO AR";
-  e.rt = "RADIO SHALOM FM 91.7MHZ - RADIO COMUNIDADE SHALOM NO AR";
+  e.ps = "RADIO SHALOM FM 91.7MHZ";
+  e.rt = "COMUNIDADE SHALOM NO AR";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 92100;
   e.pty_code = 20;
-  e.ps = "RADIO EFRAIM FM 92.1 - RADIO A RADIO GOSPEL DO CEARA";
-  e.rt = "RADIO EFRAIM FM 92.1 - RADIO A RADIO GOSPEL DO CEARA";
+  e.ps = "RADIO EFRAIM FM 92.1";
+  e.rt = "A RADIO GOSPEL DO CEARA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 92500;
   e.pty_code = 10;
-  e.ps = "RADIO VERDINHA FM 92.5 - RADIO JORNALISMO QUE FALA A NOSSA LINGUA";
-  e.rt = "RADIO VERDINHA FM 92.5 - RADIO JORNALISMO QUE FALA A NOSSA LINGUA";
+  e.ps = "RADIO VERDINHA FM 92.5";
+  e.rt = " JORNALISMO QUE FALA A NOSSA LINGUA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 92900;
   e.pty_code = 10;
-  e.ps = "RADIO JOVEM PAN NEWS FORTALEZA FM 92.9 - RADIO A RADIO QUE TOCA NOTICIA";
-  e.rt = "RADIO JOVEM PAN NEWS FORTALEZA FM 92.9 - RADIO A RADIO QUE TOCA NOTICIA";
+  e.ps = "RADIO JOVEM PAN NEWS FORTALEZA FM 92.9";
+  e.rt = "A RADIO QUE TOCA NOTICIA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 93500;
   e.pty_code = 20;
-  e.ps = "RADIO CANAA FM 93.5 - RADIO A TERRA PROMETIDA DO RADIO";
-  e.rt = "RADIO CANAA FM 93.5 - RADIO A TERRA PROMETIDA DO RADIO";
+  e.ps = "RADIO CANAA FM 93.5";
+  e.rt = "A TERRA PROMETIDA DO RADIO";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 93900;
   e.pty_code = 10;
-  e.ps = "RADIO FM 93 SEMPRE AO SEU LADO - RADIO SEMPRE AO SEU LADO";
-  e.rt = "RADIO FM 93 SEMPRE AO SEU LADO - RADIO SEMPRE AO SEU LADO";
+  e.ps = "RADIO FM 93 SEMPRE AO SEU LADO";
+  e.rt = "SEMPRE AO SEU LADO";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 94300;
   e.pty_code = 10;
-  e.ps = "RADIO SOL FM 94.3 OFICIAL - RADIO NOSSO BRILHO E VOCE";
-  e.rt = "RADIO SOL FM 94.3 OFICIAL - RADIO NOSSO BRILHO E VOCE";
+  e.ps = "RADIO SOL FM 94.3";
+  e.rt = "NOSSO BRILHO E VOCE";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 94700;
   e.pty_code = 10;
-  e.ps = "RADIO JOVEM PAN FORTALEZA FM 94.7 - RADIO A MELHOR RADIO DO BRASIL";
-  e.rt = "RADIO JOVEM PAN FORTALEZA FM 94.7 - RADIO A MELHOR RADIO DO BRASIL";
+  e.ps = "RADIO JOVEM PAN FORTALEZA FM 94.7";
+  e.rt = "A MELHOR RADIO DO BRASIL";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 95100;
   e.pty_code = 20;
-  e.ps = "RADIO LOGOS FM 95.1 - RADIO A PALAVRA DE DEUS NO AR";
-  e.rt = "RADIO LOGOS FM 95.1 - RADIO A PALAVRA DE DEUS NO AR";
+  e.ps = "RADIO LOGOS FM 95.1";
+  e.rt = "A PALAVRA DE DEUS NO AR";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 95500;
   e.pty_code = 10;
-  e.ps = "RADIO CBN O POVO FM 95.5 - RADIO A RADIO QUE TOCA NOTICIA";
-  e.rt = "RADIO CBN O POVO FM 95.5 - RADIO A RADIO QUE TOCA NOTICIA";
+  e.ps = "RADIO CBN O POVO FM 95.5";
+  e.rt = "A RADIO QUE TOCA NOTICIA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 96100;
   e.pty_code = 20;
-  e.ps = "RADIO DOMBOSCO FM 96,1 - RADIO A RADIO SALESIANA DO CEARA";
-  e.rt = "RADIO DOMBOSCO FM 96,1 - RADIO A RADIO SALESIANA DO CEARA";
+  e.ps = "RADIO DOMBOSCO FM 96,1";
+  e.rt = "A RADIO SALESIANA DO CEARA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 96700;
   e.pty_code = 10;
-  e.ps = "RADIO ALECE FM 96.7MHZ - RADIO A RADIO DA ASSEMBLEIA LEGISLATIVA";
-  e.rt = "RADIO ALECE FM 96.7MHZ - RADIO A RADIO DA ASSEMBLEIA LEGISLATIVA";
+  e.ps = "RADIO ALECE FM 96.7MHZ";
+  e.rt = "A RADIO DA ASSEMBLEIA LEGISLATIVA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 97100;
   e.pty_code = 20;
-  e.ps = "RADIO MARIA BRASIL FM 97.1 - RADIO AVE MARIA CHEIA DE GRACA";
-  e.rt = "RADIO MARIA BRASIL FM 97.1 - RADIO AVE MARIA CHEIA DE GRACA";
+  e.ps = "RADIO MARIA BRASIL FM 97.1";
+  e.rt = "AVE MARIA CHEIA DE GRACA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 97700;
   e.pty_code = 10;
-  e.ps = "RADIO ANTENA 1 FM 97.7 - RADIO SOM INTERNACIONAL SINTONIA LOCAL";
-  e.rt = "RADIO ANTENA 1 FM 97.7 - RADIO SOM INTERNACIONAL SINTONIA LOCAL";
+  e.ps = "RADIO ANTENA 1 FM 97.7";
+  e.rt = "SOM INTERNACIONAL SINTONIA LOCAL";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 98300;
   e.pty_code = 20;
-  e.ps = "RADIO LIDER FM GOSPEL 98.3 - RADIO A LIDER DO GOSPEL DO CEARA";
-  e.rt = "RADIO LIDER FM GOSPEL 98.3 - RADIO A LIDER DO GOSPEL DO CEARA";
+  e.ps = "RADIO LIDER FM GOSPEL 98.3";
+  e.rt = "A LIDER DO GOSPEL DO CEARA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 99100;
   e.pty_code = 10;
-  e.ps = "RADIO CIDADE FM 99.1 - RADIO A RADIO DA CIDADE DE FORTALEZA";
-  e.rt = "RADIO CIDADE FM 99.1 - RADIO A RADIO DA CIDADE DE FORTALEZA";
+  e.ps = "RADIO CIDADE FM 99.1";
+  e.rt = "A RADIO DA CIDADE DE FORTALEZA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 99900;
   e.pty_code = 20;
-  e.ps = "RADIO REDE ALELUIA FM 99.9 - RADIO GLORIA A DEUS NAS ALTURAS";
-  e.rt = "RADIO REDE ALELUIA FM 99.9 - RADIO GLORIA A DEUS NAS ALTURAS";
+  e.ps = "RADIO REDE ALELUIA FM 99.9";
+  e.rt = "GLORIA A DEUS NAS ALTURAS";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 100900;
   e.pty_code = 20;
-  e.ps = "RADIO DEUS E AMOR FM 100.9 - RADIO DEUS E AMOR - A RADIO DA CURA";
-  e.rt = "RADIO DEUS E AMOR FM 100.9 - RADIO DEUS E AMOR - A RADIO DA CURA";
+  e.ps = "RADIO DEUS E AMOR FM 100.9";
+  e.rt = "DEUS E AMOR - A RADIO DA CURA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 101300;
   e.pty_code = 20;
-  e.ps = "RADIO NOVA RADIO CRISTA FM 101.3 - RADIO A NOVA VOZ E RADIO DO EVANGELHO";
-  e.rt = "RADIO NOVA RADIO CRISTA FM 101.3 - RADIO A NOVA VOZ E RADIO DO EVANGELHO";
+  e.ps = "RADIO NOVA RADIO CRISTA FM 101.3";
+  e.rt = "A NOVA VOZ E RADIO DO EVANGELHO";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 101700;
   e.pty_code = 10;
-  e.ps = "RADIO BANDNEWS FM 101.7 - RADIO TODA HORA TODA NOTICIA";
-  e.rt = "RADIO BANDNEWS FM 101.7 - RADIO TODA HORA TODA NOTICIA";
+  e.ps = "RADIO BANDNEWS FM 101.7";
+  e.rt = "TODA HORA TODA NOTICIA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 102300;
   e.pty_code = 20;
-  e.ps = "RADIO TEMPLO CENTRAL FM 102.3 - RADIO O TEMPLO DE DEUS NO AR";
-  e.rt = "RADIO TEMPLO CENTRAL FM 102.3 - RADIO O TEMPLO DE DEUS NO AR";
+  e.ps = "RADIO TEMPLO CENTRAL FM 102.3";
+  e.rt = "O TEMPLO DE DEUS NO AR";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 102700;
   e.pty_code = 10;
-  e.ps = "RADIO BEACH PARK FM 102.7 - RADIO A CADA MUSICA UMA NOVA DESCOBERTA";
-  e.rt = "RADIO BEACH PARK FM 102.7 - RADIO A CADA MUSICA UMA NOVA DESCOBERTA";
+  e.ps = "RADIO BEACH PARK FM 102.7";
+  e.rt = "A CADA MUSICA UMA NOVA DESCOBERTA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 103300;
   e.pty_code = 10;
-  e.ps = "RADIO SENADO FM 103.3 - RADIO O SOM DA DEMOCRACIA";
-  e.rt = "RADIO SENADO FM 103.3 - RADIO O SOM DA DEMOCRACIA";
+  e.ps = "RADIO SENADO FM 103.3";
+  e.rt = "O SOM DA DEMOCRACIA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 103500;
   e.pty_code = 20;
-  e.ps = "RADIO REDE SHALOM DE RADIO FM 103.5 - RADIO COMUNIDADE SHALOM - PAZ E BEM";
-  e.rt = "RADIO REDE SHALOM DE RADIO FM 103.5 - RADIO COMUNIDADE SHALOM - PAZ E BEM";
+  e.ps = "RADIO REDE SHALOM DE RADIO FM 103.5";
+  e.rt = "COMUNIDADE SHALOM - PAZ E BEM";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 103900;
   e.pty_code = 10;
-  e.ps = "RADIO TEMPO FM 103.9 A SUA MELHOR ESTACAO - RADIO O TEMPO TODO A MELHOR MUSICA";
-  e.rt = "RADIO TEMPO FM 103.9 A SUA MELHOR ESTACAO - RADIO O TEMPO TODO A MELHOR MUSICA";
+  e.ps = "RADIO TEMPO FM 103.9";
+  e.rt = "O TEMPO TODO A MELHOR MUSICA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 104300;
   e.pty_code = 10;
-  e.ps = "RADIO REDE METROPOLITANA FM 104.3 - RADIO METROPOLITANA YES FM 104.3 - MUSICA POP - MUSICA SERTANEJA = TOCA TODAS";
-  e.rt = "RADIO REDE METROPOLITANA FM 104.3 - RADIO METROPOLITANA YES FM 104.3 = MUSICA POP - MUSICA SERTANEJA = TOCA TODAS";
+  e.ps = "RADIO REDE METROPOLITANA FM 104.3";
+  e.rt = "MUSICA POP - MUSICA SERTANEJA = TOCA TODAS";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 105100;
   e.pty_code = 20;
-  e.ps = "RADIO AD CIDADE FM 105.1MHZ - RADIO ASSEMBLEIA DE DEUS NO AR";
-  e.rt = "RADIO AD CIDADE FM 105.1MHZ - RADIO ASSEMBLEIA DE DEUS NO AR";
+  e.ps = "RADIO AD CIDADE FM 105.1MHZ";
+  e.rt = "ASSEMBLEIA DE DEUS NO AR";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 105700;
   e.pty_code = 10;
-  e.ps = "RADIO ATLANTICO SUL FM 105.7 - RADIO SUA VIDA NA MELHOR TRILHA";
-  e.rt = "RADIO ATLANTICO SUL FM 105.7 - RADIO SUA VIDA NA MELHOR TRILHA";
+  e.ps = "RADIO ATLANTICO SUL FM 105.7";
+  e.rt = "SUA VIDA NA MELHOR TRILHA";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 106500;
   e.pty_code = 10;
-  e.ps = "RADIO NOVABRASIL FM 106.5 - RADIO A MAIOR AUDIENCIA NO PUBLICO ADULTO";
-  e.rt = "RADIO NOVABRASIL FM 106.5 - RADIO A MAIOR AUDIENCIA NO PUBLICO ADULTO";
+  e.ps = "RADIO NOVABRASIL FM 106.5";
+  e.rt = "A MAIOR AUDIENCIA NO PUBLICO ADULTO";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 107500;
   e.pty_code = 10;
-  e.ps = "RADIO MIX FM 107.5 - RADIO OS MAIORES HITS DO MOMENTO";
-  e.rt = "RADIO MIX FM 107.5 - RADIO OS MAIORES HITS DO MOMENTO";
+  e.ps = "RADIO MIX FM 107.5";
+  e.rt = "OS MAIORES HITS DO MOMENTO";
   e.song = "";
   customPtys.push_back(e);
 
   e.freq_khz = 107900;
   e.pty_code = 10;
-  e.ps = "107.9MHZ RADIO UNIVERSITARIA FM 107.9MHZ - RADIO A RADIO DA UFC - MUSICA POP E SABER";
-  e.rt = "107.9MHZ RADIO UNIVERSITARIA FM 107.9MHZ - RADIO A RADIO DA UFC - MUSICA POP E SABER";
+  e.ps = "107.9MHZ RADIO UNIVERSITARIA FM 107.9MHZ";
+  e.rt = "A RADIO DA UFC - MUSICA POP E SABER NO AR";
   e.song = "";
   customPtys.push_back(e);
   log_info("Default Isaac PTYs loaded.");
