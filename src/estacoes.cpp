@@ -3,9 +3,12 @@
 #include "logbook.h"
 #include "ps_language.h"
 #include "rt_language.h"
+#include "TEF6686.h"
 #include <vector>
 #include <algorithm>
 #include <cmath>
+
+extern TEF6686 radio;
 
 static std::vector<Estacao> estacoes;
 
@@ -44,11 +47,31 @@ static String montarPS(Estacao* e, uint32_t freq_khz) {
 }
 
 String buscarPS(uint32_t freq_khz) {
+  if (radio.rds.stationName[0] != '\0') {
+    String result = "[" + String(radio.rds.stationTypeCode) + "] " + getPTYName(radio.rds.stationTypeCode);
+    result += " | " + String(radio.rds.stationName);
+    String m = buscarMusica(freq_khz);
+    if (m.length() > 0) {
+      Estacao* e = findEstacao(freq_khz);
+      if (e) result += " | " + formatSongWithYear(rotateSongString(m, e->posScroll), e->anoMusica);
+    }
+    return result;
+  }
   Estacao* e = findEstacao(freq_khz);
   return e ? montarPS(e, freq_khz) : String("");
 }
 
 String buscarRT(uint32_t freq_khz) {
+  if (radio.rds.rtRadio[0] != '\0') {
+    String result = "[" + String(radio.rds.stationTypeCode) + "] " + getPTYName(radio.rds.stationTypeCode);
+    result += " | " + String(radio.rds.rtRadio);
+    String m = buscarMusica(freq_khz);
+    if (m.length() > 0) {
+      Estacao* e = findEstacao(freq_khz);
+      if (e) result += " - " + formatSongWithYear(rotateSongString(m, e->posScroll), e->anoMusica);
+    }
+    return result;
+  }
   Estacao* e = findEstacao(freq_khz);
   if (!e) return String("");
   String result = "[" + String(e->pty_code) + "] " + getPTYName(e->pty_code);
