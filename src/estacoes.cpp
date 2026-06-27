@@ -197,6 +197,7 @@ void carregarEstacoes() {
   STATION(106500, 10, 36);
   STATION(107500, 10, 37);
   STATION(107900, 10, 38);
+  STATION(91300, 10, 39);
 
 #undef STATION
 
