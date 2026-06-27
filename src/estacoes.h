@@ -24,6 +24,8 @@ void   carregarEstacoes();
 bool     isRDSAtivo(uint32_t freq_khz);
 String   buscarPS(uint32_t freq_khz);
 String   buscarRT(uint32_t freq_khz);
+String   buscarPSPlain(uint32_t freq_khz);
+String   buscarRTPlain(uint32_t freq_khz);
 int8_t   buscarPTY(uint32_t freq_khz);
 String   buscarPI(uint32_t freq_khz);
 void   avancarScroll(uint32_t freq_khz);

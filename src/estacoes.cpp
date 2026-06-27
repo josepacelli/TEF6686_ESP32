@@ -108,6 +108,16 @@ String buscarPI(uint32_t freq_khz) {
   return s;
 }
 
+String buscarPSPlain(uint32_t freq_khz) {
+  Estacao* e = findEstacao(freq_khz);
+  return e ? e->ps : String("");
+}
+
+String buscarRTPlain(uint32_t freq_khz) {
+  Estacao* e = findEstacao(freq_khz);
+  return e ? e->rt : String("");
+}
+
 String buscarGenero(uint32_t freq_khz) {
   Estacao* e = findEstacao(freq_khz);
   return e ? getRandomGenreByPTY(e->pty_code) : String("");

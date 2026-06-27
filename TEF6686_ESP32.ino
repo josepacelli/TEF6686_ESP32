@@ -1825,8 +1825,8 @@ void readRds() {
       lastRdsRefreshFreq = currentFreqKhz;
       rdsDataTicker = millis();
       if (isRDSAtivo(currentFreqKhz)) {
-        customPS = buscarPS(currentFreqKhz);
-        customRT = buscarRT(currentFreqKhz);
+        customPS = buscarPSPlain(currentFreqKhz);
+        customRT = buscarRTPlain(currentFreqKhz);
         int8_t ptyCode = buscarPTY(currentFreqKhz);
         customPTY = (ptyCode >= 0) ? radio.getPTYText(ptyCode) : "";
         customPI = buscarPI(currentFreqKhz);
@@ -1840,8 +1840,8 @@ void readRds() {
       // Atualizar dados RDS periodicamente (a cada 5 segundos) para rotação
       rdsDataTicker = millis();
       if (isRDSAtivo(currentFreqKhz)) {
-        customPS = buscarPS(currentFreqKhz);
-        customRT = buscarRT(currentFreqKhz);
+        customPS = buscarPSPlain(currentFreqKhz);
+        customRT = buscarRTPlain(currentFreqKhz);
         int8_t ptyCode = buscarPTY(currentFreqKhz);
         customPTY = (ptyCode >= 0) ? radio.getPTYText(ptyCode) : "";
         customPI = buscarPI(currentFreqKhz);
@@ -1972,10 +1972,10 @@ void showPS() {
   // Avançar scroll da música a cada ciclo
   avancarScroll(currentFreqKhz);
 
-  String psToShow = (radio.rds.stationName[0] != '\0') ? String(radio.rds.stationName) : customPS;
-  String rtToShow = (radio.rds.stationText[0] != '\0') ? String(radio.rds.stationText) : customRT;
-  String freqStr = String(freq / 100) + "." + (freq % 100 < 10 ? "0" : "") + String(freq % 100);
-  psToShow = freqStr + " | " + psToShow + " | " + rtToShow;
+  String psRadio = String(radio.rds.stationName);
+  String psBanco = customPS;
+  String psToShow = psRadio + " - " + psBanco;
+  psToShow.toUpperCase();
 
   if (psToShow != PSold) {
     psXPos = 0;
@@ -2012,7 +2012,10 @@ void showRadioText() {
   // Avançar scroll da música a cada ciclo
   avancarScroll(currentFreqKhz);
 
-  String rtToShow = (radio.rds.stationText[0] != '\0') ? String(radio.rds.stationText) : customRT;
+  String rtRadio = String(radio.rds.stationText);
+  String rtBanco = customRT;
+  String rtToShow = rtRadio + " - " + rtBanco;
+  rtToShow.toUpperCase();
   if (rtToShow != RTold) {
     xPos = 6;
     RTold = rtToShow;
