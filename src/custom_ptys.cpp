@@ -266,7 +266,7 @@ void loadIsaacPTYs() {
   e.freq_khz = 103500;
   e.pty_code = 20;
   e.ps = "RADIO REDE SHALOM DE RADIO FM 103.5";
-  e.rt = "COMUNIDADE SHALOM - PAZ E BEM";
+  e.rt = "COMUNIDADE SHALOM - PAZ E BEM NO AR";
   e.song = "";
   customPtys.push_back(e);
 
