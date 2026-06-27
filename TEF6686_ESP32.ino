@@ -1918,11 +1918,6 @@ void showRDSStatusRotation() {
         Estacao& e = getEstacao(rdsStatusIndex);
         uint32_t f = e.freq_khz;
         String freqStr = String(f / 1000) + "." + String((f % 1000) / 100);
-        String rdsStatus = e.rds_ativo ? "RDS ON" : "RDS OFF";
-        uint32_t statusColor = e.rds_ativo ? TFT_GREEN : TFT_RED;
-
-        tft.setTextColor(statusColor);
-        tft.drawString(rdsStatus, 250, 70, 1);
       }
     }
   }
