@@ -2289,7 +2289,7 @@ void showRadioText() {
   String rtRadio = String(radio.rds.stationText);
   String rtBanco = customRT;
   String rtToShow = (rtRadio.length() > 0 && rtBanco.length() > 0) ? rtRadio + " - " + rtBanco
-                  : (rtRadio.length() > 0) ? rtRadio : rtBanco;
+                  : (rtRadio.length() > 0) ? rtRadio : buscarRT(currentFreqKhz);
   rtToShow.toUpperCase();
   if (rtToShow != RTold) {
     xPos = 6;
