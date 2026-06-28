@@ -32,24 +32,31 @@ String buscarMusica(uint32_t freq_khz) {
 }
 
 static String montarPS(Estacao* e, uint32_t freq_khz) {
-  String result = "[" + String(e->pty_code) + "] " + getPTYName(e->pty_code);
-  if (e->ps.length() > 0) result += " | " + e->ps;
+  String result = "";
+  if (e->ps.length() > 0) result = e->ps;
   String m = buscarMusica(freq_khz);
-  if (m.length() > 0)
-    result += " | " + formatSongWithYear(rotateSongString(m, e->posScroll), e->anoMusica);
-  if (e->dia.length() > 0) result += " | " + e->dia + "/" + e->mes + "/" + e->ano;
+  if (m.length() > 0) {
+    if (result.length() > 0) result += " | ";
+    result += formatSongWithYear(rotateSongString(m, e->posScroll), e->anoMusica);
+  }
+  if (e->dia.length() > 0) {
+    if (result.length() > 0) result += " | ";
+    result += e->dia + "/" + e->mes + "/" + e->ano;
+  }
   if (e->hora.length() > 0) {
     result += " " + e->hora + ":" + e->minuto;
     if (e->segundo.length() > 0) result += ":" + e->segundo;
   }
-  if (e->tempo.length() > 0) result += " | " + e->tempo + " " + e->temperatura;
+  if (e->tempo.length() > 0) {
+    if (result.length() > 0) result += " | ";
+    result += e->tempo + " " + e->temperatura;
+  }
   return result;
 }
 
 String buscarPS(uint32_t freq_khz) {
   if (radio.rds.stationName[0] != '\0') {
-    String result = "[" + String(radio.rds.stationTypeCode) + "] " + getPTYName(radio.rds.stationTypeCode);
-    result += " | " + String(radio.rds.stationName);
+    String result = String(radio.rds.stationName);
     String m = buscarMusica(freq_khz);
     if (m.length() > 0) {
       Estacao* e = findEstacao(freq_khz);
