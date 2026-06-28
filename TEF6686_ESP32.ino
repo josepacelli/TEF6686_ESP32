@@ -177,10 +177,17 @@
 #include "src/TEF6686.h"
 #include "src/constants.h"
 #include "src/pty_language.h"
+#include "src/NTPupdate.h"
 #include <EEPROM.h>
 #include <Wire.h>
 #include <TFT_eSPI.h>         // https://github.com/Bodmer/TFT_eSPI
 #include <TimeLib.h>          // https://github.com/PaulStoffregen/Time
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <WiFiUdp.h>
+#include <WebServer.h>
+#include <ESP32Time.h>
+#include <esp_task_wdt.h>
 
 #define TFT_GREYOUT     0x38E7
 #define ROTARY_PIN_A    34
@@ -362,6 +369,18 @@ unsigned long peakholdmillis;
 unsigned long rtticker;
 unsigned long psTicker;
 
+bool wifi = false;
+bool wifiSetupPending = false;
+bool NTPupdated = false;
+int8_t NTPoffset = -3; // BRT default (Brasilia)
+unsigned long NTPtimer = 0;
+
+ESP32Time rtc(0);
+WiFiUDP Udp;
+WebServer wifiServer(80);
+char wifiSSID[33] = "";
+char wifiPass[65] = "";
+
 TEF6686 radio;
 TFT_eSprite sprite = TFT_eSprite(&tft);
 TFT_eSprite psSprite = TFT_eSprite(&tft);
@@ -394,6 +413,8 @@ void setup() {
     EEPROM.writeByte(54, 102);
     EEPROM.writeByte(55, 0);
     EEPROM.writeByte(56, 1);
+    EEPROM.writeByte(57, 0);    // wifi disabled by default
+    EEPROM.writeByte(58, 253);  // -3 as uint8 (two's complement)
     EEPROM.commit();
   }
   frequency = EEPROM.readUInt(0);
@@ -418,6 +439,10 @@ void setup() {
   optenc = EEPROM.readByte(55);
   languageSet = EEPROM.readByte(56);
   if (languageSet < 1 || languageSet > 9) languageSet = 1; // Default English if invalid
+  wifi = EEPROM.readByte(57);
+  NTPoffset = (int8_t)EEPROM.readByte(58);
+  EEPROM.readString(59,  wifiSSID, 33);
+  EEPROM.readString(92,  wifiPass, 65);
   EEPROM.commit();
   setPTYLanguage(languageSet);
   btStop();
@@ -596,10 +621,187 @@ void setup() {
   musicRotationTicker = millis();
   weatherRotationTicker = millis();
   rdsStatusTicker = millis();
+
+  if (wifi && strlen(wifiSSID) > 0) {
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(wifiSSID, wifiPass);
+    unsigned long wt = millis();
+    while (WiFi.status() != WL_CONNECTED && millis() - wt < 10000) delay(200);
+    if (WiFi.status() == WL_CONNECTED) {
+      Udp.begin(localPort);
+      NTPupdate();
+      NTPtimer = millis();
+    } else {
+      WiFi.mode(WIFI_OFF);
+      wifi = false;
+    }
+  }
+}
+
+static const char WIFI_PORTAL_HTML[] PROGMEM =
+  "<!DOCTYPE html><html lang='pt-BR'><head><meta charset='utf-8'>"
+  "<meta name='viewport' content='width=device-width,initial-scale=1'>"
+  "<title>TEF6686 WiFi</title>"
+  "<style>body{font-family:verdana;text-align:center;padding:20px}"
+  "input{width:90%;padding:8px;margin:8px 0;font-size:1em}"
+  "button{width:90%;padding:10px;background:#1fa3ec;color:#fff;"
+  "border:0;border-radius:5px;font-size:1.1em;margin-top:10px}</style></head>"
+  "<body><h2>TEF6686 - Configurar WiFi</h2>"
+  "<form method='POST' action='/save'>"
+  "<label>Nome da Rede (SSID):</label><br>"
+  "<input name='s' type='text' placeholder='MinhaRede' maxlength='32'><br>"
+  "<label>Senha:</label><br>"
+  "<input name='p' type='password' placeholder='Senha' maxlength='64'><br>"
+  "<button type='submit'>Salvar e Conectar</button>"
+  "</form></body></html>";
+
+static const char WIFI_SAVED_HTML[] PROGMEM =
+  "<!DOCTYPE html><html lang='pt-BR'><head><meta charset='utf-8'>"
+  "<title>Salvo</title></head><body><h2>Credenciais salvas!</h2>"
+  "<p>O dispositivo vai conectar. Pode fechar esta pagina.</p></body></html>";
+
+bool wifiPortalActive = false;
+bool wifiCredsSaved  = false;
+
+void wifiShowAPScreen() {
+  tft.fillScreen(TFT_BLACK);
+  tft.drawRect(0, 0, 320, 240, TFT_BLUE);
+  tft.setTextColor(TFT_YELLOW);
+  tft.drawCentreString("Configurar WiFi", 160, 10, 2);
+  tft.setTextColor(TFT_WHITE);
+  tft.drawCentreString("1. Conecte ao WiFi:", 160, 50, 2);
+  tft.setTextColor(TFT_CYAN);
+  tft.drawCentreString("TEF6686-Setup", 160, 70, 4);
+  tft.setTextColor(TFT_WHITE);
+  tft.drawCentreString("2. Abra no navegador:", 160, 110, 2);
+  tft.setTextColor(TFT_CYAN);
+  tft.drawCentreString("192.168.4.1", 160, 130, 4);
+  tft.setTextColor(TFT_YELLOW);
+  tft.drawCentreString("Aguardando configuracao...", 160, 180, 2);
+  tft.drawCentreString("Pressione MODE para sair", 160, 200, 2);
+}
+
+void tryWiFi() {
+  detachInterrupt(digitalPinToInterrupt(ROTARY_PIN_A));
+  detachInterrupt(digitalPinToInterrupt(ROTARY_PIN_B));
+  sprite.deleteSprite();
+  psSprite.deleteSprite();
+
+  bool connected = false;
+
+  // Tem credenciais salvas → tenta conectar direto
+  if (strlen(wifiSSID) > 0) {
+    tft.fillScreen(TFT_BLACK);
+    tft.drawRect(0, 0, 320, 240, TFT_BLUE);
+    tft.setTextColor(TFT_WHITE);
+    tft.drawCentreString("Conectando WiFi...", 160, 100, 4);
+    tft.setTextColor(TFT_YELLOW);
+    tft.drawCentreString(wifiSSID, 160, 140, 2);
+
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(wifiSSID, wifiPass);
+    unsigned long t = millis();
+    while (WiFi.status() != WL_CONNECTED && millis() - t < 15000) {
+      delay(200);
+    }
+    connected = (WiFi.status() == WL_CONNECTED);
+  }
+
+  // Sem credenciais ou falhou → portal AP mínimo
+  if (!connected) {
+    WiFi.mode(WIFI_AP);
+    WiFi.softAP("TEF6686-Setup");
+    delay(500);
+
+    wifiShowAPScreen();
+
+    wifiCredsSaved = false;
+    wifiServer.on("/", HTTP_GET, []() {
+      wifiServer.send_P(200, "text/html", WIFI_PORTAL_HTML);
+    });
+    wifiServer.on("/save", HTTP_POST, []() {
+      wifiServer.send_P(200, "text/html", WIFI_SAVED_HTML);
+      String s = wifiServer.arg("s");
+      String p = wifiServer.arg("p");
+      s.toCharArray(wifiSSID, sizeof(wifiSSID));
+      p.toCharArray(wifiPass, sizeof(wifiPass));
+      EEPROM.writeString(59, wifiSSID);
+      EEPROM.writeString(92, wifiPass);
+      EEPROM.commit();
+      wifiCredsSaved = true;
+    });
+    wifiServer.begin();
+
+    // Aguarda salvar ou botão MODE para cancelar
+    while (!wifiCredsSaved) {
+      wifiServer.handleClient();
+      if (digitalRead(MODEBUTTON) == LOW) break;
+      delay(10);
+    }
+
+    wifiServer.stop();
+    WiFi.softAPdisconnect(true);
+
+    if (wifiCredsSaved && strlen(wifiSSID) > 0) {
+      tft.fillScreen(TFT_BLACK);
+      tft.drawRect(0, 0, 320, 240, TFT_BLUE);
+      tft.setTextColor(TFT_WHITE);
+      tft.drawCentreString("Conectando...", 160, 100, 4);
+      WiFi.mode(WIFI_STA);
+      WiFi.begin(wifiSSID, wifiPass);
+      unsigned long t = millis();
+      while (WiFi.status() != WL_CONNECTED && millis() - t < 15000) delay(200);
+      connected = (WiFi.status() == WL_CONNECTED);
+    }
+  }
+
+  if (connected) {
+    Udp.begin(localPort);
+    NTPupdate();
+    NTPtimer = millis();
+    tft.fillScreen(TFT_BLACK);
+    tft.drawRect(0, 0, 320, 240, TFT_BLUE);
+    tft.setTextColor(TFT_GREEN);
+    tft.drawCentreString("WiFi conectado!", 160, 100, 4);
+    tft.setTextColor(TFT_WHITE);
+    tft.drawCentreString(WiFi.localIP().toString(), 160, 140, 4);
+    delay(2000);
+  } else {
+    WiFi.mode(WIFI_OFF);
+    tft.fillScreen(TFT_BLACK);
+    tft.drawRect(0, 0, 320, 240, TFT_BLUE);
+    tft.setTextColor(TFT_RED);
+    tft.drawCentreString("WiFi nao conectado", 160, 110, 4);
+    delay(1500);
+    if (!wifiCredsSaved) {
+      wifi = false;
+      EEPROM.writeByte(57, 0);
+      EEPROM.commit();
+    }
+  }
+
+  sprite.createSprite(313, 18);
+  psSprite.createSprite(170, 26);
+  attachInterrupt(digitalPinToInterrupt(ROTARY_PIN_A), read_encoder, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(ROTARY_PIN_B), read_encoder, CHANGE);
 }
 
 void loop() {
   if (digitalRead(PWRBUTTON) == LOW && USBstatus == false) PWRButtonPress();
+
+  if (wifiSetupPending) {
+    wifiSetupPending = false;
+    tryWiFi();
+    BuildMenu();
+    menu = true;
+    menuopen = false;
+    return;
+  }
+
+  if (wifi && NTPupdated && millis() - NTPtimer >= 1800000) {
+    NTPupdate();
+    NTPtimer = millis();
+  }
 
   if (power == true) {
     if (seek == true) Seek(direction);
@@ -1224,6 +1426,32 @@ void ButtonPress() {
         habilitarTodasRDS(); BuildMenu(); return;
       }
       if (menuPage == 1 && menuoption == 110) {
+        wifi = !wifi;
+        EEPROM.writeByte(57, wifi);
+        EEPROM.commit();
+        if (wifi) {
+          wifiSetupPending = true;
+          menu = false;
+          menuopen = false;
+        } else {
+          WiFi.mode(WIFI_OFF);
+          Udp.stop();
+          NTPupdated = false;
+          BuildMenu();
+        }
+        return;
+      }
+      if (menuPage == 1 && menuoption == 130) {
+        menuopen = true;
+        tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
+        tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
+        tft.setTextColor(TFT_WHITE);
+        tft.drawCentreString("NTP Offset (h)", 150, 70, 4);
+        tft.setTextColor(TFT_YELLOW);
+        tft.drawCentreString(String(NTPoffset), 150, 110, 4);
+        return;
+      }
+      if (menuPage == 1 && menuoption == 150) {
         menuPage = 0; menuoption = 190; BuildMenu(); return;
       }
       menuopen = true;
@@ -1421,7 +1649,7 @@ void KeyUp() {
       if (menuPage == 0) {
         if (menuoption > 210) { menuPage = 1; menuoption = 30; }
       } else {
-        if (menuoption > 110) { menuPage = 0; menuoption = 30; }
+        if (menuoption > 150) { menuPage = 0; menuoption = 30; }
       }
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
     } else {
@@ -1575,6 +1803,18 @@ void KeyUp() {
           EEPROM.writeByte(56, languageSet);
           EEPROM.commit();
           break;
+
+        case 310:
+          tft.setTextColor(TFT_BLACK);
+          tft.drawCentreString(String(NTPoffset), 150, 110, 4);
+          NTPoffset++;
+          if (NTPoffset > 14) NTPoffset = -12;
+          tft.setTextColor(TFT_YELLOW);
+          tft.drawCentreString(String(NTPoffset), 150, 110, 4);
+          EEPROM.writeByte(58, (uint8_t)NTPoffset);
+          EEPROM.commit();
+          if (wifi && NTPupdated) NTPupdate();
+          break;
       }
     }
   }
@@ -1646,7 +1886,7 @@ void KeyDown() {
       tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
       menuoption -= 20;
       if (menuPage == 0) {
-        if (menuoption < 30) { menuPage = 1; menuoption = 110; }
+        if (menuoption < 30) { menuPage = 1; menuoption = 150; }
       } else {
         if (menuoption < 30) { menuPage = 0; menuoption = 210; }
       }
@@ -1803,6 +2043,18 @@ void KeyDown() {
           lastCustomFreq = 0;
           EEPROM.writeByte(56, languageSet);
           EEPROM.commit();
+          break;
+
+        case 310:
+          tft.setTextColor(TFT_BLACK);
+          tft.drawCentreString(String(NTPoffset), 150, 110, 4);
+          NTPoffset--;
+          if (NTPoffset < -12) NTPoffset = 14;
+          tft.setTextColor(TFT_YELLOW);
+          tft.drawCentreString(String(NTPoffset), 150, 110, 4);
+          EEPROM.writeByte(58, (uint8_t)NTPoffset);
+          EEPROM.commit();
+          if (wifi && NTPupdated) NTPupdate();
           break;
       }
     }
@@ -2148,6 +2400,10 @@ void BuildMenu() {
     tft.drawString(getUIString(UI_SET_BRIGHTNESS,  languageSet), 20, 30, 2);
     tft.drawString(getUIString(UI_SET_LANGUAGE,    languageSet), 20, 50, 2);
     tft.drawString(getUIString(UI_STATION_EDITOR,  languageSet), 20, 70, 2);
+    tft.drawString(getUIString(UI_ENABLE_ALL_RDS,  languageSet), 20, 90, 2);
+    tft.drawString("WiFi", 20, 110, 2);
+    tft.drawString("NTP Offset (h)", 20, 130, 2);
+    tft.drawString(getUIString(UI_PAGE1_BACK, languageSet), 20, 150, 2);
     tft.setTextColor(TFT_YELLOW);
     tft.drawRightString(String(ContrastSet, DEC), 270, 30, 2);
     if (languageSet == 1) tft.drawRightString("English", 270, 50, 2);
@@ -2161,8 +2417,10 @@ void BuildMenu() {
     else if (languageSet == 9) tft.drawRightString("BR-ES", 270, 50, 2);
     tft.setTextColor(TFT_SKYBLUE);
     tft.drawString(">>", 275, 70, 2);
-    tft.drawString(getUIString(UI_ENABLE_ALL_RDS, languageSet), 20, 90, 2);
-    tft.drawString(getUIString(UI_PAGE1_BACK, languageSet), 20, 110, 2);
+    tft.setTextColor(wifi ? TFT_GREEN : TFT_RED);
+    tft.drawRightString(wifi ? "ON" : "OFF", 270, 110, 2);
+    tft.setTextColor(TFT_YELLOW);
+    tft.drawRightString(String(NTPoffset), 270, 130, 2);
   } else if (menuPage == 2) {
     size_t count = totalEstacoes();
     int visRows = min((int)count, 8);
