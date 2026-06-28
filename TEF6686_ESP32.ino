@@ -2100,8 +2100,8 @@ void readRds() {
       lastRdsRefreshFreq = currentFreqKhz;
       rdsDataTicker = millis();
       if (isRDSAtivo(currentFreqKhz)) {
-        customPS = buscarPSPlain(currentFreqKhz);
-        customRT = buscarRTPlain(currentFreqKhz);
+        customPS = buscarPS(currentFreqKhz);
+        customRT = buscarRT(currentFreqKhz);
         int8_t ptyCode = buscarPTY(currentFreqKhz);
         customPTY = (ptyCode >= 0) ? radio.getPTYText(ptyCode) : "";
         customPI = buscarPI(currentFreqKhz);
@@ -2115,8 +2115,8 @@ void readRds() {
       // Atualizar dados RDS periodicamente (a cada 5 segundos) para rotação
       rdsDataTicker = millis();
       if (isRDSAtivo(currentFreqKhz)) {
-        customPS = buscarPSPlain(currentFreqKhz);
-        customRT = buscarRTPlain(currentFreqKhz);
+        customPS = buscarPS(currentFreqKhz);
+        customRT = buscarRT(currentFreqKhz);
         int8_t ptyCode = buscarPTY(currentFreqKhz);
         customPTY = (ptyCode >= 0) ? radio.getPTYText(ptyCode) : "";
         customPI = buscarPI(currentFreqKhz);
@@ -2248,7 +2248,7 @@ void showPS() {
   String psRadio = String(radio.rds.stationName);
   String psBanco = customPS;
   String psToShow = (psRadio.length() > 0 && psBanco.length() > 0) ? psRadio + " - " + psBanco
-                  : (psRadio.length() > 0) ? psRadio : buscarPS(currentFreqKhz);
+                  : (psRadio.length() > 0) ? psRadio : psBanco;
   psToShow.toUpperCase();
 
   if (psToShow != PSold) {
@@ -2289,7 +2289,7 @@ void showRadioText() {
   String rtRadio = String(radio.rds.stationText);
   String rtBanco = customRT;
   String rtToShow = (rtRadio.length() > 0 && rtBanco.length() > 0) ? rtRadio + " - " + rtBanco
-                  : (rtRadio.length() > 0) ? rtRadio : buscarRT(currentFreqKhz);
+                  : (rtRadio.length() > 0) ? rtRadio : rtBanco;
   rtToShow.toUpperCase();
   if (rtToShow != RTold) {
     xPos = 6;
@@ -2345,7 +2345,8 @@ void showCT() {
 
 void drawWrappedText(String text, int centerX, int startY, int font, uint32_t color, int maxWidth, int maxLines) {
   tft.setTextColor(color);
-  int charWidth = tft.textWidth("A") * font / 2;
+  tft.setTextFont(font);
+  int charWidth = tft.textWidth("W");
   int charsPerLine = maxWidth / charWidth;
   int lineHeight = font * 8 + 4;
 
