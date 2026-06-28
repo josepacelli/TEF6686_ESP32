@@ -1972,7 +1972,8 @@ void showPS() {
 
   String psRadio = String(radio.rds.stationName);
   String psBanco = customPS;
-  String psToShow = psRadio + " - " + psBanco;
+  String psToShow = (psRadio.length() > 0 && psBanco.length() > 0) ? psRadio + " - " + psBanco
+                  : (psRadio.length() > 0) ? psRadio : psBanco;
   psToShow.toUpperCase();
 
   if (psToShow != PSold) {
@@ -2012,7 +2013,8 @@ void showRadioText() {
 
   String rtRadio = String(radio.rds.stationText);
   String rtBanco = customRT;
-  String rtToShow = rtRadio + " - " + rtBanco;
+  String rtToShow = (rtRadio.length() > 0 && rtBanco.length() > 0) ? rtRadio + " - " + rtBanco
+                  : (rtRadio.length() > 0) ? rtRadio : rtBanco;
   rtToShow.toUpperCase();
   if (rtToShow != RTold) {
     xPos = 6;
