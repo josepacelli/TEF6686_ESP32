@@ -387,6 +387,34 @@ TEF6686 radio;
 TFT_eSprite sprite = TFT_eSprite(&tft);
 TFT_eSprite psSprite = TFT_eSprite(&tft);
 
+TaskHandle_t wifiTaskHandle = NULL;
+volatile bool wifiTaskRunning = false;
+volatile bool wifiConnecting = false;
+
+void wifiTask(void *param) {
+  wifiTaskRunning = true;
+  if (wifi && strlen(wifiSSID) > 0) {
+    wifiConnecting = true;
+    WiFi.mode(WIFI_STA);
+    WiFi.begin(wifiSSID, wifiPass);
+    unsigned long wt = millis();
+    while (WiFi.status() != WL_CONNECTED && millis() - wt < 10000) {
+      vTaskDelay(200 / portTICK_PERIOD_MS);
+    }
+    if (WiFi.status() == WL_CONNECTED) {
+      Udp.begin(localPort);
+      NTPupdate();
+      NTPtimer = millis();
+    } else {
+      WiFi.mode(WIFI_OFF);
+      wifi = false;
+    }
+    wifiConnecting = false;
+  }
+  wifiTaskRunning = false;
+  vTaskDelete(NULL);
+}
+
 void setup() {
   setupmode = true;
   EEPROM.begin(300);
@@ -625,18 +653,7 @@ void setup() {
   rdsStatusTicker = millis();
 
   if (wifi && strlen(wifiSSID) > 0) {
-    WiFi.mode(WIFI_STA);
-    WiFi.begin(wifiSSID, wifiPass);
-    unsigned long wt = millis();
-    while (WiFi.status() != WL_CONNECTED && millis() - wt < 10000) delay(200);
-    if (WiFi.status() == WL_CONNECTED) {
-      Udp.begin(localPort);
-      NTPupdate();
-      NTPtimer = millis();
-    } else {
-      WiFi.mode(WIFI_OFF);
-      wifi = false;
-    }
+    xTaskCreatePinnedToCore(wifiTask, "WiFi", 4096, NULL, 1, &wifiTaskHandle, 0);
   }
 }
 
