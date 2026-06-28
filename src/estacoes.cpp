@@ -45,11 +45,6 @@ String buscarMusica(uint32_t freq_khz) {
 static String montarPS(Estacao* e, uint32_t freq_khz) {
   String result = "";
   if (e->ps.length() > 0) result = e->ps;
-  String m = buscarMusica(freq_khz);
-  if (m.length() > 0) {
-    if (result.length() > 0) result += " | ";
-    result += formatSongWithYear(rotateSongString(m, e->posScroll), e->anoMusica);
-  }
   String ntpDT = getNTPDateTimeStr();
   if (ntpDT.length() > 0) {
     if (result.length() > 0) result += " | ";
@@ -73,13 +68,7 @@ static String montarPS(Estacao* e, uint32_t freq_khz) {
 
 String buscarPS(uint32_t freq_khz) {
   if (radio.rds.stationName[0] != '\0') {
-    String result = String(radio.rds.stationName);
-    String m = buscarMusica(freq_khz);
-    if (m.length() > 0) {
-      Estacao* e = findEstacao(freq_khz);
-      if (e) result += " | " + formatSongWithYear(rotateSongString(m, e->posScroll), e->anoMusica);
-    }
-    return result;
+    return String(radio.rds.stationName);
   }
   Estacao* e = findEstacao(freq_khz);
   return e ? montarPS(e, freq_khz) : String("");

@@ -374,6 +374,8 @@ bool wifiSetupPending = false;
 bool NTPupdated = false;
 int8_t NTPoffset = -3; // BRT default (Brasilia)
 unsigned long NTPtimer = 0;
+unsigned long clockTimer = 0;
+String clockOld = "";
 
 ESP32Time rtc(0);
 WiFiUDP Udp;
@@ -801,6 +803,10 @@ void loop() {
   if (wifi && NTPupdated && millis() - NTPtimer >= 1800000) {
     NTPupdate();
     NTPtimer = millis();
+  }
+  if (wifi && NTPupdated && millis() - clockTimer >= 1000) {
+    clockTimer = millis();
+    showTimeOrSQ();
   }
 
   if (power == true) {
@@ -2527,7 +2533,16 @@ void BuildDisplay() {
     }
   }
   tft.setTextColor(TFT_WHITE);
-  tft.drawString("SQ:", 216, 155, 2);
+  if (wifi && NTPupdated) {
+    clockOld = "";
+    String t = rtc.getTime("%H:%M:%S");
+    tft.setTextColor(TFT_CYAN);
+    tft.drawString(t, 216, 155, 2);
+    tft.setTextColor(TFT_WHITE);
+    clockOld = t;
+  } else {
+    tft.drawString("SQ:", 216, 155, 2);
+  }
   tft.drawString("S/N", 250, 168, 2);
   tft.drawString("dB",  300, 168, 2);
   tft.drawString("S", 6, 106, 2);
@@ -2925,30 +2940,47 @@ void ShowModLevel() {
   }
 }
 
+void showTimeOrSQ() {
+  if (!wifi || !NTPupdated) return;
+  if (menu || screenmute) return;
+  String t = rtc.getTime("%H:%M:%S");
+  if (t == clockOld) return;
+  // erase old
+  tft.setTextColor(TFT_BLACK);
+  tft.drawString(clockOld.length() > 0 ? clockOld : "SQ:", 216, 155, 2);
+  // draw new
+  tft.setTextColor(TFT_CYAN);
+  tft.drawString(t, 216, 155, 2);
+  tft.setTextColor(TFT_WHITE);
+  clockOld = t;
+}
+
 void doSquelch() {
   if (USBstatus == false) {
     Squelch = analogRead(PIN_POT) / 4 - 100;
     if (Squelch > 920) Squelch = 920;
 
     if (seek == false && menu == false && Squelch != Squelchold) {
-      tft.setTextFont(2);
-      tft.setTextColor(TFT_BLACK);
-      tft.setCursor (216, 168);
-      if (Squelchold == -100) {
-        tft.print("OFF");
-      } else if (Squelchold == 920) {
-        tft.print("ST");
-      } else {
-        tft.print(Squelchold / 10);
-      }
-      tft.setTextColor(TFT_WHITE);
-      tft.setCursor (216, 168);
-      if (Squelch == -100) {
-        tft.print("OFF");
-      } else if (Squelch == 920) {
-        tft.print("ST");
-      } else {
-        tft.print(Squelch / 10);
+      if (!(wifi && NTPupdated)) {
+        tft.setTextFont(2);
+        tft.setTextColor(TFT_BLACK);
+        tft.setCursor (216, 168);
+        if (Squelchold == -100) {
+          tft.print("OFF");
+        } else if (Squelchold == 920) {
+          tft.print("ST");
+        } else {
+          tft.print(Squelchold / 10);
+        }
+        tft.setTextColor(TFT_WHITE);
+        tft.setCursor (216, 168);
+        if (Squelch == -100) {
+          tft.print("OFF");
+        } else if (Squelch == 920) {
+          tft.print("ST");
+        } else {
+          tft.print(Squelch / 10);
+        }
       }
       Squelchold = Squelch;
     }
@@ -2974,13 +3006,15 @@ void doSquelch() {
       }
       if (screenmute == false) {
         if (Squelch != Squelchold) {
-          tft.setTextFont(2);
-          tft.setTextColor(TFT_BLACK);
-          tft.setCursor (216, 168);
-          if (Squelchold == -1) tft.print("ST"); else tft.print(Squelchold / 10);
-          tft.setTextColor(TFT_WHITE);
-          tft.setCursor (216, 168);
-          if (Squelch == -1) tft.print("ST"); else tft.print(Squelch / 10);
+          if (!(wifi && NTPupdated)) {
+            tft.setTextFont(2);
+            tft.setTextColor(TFT_BLACK);
+            tft.setCursor (216, 168);
+            if (Squelchold == -1) tft.print("ST"); else tft.print(Squelchold / 10);
+            tft.setTextColor(TFT_WHITE);
+            tft.setCursor (216, 168);
+            if (Squelch == -1) tft.print("ST"); else tft.print(Squelch / 10);
+          }
           Squelchold = Squelch;
         }
       }
@@ -3206,7 +3240,15 @@ void updateTuneMode() {
   }
 }
 void ShowUSBstatus() {
-  if (USBstatus == true) tft.drawBitmap(272, 6, USBLogo, 43, 21, TFT_SKYBLUE); else tft.drawBitmap(272, 6, USBLogo, 43, 21, TFT_GREYOUT);
+  if (wifi && WiFi.status() == WL_CONNECTED) {
+    tft.fillRect(272, 4, 45, 18, TFT_BLACK);
+    tft.setTextColor(TFT_GREEN);
+    tft.drawString("WiFi", 273, 6, 2);
+  } else {
+    tft.fillRect(272, 4, 45, 18, TFT_BLACK);
+    if (USBstatus == true) tft.drawBitmap(272, 6, USBLogo, 43, 21, TFT_SKYBLUE);
+    else tft.drawBitmap(272, 6, USBLogo, 43, 21, TFT_GREYOUT);
+  }
 }
 
 void XDRGTKRoutine() {
