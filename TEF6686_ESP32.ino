@@ -2248,7 +2248,7 @@ void showPS() {
   String psRadio = String(radio.rds.stationName);
   String psBanco = customPS;
   String psToShow = (psRadio.length() > 0 && psBanco.length() > 0) ? psRadio + " - " + psBanco
-                  : (psRadio.length() > 0) ? psRadio : psBanco;
+                  : (psRadio.length() > 0) ? psRadio : buscarPS(currentFreqKhz);
   psToShow.toUpperCase();
 
   if (psToShow != PSold) {
