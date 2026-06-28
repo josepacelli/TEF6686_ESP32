@@ -587,7 +587,7 @@ void setup() {
   ShowBW();
   setupmode = false;
   sprite.createSprite(313, 18);
-  psSprite.createSprite(170, 40);
+  psSprite.createSprite(170, 26);
   psTicker = millis();
   rtticker = millis();
   piTicker = millis();
