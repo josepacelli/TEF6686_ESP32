@@ -2286,10 +2286,7 @@ void showRadioText() {
   // Avançar scroll da música a cada ciclo
   avancarScroll(currentFreqKhz);
 
-  String rtRadio = String(radio.rds.stationText);
-  String rtBanco = customRT;
-  String rtToShow = (rtRadio.length() > 0 && rtBanco.length() > 0) ? rtRadio + " - " + rtBanco
-                  : (rtRadio.length() > 0) ? rtRadio : rtBanco;
+  String rtToShow = customRT;
   rtToShow.toUpperCase();
   if (rtToShow != RTold) {
     xPos = 6;

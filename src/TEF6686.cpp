@@ -277,15 +277,9 @@ bool TEF6686::readRDS()
               rds.stationText[i] = 0;
             }
             if (rt_timer == 64) {
-              uint32_t freq_khz = Radio_GetCurrentFreq() * 10;
-              String customRT = buscarRT(freq_khz);
-
-              String result = String(stationTextBuffer);
-              if (customRT.length() > 0) {
-                result += " | " + customRT;
-                avancarScroll(freq_khz);
-              }
-              strncpy(rds.stationText, result.c_str(), 64);
+              strncpy(rds.rtRadio, stationTextBuffer, 64);
+              rds.rtRadio[64] = 0;
+              strncpy(rds.stationText, stationTextBuffer, 64);
               rds.stationText[64] = 0;
             }
             for (int i = 0; i < 65; i++) {
@@ -372,6 +366,7 @@ void TEF6686::clearRDS (bool fullsearchrds)
   }
   for (i = 0; i < 65; i++) {
     rds.stationText[i] = 0;
+    rds.rtRadio[i] = 0;
     stationTextBuffer[i] = 0;
     rt_buffer[i] = 0;
   }
