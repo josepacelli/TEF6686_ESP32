@@ -211,6 +211,7 @@
 
 #include "src/estacoes.h"
 #include "src/ui_language.h"
+#include "src/rds_capture.h"
 
 #ifdef ARS
 TFT_eSPI tft = TFT_eSPI(320, 240);
@@ -1352,11 +1353,11 @@ void ButtonPress() {
           habilitarTodasRDS(); BuildMenu();
         } else if (menuoption == 90) {
           menuopen = true;
-          piEditCode = getEstacao(ptyStationIndex).pi_code;
+          piEditCode = (radio.rds.stationID != 0) ? (int)radio.rds.stationID : (int)getEstacao(ptyStationIndex).pi_code;
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
           tft.setTextColor(TFT_WHITE);
-          String piLbl = getEstacao(ptyStationIndex).ps;
+          String piLbl = (radio.rds.picode[0] != '\0') ? String(radio.rds.picode) + " [RDS]" : getEstacao(ptyStationIndex).ps;
           if (piLbl.length() > 14) piLbl = piLbl.substring(0, 14);
           tft.drawCentreString(piLbl, 150, 55, 2);
           tft.drawCentreString(getUIString(UI_SET_PI, languageSet), 150, 75, 4);
@@ -1366,12 +1367,17 @@ void ButtonPress() {
           tft.drawCentreString(piHex, 150, 115, 4);
         } else if (menuoption == 30) {
           menuopen = true;
-          ptyEditCode = getEstacao(ptyStationIndex).pty_code;
-          if (ptyEditCode < 0 || ptyEditCode > 31) ptyEditCode = 0;
+          if (radio.rds.stationName[0] != '\0') {
+            ptyEditCode = (int)radio.rds.stationTypeCode;
+          } else {
+            ptyEditCode = getEstacao(ptyStationIndex).pty_code;
+            if (ptyEditCode < 0 || ptyEditCode > 31) ptyEditCode = 0;
+          }
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
           tft.setTextColor(TFT_SKYBLUE);
-          tft.drawCentreString(String(ptyEditCode), 150, 55, 2);
+          String ptyLbl = (radio.rds.stationName[0] != '\0') ? String(ptyEditCode) + " [RDS]" : String(ptyEditCode);
+          tft.drawCentreString(ptyLbl, 150, 55, 2);
           tft.setTextColor(TFT_WHITE);
           tft.drawCentreString(getUIString(UI_SET_PTY, languageSet), 150, 80, 4);
           tft.setTextColor(TFT_YELLOW);
@@ -1379,45 +1385,45 @@ void ButtonPress() {
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 145, 2);
         } else if (menuoption == 50) {
           menuopen = true;
-          psEditCount = (int)totalEstacoes();
+          psEditCount = (int)totalEstacoes() + getCapturedPSCount();
           psEditIndex = 0;
           String curPS = getEstacao(ptyStationIndex).ps;
           for (int i = 0; i < psEditCount; i++) {
-            if (curPS == getEstacao(i).ps) { psEditIndex = i; break; }
+            if (getPSForEdit(i) == curPS) { psEditIndex = i; break; }
           }
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
           tft.setTextColor(TFT_SKYBLUE);
-          tft.drawCentreString("Index: " + String(psEditIndex), 150, 55, 2);
+          tft.drawCentreString(getPSEditLabel(psEditIndex), 150, 55, 2);
           tft.setTextColor(TFT_WHITE);
           tft.drawCentreString(getUIString(UI_SET_PS, languageSet), 150, 80, 4);
           if (psEditCount > 0)
-            drawWrappedText(getEstacao(psEditIndex).ps, 150, 110, 2, TFT_YELLOW, 200, 3);
+            drawWrappedText(getPSForEdit(psEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
         } else if (menuoption == 70) {
           menuopen = true;
-          rtEditCount = (int)totalEstacoes();
+          rtEditCount = (int)totalEstacoes() + getCapturedRTCount();
           rtEditIndex = 0;
           String curRT = getEstacao(ptyStationIndex).rt;
           for (int i = 0; i < rtEditCount; i++) {
-            if (curRT == getEstacao(i).rt) { rtEditIndex = i; break; }
+            if (getRTForEdit(i) == curRT) { rtEditIndex = i; break; }
           }
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
           tft.setTextColor(TFT_SKYBLUE);
-          tft.drawCentreString("Index: " + String(rtEditIndex), 150, 55, 2);
+          tft.drawCentreString(getRTEditLabel(rtEditIndex), 150, 55, 2);
           tft.setTextColor(TFT_WHITE);
           tft.drawCentreString(getUIString(UI_SET_RT, languageSet), 150, 80, 4);
           if (rtEditCount > 0) {
-            drawWrappedText(getEstacao(rtEditIndex).rt, 150, 110, 2, TFT_YELLOW, 200, 3);
+            drawWrappedText(getRTForEdit(rtEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
           }
         }
       } else {
         if (menuoption == 30) {
           getEstacao(ptyStationIndex).pty_code = (int8_t)ptyEditCode;
         } else if (menuoption == 50) {
-          if (psEditCount > 0) getEstacao(ptyStationIndex).ps = getEstacao(psEditIndex).ps;
+          if (psEditCount > 0) getEstacao(ptyStationIndex).ps = getPSForEdit(psEditIndex);
         } else if (menuoption == 70) {
-          if (rtEditCount > 0) getEstacao(ptyStationIndex).rt = getEstacao(rtEditIndex).rt;
+          if (rtEditCount > 0) getEstacao(ptyStationIndex).rt = getRTForEdit(rtEditIndex);
         } else if (menuoption == 90) {
           getEstacao(ptyStationIndex).pi_code = (uint16_t)piEditCode;
           saveCustomPICodes();
@@ -1645,15 +1651,23 @@ void KeyUp() {
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 140, 2);
         } else if (menuoption == 50) {
           if (psEditCount > 0) {
-            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+            tft.setTextColor(TFT_BLACK);
+            tft.drawCentreString(getPSEditLabel(psEditIndex), 150, 55, 2);
             psEditIndex = (psEditIndex + 1) % psEditCount;
-            drawWrappedText(getEstacao(psEditIndex).ps, 150, 110, 2, TFT_YELLOW, 200, 3);
+            tft.setTextColor(TFT_SKYBLUE);
+            tft.drawCentreString(getPSEditLabel(psEditIndex), 150, 55, 2);
+            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+            drawWrappedText(getPSForEdit(psEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
           }
         } else if (menuoption == 70) {
           if (rtEditCount > 0) {
-            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+            tft.setTextColor(TFT_BLACK);
+            tft.drawCentreString(getRTEditLabel(rtEditIndex), 150, 55, 2);
             rtEditIndex = (rtEditIndex + 1) % rtEditCount;
-            drawWrappedText(getEstacao(rtEditIndex).rt, 150, 110, 2, TFT_YELLOW, 200, 3);
+            tft.setTextColor(TFT_SKYBLUE);
+            tft.drawCentreString(getRTEditLabel(rtEditIndex), 150, 55, 2);
+            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+            drawWrappedText(getRTForEdit(rtEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
           }
         } else if (menuoption == 90) {
           tft.fillRect(33, 100, 234, 50, TFT_BLACK);
@@ -1884,15 +1898,23 @@ void KeyDown() {
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 140, 2);
         } else if (menuoption == 50) {
           if (psEditCount > 0) {
-            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+            tft.setTextColor(TFT_BLACK);
+            tft.drawCentreString(getPSEditLabel(psEditIndex), 150, 55, 2);
             psEditIndex = (psEditIndex + psEditCount - 1) % psEditCount;
-            drawWrappedText(getEstacao(psEditIndex).ps, 150, 110, 2, TFT_YELLOW, 200, 3);
+            tft.setTextColor(TFT_SKYBLUE);
+            tft.drawCentreString(getPSEditLabel(psEditIndex), 150, 55, 2);
+            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+            drawWrappedText(getPSForEdit(psEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
           }
         } else if (menuoption == 70) {
           if (rtEditCount > 0) {
-            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+            tft.setTextColor(TFT_BLACK);
+            tft.drawCentreString(getRTEditLabel(rtEditIndex), 150, 55, 2);
             rtEditIndex = (rtEditIndex + rtEditCount - 1) % rtEditCount;
-            drawWrappedText(getEstacao(rtEditIndex).rt, 150, 110, 2, TFT_YELLOW, 200, 3);
+            tft.setTextColor(TFT_SKYBLUE);
+            tft.drawCentreString(getRTEditLabel(rtEditIndex), 150, 55, 2);
+            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+            drawWrappedText(getRTForEdit(rtEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
           }
         } else if (menuoption == 90) {
           tft.fillRect(33, 100, 234, 50, TFT_BLACK);
@@ -2238,6 +2260,23 @@ void showPTY() {
   }
 }
 
+String getPSForEdit(int idx) {
+  int db = (int)totalEstacoes();
+  return (idx < db) ? getEstacao(idx).ps : getCapturedPS(idx - db);
+}
+String getRTForEdit(int idx) {
+  int db = (int)totalEstacoes();
+  return (idx < db) ? getEstacao(idx).rt : getCapturedRT(idx - db);
+}
+String getPSEditLabel(int idx) {
+  int db = (int)totalEstacoes();
+  return (idx < db) ? "DB:" + String(idx) : "RDS:" + String(idx - db);
+}
+String getRTEditLabel(int idx) {
+  int db = (int)totalEstacoes();
+  return (idx < db) ? "DB:" + String(idx) : "RDS:" + String(idx - db);
+}
+
 void showPS() {
   unsigned int freq = radio.getFrequency();
   uint32_t currentFreqKhz = (uint32_t)freq * 10;
@@ -2246,6 +2285,7 @@ void showPS() {
   avancarScroll(currentFreqKhz);
 
   String psRadio = String(radio.rds.stationName);
+  if (psRadio.length() > 0) addCapturedPS(psRadio);
   String psBanco = customPS;
   String psToShow = (psRadio.length() > 0 && psBanco.length() > 0) ? psRadio + " - " + psBanco
                   : (psRadio.length() > 0) ? psRadio : psBanco;
@@ -2286,6 +2326,7 @@ void showRadioText() {
   // Avançar scroll da música a cada ciclo
   avancarScroll(currentFreqKhz);
 
+  if (radio.rds.rtRadio[0] != '\0') addCapturedRT(String(radio.rds.rtRadio));
   String rtToShow = customRT;
   rtToShow.toUpperCase();
   if (rtToShow != RTold) {
