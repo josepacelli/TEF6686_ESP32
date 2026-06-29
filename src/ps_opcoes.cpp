@@ -149,4 +149,4 @@ const char* PS_OPCOES[] = {
   "DOCUMENTARY"
 };
 
-const int PS_OPCOES_COUNT = 150;
+extern const int PS_OPCOES_COUNT = 150;

@@ -137,4 +137,4 @@ const char* RT_OPCOES[] = {
   "Documentario sobre vidas reais"
 };
 
-const int RT_OPCOES_COUNT = 150;
+extern const int RT_OPCOES_COUNT = 150;

@@ -2344,6 +2344,7 @@ void drawWrappedText(String text, int centerX, int startY, int font, uint32_t co
   tft.setTextColor(color);
   tft.setTextFont(font);
   int charWidth = tft.textWidth("W");
+  if (charWidth == 0) return;
   int charsPerLine = maxWidth / charWidth;
   int lineHeight = font * 8 + 4;
 
