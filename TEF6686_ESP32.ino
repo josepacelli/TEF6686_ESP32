@@ -177,6 +177,8 @@
 #include "src/TEF6686.h"
 #include "src/constants.h"
 #include "src/pty_language.h"
+#include "src/ps_language.h"
+#include "src/rt_language.h"
 #include "src/NTPupdate.h"
 #include <EEPROM.h>
 #include <Wire.h>
@@ -349,12 +351,13 @@ int ptyEditCode = 0;
 int psStationIndex = 0;
 int psScrollTop = 0;
 int psEditIndex = 0;
-const char** psEditList = nullptr;
 int psEditCount = 0;
 int rtStationIndex = 0;
 int rtScrollTop = 0;
 int rtEditIndex = 0;
 int rtEditCount = 0;
+static const uint8_t kEditLangs[3] = {PTY_LANG_ENGLISH, PTY_LANG_PORTUGUESE, PTY_LANG_SPANISH};
+static const char* const kEditLangNames[3] = {"EN", "PT", "ES"};
 int piEditCode = 0;
 int rdsStationIndex = 0;
 int rdsScrollTop = 0;
@@ -1385,45 +1388,36 @@ void ButtonPress() {
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 145, 2);
         } else if (menuoption == 50) {
           menuopen = true;
-          psEditCount = (int)totalEstacoes() + getCapturedPSCount();
           psEditIndex = 0;
-          String curPS = getEstacao(ptyStationIndex).ps;
-          for (int i = 0; i < psEditCount; i++) {
-            if (getPSForEdit(i) == curPS) { psEditIndex = i; break; }
-          }
+          if (languageSet == PTY_LANG_PORTUGUESE || languageSet == PTY_LANG_RBDS_PORTUGUESE || languageSet == PTY_LANG_BR_PORTUGUESE) psEditIndex = 1;
+          else if (languageSet == PTY_LANG_SPANISH || languageSet == PTY_LANG_RBDS_SPANISH || languageSet == PTY_LANG_BR_SPANISH) psEditIndex = 2;
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
           tft.setTextColor(TFT_SKYBLUE);
-          tft.drawCentreString(getPSEditLabel(psEditIndex), 150, 55, 2);
+          tft.drawCentreString(kEditLangNames[psEditIndex], 150, 55, 2);
           tft.setTextColor(TFT_WHITE);
           tft.drawCentreString(getUIString(UI_SET_PS, languageSet), 150, 80, 4);
-          if (psEditCount > 0)
-            drawWrappedText(getPSForEdit(psEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
+          drawWrappedText(String(getPSByLanguage(ptyStationIndex, kEditLangs[psEditIndex])), 150, 110, 2, TFT_YELLOW, 200, 3);
         } else if (menuoption == 70) {
           menuopen = true;
-          rtEditCount = (int)totalEstacoes() + getCapturedRTCount();
           rtEditIndex = 0;
-          String curRT = getEstacao(ptyStationIndex).rt;
-          for (int i = 0; i < rtEditCount; i++) {
-            if (getRTForEdit(i) == curRT) { rtEditIndex = i; break; }
-          }
+          if (languageSet == PTY_LANG_PORTUGUESE || languageSet == PTY_LANG_RBDS_PORTUGUESE || languageSet == PTY_LANG_BR_PORTUGUESE) rtEditIndex = 1;
+          else if (languageSet == PTY_LANG_SPANISH || languageSet == PTY_LANG_RBDS_SPANISH || languageSet == PTY_LANG_BR_SPANISH) rtEditIndex = 2;
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
           tft.setTextColor(TFT_SKYBLUE);
-          tft.drawCentreString(getRTEditLabel(rtEditIndex), 150, 55, 2);
+          tft.drawCentreString(kEditLangNames[rtEditIndex], 150, 55, 2);
           tft.setTextColor(TFT_WHITE);
           tft.drawCentreString(getUIString(UI_SET_RT, languageSet), 150, 80, 4);
-          if (rtEditCount > 0) {
-            drawWrappedText(getRTForEdit(rtEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
-          }
+          drawWrappedText(String(getRTByLanguage(ptyStationIndex, kEditLangs[rtEditIndex])), 150, 110, 2, TFT_YELLOW, 200, 3);
         }
       } else {
         if (menuoption == 30) {
           getEstacao(ptyStationIndex).pty_code = (int8_t)ptyEditCode;
         } else if (menuoption == 50) {
-          if (psEditCount > 0) getEstacao(ptyStationIndex).ps = getPSForEdit(psEditIndex);
+          getEstacao(ptyStationIndex).ps = String(getPSByLanguage(ptyStationIndex, kEditLangs[psEditIndex]));
         } else if (menuoption == 70) {
-          if (rtEditCount > 0) getEstacao(ptyStationIndex).rt = getRTForEdit(rtEditIndex);
+          getEstacao(ptyStationIndex).rt = String(getRTByLanguage(ptyStationIndex, kEditLangs[rtEditIndex]));
         } else if (menuoption == 90) {
           getEstacao(ptyStationIndex).pi_code = (uint16_t)piEditCode;
           saveCustomPICodes();
@@ -1650,25 +1644,21 @@ void KeyUp() {
           tft.drawCentreString(String(ptyEditCode), 150, 105, 4);
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 140, 2);
         } else if (menuoption == 50) {
-          if (psEditCount > 0) {
-            tft.setTextColor(TFT_BLACK);
-            tft.drawCentreString(getPSEditLabel(psEditIndex), 150, 55, 2);
-            psEditIndex = (psEditIndex + 1) % psEditCount;
-            tft.setTextColor(TFT_SKYBLUE);
-            tft.drawCentreString(getPSEditLabel(psEditIndex), 150, 55, 2);
-            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
-            drawWrappedText(getPSForEdit(psEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
-          }
+          tft.setTextColor(TFT_BLACK);
+          tft.drawCentreString(kEditLangNames[psEditIndex], 150, 55, 2);
+          psEditIndex = (psEditIndex + 1) % 3;
+          tft.setTextColor(TFT_SKYBLUE);
+          tft.drawCentreString(kEditLangNames[psEditIndex], 150, 55, 2);
+          tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+          drawWrappedText(String(getPSByLanguage(ptyStationIndex, kEditLangs[psEditIndex])), 150, 110, 2, TFT_YELLOW, 200, 3);
         } else if (menuoption == 70) {
-          if (rtEditCount > 0) {
-            tft.setTextColor(TFT_BLACK);
-            tft.drawCentreString(getRTEditLabel(rtEditIndex), 150, 55, 2);
-            rtEditIndex = (rtEditIndex + 1) % rtEditCount;
-            tft.setTextColor(TFT_SKYBLUE);
-            tft.drawCentreString(getRTEditLabel(rtEditIndex), 150, 55, 2);
-            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
-            drawWrappedText(getRTForEdit(rtEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
-          }
+          tft.setTextColor(TFT_BLACK);
+          tft.drawCentreString(kEditLangNames[rtEditIndex], 150, 55, 2);
+          rtEditIndex = (rtEditIndex + 1) % 3;
+          tft.setTextColor(TFT_SKYBLUE);
+          tft.drawCentreString(kEditLangNames[rtEditIndex], 150, 55, 2);
+          tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+          drawWrappedText(String(getRTByLanguage(ptyStationIndex, kEditLangs[rtEditIndex])), 150, 110, 2, TFT_YELLOW, 200, 3);
         } else if (menuoption == 90) {
           tft.fillRect(33, 100, 234, 50, TFT_BLACK);
           piEditCode = (piEditCode + 1) & 0xFFFF;
@@ -1897,25 +1887,21 @@ void KeyDown() {
           tft.drawCentreString(String(ptyEditCode), 150, 105, 4);
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 140, 2);
         } else if (menuoption == 50) {
-          if (psEditCount > 0) {
-            tft.setTextColor(TFT_BLACK);
-            tft.drawCentreString(getPSEditLabel(psEditIndex), 150, 55, 2);
-            psEditIndex = (psEditIndex + psEditCount - 1) % psEditCount;
-            tft.setTextColor(TFT_SKYBLUE);
-            tft.drawCentreString(getPSEditLabel(psEditIndex), 150, 55, 2);
-            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
-            drawWrappedText(getPSForEdit(psEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
-          }
+          tft.setTextColor(TFT_BLACK);
+          tft.drawCentreString(kEditLangNames[psEditIndex], 150, 55, 2);
+          psEditIndex = (psEditIndex + 2) % 3;
+          tft.setTextColor(TFT_SKYBLUE);
+          tft.drawCentreString(kEditLangNames[psEditIndex], 150, 55, 2);
+          tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+          drawWrappedText(String(getPSByLanguage(ptyStationIndex, kEditLangs[psEditIndex])), 150, 110, 2, TFT_YELLOW, 200, 3);
         } else if (menuoption == 70) {
-          if (rtEditCount > 0) {
-            tft.setTextColor(TFT_BLACK);
-            tft.drawCentreString(getRTEditLabel(rtEditIndex), 150, 55, 2);
-            rtEditIndex = (rtEditIndex + rtEditCount - 1) % rtEditCount;
-            tft.setTextColor(TFT_SKYBLUE);
-            tft.drawCentreString(getRTEditLabel(rtEditIndex), 150, 55, 2);
-            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
-            drawWrappedText(getRTForEdit(rtEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
-          }
+          tft.setTextColor(TFT_BLACK);
+          tft.drawCentreString(kEditLangNames[rtEditIndex], 150, 55, 2);
+          rtEditIndex = (rtEditIndex + 2) % 3;
+          tft.setTextColor(TFT_SKYBLUE);
+          tft.drawCentreString(kEditLangNames[rtEditIndex], 150, 55, 2);
+          tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+          drawWrappedText(String(getRTByLanguage(ptyStationIndex, kEditLangs[rtEditIndex])), 150, 110, 2, TFT_YELLOW, 200, 3);
         } else if (menuoption == 90) {
           tft.fillRect(33, 100, 234, 50, TFT_BLACK);
           piEditCode = (piEditCode + 0xFFFF) & 0xFFFF;

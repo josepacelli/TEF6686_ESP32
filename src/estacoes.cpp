@@ -4,22 +4,12 @@
 #include "ps_language.h"
 #include "rt_language.h"
 #include "TEF6686.h"
-#include "NTPupdate.h"
 #include <vector>
 #include <algorithm>
 #include <cmath>
 
 extern TEF6686 radio;
 
-static String getNTPDateTimeStr() {
-  if (!NTPupdated) return "";
-  struct tm t = rtc.getTimeStruct();
-  char buf[32];
-  snprintf(buf, sizeof(buf), "%02d/%02d/%04d %02d:%02d:%02d",
-    t.tm_mday, t.tm_mon + 1, t.tm_year + 1900,
-    t.tm_hour, t.tm_min, t.tm_sec);
-  return String(buf);
-}
 
 static std::vector<Estacao> estacoes;
 
@@ -43,27 +33,7 @@ String buscarMusica(uint32_t freq_khz) {
 }
 
 static String montarPS(Estacao* e, uint32_t freq_khz) {
-  String result = "";
-  if (e->ps.length() > 0) result = e->ps;
-  String ntpDT = getNTPDateTimeStr();
-  if (ntpDT.length() > 0) {
-    if (result.length() > 0) result += " | ";
-    result += ntpDT;
-  } else {
-    if (e->dia.length() > 0) {
-      if (result.length() > 0) result += " | ";
-      result += e->dia + "/" + e->mes + "/" + e->ano;
-    }
-    if (e->hora.length() > 0) {
-      result += " " + e->hora + ":" + e->minuto;
-      if (e->segundo.length() > 0) result += ":" + e->segundo;
-    }
-  }
-  if (e->tempo.length() > 0) {
-    if (result.length() > 0) result += " | ";
-    result += e->tempo + " " + e->temperatura;
-  }
-  return result;
+  return e->ps;
 }
 
 String buscarPS(uint32_t freq_khz) {
@@ -76,42 +46,11 @@ String buscarPS(uint32_t freq_khz) {
 
 String buscarRT(uint32_t freq_khz) {
   if (radio.rds.rtRadio[0] != '\0') {
-    String result = String(radio.rds.rtRadio);
-    String m = buscarMusica(freq_khz);
-    if (m.length() > 0) {
-      Estacao* e = findEstacao(freq_khz);
-      if (e) result += " - " + formatSongWithYear(rotateSongString(m, e->posScroll), e->anoMusica);
-    }
-    return result;
+    return String(radio.rds.rtRadio);
   }
   Estacao* e = findEstacao(freq_khz);
   if (!e) return String("");
-  String result = "";
-  if (e->rt.length() > 0) result = e->rt;
-  String m = buscarMusica(freq_khz);
-  if (m.length() > 0) {
-    if (result.length() > 0) result += " - ";
-    result += formatSongWithYear(rotateSongString(m, e->posScroll), e->anoMusica);
-  }
-  String ntpDT = getNTPDateTimeStr();
-  if (ntpDT.length() > 0) {
-    if (result.length() > 0) result += " | ";
-    result += ntpDT;
-  } else {
-    if (e->dia.length() > 0) {
-      if (result.length() > 0) result += " | ";
-      result += e->dia + "/" + e->mes + "/" + e->ano;
-    }
-    if (e->hora.length() > 0) {
-      result += " " + e->hora + ":" + e->minuto;
-      if (e->segundo.length() > 0) result += ":" + e->segundo;
-    }
-  }
-  if (e->tempo.length() > 0) {
-    if (result.length() > 0) result += " | ";
-    result += e->tempo + " " + e->temperatura;
-  }
-  return result;
+  return e->rt;
 }
 
 bool isRDSAtivo(uint32_t freq_khz) {
@@ -189,9 +128,6 @@ void carregarEstacoes() {
   e.ps = getPSByLanguage(idx, currentPTYLanguage); \
   e.rt = getRTByLanguage(idx, currentPTYLanguage); \
   e.musica = getSongForPTY(pty); e.anoMusica = getRandomYearByPTY(pty); \
-  generateRandomTime(e.hora, e.minuto, e.segundo); \
-  generateRandomDate(e.dia, e.mes, e.ano); \
-  e.tempo = generateRandomWeather(); e.temperatura = generateRandomTemperature(); \
   estacoes.push_back(e);
 
   STATION(79700, 20, 0);
