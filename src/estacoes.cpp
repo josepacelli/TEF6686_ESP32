@@ -124,7 +124,7 @@ void carregarEstacoes() {
   // 39 estações em frequência crescente, com índices 0-38 para arrays de idiomas
 
 #define STATION(freq, pty, idx) \
-  e.freq_khz = freq; e.pty_code = pty; \
+  e.freq_khz = freq; e.pty_code = pty; e.lang_idx = idx; \
   e.ps = getPSByLanguage(idx, currentPTYLanguage); \
   e.rt = getRTByLanguage(idx, currentPTYLanguage); \
   e.musica = getSongForPTY(pty); e.anoMusica = getRandomYearByPTY(pty); \
