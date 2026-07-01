@@ -356,8 +356,6 @@ int rtStationIndex = 0;
 int rtScrollTop = 0;
 int rtEditIndex = 0;
 int rtEditCount = 0;
-static const uint8_t kEditLangs[3] = {PTY_LANG_ENGLISH, PTY_LANG_PORTUGUESE, PTY_LANG_SPANISH};
-static const char* const kEditLangNames[3] = {"EN", "PT", "ES"};
 int piEditCode = 0;
 int rdsStationIndex = 0;
 int rdsScrollTop = 0;
@@ -1389,35 +1387,43 @@ void ButtonPress() {
         } else if (menuoption == 50) {
           menuopen = true;
           psEditIndex = 0;
-          if (languageSet == PTY_LANG_PORTUGUESE || languageSet == PTY_LANG_RBDS_PORTUGUESE || languageSet == PTY_LANG_BR_PORTUGUESE) psEditIndex = 1;
-          else if (languageSet == PTY_LANG_SPANISH || languageSet == PTY_LANG_RBDS_SPANISH || languageSet == PTY_LANG_BR_SPANISH) psEditIndex = 2;
+          uint32_t psFreq = getEstacao(ptyStationIndex).freq_khz;
+          int psCount = getCapturedPSCount(psFreq);
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
           tft.setTextColor(TFT_SKYBLUE);
-          tft.drawCentreString(kEditLangNames[psEditIndex], 150, 55, 2);
+          String psLbl = (psCount > 0) ? "1/" + String(psCount) : "DB";
+          tft.drawCentreString(psLbl, 150, 55, 2);
           tft.setTextColor(TFT_WHITE);
           tft.drawCentreString(getUIString(UI_SET_PS, languageSet), 150, 80, 4);
-          drawWrappedText(String(getPSByLanguage(ptyStationIndex, kEditLangs[psEditIndex])), 150, 110, 2, TFT_YELLOW, 200, 3);
+          String psVal = (psCount > 0) ? getCapturedPS(psFreq, 0) : getEstacao(ptyStationIndex).ps;
+          drawWrappedText(psVal, 150, 110, 2, TFT_YELLOW, 200, 3);
         } else if (menuoption == 70) {
           menuopen = true;
           rtEditIndex = 0;
-          if (languageSet == PTY_LANG_PORTUGUESE || languageSet == PTY_LANG_RBDS_PORTUGUESE || languageSet == PTY_LANG_BR_PORTUGUESE) rtEditIndex = 1;
-          else if (languageSet == PTY_LANG_SPANISH || languageSet == PTY_LANG_RBDS_SPANISH || languageSet == PTY_LANG_BR_SPANISH) rtEditIndex = 2;
+          uint32_t rtFreq = getEstacao(ptyStationIndex).freq_khz;
+          int rtCount = getCapturedRTCount(rtFreq);
           tft.drawRoundRect(30, 40, 240, 160, 5, TFT_WHITE);
           tft.fillRoundRect(32, 42, 236, 156, 5, TFT_BLACK);
           tft.setTextColor(TFT_SKYBLUE);
-          tft.drawCentreString(kEditLangNames[rtEditIndex], 150, 55, 2);
+          String rtLbl = (rtCount > 0) ? "1/" + String(rtCount) : "DB";
+          tft.drawCentreString(rtLbl, 150, 55, 2);
           tft.setTextColor(TFT_WHITE);
           tft.drawCentreString(getUIString(UI_SET_RT, languageSet), 150, 80, 4);
-          drawWrappedText(String(getRTByLanguage(ptyStationIndex, kEditLangs[rtEditIndex])), 150, 110, 2, TFT_YELLOW, 200, 3);
+          String rtVal = (rtCount > 0) ? getCapturedRT(rtFreq, 0) : getEstacao(ptyStationIndex).rt;
+          drawWrappedText(rtVal, 150, 110, 2, TFT_YELLOW, 200, 3);
         }
       } else {
         if (menuoption == 30) {
           getEstacao(ptyStationIndex).pty_code = (int8_t)ptyEditCode;
         } else if (menuoption == 50) {
-          getEstacao(ptyStationIndex).ps = String(getPSByLanguage(ptyStationIndex, kEditLangs[psEditIndex]));
+          uint32_t saveFreqPS = getEstacao(ptyStationIndex).freq_khz;
+          if (getCapturedPSCount(saveFreqPS) > 0)
+            getEstacao(ptyStationIndex).ps = getCapturedPS(saveFreqPS, psEditIndex);
         } else if (menuoption == 70) {
-          getEstacao(ptyStationIndex).rt = String(getRTByLanguage(ptyStationIndex, kEditLangs[rtEditIndex]));
+          uint32_t saveFreqRT = getEstacao(ptyStationIndex).freq_khz;
+          if (getCapturedRTCount(saveFreqRT) > 0)
+            getEstacao(ptyStationIndex).rt = getCapturedRT(saveFreqRT, rtEditIndex);
         } else if (menuoption == 90) {
           getEstacao(ptyStationIndex).pi_code = (uint16_t)piEditCode;
           saveCustomPICodes();
@@ -1644,21 +1650,29 @@ void KeyUp() {
           tft.drawCentreString(String(ptyEditCode), 150, 105, 4);
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 140, 2);
         } else if (menuoption == 50) {
-          tft.setTextColor(TFT_BLACK);
-          tft.drawCentreString(kEditLangNames[psEditIndex], 150, 55, 2);
-          psEditIndex = (psEditIndex + 1) % 3;
-          tft.setTextColor(TFT_SKYBLUE);
-          tft.drawCentreString(kEditLangNames[psEditIndex], 150, 55, 2);
-          tft.fillRect(33, 100, 234, 70, TFT_BLACK);
-          drawWrappedText(String(getPSByLanguage(ptyStationIndex, kEditLangs[psEditIndex])), 150, 110, 2, TFT_YELLOW, 200, 3);
+          uint32_t upFreqPS = getEstacao(ptyStationIndex).freq_khz;
+          int upPSCount = getCapturedPSCount(upFreqPS);
+          if (upPSCount > 0) {
+            tft.setTextColor(TFT_BLACK);
+            tft.drawCentreString(String(psEditIndex + 1) + "/" + String(upPSCount), 150, 55, 2);
+            psEditIndex = (psEditIndex + 1) % upPSCount;
+            tft.setTextColor(TFT_SKYBLUE);
+            tft.drawCentreString(String(psEditIndex + 1) + "/" + String(upPSCount), 150, 55, 2);
+            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+            drawWrappedText(getCapturedPS(upFreqPS, psEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
+          }
         } else if (menuoption == 70) {
-          tft.setTextColor(TFT_BLACK);
-          tft.drawCentreString(kEditLangNames[rtEditIndex], 150, 55, 2);
-          rtEditIndex = (rtEditIndex + 1) % 3;
-          tft.setTextColor(TFT_SKYBLUE);
-          tft.drawCentreString(kEditLangNames[rtEditIndex], 150, 55, 2);
-          tft.fillRect(33, 100, 234, 70, TFT_BLACK);
-          drawWrappedText(String(getRTByLanguage(ptyStationIndex, kEditLangs[rtEditIndex])), 150, 110, 2, TFT_YELLOW, 200, 3);
+          uint32_t upFreqRT = getEstacao(ptyStationIndex).freq_khz;
+          int upRTCount = getCapturedRTCount(upFreqRT);
+          if (upRTCount > 0) {
+            tft.setTextColor(TFT_BLACK);
+            tft.drawCentreString(String(rtEditIndex + 1) + "/" + String(upRTCount), 150, 55, 2);
+            rtEditIndex = (rtEditIndex + 1) % upRTCount;
+            tft.setTextColor(TFT_SKYBLUE);
+            tft.drawCentreString(String(rtEditIndex + 1) + "/" + String(upRTCount), 150, 55, 2);
+            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+            drawWrappedText(getCapturedRT(upFreqRT, rtEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
+          }
         } else if (menuoption == 90) {
           tft.fillRect(33, 100, 234, 50, TFT_BLACK);
           piEditCode = (piEditCode + 1) & 0xFFFF;
@@ -1887,21 +1901,29 @@ void KeyDown() {
           tft.drawCentreString(String(ptyEditCode), 150, 105, 4);
           tft.drawCentreString(radio.getPTYText(ptyEditCode), 150, 140, 2);
         } else if (menuoption == 50) {
-          tft.setTextColor(TFT_BLACK);
-          tft.drawCentreString(kEditLangNames[psEditIndex], 150, 55, 2);
-          psEditIndex = (psEditIndex + 2) % 3;
-          tft.setTextColor(TFT_SKYBLUE);
-          tft.drawCentreString(kEditLangNames[psEditIndex], 150, 55, 2);
-          tft.fillRect(33, 100, 234, 70, TFT_BLACK);
-          drawWrappedText(String(getPSByLanguage(ptyStationIndex, kEditLangs[psEditIndex])), 150, 110, 2, TFT_YELLOW, 200, 3);
+          uint32_t dnFreqPS = getEstacao(ptyStationIndex).freq_khz;
+          int dnPSCount = getCapturedPSCount(dnFreqPS);
+          if (dnPSCount > 0) {
+            tft.setTextColor(TFT_BLACK);
+            tft.drawCentreString(String(psEditIndex + 1) + "/" + String(dnPSCount), 150, 55, 2);
+            psEditIndex = (psEditIndex + dnPSCount - 1) % dnPSCount;
+            tft.setTextColor(TFT_SKYBLUE);
+            tft.drawCentreString(String(psEditIndex + 1) + "/" + String(dnPSCount), 150, 55, 2);
+            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+            drawWrappedText(getCapturedPS(dnFreqPS, psEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
+          }
         } else if (menuoption == 70) {
-          tft.setTextColor(TFT_BLACK);
-          tft.drawCentreString(kEditLangNames[rtEditIndex], 150, 55, 2);
-          rtEditIndex = (rtEditIndex + 2) % 3;
-          tft.setTextColor(TFT_SKYBLUE);
-          tft.drawCentreString(kEditLangNames[rtEditIndex], 150, 55, 2);
-          tft.fillRect(33, 100, 234, 70, TFT_BLACK);
-          drawWrappedText(String(getRTByLanguage(ptyStationIndex, kEditLangs[rtEditIndex])), 150, 110, 2, TFT_YELLOW, 200, 3);
+          uint32_t dnFreqRT = getEstacao(ptyStationIndex).freq_khz;
+          int dnRTCount = getCapturedRTCount(dnFreqRT);
+          if (dnRTCount > 0) {
+            tft.setTextColor(TFT_BLACK);
+            tft.drawCentreString(String(rtEditIndex + 1) + "/" + String(dnRTCount), 150, 55, 2);
+            rtEditIndex = (rtEditIndex + dnRTCount - 1) % dnRTCount;
+            tft.setTextColor(TFT_SKYBLUE);
+            tft.drawCentreString(String(rtEditIndex + 1) + "/" + String(dnRTCount), 150, 55, 2);
+            tft.fillRect(33, 100, 234, 70, TFT_BLACK);
+            drawWrappedText(getCapturedRT(dnFreqRT, rtEditIndex), 150, 110, 2, TFT_YELLOW, 200, 3);
+          }
         } else if (menuoption == 90) {
           tft.fillRect(33, 100, 234, 50, TFT_BLACK);
           piEditCode = (piEditCode + 0xFFFF) & 0xFFFF;
@@ -2246,21 +2268,19 @@ void showPTY() {
   }
 }
 
-String getPSForEdit(int idx) {
-  int db = (int)totalEstacoes();
-  return (idx < db) ? getEstacao(idx).ps : getCapturedPS(idx - db);
+String getPSForEdit(uint32_t freq_khz, int idx) {
+  return getCapturedPS(freq_khz, idx);
 }
-String getRTForEdit(int idx) {
-  int db = (int)totalEstacoes();
-  return (idx < db) ? getEstacao(idx).rt : getCapturedRT(idx - db);
+String getRTForEdit(uint32_t freq_khz, int idx) {
+  return getCapturedRT(freq_khz, idx);
 }
-String getPSEditLabel(int idx) {
-  int db = (int)totalEstacoes();
-  return (idx < db) ? "DB:" + String(idx) : "RDS:" + String(idx - db);
+String getPSEditLabel(uint32_t freq_khz, int idx) {
+  int n = getCapturedPSCount(freq_khz);
+  return (n > 0) ? String(idx + 1) + "/" + String(n) : "DB";
 }
-String getRTEditLabel(int idx) {
-  int db = (int)totalEstacoes();
-  return (idx < db) ? "DB:" + String(idx) : "RDS:" + String(idx - db);
+String getRTEditLabel(uint32_t freq_khz, int idx) {
+  int n = getCapturedRTCount(freq_khz);
+  return (n > 0) ? String(idx + 1) + "/" + String(n) : "DB";
 }
 
 void showPS() {
@@ -2271,7 +2291,7 @@ void showPS() {
   avancarScroll(currentFreqKhz);
 
   String psRadio = String(radio.rds.stationName);
-  if (psRadio.length() > 0) addCapturedPS(psRadio);
+  if (psRadio.length() > 0) addCapturedPS(currentFreqKhz, psRadio);
   String psBanco = customPS;
   String psToShow = (psRadio.length() > 0 && psBanco.length() > 0) ? psRadio + " - " + psBanco
                   : (psRadio.length() > 0) ? psRadio : psBanco;
@@ -2312,7 +2332,7 @@ void showRadioText() {
   // Avançar scroll da música a cada ciclo
   avancarScroll(currentFreqKhz);
 
-  if (radio.rds.rtRadio[0] != '\0') addCapturedRT(String(radio.rds.rtRadio));
+  if (radio.rds.rtRadio[0] != '\0') addCapturedRT(currentFreqKhz, String(radio.rds.rtRadio));
   String rtToShow = customRT;
   rtToShow.toUpperCase();
   if (rtToShow != RTold) {
