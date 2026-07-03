@@ -360,6 +360,10 @@ static std::vector<String> psEditOptions;
 static std::vector<String> psEditLabels;
 static std::vector<String> rtEditOptions;
 static std::vector<String> rtEditLabels;
+int psListIndex = 0;
+int psListScrollTop = 0;
+int rtListIndex = 0;
+int rtListScrollTop = 0;
 int piEditCode = 0;
 int rdsStationIndex = 0;
 int rdsScrollTop = 0;
@@ -1347,6 +1351,24 @@ void ButtonPress() {
       EEPROM.commit();
     }
   } else {
+    if (menuPage == 8) {
+      if (!rtEditOptions.empty() && rtListIndex < (int)rtEditOptions.size()) {
+        getEstacao(ptyStationIndex).rt = rtEditOptions[rtListIndex];
+        lastCustomFreq = 0;
+      }
+      menuPage = 6; menuoption = 70; BuildMenu();
+      while (digitalRead(ROTARY_BUTTON) == LOW) delay(50);
+      return;
+    }
+    if (menuPage == 7) {
+      if (!psEditOptions.empty() && psListIndex < (int)psEditOptions.size()) {
+        getEstacao(ptyStationIndex).ps = psEditOptions[psListIndex];
+        lastCustomFreq = 0;
+      }
+      menuPage = 6; menuoption = 50; BuildMenu();
+      while (digitalRead(ROTARY_BUTTON) == LOW) delay(50);
+      return;
+    }
     if (menuPage == 6) {
       if (menuopen == false) {
         if (menuoption == 130) {
@@ -1356,6 +1378,14 @@ void ButtonPress() {
           saveCustomRDSEnabled(); lastCustomFreq = 0; BuildMenu();
         } else if (menuoption == 150) {
           habilitarTodasRDS(); BuildMenu();
+        } else if (menuoption == 170) {
+          buildPSEditOptions(getEstacao(ptyStationIndex).freq_khz, ptyStationIndex);
+          psListIndex = 0; psListScrollTop = 0;
+          menuPage = 7; menuoption = 22; BuildMenu();
+        } else if (menuoption == 190) {
+          buildRTEditOptions(getEstacao(ptyStationIndex).freq_khz, ptyStationIndex);
+          rtListIndex = 0; rtListScrollTop = 0;
+          menuPage = 8; menuoption = 22; BuildMenu();
         } else if (menuoption == 90) {
           menuopen = true;
           piEditCode = (radio.rds.stationID != 0) ? (int)radio.rds.stationID : (int)getEstacao(ptyStationIndex).pi_code;
@@ -1634,11 +1664,27 @@ void KeyUp() {
       }
       return;
     }
+    if (menuPage == 7) {
+      if (psListIndex > 0) {
+        psListIndex--;
+        if (psListIndex < psListScrollTop) psListScrollTop = psListIndex;
+        BuildMenu();
+      }
+      return;
+    }
+    if (menuPage == 8) {
+      if (rtListIndex > 0) {
+        rtListIndex--;
+        if (rtListIndex < rtListScrollTop) rtListScrollTop = rtListIndex;
+        BuildMenu();
+      }
+      return;
+    }
     if (menuPage == 6) {
       if (menuopen == false) {
         tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
         menuoption += 20;
-        if (menuoption > 150) menuoption = 30;
+        if (menuoption > 190) menuoption = 30;
         tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
       } else {
         if (menuoption == 30) {
@@ -1881,11 +1927,27 @@ void KeyDown() {
       }
       return;
     }
+    if (menuPage == 7) {
+      if (psListIndex < (int)psEditOptions.size() - 1) {
+        psListIndex++;
+        if (psListIndex >= psListScrollTop + 8) psListScrollTop = psListIndex - 7;
+        BuildMenu();
+      }
+      return;
+    }
+    if (menuPage == 8) {
+      if (rtListIndex < (int)rtEditOptions.size() - 1) {
+        rtListIndex++;
+        if (rtListIndex >= rtListScrollTop + 8) rtListScrollTop = rtListIndex - 7;
+        BuildMenu();
+      }
+      return;
+    }
     if (menuPage == 6) {
       if (menuopen == false) {
         tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_BLACK);
         menuoption -= 20;
-        if (menuoption < 30) menuoption = 150;
+        if (menuoption < 30) menuoption = 190;
         tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
       } else {
         if (menuoption == 30) {
@@ -2258,8 +2320,34 @@ void showPTY() {
   }
 }
 
+static String removeAccents(const String& s) {
+  String r;
+  r.reserve(s.length());
+  for (int i = 0; i < (int)s.length(); i++) {
+    unsigned char c = (unsigned char)s[i];
+    switch (c) {
+      case 0xC0: case 0xC1: case 0xC2: case 0xC3: case 0xC4: case 0xC5: r += 'A'; break;
+      case 0xC7: r += 'C'; break;
+      case 0xC8: case 0xC9: case 0xCA: case 0xCB: r += 'E'; break;
+      case 0xCC: case 0xCD: case 0xCE: case 0xCF: r += 'I'; break;
+      case 0xD1: r += 'N'; break;
+      case 0xD2: case 0xD3: case 0xD4: case 0xD5: case 0xD6: r += 'O'; break;
+      case 0xD9: case 0xDA: case 0xDB: case 0xDC: r += 'U'; break;
+      case 0xE0: case 0xE1: case 0xE2: case 0xE3: case 0xE4: case 0xE5: r += 'a'; break;
+      case 0xE7: r += 'c'; break;
+      case 0xE8: case 0xE9: case 0xEA: case 0xEB: r += 'e'; break;
+      case 0xEC: case 0xED: case 0xEE: case 0xEF: r += 'i'; break;
+      case 0xF1: r += 'n'; break;
+      case 0xF2: case 0xF3: case 0xF4: case 0xF5: case 0xF6: r += 'o'; break;
+      case 0xF9: case 0xFA: case 0xFB: case 0xFC: r += 'u'; break;
+      default: r += (char)c; break;
+    }
+  }
+  return r;
+}
+
 static void addEditOption(std::vector<String>& opts, std::vector<String>& lbls, const String& val, const String& lbl) {
-  String v = val; v.trim();
+  String v = removeAccents(val); v.trim();
   if (v.length() == 0) return;
   for (auto& e : opts) if (e == v) return;
   opts.push_back(v); lbls.push_back(lbl);
@@ -2564,7 +2652,61 @@ void BuildMenu() {
     tft.drawString("LIGAR", 110, 150, 2);
     tft.setTextColor(TFT_SKYBLUE);
     tft.drawString(getUIString(UI_BACK, languageSet), 15, 130, 2);
+    tft.setTextColor(TFT_WHITE);
+    tft.drawString("PS Lista:", 15, 170, 2);
+    tft.setTextColor(TFT_CYAN);
+    tft.drawString("VER", 90, 170, 2);
+    tft.setTextColor(TFT_WHITE);
+    tft.drawString("RT Lista:", 15, 190, 2);
+    tft.setTextColor(TFT_CYAN);
+    tft.drawString("VER", 90, 190, 2);
     tft.drawRoundRect(10, menuoption, 300, 18, 5, TFT_WHITE);
+  } else if (menuPage == 7) {
+    tft.setTextColor(TFT_WHITE);
+    tft.drawString("Lista PS", 15, 5, 1);
+    if (!psEditOptions.empty()) {
+      int visRows = min((int)psEditOptions.size(), 8);
+      for (int i = 0; i < visRows; i++) {
+        int idx = psListScrollTop + i;
+        if (idx >= (int)psEditOptions.size()) break;
+        int y = 22 + i * 26;
+        tft.setTextColor(TFT_SKYBLUE);
+        String lbl = psEditLabels[idx];
+        if (lbl.length() > 8) lbl = lbl.substring(0, 8);
+        tft.drawString(lbl, 5, y, 1);
+        tft.setTextColor(TFT_YELLOW);
+        String val = psEditOptions[idx];
+        if (val.length() > 22) val = val.substring(0, 22);
+        tft.drawString(val, 62, y, 1);
+      }
+    }
+    tft.setTextColor(TFT_SKYBLUE);
+    tft.drawString(getUIString(UI_BACK, languageSet), 5, 215, 1);
+    int psSelY = 22 + (psListIndex - psListScrollTop) * 26;
+    tft.drawRoundRect(3, psSelY - 1, 314, 16, 3, TFT_WHITE);
+  } else if (menuPage == 8) {
+    tft.setTextColor(TFT_WHITE);
+    tft.drawString("Lista RT", 15, 5, 1);
+    if (!rtEditOptions.empty()) {
+      int visRows = min((int)rtEditOptions.size(), 8);
+      for (int i = 0; i < visRows; i++) {
+        int idx = rtListScrollTop + i;
+        if (idx >= (int)rtEditOptions.size()) break;
+        int y = 22 + i * 26;
+        tft.setTextColor(TFT_SKYBLUE);
+        String lbl = rtEditLabels[idx];
+        if (lbl.length() > 8) lbl = lbl.substring(0, 8);
+        tft.drawString(lbl, 5, y, 1);
+        tft.setTextColor(TFT_YELLOW);
+        String val = rtEditOptions[idx];
+        if (val.length() > 22) val = val.substring(0, 22);
+        tft.drawString(val, 62, y, 1);
+      }
+    }
+    tft.setTextColor(TFT_SKYBLUE);
+    tft.drawString(getUIString(UI_BACK, languageSet), 5, 215, 1);
+    int rtSelY = 22 + (rtListIndex - rtListScrollTop) * 26;
+    tft.drawRoundRect(3, rtSelY - 1, 314, 16, 3, TFT_WHITE);
   }
   analogWrite(SMETERPIN, 0);
 }
