@@ -703,7 +703,15 @@ void showPS() {
     customPS = findCustomPSForFreq(currentFreqKhz);
   }
 
-  String stationNameToShow = customPS.length() > 0 ? customPS : radio.rds.stationName;
+  String stationNameTrimmed = radio.rds.stationName;
+  stationNameTrimmed.trim();
+  String stationNameToShow;
+  if (customPS.length() > 0 && stationNameTrimmed.length() > 0)
+    stationNameToShow = customPS + " - " + radio.rds.stationName;
+  else if (customPS.length() > 0)
+    stationNameToShow = customPS;
+  else
+    stationNameToShow = radio.rds.stationName;
 
   if ((stationNameToShow != PSold) ||
       (RDSstatus && !(ps12errorold == radio.rds.ps12error ||
