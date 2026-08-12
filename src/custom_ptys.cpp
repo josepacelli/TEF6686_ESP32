@@ -50,7 +50,7 @@ void loadIsaacPTYs() {
   e.freq_khz = 92500;  e.pty_code = 10; e.ps = "VERDINHA FM 92.5 - JORNALISMO QUE FALA A NOSSA LINGUA"; e.rt = "VERDINHA FM 92.5 - JORNALISMO QUE FALA A NOSSA LINGUA"; customPtys.push_back(e);
   e.freq_khz = 92900;  e.pty_code = 10; e.ps = "JOVEM PAN NEWS FORTALEZA - A RADIO QUE TOCA NOTICIA"; e.rt = "JOVEM PAN NEWS FORTALEZA - A RADIO QUE TOCA NOTICIA"; customPtys.push_back(e);
   e.freq_khz = 93500;  e.pty_code = 20; e.ps = "CANAA FM 93.5 - A TERRA PROMETIDA DO RADIO"; e.rt = "CANAA FM 93.5 - A TERRA PROMETIDA DO RADIO"; customPtys.push_back(e);
-  e.freq_khz = 93900;  e.pty_code = 10; e.ps = "FM 93 SEMPRE AO SEU LADO - SEMPRE AO SEU LADO"; e.rt = "FM 93 SEMPRE AO SEU LADO -SEMPRE AO SEU LADO"; customPtys.push_back(e);
+  e.freq_khz = 93900;  e.pty_code = 10; e.ps = "FM 93 SEMPRE AO SEU LADO - SEMPRE AO SEU LADO"; e.rt = "FM 93 SEMPRE AO SEU LADO - SEMPRE AO SEU LADO"; customPtys.push_back(e);
   e.freq_khz = 94300;  e.pty_code = 10; e.ps = "SOL FM 94.3 OFICIAL - NOSSO BRILHO E VOCE"; e.rt = "SOL FM 94.3 OFICIAL - NOSSO BRILHO E VOCE"; customPtys.push_back(e);
   e.freq_khz = 94700;  e.pty_code = 10; e.ps = "JOVEM PAN FORTALEZA FM 94.7 - A MELHOR RADIO DO BRASIL"; e.rt = "JOVEM PAN FORTALEZA FM 94.7 - A MELHOR RADIO DO BRASIL"; customPtys.push_back(e);
   e.freq_khz = 95100;  e.pty_code = 10; e.ps = "MONTE MOR FM 95.1 - MUSICA POP PARA TODA PACAJUS"; e.rt = "MONTE MOR FM 95.1 - MUSICA POP PARA TODA PACAJUS"; customPtys.push_back(e);
