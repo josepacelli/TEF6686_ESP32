@@ -18,6 +18,8 @@ PTYEntry getCustomPTYEntry(size_t idx);
 int8_t findCustomPTYCodeForFreq(uint32_t freq_khz);
 void addCustomPTY(uint32_t freq_khz, uint8_t pty_code, const String &ps, const String &rt);
 void removeCustomPTY(size_t idx);
+void setCustomPTY(uint32_t freq_khz, uint8_t pty_code);
+void removeCustomPTYForFreq(uint32_t freq_khz);
 
 String findCustomPSForFreq(uint32_t freq_khz);
 String findCustomRTForFreq(uint32_t freq_khz);

@@ -168,3 +168,32 @@ void removeCustomPTY(size_t idx) {
     saveCustomPTYS();
   }
 }
+
+// Mesma regra de casamento (exato, depois tolerância de 100 kHz) usada pelas
+// funções findCustom*ForFreq, pra escrita nunca duplicar uma entrada que a
+// leitura já enxerga como a mesma estação.
+static int findCustomPTYIndexForFreq(uint32_t freq_khz) {
+  for (size_t i = 0; i < customPtys.size(); i++) {
+    if (customPtys[i].freq_khz == freq_khz) return (int)i;
+  }
+  for (size_t i = 0; i < customPtys.size(); i++) {
+    if (abs((int32_t)customPtys[i].freq_khz - (int32_t)freq_khz) <= 100) return (int)i;
+  }
+  return -1;
+}
+
+void setCustomPTY(uint32_t freq_khz, uint8_t pty_code) {
+  int idx = findCustomPTYIndexForFreq(freq_khz);
+  if (idx >= 0) {
+    customPtys[idx].pty_code = pty_code;
+  } else {
+    PTYEntry e; e.freq_khz = freq_khz; e.pty_code = pty_code; e.ps = ""; e.rt = "";
+    customPtys.push_back(e);
+  }
+  saveCustomPTYS();
+}
+
+void removeCustomPTYForFreq(uint32_t freq_khz) {
+  int idx = findCustomPTYIndexForFreq(freq_khz);
+  if (idx >= 0) removeCustomPTY((size_t)idx);
+}

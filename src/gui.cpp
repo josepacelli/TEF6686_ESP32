@@ -5,9 +5,23 @@
 #include <EEPROM.h>
 #include <cstring>
 #include "custom_ptys.h"
+#include "language.h"
 
 extern mem presets[];
+extern unsigned int frequency;
+extern unsigned int frequency_OIRT;
 bool setWiFiConnectParam = false;
+
+static uint32_t ptyEditorCurrentFreqKhz() {
+  if (band == BAND_FM) return frequency * 10;
+  if (band == BAND_OIRT) return frequency_OIRT * 10;
+  return 0;
+}
+
+static String ptyEditorValueName(int8_t code) {
+  if (code < 0) return textUI(30); // "Off"
+  return myLanguage[language][228 + code];
+}
 
 // Helper function to get USB mode string
 static String getUSBModeString() {
@@ -1576,6 +1590,16 @@ void ShowOneLine(byte position, byte item, bool selected) {
           FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
           FullLineSprite.drawString(String(fmscansens), 298, 2);
           break;
+
+        case AUDIOSETTINGS:
+          FullLineSprite.setTextDatum(TL_DATUM);
+          FullLineSprite.setTextColor(ActiveColor, ActiveColorSmooth, false);
+          FullLineSprite.drawString("Custom PTY", 6, 2);
+
+          FullLineSprite.setTextDatum(TR_DATUM);
+          FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+          FullLineSprite.drawString(ptyEditorValueName(findCustomPTYCodeForFreq(ptyEditorCurrentFreqKhz())), 298, 2);
+          break;
       }
       break;
 
@@ -2695,6 +2719,15 @@ void ShowOneButton(byte position, byte item, bool selected) {
           PSSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
           PSSprite.drawString(String(fmscansens), 75, 15);
           break;
+
+        case AUDIOSETTINGS:
+          PSSprite.setTextDatum(TC_DATUM);
+          PSSprite.setTextColor(ActiveColor, ActiveColorSmooth, false);
+          PSSprite.drawString(shortLine("Custom PTY"), 75, 1);
+
+          PSSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+          PSSprite.drawString(shortLine(ptyEditorValueName(findCustomPTYCodeForFreq(ptyEditorCurrentFreqKhz()))), 75, 15);
+          break;
       }
       break;
 
@@ -3617,6 +3650,21 @@ void MenuUpDown(bool dir) {
             OneBigLineSprite.drawString((fmdeemphasis != DEEMPHASIS_NONE ? (fmdeemphasis == DEEMPHASIS_50 ? String(FM_DEEMPHASIS_50, DEC) : String(FM_DEEMPHASIS_75, DEC)) : textUI(30)), 135, 0);
             OneBigLineSprite.pushSprite(24, 118);
             radio.setDeemphasis(fmdeemphasis);
+            break;
+
+          case ITEM8:
+            if (dir) {
+              ptyEditValue++;
+              if (ptyEditValue > 31) ptyEditValue = -1;
+            } else {
+              ptyEditValue--;
+              if (ptyEditValue < -1) ptyEditValue = 31;
+            }
+
+            OneBigLineSprite.setTextDatum(TC_DATUM);
+            OneBigLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+            OneBigLineSprite.drawString(ptyEditorValueName(ptyEditValue), 135, 0);
+            OneBigLineSprite.pushSprite(24, 118);
             break;
         }
         break;
@@ -4920,6 +4968,17 @@ void DoMenu() {
             if (fmdeemphasis != DEEMPHASIS_NONE) OneBigLineSprite.setTextDatum(TR_DATUM); else OneBigLineSprite.setTextDatum(TC_DATUM);
             OneBigLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
             OneBigLineSprite.drawString((fmdeemphasis != DEEMPHASIS_NONE ? (fmdeemphasis == DEEMPHASIS_50 ? String(FM_DEEMPHASIS_50, DEC) : String(FM_DEEMPHASIS_75, DEC)) : textUI(30)), 135, 0);
+            OneBigLineSprite.pushSprite(24, 118);
+            break;
+
+          case ITEM8:
+            ptyEditValue = findCustomPTYCodeForFreq(ptyEditorCurrentFreqKhz());
+
+            Infoboxprint("Custom PTY");
+
+            OneBigLineSprite.setTextDatum(TC_DATUM);
+            OneBigLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+            OneBigLineSprite.drawString(ptyEditorValueName(ptyEditValue), 135, 0);
             OneBigLineSprite.pushSprite(24, 118);
             break;
         }

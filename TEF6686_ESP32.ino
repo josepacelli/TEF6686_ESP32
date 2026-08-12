@@ -196,7 +196,7 @@ byte amgain;
 byte freqoldcount;
 byte HighCutLevel;
 byte HighCutOffset;
-byte items[10] = { 10, static_cast<byte>(dynamicspi ? 10 : 9), 7, 10, 10, 10, 9, 10, 10, 9 };
+byte items[10] = { 10, static_cast<byte>(dynamicspi ? 10 : 9), 8, 10, 10, 10, 9, 10, 10, 9 };
 byte iMSEQ;
 byte iMSset;
 byte language;
@@ -335,6 +335,7 @@ int8_t NTPoffset;
 int8_t CN;
 int8_t CNold;
 int8_t VolSet;
+int8_t ptyEditValue;
 float batteryVold;
 IPAddress remoteip;
 String AIDString;
@@ -2630,6 +2631,15 @@ void ModeButtonPress() {
               }
               if (menupage == DISPLAYSETTINGS && menuoption == ITEM5) {
                 doTheme();
+              }
+              if (menupage == AUDIOSETTINGS && menuoption == ITEM8) {
+                uint32_t ptyEditFreqKhz = 0;
+                if (band == BAND_FM) ptyEditFreqKhz = frequency * 10;
+                else if (band == BAND_OIRT) ptyEditFreqKhz = frequency_OIRT * 10;
+                if (ptyEditFreqKhz > 0) {
+                  if (ptyEditValue < 0) removeCustomPTYForFreq(ptyEditFreqKhz);
+                  else setCustomPTY(ptyEditFreqKhz, (uint8_t)ptyEditValue);
+                }
               }
               menuopen = false;
             }
