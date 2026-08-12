@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "WebSearch",
-      "Bash(rtk grep *)"
+      "Bash(rtk grep *)",
+      "Bash(awk '/case 9:/{f=1} f{print NR\": \"$0} f&&/^    case 10:/{exit}' /Users/pacelli/git/pacelli/TEF6686_ESP32/src/gui.cpp)",
+      "Bash(awk 'NR==656,NR==1757' /Users/pacelli/git/pacelli/TEF6686_ESP32/src/gui.cpp)",
+      "Bash(awk 'NR<=2840 && /^void /{name=$0; line=NR} END{}' /Users/pacelli/git/pacelli/TEF6686_ESP32/TEF6686_ESP32.ino)",
+      "Bash(awk '/^void /{name=$0; line=NR} NR==2840{print line\": \"name}' /Users/pacelli/git/pacelli/TEF6686_ESP32/TEF6686_ESP32.ino)",
+      "Bash(\\\\grep -n \"language_totalnumber\\\\|LANGUAGE_CHS\\\\|const String myLanguage\\\\|^  {$\\\\|^};\" /Users/pacelli/git/pacelli/TEF6686_ESP32/src/language.h)",
+      "Bash(awk 'NR==1757,NR==2884' /Users/pacelli/git/pacelli/TEF6686_ESP32/src/gui.cpp)"
     ]
   }
 }
