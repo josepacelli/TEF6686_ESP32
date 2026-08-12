@@ -241,6 +241,7 @@ byte spispeed;
 char buff[16];
 char eonpicodeold[20][6];
 char programTypePrevious[18];
+bool forcePTYRedraw = false;
 char rabbitearstime[100][21];
 const uint8_t* currentFont = nullptr;
 float vPerold;
@@ -2639,8 +2640,9 @@ void ModeButtonPress() {
                 if (ptyEditFreqKhz > 0) {
                   if (ptyEditValue < 0) removeCustomPTYForFreq(ptyEditFreqKhz);
                   else setCustomPTY(ptyEditFreqKhz, (uint8_t)ptyEditValue);
-                  // força showPTY() a redesenhar mesmo se o PTY bruto do RDS não mudou
-                  programTypePrevious[0] = '\0';
+                  // força showPTY() a redesenhar mesmo se o clearRDS do endMenu()
+                  // zerar radio.rds.stationType igual a programTypePrevious
+                  forcePTYRedraw = true;
                 }
               }
               menuopen = false;

@@ -631,7 +631,8 @@ void showPI() {
 }
 
 void showPTY() {
-  if (strcmp(radio.rds.stationType, programTypePrevious)) {
+  if (strcmp(radio.rds.stationType, programTypePrevious) || forcePTYRedraw) {
+    forcePTYRedraw = false;
     String PTYString = String(radio.rds.stationTypeCode) + "/" + (radio.rds.region != 0 ? radio.rds.stationType : textUI(228 + radio.rds.stationTypeCode));
 
     if (radio.rds.stationTypeCode == 32) PTYString = "";
