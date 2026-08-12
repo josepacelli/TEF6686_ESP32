@@ -2639,6 +2639,8 @@ void ModeButtonPress() {
                 if (ptyEditFreqKhz > 0) {
                   if (ptyEditValue < 0) removeCustomPTYForFreq(ptyEditFreqKhz);
                   else setCustomPTY(ptyEditFreqKhz, (uint8_t)ptyEditValue);
+                  // força showPTY() a redesenhar mesmo se o PTY bruto do RDS não mudou
+                  programTypePrevious[0] = '\0';
                 }
               }
               menuopen = false;
