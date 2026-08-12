@@ -196,7 +196,7 @@ byte amgain;
 byte freqoldcount;
 byte HighCutLevel;
 byte HighCutOffset;
-byte items[10] = { 10, static_cast<byte>(dynamicspi ? 10 : 9), 8, 10, 10, 10, 9, 10, 10, 9 };
+byte items[10] = { 10, static_cast<byte>(dynamicspi ? 10 : 9), 9, 10, 10, 10, 9, 10, 10, 9 };
 byte iMSEQ;
 byte iMSset;
 byte language;
@@ -337,6 +337,7 @@ int8_t CN;
 int8_t CNold;
 int8_t VolSet;
 int8_t ptyEditValue;
+int16_t psrtEditIndex;
 float batteryVold;
 IPAddress remoteip;
 String AIDString;
@@ -2643,6 +2644,19 @@ void ModeButtonPress() {
                   // força showPTY() a redesenhar mesmo se o clearRDS do endMenu()
                   // zerar radio.rds.stationType igual a programTypePrevious
                   forcePTYRedraw = true;
+                }
+              }
+              if (menupage == AUDIOSETTINGS && menuoption == ITEM9) {
+                uint32_t psrtFreqKhz = 0;
+                if (band == BAND_FM) psrtFreqKhz = frequency * 10;
+                else if (band == BAND_OIRT) psrtFreqKhz = frequency_OIRT * 10;
+                if (psrtFreqKhz > 0) {
+                  if (psrtEditIndex < 0) {
+                    setCustomPSRT(psrtFreqKhz, "", "");
+                  } else {
+                    PTYEntry sel = getIsaacPTYEntry((size_t)psrtEditIndex);
+                    setCustomPSRT(psrtFreqKhz, sel.ps, sel.rt);
+                  }
                 }
               }
               menuopen = false;

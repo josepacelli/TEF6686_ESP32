@@ -23,3 +23,7 @@ void removeCustomPTYForFreq(uint32_t freq_khz);
 
 String findCustomPSForFreq(uint32_t freq_khz);
 String findCustomRTForFreq(uint32_t freq_khz);
+
+size_t getIsaacPTYSCount();
+PTYEntry getIsaacPTYEntry(size_t idx);
+void setCustomPSRT(uint32_t freq_khz, const String &ps, const String &rt);

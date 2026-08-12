@@ -186,6 +186,7 @@ extern int8_t LevelOffset;
 extern int8_t LowLevelSet;
 extern int8_t MPold;
 extern int8_t ptyEditValue;
+extern int16_t psrtEditIndex;
 extern int8_t USold;
 extern int8_t NTPoffset;
 extern int8_t VolSet;

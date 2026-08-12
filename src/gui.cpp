@@ -23,6 +23,11 @@ static String ptyEditorValueName(int8_t code) {
   return myLanguage[language][228 + code];
 }
 
+static String psrtEditorValueName(int16_t idx) {
+  if (idx < 0) return textUI(30); // "Off"
+  return getIsaacPTYEntry((size_t)idx).ps;
+}
+
 // Helper function to get USB mode string
 static String getUSBModeString() {
   switch (USBmode) {
@@ -1692,6 +1697,18 @@ void ShowOneLine(byte position, byte item, bool selected) {
           FullLineSprite.setTextColor(ActiveColor, ActiveColorSmooth, false);
           FullLineSprite.drawString(removeNewline(textUI(276)), 6, 2);
           break;
+
+        case AUDIOSETTINGS: {
+          FullLineSprite.setTextDatum(TL_DATUM);
+          FullLineSprite.setTextColor(ActiveColor, ActiveColorSmooth, false);
+          FullLineSprite.drawString("Custom PS/RT", 6, 2);
+
+          String customPS = findCustomPSForFreq(ptyEditorCurrentFreqKhz());
+          FullLineSprite.setTextDatum(TR_DATUM);
+          FullLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+          FullLineSprite.drawString(shortLine(customPS.length() > 0 ? customPS : textUI(30)), 298, 2);
+          break;
+        }
       }
       break;
 
@@ -2816,6 +2833,17 @@ void ShowOneButton(byte position, byte item, bool selected) {
           PSSprite.setTextColor(ActiveColor, ActiveColorSmooth, false);
           PSSprite.drawString(shortLine(removeNewline(textUI(276))), 75, 8);
           break;
+
+        case AUDIOSETTINGS: {
+          PSSprite.setTextDatum(TC_DATUM);
+          PSSprite.setTextColor(ActiveColor, ActiveColorSmooth, false);
+          PSSprite.drawString(shortLine("Custom PS/RT"), 75, 1);
+
+          String customPS = findCustomPSForFreq(ptyEditorCurrentFreqKhz());
+          PSSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+          PSSprite.drawString(shortLine(customPS.length() > 0 ? customPS : textUI(30)), 75, 15);
+          break;
+        }
       }
       break;
 
@@ -3666,6 +3694,23 @@ void MenuUpDown(bool dir) {
             OneBigLineSprite.drawString(ptyEditorValueName(ptyEditValue), 135, 0);
             OneBigLineSprite.pushSprite(24, 118);
             break;
+
+          case ITEM9: {
+            int16_t count = (int16_t)getIsaacPTYSCount();
+            if (dir) {
+              psrtEditIndex++;
+              if (psrtEditIndex >= count) psrtEditIndex = -1;
+            } else {
+              psrtEditIndex--;
+              if (psrtEditIndex < -1) psrtEditIndex = count - 1;
+            }
+
+            OneBigLineSprite.setTextDatum(TC_DATUM);
+            OneBigLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+            OneBigLineSprite.drawString(shortLine(psrtEditorValueName(psrtEditIndex)), 135, 0);
+            OneBigLineSprite.pushSprite(24, 118);
+            break;
+          }
         }
         break;
 
@@ -4979,6 +5024,17 @@ void DoMenu() {
             OneBigLineSprite.setTextDatum(TC_DATUM);
             OneBigLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
             OneBigLineSprite.drawString(ptyEditorValueName(ptyEditValue), 135, 0);
+            OneBigLineSprite.pushSprite(24, 118);
+            break;
+
+          case ITEM9:
+            psrtEditIndex = -1;
+
+            Infoboxprint("Custom PS/RT");
+
+            OneBigLineSprite.setTextDatum(TC_DATUM);
+            OneBigLineSprite.setTextColor(PrimaryColor, PrimaryColorSmooth, false);
+            OneBigLineSprite.drawString(shortLine(psrtEditorValueName(psrtEditIndex)), 135, 0);
             OneBigLineSprite.pushSprite(24, 118);
             break;
         }
