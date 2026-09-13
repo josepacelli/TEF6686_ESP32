@@ -1043,7 +1043,7 @@ void showRadioText() {
     RTString += "Artist: " + artistName;
   }
   if (titleName.length() > 0) {
-    RTString += (artistName.length() > 0 ? " | " : "") + "Title: " + titleName;
+    RTString += (artistName.length() > 0 ? " | " : "") + String("Title: ") + titleName;
   }
 
   // Add RDS Plus data (other tags besides artist/title)
